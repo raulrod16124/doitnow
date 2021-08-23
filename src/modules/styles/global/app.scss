@@ -1,0 +1,45 @@
+*, *:after, *:before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    box-sizing: inherit;    
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.8vmin;
+    font-family: $font-principal;
+}
+
+// Globals
+
+.btn{
+    padding: $padding2 * 10;
+    border-radius: $SmallSize * 10;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.message{
+    width: 100%;
+    text-align: center;
+    border: .5vmin solid;
+    border-radius: 1vmin;
+    font-size: 3.2vmin;
+    font-weight: bolder;
+}
+
+// App
+
+.App{
+   overflow-x: hidden;
+}

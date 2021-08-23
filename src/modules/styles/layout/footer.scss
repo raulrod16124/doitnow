@@ -1,0 +1,16 @@
+.footer{
+    display: flex;
+    justify-content: space-between;
+    color: $White;
+    background-color: $footer;
+    font-size: 1.8vmin;
+    width: 100%;
+    height: 5vh;
+    padding: $BigSize * 2 $BigSize * 10;
+    position: absolute;
+    position: fixed;
+    bottom: 0;
+
+    
+
+}

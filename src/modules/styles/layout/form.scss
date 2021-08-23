@@ -1,0 +1,68 @@
+.form{
+    position: absolute;
+    position: fixed;
+    width: 20%;
+    min-height: 100vh;
+    padding: $padding2 * 15;
+    box-shadow: 0 $SmallSize  $SmallSize * 20 $DarkBlue;
+    background-color: $White;
+
+    .title-app{
+        font-size: 5vmin;
+        font-weight: bolder;
+        margin: 0 auto $SmallSize * 50 auto;
+        text-align: center;
+        transition: all .3s;
+        color: $ClearPurple;
+
+        &.color1{
+            color: $Purple;
+        }
+        &.color2{
+            color: $Pink;
+        }
+        &.color3{
+            color: $SkyBlue;
+        }
+        &.color4{
+            color: $Red;
+        }
+    }
+
+    .form-title,
+    .form-level,
+    .form-description{
+        display: block;
+        width: 100%;
+        padding: $padding1 * 10;
+        border-radius: $SmallSize * 10;
+        border: $SmallSize / 6 solid $DarkBlue;
+        margin: $margin1 * 20 auto;
+        font-size: 2.2vmin;
+    }
+
+    .form-description{
+        min-height: $BigSize * 20;
+    }
+
+    .btn-form{
+        width: 100%;
+        background-color: $ClearPurple;
+        border: none;
+        transition: all .3s;
+        font-size: 2.2vmin;
+        font-weight: 700;
+        color: $White;
+        
+        &:hover{
+            background-color: $Pink;
+        }
+    }
+
+    .content-message{
+        position: relative;
+        width: 100%;
+        margin: 5vh auto;
+    }
+
+}
