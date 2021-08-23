@@ -45,20 +45,6 @@
         min-height: $BigSize * 20;
     }
 
-    .btn-form{
-        width: 100%;
-        background-color: $ClearPurple;
-        border: none;
-        transition: all .3s;
-        font-size: 2.2vmin;
-        font-weight: 700;
-        color: $White;
-        
-        &:hover{
-            background-color: $Pink;
-        }
-    }
-
     .content-message{
         position: relative;
         width: 100%;

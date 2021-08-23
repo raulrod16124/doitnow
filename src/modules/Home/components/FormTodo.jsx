@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Button } from '../../../stories/Button';
 import { Message } from '../../global/Message'
 
 export const FormTodo = ({handleCreateTodo, handleFormVisbility}) => {
@@ -82,7 +83,7 @@ export const FormTodo = ({handleCreateTodo, handleFormVisbility}) => {
                 <option className="select-level">💀</option>
             </select>
             <textarea className="form-description" ref={descriptionForm} placeholder="Description..." onChange={(e)=>setTodo({...todo, description: e.target.value})} />
-            <button className="btn btn-form" type="submit">Add new task</button>
+            <Button primary={true} size="large" label="Add new task" />
             <div className="content-message">
                 {  error.visible &&
                     <Message children={error.title} color="#ED4E2C" padding=".5vh 2vw" margin="5vh auto" />

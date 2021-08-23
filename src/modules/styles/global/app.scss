@@ -16,15 +16,6 @@ body{
 
 // Globals
 
-.btn{
-    padding: $padding2 * 10;
-    border-radius: $SmallSize * 10;
-
-    &:hover{
-        cursor: pointer;
-    }
-}
-
 .icon{
     cursor: pointer;
 }
