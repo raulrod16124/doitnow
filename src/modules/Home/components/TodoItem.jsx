@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+
 import { DeleteIcon, EditIcon } from '../../global/Icons';
 import { UpdateTodos } from '../state/actions';
 import { EditTodo } from './EditTodo';

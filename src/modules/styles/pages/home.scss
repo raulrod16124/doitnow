@@ -1,50 +1,63 @@
 .home {
-    .main {
-      min-height: 100vh;
-      background: $Pink;
-      background: -moz-linear-gradient(74deg, $BluePurple 0%, $Purple 25%, $Pink 100%);
-      background: -webkit-linear-gradient(74deg, $BluePurple 0%, $Purple 25%, $Pink 100%);
-      background: linear-gradient(74deg, $BluePurple 0%, $Purple 25%, $Pink 100%);
-    }
-    
-    .content-todos {
-      display: flex;
-      flex: 0;
-      flex-wrap: wrap;
-      list-style: none;
-      margin: 0 auto 0 25%;
-      width: 80vw;
-      z-index: 6;
+  .main {
+    min-height: 100vh;
+    background: $Pink;
+    background: -moz-linear-gradient(
+      74deg,
+      $BluePurple 0%,
+      $Purple 25%,
+      $Pink 100%
+    );
+    background: -webkit-linear-gradient(
+      74deg,
+      $BluePurple 0%,
+      $Purple 25%,
+      $Pink 100%
+    );
+    background: linear-gradient(74deg, $BluePurple 0%, $Purple 25%, $Pink 100%);
+  }
 
-    .todo {
-      display: grid;
-      grid-template-columns: 70% 30%;
-      row-gap: $MediunSize * 12;
-      padding: $padding2 * 15;
-      margin: $margin2 * 20;
+  .content-lists {
+    display: flex;
+    list-style: none;
+    margin: 0 auto 0 25%;
+    width: 80vw;
+    z-index: 6;
+
+    .list{
+      width: 25%;
+      height: 90vh;
+      background-color: $White;
+      list-style: none;
+      border: 1px solid;
+      padding: 2vmin;
+      margin: 1vh 2vw;
+    }
+
+    .item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 1vmin;
+      margin: 1vmin auto;
       border-radius: $SmallSize * 10;
-      background: rgba($color: $White, $alpha: .9);
+      background: rgba($color: $White, $alpha: 0.9);
       border: $SmallSize * 5 solid $Red;
-      border-right: 2vh solid $Red;
+      border-left: 2vh solid $Red;
       height: auto;
-      width: 40%;
+      width: 100%;
       overflow: hidden;
 
-      
-      &.In-process{
+      &.in-process {
         border: $SmallSize * 5 solid $Earth;
         border-right: 2vh solid $Earth;
       }
-      &.Review{
-        border: $SmallSize * 5 solid $Purple;
-        border-right: 2vh solid $Purple;
-      }
-      &.Done{
+      &.done {
         border: $SmallSize * 5 solid $Green;
-        border-right: 2vh solid $Green;
+        border-left: 2vh solid $Green;
       }
-      
-      .bg-circle{
+
+      .bg-circle {
         position: absolute;
         background: radial-gradient(ellipse at top, $White, $Red);
         top: -5vh;
@@ -52,42 +65,44 @@
         border-radius: 50%;
         width: 100%;
         height: 70vh;
-        opacity: .3;
+        opacity: 0.3;
         z-index: 5;
 
-        &.In-process{
+        &.in-process {
           background: radial-gradient(ellipse at top, $White, $Earth);
         }
-        &.Review{
+        &.review {
           background: radial-gradient(ellipse at top, $White, $Purple);
         }
-        &.Done{
+        &.done {
           background: radial-gradient(ellipse at top, $White, $Green);
         }
-
       }
-
     }
 
-    .content-data-todo-left,
-    .content-extra-data{
+    .content-todo{
+      display: grid;
+      grid-template-columns: 40% 60%;
+    }
+
+    .content-data-todo-rigth{
       width: 100%;
-      display: flex;
-      flex-direction: column;
       font-size: 2.8vmin;
       justify-content: space-between;
       column-gap: 2vw;
       width: 100%;
       z-index: 10;
     }
-    
-    .content-data-todo-right{
-      text-align: center;
+
+    .content-data-todo-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       z-index: 10;
     }
 
     .todo-title {
-      padding: $padding2;
+      height: fit-content;
       font-size: 3vmin;
       z-index: 10;
     }
@@ -105,7 +120,7 @@
     }
   }
 
-  .content-edit-todo{
+  .content-edit-todo {
     display: grid;
     grid-template-columns: 70% 30%;
     column-gap: $BigSize * 1;
@@ -113,51 +128,45 @@
     height: auto;
     z-index: 10;
 
-
     .todo-title,
     .todo-level,
-    .todo-status,
-    .todo-description{
-        display: block;
-        width: 100%;
-        padding: $padding1 * 10;
-        border-radius: $SmallSize * 10;
-        border: $SmallSize / 6 solid $DarkBlue;
-        margin: $margin1 * 5 auto;
-        font-size: 2.5vmin;
-        z-index: 10;
-    }
-    
-    .todo-level,
-    .todo-status{
-      margin: .5vmin;
+    .todo-description {
+      display: block;
+      width: 100%;
+      padding: $padding1 * 10;
+      border-radius: $SmallSize * 10;
+      border: $SmallSize / 6 solid $DarkBlue;
+      margin: $margin1 * 5 auto;
+      font-size: 2.5vmin;
+      z-index: 10;
     }
 
-    .todo-description{
+    .todo-level{
+      margin: 0.5vmin;
+    }
+
+    .todo-description {
       min-height: 15vh;
     }
 
-    .btn-todo{
-        width: 100%;
-        background-color: $ClearPurple;
-        border: none;
-        transition: all .3s;
-        font-size: 2.2vmin;
-        font-weight: 700;
-        color: $White;
-        
-        &:hover{
-            background-color: $Pink;
-        }
+    .btn-todo {
+      width: 100%;
+      background-color: $ClearPurple;
+      border: none;
+      transition: all 0.3s;
+      font-size: 2.2vmin;
+      font-weight: 700;
+      color: $White;
+
+      &:hover {
+        background-color: $Pink;
+      }
     }
 
-    .content-icons{
+    .content-icons {
       margin-top: $SmallSize * 20;
       justify-content: space-around;
       z-index: 10;
     }
-
   }
-
 }
-
