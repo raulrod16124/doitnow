@@ -8,6 +8,13 @@ const initialState = [
         level: "easy",
         status:"todo",
         description: "nothing",
+    },
+    {
+        id: "5424",
+        title: "HELLO",
+        level: "easy",
+        status:"done",
+        description: "nothing",
     }
 ]
 
@@ -19,12 +26,18 @@ export const TodosReducer = ( state = initialState, action ) => {
         case TYPES.createTodo:
             return [...state, action.payload];
         case TYPES.updateTodo:
-            console.log(action.payload.status);
-            state[action.payload.id] = action.payload;
-            return {...state};
+            console.log(action.payload);
+            const updateTodo = state.map( todo => {
+                if( todo.id === action.payload.id ){
+                    return todo = action.payload;
+                };
+                return todo;
+            } );
+            return updateTodo;
         case TYPES.deleteTodo:
-            delete state[action.payload];
-            return {...state}; 
+            console.log(action.payload);
+            const updateTodos = state.filter( todo => todo.id !== action.payload );
+            return updateTodos; 
     
         default:
             return state;

@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Footer } from '../global/Footer';
+import { Header } from '../global/Header';
 import { FormTodo } from './components/FormTodo';
 import List from './components/List';
 import { TodoItem } from './components/TodoItem';
@@ -20,21 +21,15 @@ export const Home = () => {
     const dispatch = useDispatch();
 
     const [ todo, setTodo ] = useState([]);
-    const [ doneTodo, setDoneTodo ] = useState([
-      {
-        id: "5424",
-        title: "HELLO",
-        level: "easy",
-        status:"done",
-        description: "nothing",
-      }
-    ]);
+    const [ doneTodo, setDoneTodo ] = useState([]);
 
     // References
     const mainClass = useRef(); 
 
     useEffect(()=>{
-        setTodo(todosState);
+      console.log(todosState);
+      setTodo( () => todosState.filter( item => item.status === "todo" ));
+      setDoneTodo( () => todosState.filter( item => item.status === "done" ));
     }, [todosState]);
 
     const handleCreateTodo = (todo) => {
@@ -50,6 +45,7 @@ export const Home = () => {
     }
 
     const handleDeleteTodoById = (idTodo) =>{
+      console.log(idTodo)
         dispatch(DeleteTodos(idTodo));
     };
 
@@ -63,7 +59,7 @@ export const Home = () => {
     };
 
     const handleDragEnd = (result) =>{
-      console.log(result);
+      // console.log(result);
         const {source, destination, draggableId} = result;
         if(!destination){return;}
         if(source.droppableId !== destination.droppableId){
@@ -109,19 +105,18 @@ export const Home = () => {
     return (
         <>
             <div className="home">
-                {/* Insert DragDropContext component here */}
                 <DragDropContext onDragEnd={(result)=>handleDragEnd(result)} >
                     <div className="main" ref={mainClass} >
                         <FormTodo handleCreateTodo={handleCreateTodo} />
+                        <Header />
                         <div className="content-body">
                             <div className="content-lists">
-                                <List key="todo" droppableID="todo" list={todo} handleDeleteTodoById={handleDeleteTodoById} />
-                                <List key="doneTodo" droppableID="doneTodo" list={doneTodo} handleDeleteTodoById={handleDeleteTodoById} />
+                                <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />
+                                <List key="doneTodo" droppableID="doneTodo" list={doneTodo} titleList="DONE" handleDeleteTodoById={handleDeleteTodoById} />
                             </div>
                         </div>
                     </div>
                 </DragDropContext>
-                {/* And here */}
                 <Footer />
             </div> 
         </>

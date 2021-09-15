@@ -18,20 +18,28 @@
   }
 
   .content-lists {
+    position: relative;
     display: flex;
     list-style: none;
-    margin: 0 auto 0 25%;
+    margin: 0 auto 0 22%;
     width: 80vw;
+    height: 100%;
     z-index: 6;
 
     .list{
-      width: 25%;
-      height: 90vh;
-      background-color: $White;
+      width: 30%;
+      height: max-content;
+      min-height: 90vh;
+      background-color: $Grey;
+      border-radius: .5vmin;
       list-style: none;
-      border: 1px solid;
       padding: 2vmin;
-      margin: 1vh 2vw;
+      padding-bottom: 10vh;
+      margin: 1vh 1vw 0 1vw;
+    }
+
+    .list-title{
+      color: $DarkGrey;
     }
 
     .item {
@@ -40,21 +48,19 @@
       flex-direction: column;
       padding: 1vmin;
       margin: 1vmin auto;
-      border-radius: $SmallSize * 10;
-      background: rgba($color: $White, $alpha: 0.9);
-      border: $SmallSize * 5 solid $Red;
-      border-left: 2vh solid $Red;
+      border-radius: .5vmin;
+      background: $White;
+      border-left: 1vh solid $Red;
+      box-shadow: .5vmin .5vmin .5vmin #aaa;
       height: auto;
       width: 100%;
       overflow: hidden;
 
       &.in-process {
-        border: $SmallSize * 5 solid $Earth;
-        border-right: 2vh solid $Earth;
+        border-right: 1vh solid $Earth;
       }
       &.done {
-        border: $SmallSize * 5 solid $Green;
-        border-left: 2vh solid $Green;
+        border-left: 1vh solid $Green;
       }
 
       .bg-circle {
@@ -83,6 +89,7 @@
     .content-todo{
       display: grid;
       grid-template-columns: 40% 60%;
+
     }
 
     .content-data-todo-rigth{
@@ -97,8 +104,12 @@
     .content-data-todo-left {
       display: flex;
       flex-direction: column;
-      align-items: center;
       z-index: 10;
+
+      .editing{
+        margin: .5vmin;
+        padding: .5vmin;
+      }
     }
 
     .todo-title {
@@ -110,11 +121,16 @@
     .todo-description {
       word-wrap: break-word;
       z-index: 10;
+
+      .editing{
+        height: 100px;
+      }
     }
 
     .content-icons {
+      width: 50%;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin-top: 2vh;
       z-index: 10;
     }

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+
 import { Button } from '../../../stories/Button';
 import { Message } from '../../global/Message'
 
@@ -7,7 +8,7 @@ export const FormTodo = ({handleCreateTodo, handleFormVisbility}) => {
     const initialTodoState = {
         title: "",
         level: "easy",
-        status: "Todo",
+        status: "todo",
         description: "",
     }
 

@@ -4,7 +4,7 @@
     width: 20%;
     min-height: 100vh;
     padding: $padding2 * 15;
-    box-shadow: 0 $SmallSize  $SmallSize * 20 $DarkBlue;
+    border-right: .5vmin solid $DarkPurple;
     background-color: $White;
 
     .title-app{

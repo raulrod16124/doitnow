@@ -1,10 +1,11 @@
 import React from 'react'
 
-export const Header = ({title}) => {
+export const Header = () => {
     return (
         <>
             <div className="header">
-                <h1 className="header-title">{title}</h1>    
+                  {/* Implement progressBar */}
+                  {/* User section in the right */}
             </div>   
         </>
     )
