@@ -75,6 +75,16 @@ export const Home = () => {
             const updatetodo = todo.filter( t => t.id !== draggableId);
             setTodo(updatetodo);
             setInProgress([...inProgress, todoToMove[0]]);
+          } else if( source.droppableId === "todo" && destination.droppableId === "done") {
+            const todoToMove = todo.filter( t => {
+              if(t.id === draggableId){
+                t.status = "done";
+                return t;
+              }
+            });
+            const updatetodo = todo.filter( t => t.id !== draggableId);
+            setTodo(updatetodo);
+            setDoneTodo([...doneTodo, todoToMove[0]]);
           } else if( source.droppableId === "inProgress" && destination.droppableId === "todo") {
             const inProgressToMove = inProgress.filter( ip => {
               if(ip.id === draggableId){
@@ -96,6 +106,16 @@ export const Home = () => {
             const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
             setInProgress(updateInProgress);
             setDoneTodo([...doneTodo, inProgressToMove[0]]);
+          } else if( source.droppableId === "done" && destination.droppableId === "todo") {
+            const doneTodoToMove = doneTodo.filter( dt => {
+              if(dt.id === draggableId){
+                dt.status = "todo";
+                return dt;
+              }
+            });
+            const updateDoneTodo = doneTodo.filter( dt => dt.id !== draggableId);
+            setDoneTodo(updateDoneTodo);
+            setTodo([...todo, doneTodoToMove[0]]);
           } else if( source.droppableId === "done" && destination.droppableId === "inProgress") {
             const doneTodoToMove = doneTodo.filter( dt => {
               if(dt.id === draggableId){
@@ -140,7 +160,7 @@ export const Home = () => {
                             <div className="content-lists">
                                 <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />
                                 <List key="inProgress" droppableID="inProgress" list={inProgress} titleList="IN PROGRESS" handleDeleteTodoById={handleDeleteTodoById} />
-                                <List key="doneTodo" droppableID="doneTodo" list={doneTodo} titleList="DONE" handleDeleteTodoById={handleDeleteTodoById} />
+                                <List key="doneTodo" droppableID="done" list={doneTodo} titleList="DONE" handleDeleteTodoById={handleDeleteTodoById} />
                             </div>
                         </div>
                     </div>
