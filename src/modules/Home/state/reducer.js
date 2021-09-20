@@ -4,16 +4,23 @@ import { TYPES } from "./type";
 const initialState = [
     {
         id: "1111",
-        title: "BOOM",
+        title: "Todo",
         level: "easy",
         status:"todo",
         description: "nothing",
     },
     {
         id: "5424",
-        title: "HELLO",
+        title: "Done",
         level: "easy",
         status:"done",
+        description: "nothing",
+    },
+    {
+        id: "5688",
+        title: "In Progress",
+        level: "easy",
+        status:"inProgress",
         description: "nothing",
     }
 ]

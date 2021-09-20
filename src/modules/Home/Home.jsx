@@ -6,7 +6,6 @@ import { Footer } from '../global/Footer';
 import { Header } from '../global/Header';
 import { FormTodo } from './components/FormTodo';
 import List from './components/List';
-import { TodoItem } from './components/TodoItem';
 import { CreateTodos, DeleteTodos } from './state/actions';
 
 // import { Header } from '../global/Header';
@@ -21,6 +20,7 @@ export const Home = () => {
     const dispatch = useDispatch();
 
     const [ todo, setTodo ] = useState([]);
+    const [ inProgress, setInProgress ] = useState([]);
     const [ doneTodo, setDoneTodo ] = useState([]);
 
     // References
@@ -29,6 +29,7 @@ export const Home = () => {
     useEffect(()=>{
       console.log(todosState);
       setTodo( () => todosState.filter( item => item.status === "todo" ));
+      setInProgress( () => todosState.filter( item => item.status === "inProgress" ));
       setDoneTodo( () => todosState.filter( item => item.status === "done" ));
     }, [todosState]);
 
@@ -63,26 +64,48 @@ export const Home = () => {
         const {source, destination, draggableId} = result;
         if(!destination){return;}
         if(source.droppableId !== destination.droppableId){
-          if( source.droppableId === "todo" ){
+          
+          if( source.droppableId === "todo" && destination.droppableId === "inProgress") {
             const todoToMove = todo.filter( t => {
               if(t.id === draggableId){
-                t.status = "done";
+                t.status = "inProgress";
                 return t;
               }
             });
             const updatetodo = todo.filter( t => t.id !== draggableId);
             setTodo(updatetodo);
-            setDoneTodo([...doneTodo, todoToMove[0]]);
-          } else {
+            setInProgress([...inProgress, todoToMove[0]]);
+          } else if( source.droppableId === "inProgress" && destination.droppableId === "todo") {
+            const inProgressToMove = inProgress.filter( ip => {
+              if(ip.id === draggableId){
+                ip.status = "todo";
+                return ip;
+              }
+            });
+            const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
+            setInProgress(updateInProgress);
+            setTodo([...todo, inProgressToMove[0]]);
+          } else if( source.droppableId === "inProgress" && destination.droppableId === "done") {
+            const inProgressToMove = inProgress.filter( ip => {
+              if(ip.id === draggableId){
+                ip.status = "done";
+                return ip;
+              }
+            });
+            console.log(inProgressToMove)
+            const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
+            setInProgress(updateInProgress);
+            setDoneTodo([...doneTodo, inProgressToMove[0]]);
+          } else if( source.droppableId === "done" && destination.droppableId === "inProgress") {
             const doneTodoToMove = doneTodo.filter( dt => {
               if(dt.id === draggableId){
-                dt.status = "todo";
+                dt.status = "inProgress";
                 return dt;
               }
             });
             const updateDoneTodo = doneTodo.filter( dt => dt.id !== draggableId);
             setDoneTodo(updateDoneTodo);
-            setTodo([...todo, doneTodoToMove[0]]);
+            setInProgress([...inProgress, doneTodoToMove[0]]);
           }
         }
         if (
@@ -91,11 +114,15 @@ export const Home = () => {
         ) {
           return;
         }
-        if( destination.droppableId === "todo"){
+        if( source.droppableId === destination.droppableId && destination.droppableId === "todo"){
           setTodo((prevTasks) =>
             reorder(prevTasks, source.index, destination.index)
           );
-        } else {
+        } else if(source.droppableId === destination.droppableId && destination.droppableId === "inProgress") {
+          setInProgress((prevTasks) =>
+            reorder(prevTasks, source.index, destination.index)
+          );
+        } else if(source.droppableId === destination.droppableId && destination.droppableId === "done") {
           setDoneTodo((prevTasks) =>
             reorder(prevTasks, source.index, destination.index)
           );
@@ -112,6 +139,7 @@ export const Home = () => {
                         <div className="content-body">
                             <div className="content-lists">
                                 <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />
+                                <List key="inProgress" droppableID="inProgress" list={inProgress} titleList="IN PROGRESS" handleDeleteTodoById={handleDeleteTodoById} />
                                 <List key="doneTodo" droppableID="doneTodo" list={doneTodo} titleList="DONE" handleDeleteTodoById={handleDeleteTodoById} />
                             </div>
                         </div>

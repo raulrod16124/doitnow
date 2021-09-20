@@ -11,7 +11,7 @@ function Item({item, index, handleDeleteTodoById, editMode=false}) {
 
 
     const [ todoData, setTodoData ] = useState(item);
-    console.log(todoData)
+    // console.log(todoData)
     // Edit Todo Visibility
     const [ editingItem, seteditingItem ] = useState(editMode);
 
@@ -19,16 +19,16 @@ function Item({item, index, handleDeleteTodoById, editMode=false}) {
     let classNames = require("classnames");
     let itemClass = classNames( "item", 
         { "done": item.status === "done"},
-        { "in-process": item.status === "in process"},
+        { "in-progress": item.status === "inProgress"},
     );
     let circleClass = classNames( "bg-circle", 
         { "done": item.status === "done"},
-        { "in-process": item.status === "in process"},
+        { "in-progress": item.status === "inProgress"},
     );
 
     // Updated Todo
     const handleUpdatedTodo = (item) => {
-        console.log(item);
+        // console.log(item);
         if( item.title !== "" ){
             dispatch( UpdateTodos(item) );
             seteditingItem(false);

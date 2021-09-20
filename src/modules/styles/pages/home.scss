@@ -1,5 +1,7 @@
 .home {
+  overflow: hidden;
   .main {
+    max-width: 100vw;
     min-height: 100vh;
     background: $Pink;
     background: -moz-linear-gradient(
@@ -56,8 +58,8 @@
       width: 100%;
       overflow: hidden;
 
-      &.in-process {
-        border-right: 1vh solid $Earth;
+      &.in-progress {
+        border-left: 1vh solid $Earth;
       }
       &.done {
         border-left: 1vh solid $Green;
@@ -74,7 +76,7 @@
         opacity: 0.3;
         z-index: 5;
 
-        &.in-process {
+        &.in-progress {
           background: radial-gradient(ellipse at top, $White, $Earth);
         }
         &.review {
