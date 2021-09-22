@@ -3,9 +3,9 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Footer } from '../../global/Footer';
-import { Header } from '../../global/Header';
 import { CreateTodos, DeleteTodos } from '../state/actions';
 import { FormTodo } from './components/FormTodo';
+import { Header } from './components/Header';
 import List from './components/List';
 
 // import { Header } from '../global/Header';
@@ -22,16 +22,19 @@ export const Home = () => {
     const [ todo, setTodo ] = useState([]);
     const [ inProgress, setInProgress ] = useState([]);
     const [ doneTodo, setDoneTodo ] = useState([]);
+    
+    const [ allTodos, setAllTodos ] = useState([]);
 
     // References
     const mainClass = useRef(); 
 
     useEffect(()=>{
-      console.log(todosState);
       if( todosState ){
         setTodo( () => todosState.filter( item => item.status === "todo" ));
         setInProgress( () => todosState.filter( item => item.status === "inProgress" ));
         setDoneTodo( () => todosState.filter( item => item.status === "done" ));
+
+        setAllTodos(todosState);
       }
     }, [todosState]);
 
@@ -43,12 +46,10 @@ export const Home = () => {
             status: todo.status,
             description: todo.description,
         };
-        console.log(newTodo)
         dispatch( CreateTodos(newTodo) );
     }
 
     const handleDeleteTodoById = (idTodo) =>{
-      console.log(idTodo)
         dispatch(DeleteTodos(idTodo));
     };
 
@@ -104,7 +105,7 @@ export const Home = () => {
                 return ip;
               }
             });
-            console.log(inProgressToMove)
+            // console.log(inProgressToMove)
             const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
             setInProgress(updateInProgress);
             setDoneTodo([...doneTodo, inProgressToMove[0]]);
@@ -157,7 +158,7 @@ export const Home = () => {
                 <DragDropContext onDragEnd={(result)=>handleDragEnd(result)} >
                     <div className="main" ref={mainClass} >
                         <FormTodo handleCreateTodo={handleCreateTodo} />
-                        <Header />
+                        <Header todos={allTodos} />
                         <div className="content-body">
                             <div className="content-lists">
                                 <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />
