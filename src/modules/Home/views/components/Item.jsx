@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { useDispatch } from 'react-redux';
 
-import { CancelIcon, CheckSaveIcon, DeleteIcon, EditIcon } from '../../global/Icons';
-import { UpdateTodos } from '../state/actions';
+import { CancelIcon, CheckSaveIcon, DeleteIcon, EditIcon } from '../../../global/Icons';
+import { UpdateTodos } from '../../state/actions';
 
 function Item({item, index, handleDeleteTodoById, editMode=false}) {
 

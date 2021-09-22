@@ -1,4 +1,5 @@
-import TODOS from './../provider/todos.json';
+// import TODOS from './../provider/todos.json';
+
 import { TYPES } from "./type";
 
 const initialState = [

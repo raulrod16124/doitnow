@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Footer } from '../global/Footer';
-import { Header } from '../global/Header';
+import { Footer } from '../../global/Footer';
+import { Header } from '../../global/Header';
+import { CreateTodos, DeleteTodos } from '../state/actions';
 import { FormTodo } from './components/FormTodo';
 import List from './components/List';
-import { CreateTodos, DeleteTodos } from './state/actions';
 
 // import { Header } from '../global/Header';
 
 
 export const Home = () => {
-
+  
     const todosState = useSelector((state)=>{
-        return state.TodosReducer;
+      return state.TodosReducer;
     })
     
     const dispatch = useDispatch();
@@ -28,9 +28,11 @@ export const Home = () => {
 
     useEffect(()=>{
       console.log(todosState);
-      setTodo( () => todosState.filter( item => item.status === "todo" ));
-      setInProgress( () => todosState.filter( item => item.status === "inProgress" ));
-      setDoneTodo( () => todosState.filter( item => item.status === "done" ));
+      if( todosState ){
+        setTodo( () => todosState.filter( item => item.status === "todo" ));
+        setInProgress( () => todosState.filter( item => item.status === "inProgress" ));
+        setDoneTodo( () => todosState.filter( item => item.status === "done" ));
+      }
     }, [todosState]);
 
     const handleCreateTodo = (todo) => {

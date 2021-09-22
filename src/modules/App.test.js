@@ -1,6 +1,7 @@
-import App from '../../modules/App';
-import { Home } from '../../modules/Home/Home';
 import { mount, shallow } from 'enzyme';
+
+import App from './App';
+import { Home } from './Home/views/Home';
 
 describe('Testing App Component', ()=>{
 
