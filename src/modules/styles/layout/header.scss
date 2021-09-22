@@ -13,18 +13,18 @@
     .progress-bar{
 
         .level-bar{
-            width: 60%;
+            width: 40%;
             height: 40px;
             margin: 2vh 0 2vh 8vw;
-            border-radius: 1vmin;
-            box-shadow: inset .5vmin .5vmin 1vmin #aaa, inset -.5vmin -.5vmin 1vmin #aaa;
+            border-radius: 2vmin;
+            box-shadow: inset .5vmin .5vmin 1vmin #ddd, inset -.5vmin -.5vmin 1vmin #ddd;
             overflow: hidden;
         }
         
         .green-fill{
             height: 100%;
-            background-color: $Green;
-            transition: all .3s;
+            background: linear-gradient(360deg, darken($Green, 10%), $Green);
+            transition: all .5s;
         }
     }
 
