@@ -11,7 +11,7 @@ import List from './components/List';
 // import { Header } from '../global/Header';
 
 
-export const Home = () => {
+function Home(){
   
     const todosState = useSelector((state)=>{
       return state.TodosReducer;
@@ -173,3 +173,5 @@ export const Home = () => {
         </>
     )
 }
+
+export default Home;

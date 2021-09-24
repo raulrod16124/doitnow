@@ -51,7 +51,7 @@ export const FormTodo = ({handleCreateTodo, handleFormVisbility}) => {
 
     // Functions
     const handleSaveTodo = (e) =>{
-        setTodo({...todo, 
+        setTodo({...todo,
             title: titleForm.current.value,
             level: levelForm.current.value,
             description: descriptionForm.current.value
