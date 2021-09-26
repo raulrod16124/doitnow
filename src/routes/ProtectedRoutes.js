@@ -11,7 +11,7 @@ function ProtectedRoutes({Component, ...restOfProps }) {
         if( JSON.parse( localStorage.getItem('user') ) ){
             userState = JSON.parse( localStorage.getItem('user'));
         } 
-        if( !userState.JWTK ){
+        if( !userState.token ){
             history.push({pathname: "/login"});
         }
     }, [])
@@ -22,7 +22,7 @@ function ProtectedRoutes({Component, ...restOfProps }) {
         //     render={(props) => <Component {...props} /> }
         // />
         <Route {...restOfProps}
-            render={(props) => userState.JWTK && <Component {...props} /> }
+            render={(props) => userState.token && <Component {...props} /> }
         />
     )
 }

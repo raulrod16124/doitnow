@@ -5,6 +5,8 @@ import UserSettings from './UserSettings';
 
 export const Header = ({todos, userData}) => {
 
+    console.log(userData);
+
     const todosDone = todos.filter( todo => todo.status === "done" );
 
     const [ userSettingsVisibility, setuserSettingsVisibility ] = useState(false);
@@ -39,7 +41,7 @@ export const Header = ({todos, userData}) => {
                   </div>
               </div>
               <div className="user-settings">
-                  <p className="user-name">{userData ? userData.name : ""}</p>
+                  <p className="user-name">{userData ? userData.body.username : ""}</p>
                   <div className="user-avatar">🐱‍👤</div>
                   <SettingsIcon className="icon" size="2.5" onClick={handleDisplayModalWindow} />
               </div>

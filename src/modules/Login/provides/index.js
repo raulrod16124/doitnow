@@ -1,17 +1,37 @@
-class LoginProvider{
-    // constructor() {}
+import axios from "axios";
+import React from "react";
+
+export default class LoginProvider extends React.Component{
+  url = process.env.REACT_APP_SERVER_URL;
+  
+  constructor(props) {
+    super(props);
+  }
+  
+  //CHECK
+  async checkUser(user) {
+    console.log("Enter to checkUser")
+      /* Call User API to check the user information */
+      return await axios.post("http://localhost:5500/login", user)
+            .then(response => {
+              const { data } = response;
+              console.log("Then")
+              return data;
+            }).catch(error => {
+              console.log("catch")
+              console.log(error)
+            });
+            
+      // console.log("checkingUser")
+      // user.data = {
+      //     id: 1,
+      //     name: "DoneBoy",
+      //     JWTK: "HVC55863DTZ",
+      // }
+      // return user;
+  };
+
     
-    //CHECK
-    checkUser(user) {
-        /* Call User API to check the user information */
-        console.log("checkingUser")
-        user.data = {
-            id: 1,
-            name: "DoneBoy",
-            JWTK: "HVC55863DTZ",
-        }
-        return user;
-    };
     
     //CREATE
     create(newUser) {
@@ -48,5 +68,3 @@ class LoginProvider{
   //     return UserToDelete;
   //   }
 }
-  
-  export default new LoginProvider();

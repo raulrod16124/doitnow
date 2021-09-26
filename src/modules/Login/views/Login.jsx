@@ -12,7 +12,7 @@ function Login() {
     const history = useHistory();
 
     // References
-    const emailForm = useRef();
+    const userNameForm = useRef();
     const passwordForm = useRef();
 
     // useSelector to Listen the response of Login checking
@@ -23,8 +23,8 @@ function Login() {
 
     // useEffect to redirect to Home in case than the user is true
     useEffect(()=>{
-        // console.log(LoginState);
-        if( JSON.parse( localStorage.getItem('user') ) ){
+        console.log(LoginState);
+        if( JSON.parse( localStorage.getItem('user') !== null ) ){
             history.push({ pathname: "/"});
         }
     })
@@ -35,14 +35,14 @@ function Login() {
 
         //Dispatch with post to check the user data
         const userLogged = {
-            email: emailForm.current.value,
+            username: userNameForm.current.value,
             password: passwordForm.current.value,
         }
         dispatch(CheckUser(userLogged))
         // console.log(userLogged);
 
         //Clean inputs value
-        emailForm.current.value = "";
+        userNameForm.current.value = "";
         passwordForm.current.value = "";
     }
 
@@ -52,8 +52,8 @@ function Login() {
                 <form className="login-form">
                     <h2 className="title">Do your things!!</h2>
                     <fieldset className="input-content">
-                        <legend className="legend-title">Email</legend>
-                        <input ref={emailForm} type="email" className="input" autoFocus />
+                        <legend className="legend-title">Name</legend>
+                        <input ref={userNameForm} type="text" className="input" autoFocus />
                     </fieldset>
                     <fieldset className="input-content">
                         <legend className="legend-title">Password</legend>

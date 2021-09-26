@@ -13,7 +13,8 @@ function Routes() {
         const userState = JSON.parse( localStorage.getItem('user'));
         if(JSON.parse( localStorage.getItem('user')) !== null){
             // TODO - refactor this logic
-            if( !userState.JWTK ){
+            console.log(userState);
+            if( !userState ){
                 if(history.location.pathname !== "/login"){
                     history.push({pathname: "/login"});
                 }   
