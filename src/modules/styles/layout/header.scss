@@ -28,4 +28,42 @@
         }
     }
 
+    .user-settings{
+        align-items: center;
+        padding: 1vmin;
+        margin-right: 5vw;
+        display: grid;
+        grid-template-columns: repeat(2, 45%) 10%;
+
+        .user-name{
+            font-size: 2vmin;
+        }
+    }
+
+    .user-settings-block{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.3);
+        display: none;
+        opacity: 0;
+        transition: all .3s;
+        z-index: 100;
+    }
+
+    .user-settings-content{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0%;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        transition: all .3s;
+        overflow: hidden;
+        z-index: 100;
+    }
+
 }

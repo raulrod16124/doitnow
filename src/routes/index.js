@@ -21,7 +21,7 @@ function Routes() {
             } else {
                 if(history.location.pathname !== "/"){
                     history.push({pathname: "/"});
-                }   
+                }
             }
         }
     })
@@ -35,7 +35,7 @@ function Routes() {
             </ProtectedRoutes>
             <ProtectedRoutes Component="Home" path="/" exact >
                 <div className="section-content">
-                    <Home/> 
+                    <Home userData={JSON.parse( localStorage.getItem('user'))} /> 
                 </div>
             </ProtectedRoutes>
         </Switch>

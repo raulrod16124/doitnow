@@ -17,13 +17,13 @@ function Login() {
 
     // useSelector to Listen the response of Login checking
     const LoginState = useSelector((state) => {
-        console.log(state.LoginReducer);
+        // console.log(state.LoginReducer);
         return state.LoginReducer;
     })
 
     // useEffect to redirect to Home in case than the user is true
     useEffect(()=>{
-        console.log(LoginState);
+        // console.log(LoginState);
         if( JSON.parse( localStorage.getItem('user') ) ){
             history.push({ pathname: "/"});
         }
@@ -39,7 +39,7 @@ function Login() {
             password: passwordForm.current.value,
         }
         dispatch(CheckUser(userLogged))
-        console.log(userLogged);
+        // console.log(userLogged);
 
         //Clean inputs value
         emailForm.current.value = "";

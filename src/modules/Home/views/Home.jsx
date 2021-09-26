@@ -11,7 +11,7 @@ import List from './components/List';
 // import { Header } from '../global/Header';
 
 
-function Home(){
+function Home({userData}){
   
     const todosState = useSelector((state)=>{
       return state.TodosReducer;
@@ -158,7 +158,7 @@ function Home(){
                 <DragDropContext onDragEnd={(result)=>handleDragEnd(result)} >
                     <div className="main" ref={mainClass} >
                         <FormTodo handleCreateTodo={handleCreateTodo} />
-                        <Header todos={allTodos} />
+                        <Header todos={allTodos} userData={userData} />
                         <div className="content-body">
                             <div className="content-lists">
                                 <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />

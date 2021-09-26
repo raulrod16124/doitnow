@@ -5,7 +5,7 @@
     font-weight: 700;
     padding: 2vmin;
     border-radius: 1vmin;
-    transition: all.3s ease-out;
+    transition: all.3s ease-out;    
     color: #fff;
 }
 
@@ -31,4 +31,12 @@
 
 .button--large{
     width: 100%;
+}
+.button--mediun{
+    padding: 1.5vmin;
+    font-size: 1.8vmin;
+}
+.button--small{
+    padding: 1vmin;
+    font-size: 1.5vmin;
 }

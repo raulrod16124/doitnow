@@ -1,0 +1,34 @@
+.modal-window{
+    width: 100%;
+    min-height: 100vh;
+    background-color: $White;
+    box-shadow: -.5vmin .5vmin 1vmin $DarkGrey;
+    padding: 2vmin;
+    margin: 0;
+
+    .modal-window-header{
+        display: grid;
+        grid-template-columns: 90% 10%;
+        padding: 1vh 0 2vh 0;
+
+        .title{
+            color: $DarkGrey;
+            padding-left: .5vw;
+        }
+    }
+
+    .settings{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        list-style: none;
+
+        .option{
+            width: 100%;
+            margin: 1vh auto;
+            padding: 1vmin;
+            border: .1vmin solid $Grey;
+        }
+
+    }
+}

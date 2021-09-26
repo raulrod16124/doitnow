@@ -1,18 +1,35 @@
-import React from 'react'
-import { useHistory } from 'react-router';
+import React, { useRef, useState } from 'react'
 
-import { Button } from '../../../../stories/Button';
+import { SettingsIcon } from '../../../global/Icons';
+import UserSettings from './UserSettings';
 
-export const Header = ({todos}) => {
-
-    const history = useHistory();
+export const Header = ({todos, userData}) => {
 
     const todosDone = todos.filter( todo => todo.status === "done" );
 
-    const handleLogoutUser = () =>{
-        localStorage.clear();
-        history.push({pathname: '/login'});
-    }
+    const [ userSettingsVisibility, setuserSettingsVisibility ] = useState(false);
+
+    // References 
+    const bgModalWindow = useRef();
+    const modalWindow = useRef();
+
+    const handleDisplayModalWindow = () =>{
+        setuserSettingsVisibility(true);
+        bgModalWindow.current.style.display = "block"
+        bgModalWindow.current.style.opacity = "1"
+        setTimeout(()=>{
+            modalWindow.current.style.width = "30%";
+        },200);
+    };
+
+    const handleCloseModalWindow = () =>{
+        modalWindow.current.style.width = "0%";
+        bgModalWindow.current.style.opacity = "0"
+        setTimeout(()=>{
+            bgModalWindow.current.style.display = "none"
+            setuserSettingsVisibility(false);
+        },200);
+    };
 
     return (
         <div className="header">
@@ -22,8 +39,18 @@ export const Header = ({todos}) => {
                   </div>
               </div>
               <div className="user-settings">
-                  {/* Button to logout */}
-                  <Button label="logout" onClick={handleLogoutUser} />
+                  <p className="user-name">{userData ? userData.name : ""}</p>
+                  <div className="user-avatar">🐱‍👤</div>
+                  <SettingsIcon className="icon" size="2.5" onClick={handleDisplayModalWindow} />
+              </div>
+              <div className="user-settings-block" ref={bgModalWindow} onClick={(e)=>{
+                  if(e.target.className === "user-settings-block"){handleCloseModalWindow();}
+              }} >
+                <div className="user-settings-content" ref={modalWindow} >
+                    {userSettingsVisibility && 
+                        <UserSettings handleCloseModalWindow={handleCloseModalWindow} />
+                    }
+                </div>
               </div>
         </div>
     )
