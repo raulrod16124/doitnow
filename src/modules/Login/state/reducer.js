@@ -11,10 +11,14 @@ export const LoginReducer = async ( state = initialState, action ) => {
     
     switch (action.type) {
         case TYPES.checkUser:
+            console.log("heello")
             const callingServer = new LoginProvider();
-            const checkingUser = await callingServer.checkUser(action.payload);
-            localStorage.setItem( 'user', JSON.stringify(checkingUser) );
-            return checkingUser;
+            const checkingUser = await callingServer.checkUser(action.payload).then( response => response );
+            console.log(checkingUser);
+            if( checkingUser.token ){
+                localStorage.setItem( 'user', JSON.stringify(checkingUser) );
+            }
+            return checkingUser !== undefined ? checkingUser : "ERROR";
 
         case TYPES.createUser:
             return [...state, action.payload];

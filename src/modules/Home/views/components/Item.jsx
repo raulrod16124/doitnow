@@ -9,7 +9,6 @@ function Item({item, index, handleDeleteTodoById, editMode=false}) {
 
     const dispatch = useDispatch();
 
-
     const [ todoData, setTodoData ] = useState(item);
     // console.log(todoData)
     // Edit Todo Visibility
@@ -18,10 +17,6 @@ function Item({item, index, handleDeleteTodoById, editMode=false}) {
     // ClassName Item controller
     let classNames = require("classnames");
     let itemClass = classNames( "item", 
-        { "done": item.status === "done"},
-        { "in-progress": item.status === "inProgress"},
-    );
-    let circleClass = classNames( "bg-circle", 
         { "done": item.status === "done"},
         { "in-progress": item.status === "inProgress"},
     );
@@ -85,7 +80,6 @@ function Item({item, index, handleDeleteTodoById, editMode=false}) {
                             </>
                             
                         }
-                        <div className={circleClass}></div>
                     </li>
                 )}
             </Draggable>

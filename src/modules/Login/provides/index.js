@@ -14,12 +14,13 @@ export default class LoginProvider extends React.Component{
       /* Call User API to check the user information */
       return await axios.post("http://localhost:5500/login", user)
             .then(response => {
-              const { data } = response;
               console.log("Then")
-              return data;
+              console.log(response.data);
+              return response.data;
             }).catch(error => {
               console.log("catch")
-              console.log(error)
+              // console.log(error)
+              return error;
             });
             
       // console.log("checkingUser")

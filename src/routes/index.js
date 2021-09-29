@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import { Switch, useHistory } from 'react-router';
 
 import Home from '../modules/Home/views/Home';
@@ -9,23 +10,19 @@ function Routes() {
 
     const history = useHistory();
 
-    useEffect(() => {
-        const userState = JSON.parse( localStorage.getItem('user'));
-        if(JSON.parse( localStorage.getItem('user')) !== null){
-            // TODO - refactor this logic
-            console.log(userState);
-            if( !userState ){
-                if(history.location.pathname !== "/login"){
-                    history.push({pathname: "/login"});
-                }   
-                history.push({pathname: "/login"});
-            } else {
-                if(history.location.pathname !== "/"){
-                    history.push({pathname: "/"});
-                }
-            }
-        }
+    const loginReducer = useSelector((state) => {
+        console.log(state.loginReducer);
+        return state.loginReducer;
     })
+
+    useEffect(() => {
+        console.log(JSON.parse( localStorage.getItem('user')));
+        if(JSON.parse( localStorage.getItem('user')) !== null){
+            history.push({ pathname: "/"});
+        } else {
+            history.push({pathname: "/login"});
+        }
+    }, [JSON.parse( localStorage.getItem('user'))]);
 
     return (
         <Switch>

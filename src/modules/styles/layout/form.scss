@@ -3,30 +3,52 @@
     position: fixed;
     width: 20%;
     min-height: 100vh;
-    padding: $padding2 * 15;
-    border-right: .5vmin solid $DarkPurple;
-    background-color: $White;
+    background-color: $DarkOcean;
+    
+    .logo-app{
+        min-height: 8vh;
+        font-size: 4vmin;
+        align-items: center;
+        padding: 1vmin 3vmin;
+        color: $White;
+    }
 
-    .title-app{
-        font-size: 5vmin;
-        font-weight: bolder;
-        margin: 0 auto $SmallSize * 50 auto;
+    .content-sections{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        list-style: none;
+        height: 5vh;
         text-align: center;
-        transition: all .3s;
-        color: $ClearPurple;
+        background-color: darken($color: $DarkOcean, $amount: 20);
+        
+        .section{
+            cursor: pointer;
+            margin-top: 5%;
+            padding-top: 1.5vh;
+            background-color: darken($color: $DarkOcean, $amount: 5);
+            color: $DarkGrey;
+            height: 100%;
+            border-left: 20deg solid;
+            border-radius: .5em .5em 0 0;
+            transition: all .3s;
+            
+            &.selected{
+                font-weight: 700;
+                color: $White;
+                background-color: $DarkOcean;
+            }
+        }
+    }
 
-        &.color1{
-            color: $Purple;
-        }
-        &.color2{
-            color: $Pink;
-        }
-        &.color3{
-            color: $SkyBlue;
-        }
-        &.color4{
-            color: $Red;
-        }
+    .content-form{
+        padding: 3vmin;
+    }
+
+    .title-form{
+        font-size: 3vmin;
+        font-weight: bolder;
+        margin: 0 auto 4vh auto;
+        color: $White;
     }
 
     .form-title,

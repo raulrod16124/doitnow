@@ -1,23 +1,38 @@
 .header{
     width: 80%;
-    height: 8vh;
+    height: 20vh;
     margin-left: 20%;
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-rows: 40% 60%;
     background-color: $White;
+
+    .header-top{
+        display: grid;
+        grid-template-columns: 85% 15%;
+        background-color: $White;
+        align-items: center;
+    }
+    .header-bottom{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        background-color: $DarkGrey;
+        align-content: center;
+    }
 
     .header-title{
         text-align: center;
     }
 
     .progress-bar{
-
+        height: 10vh;
         .level-bar{
             width: 40%;
-            height: 40px;
+            height: 4vh;
             margin: 2vh 0 2vh 8vw;
+            // border: .1vmin solid $DarkGrey;
             border-radius: 2vmin;
-            box-shadow: inset .5vmin .5vmin 1vmin #ddd, inset -.5vmin -.5vmin 1vmin #ddd;
+            background-color: $White;
+            // box-shadow: inset .5vmin .5vmin 1vmin #ddd, inset -.5vmin -.5vmin 1vmin #ddd;
             overflow: hidden;
         }
         
@@ -31,7 +46,7 @@
     .user-settings{
         align-items: center;
         padding: 1vmin;
-        margin-right: 5vw;
+        margin-right: 2.5vw;  
         display: grid;
         grid-template-columns: repeat(2, 45%) 10%;
 
