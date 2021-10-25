@@ -1,4 +1,9 @@
-import { createNewTask, deleteTask, getAllTasks } from "../provider";
+import {
+  createNewTask,
+  deleteTask,
+  getAllTasks,
+  updateTask,
+} from "../provider";
 import { TYPES } from "./type";
 
 export const GetTasks = (user) => {
@@ -21,10 +26,14 @@ export const CreateTask = (task) => {
     });
   };
 };
-export const UpdateTask = (task) => {
-  return {
-    type: TYPES.updateTask,
-    payload: task,
+export const UpdateTask = (idTaskToDelete, data) => {
+  return async (dispatch) => {
+    const taskUpdated = await updateTask(idTaskToDelete, data);
+    // console.log(taskUpdated);
+    dispatch({
+      type: TYPES.updateTask,
+      payload: taskUpdated,
+    });
   };
 };
 

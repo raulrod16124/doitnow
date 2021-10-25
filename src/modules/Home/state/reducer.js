@@ -37,7 +37,7 @@ export const TodosReducer = (state = initialState, action) => {
         };
       }
     case TYPES.updateTask:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,

@@ -5,7 +5,7 @@ import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
 import { Footer } from "../../global/Footer";
-import { CreateTask, DeleteTask, GetTasks } from "../state/actions";
+import { CreateTask, DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { DragDropController } from "./components/DragDropController";
 import { FormTodo } from "./components/FormTodo";
 import { Header } from "./components/Header";
@@ -63,7 +63,8 @@ function Home() {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (
       todosState.status === "task created" ||
-      todosState.status === "task deleted"
+      todosState.status === "task deleted" ||
+      todosState.status === "task updated"
     ) {
       dispatch(GetTasks(userData.email));
     }
@@ -115,6 +116,7 @@ function Home() {
             destinationStatus: "inProgress",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove1[0].id, todoToMove1[0]));
           setTodo(listUpdated1);
           setInProgress([...inProgress, todoToMove1[0]]);
           break;
@@ -128,6 +130,7 @@ function Home() {
             destinationStatus: "done",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove2[0].id, todoToMove2[0]));
           setTodo(listUpdated2);
           setDoneTodo([...doneTodo, todoToMove2[0]]);
           break;
@@ -141,6 +144,7 @@ function Home() {
             destinationStatus: "todo",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove3[0].id, todoToMove3[0]));
           setInProgress(listUpdated3);
           setTodo([...todo, todoToMove3[0]]);
           break;
@@ -154,6 +158,7 @@ function Home() {
             destinationStatus: "done",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove4[0].id, todoToMove4[0]));
           setInProgress(listUpdated4);
           setDoneTodo([...doneTodo, todoToMove4[0]]);
           break;
@@ -167,6 +172,7 @@ function Home() {
             destinationStatus: "todo",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove5[0].id, todoToMove5[0]));
           setDoneTodo(listUpdated5);
           setTodo([...todo, todoToMove5[0]]);
           break;
@@ -180,6 +186,7 @@ function Home() {
             destinationStatus: "inProgress",
             draggableID: draggableId,
           });
+          dispatch(UpdateTask(todoToMove6[0].id, todoToMove6[0]));
           setDoneTodo(listUpdated6);
           setInProgress([...inProgress, todoToMove6[0]]);
           break;

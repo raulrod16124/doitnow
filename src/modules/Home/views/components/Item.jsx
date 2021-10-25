@@ -30,10 +30,10 @@ function Item({ item, index, handleDeleteTodoById, editMode = false }) {
   );
 
   // Updated Todo
-  const handleUpdatedTodo = (item) => {
+  const handleUpdatedTodo = () => {
     // console.log(item);
-    if (item.title !== "") {
-      dispatch(UpdateTask(item));
+    if (todoData.title !== "") {
+      dispatch(UpdateTask(todoData.id, todoData));
       seteditingItem(false);
     }
   };

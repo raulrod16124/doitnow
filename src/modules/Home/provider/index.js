@@ -3,7 +3,9 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
+  setDoc,
 } from "@firebase/firestore";
 
 import { db } from "../../../firebase/config";
@@ -46,6 +48,23 @@ export const createNewTask = async (newTask) => {
     // const taskCreated = await addDoc(tasksCall, newTask);
     // console.log(taskCreated);
     return await addDoc(tasksCall, newTask);
+  } catch (error) {
+    // const errorData = JSON.stringify(error);
+    // return JSON.parse(errorData).code;
+    console.log(error);
+    return error;
+  }
+};
+
+export const updateTask = async (idToUpdate, data) => {
+  console.log("Enter to updateTask");
+  console.log(idToUpdate);
+  console.log(data);
+  try {
+    const docRefToUpdate = doc(db, "todos", idToUpdate);
+    await setDoc(docRefToUpdate, data);
+    const taskUpdated = await getDoc(docRefToUpdate);
+    return taskUpdated;
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
