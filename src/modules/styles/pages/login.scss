@@ -1,65 +1,71 @@
-.login{
-    position: relative;
-    max-width: 100vw;
-    min-height: 100vh;
-    background: $DarkOcean;
+.login {
+  position: relative;
+  max-width: 100vw;
+  min-height: 100vh;
+  background: $DarkOcean;
 
-    .login-content{
-        position: absolute;
-        width: 50%;
-        min-height: 70vh;
-        top: 10vh;
-        left: 25%;
-        background-color: $White;
-        display: grid;
-        grid-template-columns: 60% 40%;
+  .login-content {
+    position: absolute;
+    width: 50%;
+    min-height: 70vh;
+    top: 10vh;
+    left: 25%;
+    background-color: $White;
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+
+  .login-form {
+    padding: 2vmin;
+
+    .error-message {
+      color: $Red;
+      text-align: center;
+      height: 5vh;
+      margin-top: 10vh;
     }
 
-    .login-form{
-        padding: 2vmin;
-
-        .title{
-            margin: 15vh auto 5vh auto;
-            width: 60%;
-        }
-
-        .input-content{
-            width: 60%;
-            border-radius: .5vmin;
-            // border: .1vmin solid $Grey;
-            border: none;
-            border-bottom: .2vmin solid $DarkOcean;
-            margin: 2vh auto;
-        }
-        
-        .input{
-            border: none;
-            border-radius: .5vmin;
-            width: 100%;
-            height: 100%;
-            padding: 1vmin;
-            font-size: 2vmin;
-            
-            &:focus{
-                background-color: rgba($color: $DarkOcean, $alpha: .1);
-            }
-
-            &:focus{
-                outline: none;
-            }
-        }
-
-        .buttons-content{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 60%;
-            margin: 5vh auto;
-        }
-
+    .title {
+      margin: 2vh auto 5vh auto;
+      width: 60%;
     }
 
-    .login-picture{
-        background: linear-gradient(-135deg, $BluePurple, $Blue);
+    .input-content {
+      width: 60%;
+      border-radius: 0.5vmin;
+      // border: .1vmin solid $Grey;
+      border: none;
+      border-bottom: 0.2vmin solid $DarkOcean;
+      margin: 2vh auto;
     }
+
+    .input {
+      border: none;
+      border-radius: 0.5vmin;
+      width: 100%;
+      height: 100%;
+      padding: 1vmin;
+      font-size: 2vmin;
+
+      &:focus {
+        background-color: rgba($color: $DarkOcean, $alpha: 0.1);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .buttons-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 60%;
+      margin: 5vh auto;
+    }
+  }
+
+  .login-picture {
+    background: linear-gradient(-135deg, $BluePurple, $Blue);
+  }
 }

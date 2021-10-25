@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react'
-import { Route, useHistory } from 'react-router-dom';
+import React, { useContext, useEffect } from "react";
+import { Route, useHistory } from "react-router-dom";
 
-function ProtectedRoutes({Component, ...restOfProps }) {
+import { AuthContext } from "../auth/Auth";
 
-    let userState = {};
+function ProtectedRoutes({ Component, ...restOfProps }) {
+  const history = useHistory();
 
-    const history = useHistory();
+  // User Access
+  const { currentUser } = useContext(AuthContext);
 
-    useEffect(()=>{
-        if( JSON.parse( localStorage.getItem('user') ) ){
-            userState = JSON.parse( localStorage.getItem('user'));
-        } 
-        if( !userState.token ){
-            history.push({pathname: "/login"});
-        }
-    }, [])
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("user"))) {
+      history.push({ pathname: "/login" });
+    }
+  }, [currentUser]);
 
-
-    return (
-        // <Route {...restOfProps}
-        //     render={(props) => <Component {...props} /> }
-        // />
-        <Route {...restOfProps}
-            render={(props) => userState.token && <Component {...props} /> }
-        />
-    )
+  return (
+    <Route
+      {...restOfProps}
+      render={(props) => currentUser.accessToken && <Component {...props} />}
+    />
+  );
 }
 
 export default ProtectedRoutes;

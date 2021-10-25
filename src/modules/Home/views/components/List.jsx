@@ -3,12 +3,12 @@ import { Droppable } from 'react-beautiful-dnd'
 
 import Item from './Item';
 
-function List({droppableID, list, titleList, handleDeleteTodoById}) {
+function List({droppableID, list, titleList, handleDeleteTodoById, className}) {
     // console.log(list);
     return (
         <Droppable droppableId={droppableID}>
             {( droppableProvided )=>(
-                <ul className="list"
+                <ul className={className}
                     {...droppableProvided.droppableProps}
                     ref={droppableProvided.innerRef}
                 >

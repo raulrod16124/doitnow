@@ -1,8 +1,6 @@
 export const TYPES = {
-
-    getTodo : "@get_todo",
-    createTodo : "@create_todo",
-    updateTodo : "@update_todo",
-    deleteTodo : "@delete_todo",
-
-}
+  getTasks: "@get_tasks",
+  createTask: "@create_task",
+  updateTask: "@update_task",
+  deleteTask: "@delete_task",
+};

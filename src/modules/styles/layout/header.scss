@@ -15,7 +15,7 @@
     .header-bottom{
         display: grid;
         grid-template-columns: 80% 20%;
-        background-color: $DarkGrey;
+        background-color: lighten($color: $DarkGrey, $amount: 10);
         align-content: center;
     }
 

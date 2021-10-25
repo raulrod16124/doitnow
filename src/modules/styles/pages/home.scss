@@ -20,11 +20,18 @@
       height: auto;
       min-height: 78vh;
       background-color: $Grey;
-      border-radius: .5vmin;
+      border-radius: 1vmin;
       list-style: none;
       padding: 2vmin;
+      border: 1vmin solid transparent;
       padding-bottom: 10vh;
       margin: 1vh 1vw 0 1vw;
+      transition: all .4s;
+
+      &.dragging{
+        border: 1vmin dashed darken($color: $Grey, $amount: 10);
+        background-color: lighten($color: $Grey, $amount: 5);
+      }
 
       .header-list{
         display: flex;
@@ -53,19 +60,28 @@
       flex-direction: column;
       padding: 1vmin;
       margin: 1vmin auto;
-      border-radius: .5vmin;
+      border-radius: 1vmin;
       background: $White;
       border-left: 1vh solid $Red;
       box-shadow: .5vmin .5vmin .5vmin #aaa;
+      min-height: 20vh;
       height: auto;
       width: 100%;
+      transform: rotate(0deg);
       overflow: hidden;
+      transition: all .3s;
 
       &.in-progress {
         border-left: 1vh solid $Earth;
       }
       &.done {
         border-left: 1vh solid $Green;
+      }
+
+      &.dragging{
+        position: relative;
+        box-shadow: 1vmin 1vmin 2vmin #aaa;
+        transform: rotate(-10deg);
       }
       
     }

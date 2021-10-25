@@ -61,6 +61,7 @@
         border: $SmallSize / 6 solid $DarkBlue;
         margin: $margin1 * 20 auto;
         font-size: 2.2vmin;
+        background: lighten($color: $DarkGrey, $amount: 25);
     }
 
     .form-description{

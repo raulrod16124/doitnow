@@ -1,53 +1,70 @@
-// import TODOS from './../provider/todos.json';
-
 import { TYPES } from "./type";
 
-const initialState = [
-    {
-        id: "1111",
-        title: "Todo",
-        level: "easy",
-        status:"todo",
-        description: "nothing",
-    },
-    {
-        id: "5424",
-        title: "Done",
-        level: "easy",
-        status:"done",
-        description: "nothing",
-    },
-    {
-        id: "5688",
-        title: "In Progress",
-        level: "easy",
-        status:"inProgress",
-        description: "nothing",
-    }
-]
+const initialState = {
+  status: "initial",
+  error: "",
+  data: [],
+};
 
-export const TodosReducer = ( state = initialState, action ) => {
-    
-    switch (action.type) {
-        case TYPES.getTodo:
-            return state
-        case TYPES.createTodo:
-            return [...state, action.payload];
-        case TYPES.updateTodo:
-            console.log(action.payload);
-            const updateTodo = state.map( todo => {
-                if( todo.id === action.payload.id ){
-                    return todo = action.payload;
-                };
-                return todo;
-            } );
-            return updateTodo;
-        case TYPES.deleteTodo:
-            console.log(action.payload);
-            const updateTodos = state.filter( todo => todo.id !== action.payload );
-            return updateTodos; 
-    
-        default:
-            return state;
-    }
-}
+export const TodosReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case TYPES.getTasks:
+      // console.log(action.payload.length);
+      if (action.payload.length > 0) {
+        return {
+          ...state,
+          data: action.payload,
+          status: "success",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload,
+          status: "error",
+        };
+      }
+    case TYPES.createTask:
+      if (action.payload) {
+        return {
+          ...state,
+          status: "task created",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload,
+          status: "error",
+        };
+      }
+    case TYPES.updateTask:
+      console.log(action.payload);
+      if (action.payload) {
+        return {
+          ...state,
+          status: "task updated",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload,
+          status: "error",
+        };
+      }
+    case TYPES.deleteTask:
+      if (action.payload) {
+        return {
+          ...state,
+          status: "task deleted",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload,
+          status: "error",
+        };
+      }
+
+    default:
+      return state;
+  }
+};

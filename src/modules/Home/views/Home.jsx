@@ -1,177 +1,296 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { DragDropContext } from 'react-beautiful-dnd';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
-import { Footer } from '../../global/Footer';
-import { CreateTodos, DeleteTodos } from '../state/actions';
-import { FormTodo } from './components/FormTodo';
-import { Header } from './components/Header';
-import List from './components/List';
+import { AuthContext } from "../../../auth/Auth";
+import { Footer } from "../../global/Footer";
+import { CreateTask, DeleteTask, GetTasks } from "../state/actions";
+import { DragDropController } from "./components/DragDropController";
+import { FormTodo } from "./components/FormTodo";
+import { Header } from "./components/Header";
+import List from "./components/List";
 
 // import { Header } from '../global/Header';
 
+function Home() {
+  const todosState = useSelector((state) => {
+    return state.TodosReducer;
+  });
 
-function Home({userData}){
-  
-    const todosState = useSelector((state)=>{
-      return state.TodosReducer;
-    })
-    
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [ todo, setTodo ] = useState([]);
-    const [ inProgress, setInProgress ] = useState([]);
-    const [ doneTodo, setDoneTodo ] = useState([]);
-    
-    const [ allTodos, setAllTodos ] = useState([]);
+  const [todo, setTodo] = useState([]);
+  const [inProgress, setInProgress] = useState([]);
+  const [doneTodo, setDoneTodo] = useState([]);
 
-    // References
-    const mainClass = useRef(); 
+  const [allTodos, setAllTodos] = useState([]);
 
-    useEffect(()=>{
-      if( todosState ){
-        setTodo( () => todosState.filter( item => item.status === "todo" ));
-        setInProgress( () => todosState.filter( item => item.status === "inProgress" ));
-        setDoneTodo( () => todosState.filter( item => item.status === "done" ));
+  const [dragListDetected, setDragListDetected] = useState({
+    todo: false,
+    inProgress: false,
+    done: false,
+  });
 
-        setAllTodos(todosState);
-      }
-    }, [todosState]);
+  // const [ dragTaskDetected, setDragTaskDetected] = useState();
 
-    const handleCreateTodo = (todo) => {
-        const newTodo = {
-            id: Math.round(Math.random() * (9999 - 1000) + 1000).toString(),
-            title: todo.title,
-            level: todo.level,
-            status: todo.status,
-            description: todo.description,
-        };
-        dispatch( CreateTodos(newTodo) );
+  // Class Detect dragging in List
+  let classNames = require("classnames");
+  let todoDragDetectedClass = classNames("list", {
+    dragging: dragListDetected.todo,
+  });
+  let inProgressDragDetectedClass = classNames("list", {
+    dragging: dragListDetected.inProgress,
+  });
+  let doneDragDetectedClass = classNames("list", {
+    dragging: dragListDetected.done,
+  });
+
+  // References
+  const mainClass = useRef();
+
+  // User Access
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(async () => {
+    if (currentUser) {
+      dispatch(GetTasks(currentUser.email));
+      return <Redirect to="/" />;
     }
+  }, [currentUser]);
 
-    const handleDeleteTodoById = (idTodo) =>{
-        dispatch(DeleteTodos(idTodo));
-    };
+  useEffect(async () => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (
+      todosState.status === "task created" ||
+      todosState.status === "task deleted"
+    ) {
+      dispatch(GetTasks(userData.email));
+    }
+    if (todosState.status === "success") {
+      console.log(todosState);
+      setTodo(() => todosState.data.filter((item) => item.status === "todo"));
+      setInProgress(() =>
+        todosState.data.filter((item) => item.status === "inProgress")
+      );
+      setDoneTodo(() =>
+        todosState.data.filter((item) => item.status === "done")
+      );
+      setAllTodos(todosState.data);
+    }
+  }, [todosState]);
 
-    // Function to reorder a List
-    const reorder = (list, startIndex, endIndex) => {
-        const result = [...list];
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-    
-        return result;
-    };
+  const handleCreateTodo = (newTask) => {
+    dispatch(CreateTask(newTask));
+  };
 
-    const handleDragEnd = (result) =>{
-      // console.log(result);
-        const {source, destination, draggableId} = result;
-        if(!destination){return;}
-        if(source.droppableId !== destination.droppableId){
-          
-          if( source.droppableId === "todo" && destination.droppableId === "inProgress") {
-            const todoToMove = todo.filter( t => {
-              if(t.id === draggableId){
-                t.status = "inProgress";
-                return t;
-              }
+  const handleDeleteTodoById = (idTodo) => {
+    dispatch(DeleteTask(idTodo));
+  };
+
+  // Function to reorder a List
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  const handleDragEnd = (result) => {
+    // setDragTaskDetected(null);
+    const { source, destination, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    if (source.droppableId !== destination.droppableId) {
+      switch (true) {
+        case source.droppableId === "todo" &&
+          destination.droppableId === "inProgress":
+          const {
+            taskToMove: todoToMove1,
+            sourceListUpdated: listUpdated1,
+          } = DragDropController({
+            sourceList: todo,
+            destinationStatus: "inProgress",
+            draggableID: draggableId,
+          });
+          setTodo(listUpdated1);
+          setInProgress([...inProgress, todoToMove1[0]]);
+          break;
+        case source.droppableId === "todo" &&
+          destination.droppableId === "done":
+          const {
+            taskToMove: todoToMove2,
+            sourceListUpdated: listUpdated2,
+          } = DragDropController({
+            sourceList: todo,
+            destinationStatus: "done",
+            draggableID: draggableId,
+          });
+          setTodo(listUpdated2);
+          setDoneTodo([...doneTodo, todoToMove2[0]]);
+          break;
+        case source.droppableId === "inProgress" &&
+          destination.droppableId === "todo":
+          const {
+            taskToMove: todoToMove3,
+            sourceListUpdated: listUpdated3,
+          } = DragDropController({
+            sourceList: inProgress,
+            destinationStatus: "todo",
+            draggableID: draggableId,
+          });
+          setInProgress(listUpdated3);
+          setTodo([...todo, todoToMove3[0]]);
+          break;
+        case source.droppableId === "inProgress" &&
+          destination.droppableId === "done":
+          const {
+            taskToMove: todoToMove4,
+            sourceListUpdated: listUpdated4,
+          } = DragDropController({
+            sourceList: inProgress,
+            destinationStatus: "done",
+            draggableID: draggableId,
+          });
+          setInProgress(listUpdated4);
+          setDoneTodo([...doneTodo, todoToMove4[0]]);
+          break;
+        case source.droppableId === "done" &&
+          destination.droppableId === "todo":
+          const {
+            taskToMove: todoToMove5,
+            sourceListUpdated: listUpdated5,
+          } = DragDropController({
+            sourceList: doneTodo,
+            destinationStatus: "todo",
+            draggableID: draggableId,
+          });
+          setDoneTodo(listUpdated5);
+          setTodo([...todo, todoToMove5[0]]);
+          break;
+        case source.droppableId === "done" &&
+          destination.droppableId === "inProgress":
+          const {
+            taskToMove: todoToMove6,
+            sourceListUpdated: listUpdated6,
+          } = DragDropController({
+            sourceList: doneTodo,
+            destinationStatus: "inProgress",
+            draggableID: draggableId,
+          });
+          setDoneTodo(listUpdated6);
+          setInProgress([...inProgress, todoToMove6[0]]);
+          break;
+      }
+    }
+    setDragListDetected({ todo: false, inProgress: false, done: false });
+    if (
+      source.index === destination.index &&
+      source.droppableId === destination.droppableId
+    ) {
+      return;
+    }
+    if (
+      source.droppableId === destination.droppableId &&
+      destination.droppableId === "todo"
+    ) {
+      setTodo((prevTasks) =>
+        reorder(prevTasks, source.index, destination.index)
+      );
+    } else if (
+      source.droppableId === destination.droppableId &&
+      destination.droppableId === "inProgress"
+    ) {
+      setInProgress((prevTasks) =>
+        reorder(prevTasks, source.index, destination.index)
+      );
+    } else if (
+      source.droppableId === destination.droppableId &&
+      destination.droppableId === "done"
+    ) {
+      setDoneTodo((prevTasks) =>
+        reorder(prevTasks, source.index, destination.index)
+      );
+    }
+  };
+
+  const handleDetectDragging = (result, item) => {
+    if (result.destination !== null) {
+      if (item === "list") {
+        // console.log(result);
+        switch (result.destination.droppableId) {
+          case "todo":
+            setDragListDetected({ todo: true, inProgress: false, done: false });
+            return;
+          case "inProgress":
+            setDragListDetected({ todo: false, inProgress: true, done: false });
+            return;
+          case "done":
+            setDragListDetected({ todo: false, inProgress: false, done: true });
+            return;
+          default:
+            setDragListDetected({
+              todo: false,
+              inProgress: false,
+              done: false,
             });
-            const updatetodo = todo.filter( t => t.id !== draggableId);
-            setTodo(updatetodo);
-            setInProgress([...inProgress, todoToMove[0]]);
-          } else if( source.droppableId === "todo" && destination.droppableId === "done") {
-            const todoToMove = todo.filter( t => {
-              if(t.id === draggableId){
-                t.status = "done";
-                return t;
-              }
-            });
-            const updatetodo = todo.filter( t => t.id !== draggableId);
-            setTodo(updatetodo);
-            setDoneTodo([...doneTodo, todoToMove[0]]);
-          } else if( source.droppableId === "inProgress" && destination.droppableId === "todo") {
-            const inProgressToMove = inProgress.filter( ip => {
-              if(ip.id === draggableId){
-                ip.status = "todo";
-                return ip;
-              }
-            });
-            const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
-            setInProgress(updateInProgress);
-            setTodo([...todo, inProgressToMove[0]]);
-          } else if( source.droppableId === "inProgress" && destination.droppableId === "done") {
-            const inProgressToMove = inProgress.filter( ip => {
-              if(ip.id === draggableId){
-                ip.status = "done";
-                return ip;
-              }
-            });
-            // console.log(inProgressToMove)
-            const updateInProgress = inProgress.filter( ip => ip.id !== draggableId);
-            setInProgress(updateInProgress);
-            setDoneTodo([...doneTodo, inProgressToMove[0]]);
-          } else if( source.droppableId === "done" && destination.droppableId === "todo") {
-            const doneTodoToMove = doneTodo.filter( dt => {
-              if(dt.id === draggableId){
-                dt.status = "todo";
-                return dt;
-              }
-            });
-            const updateDoneTodo = doneTodo.filter( dt => dt.id !== draggableId);
-            setDoneTodo(updateDoneTodo);
-            setTodo([...todo, doneTodoToMove[0]]);
-          } else if( source.droppableId === "done" && destination.droppableId === "inProgress") {
-            const doneTodoToMove = doneTodo.filter( dt => {
-              if(dt.id === draggableId){
-                dt.status = "inProgress";
-                return dt;
-              }
-            });
-            const updateDoneTodo = doneTodo.filter( dt => dt.id !== draggableId);
-            setDoneTodo(updateDoneTodo);
-            setInProgress([...inProgress, doneTodoToMove[0]]);
-          }
+            return;
         }
-        if (
-          source.index === destination.index &&
-          source.droppableId === destination.droppableId
-        ) {
-          return;
-        }
-        if( source.droppableId === destination.droppableId && destination.droppableId === "todo"){
-          setTodo((prevTasks) =>
-            reorder(prevTasks, source.index, destination.index)
-          );
-        } else if(source.droppableId === destination.droppableId && destination.droppableId === "inProgress") {
-          setInProgress((prevTasks) =>
-            reorder(prevTasks, source.index, destination.index)
-          );
-        } else if(source.droppableId === destination.droppableId && destination.droppableId === "done") {
-          setDoneTodo((prevTasks) =>
-            reorder(prevTasks, source.index, destination.index)
-          );
-        }
-      };
+      } else {
+        // console.log(result);
+        // console.log(allTodos.find((task) => task.id === result.draggableId));
+        // setDragTaskDetected(result.draggableId);
+      }
+    }
+  };
 
-    return (
-        <>
-            <div className="home">
-                <DragDropContext onDragEnd={(result)=>handleDragEnd(result)} >
-                    <div className="main" ref={mainClass} >
-                        <FormTodo handleCreateTodo={handleCreateTodo} />
-                        <Header todos={allTodos} userData={userData} />
-                        <div className="content-body">
-                            <div className="content-lists">
-                                <List key="todo" droppableID="todo" list={todo} titleList="TO DO" handleDeleteTodoById={handleDeleteTodoById} />
-                                <List key="inProgress" droppableID="inProgress" list={inProgress} titleList="IN PROGRESS" handleDeleteTodoById={handleDeleteTodoById} />
-                                <List key="doneTodo" droppableID="done" list={doneTodo} titleList="DONE" handleDeleteTodoById={handleDeleteTodoById} />
-                            </div>
-                        </div>
-                    </div>
-                </DragDropContext>
-                <Footer />
-            </div> 
-        </>
-    )
+  return (
+    <>
+      <div className="home">
+        <DragDropContext
+          onDragEnd={(result) => handleDragEnd(result)}
+          onDragUpdate={(result) => handleDetectDragging(result, "list")}
+          onDragStart={(result) => handleDetectDragging(result, "task")}
+        >
+          <div className="main" ref={mainClass}>
+            <FormTodo handleCreateTodo={handleCreateTodo} />
+            <Header todos={allTodos} />
+            <div className="content-body">
+              <div className="content-lists">
+                <List
+                  key="todo"
+                  droppableID="todo"
+                  list={todo}
+                  className={todoDragDetectedClass}
+                  titleList="TO DO"
+                  handleDeleteTodoById={handleDeleteTodoById}
+                />
+                <List
+                  key="inProgress"
+                  droppableID="inProgress"
+                  list={inProgress}
+                  className={inProgressDragDetectedClass}
+                  titleList="IN PROGRESS"
+                  handleDeleteTodoById={handleDeleteTodoById}
+                />
+                <List
+                  key="doneTodo"
+                  droppableID="done"
+                  list={doneTodo}
+                  className={doneDragDetectedClass}
+                  titleList="DONE"
+                  handleDeleteTodoById={handleDeleteTodoById}
+                />
+              </div>
+            </div>
+          </div>
+        </DragDropContext>
+        <Footer />
+      </div>
+    </>
+  );
 }
 
 export default Home;

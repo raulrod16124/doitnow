@@ -1,42 +1,67 @@
-import LoginProvider from "../provides";
 import { TYPES } from "./type";
 
 const initialState = {
-    status: "initial",
-    error: "",
-    data: {}
+  status: "initial",
+  error: "",
+  data: {},
 };
 
-export const LoginReducer = async ( state = initialState, action ) => {
-    
-    switch (action.type) {
-        case TYPES.checkUser:
-            console.log("heello")
-            const callingServer = new LoginProvider();
-            const checkingUser = await callingServer.checkUser(action.payload).then( response => response );
-            console.log(checkingUser);
-            if( checkingUser.token ){
-                localStorage.setItem( 'user', JSON.stringify(checkingUser) );
-            }
-            return checkingUser !== undefined ? checkingUser : "ERROR";
+export const LoginReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case TYPES.checkUser:
+      let userData = null;
+      if (action.payload.user?.stsTokenManager.refreshToken) {
+        userData = {
+          token: action.payload.user.stsTokenManager.refreshToken,
+          email: action.payload.user.providerData[0].email,
+          name: action.payload.user.providerData[0].email.split("@")[0],
+        };
+      }
+      if (userData?.token) {
+        return {
+          ...state,
+          data: userData,
+          status: "success",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload.split("/")[1].replace("-", " "),
+          status: "error",
+        };
+      }
 
-        case TYPES.createUser:
-            return [...state, action.payload];
-        case TYPES.updateUser:
-            console.log(action.payload);
-            const updateTodo = state.map( todo => {
-                if( todo.id === action.payload.id ){
-                    return todo = action.payload;
-                };
-                return todo;
-            } );
-            return updateTodo;
-        case TYPES.deleteUser:
-            console.log(action.payload);
-            const updateTodos = state.filter( todo => todo.id !== action.payload );
-            return updateTodos; 
-    
-        default:
-            return state;
-    }
-}
+    case TYPES.createNewUser:
+      console.log(action.payload);
+      if (action.payload.email) {
+        return {
+          ...state,
+          data: action.payload,
+          status: "success",
+        };
+      } else {
+        return {
+          ...state,
+          error: action.payload.split("/")[1].replace("-", " "),
+          status: "error",
+        };
+      }
+    // TODO - Refactor to use firebase
+    case TYPES.updateUser:
+    // console.log(action.payload);
+    // const updateTodo = state.map( todo => {
+    //     if( todo.id === action.payload.id ){
+    //         return todo = action.payload;
+    //     };
+    //     return todo;
+    // } );
+    // return updateTodo;
+    case TYPES.deleteUser:
+    // console.log(action.payload);
+    // const updateTodos = state.filter( todo => todo.id !== action.payload );
+    // return updateTodos;
+
+    default:
+      return state;
+  }
+};

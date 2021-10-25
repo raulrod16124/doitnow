@@ -1,43 +1,55 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
-import { Switch, useHistory } from 'react-router';
+import React, { useContext, useEffect } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router";
 
-import Home from '../modules/Home/views/Home';
-import Login from '../modules/Login/views/Login';
-import ProtectedRoutes from './ProtectedRoutes';
+import { AuthContext } from "../auth/Auth";
+import auth from "../firebase/config";
+import Home from "../modules/Home/views/Home";
+import Login from "../modules/Login/views/Login";
+import RecoverPassword from "../modules/Login/views/RecoverPassword";
+import SignUp from "../modules/Login/views/SingUp";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function Routes() {
+  const history = useHistory();
 
-    const history = useHistory();
+  // User Access
+  const { currentUser } = useContext(AuthContext);
 
-    const loginReducer = useSelector((state) => {
-        console.log(state.loginReducer);
-        return state.loginReducer;
-    })
+  useEffect(() => {
+    if (currentUser && currentUser.accessToken !== undefined) {
+      localStorage.setItem("user", JSON.stringify(currentUser));
+      history.push({ pathname: "/home" });
+    }
+  }, [currentUser]);
 
-    useEffect(() => {
-        console.log(JSON.parse( localStorage.getItem('user')));
-        if(JSON.parse( localStorage.getItem('user')) !== null){
-            history.push({ pathname: "/"});
-        } else {
-            history.push({pathname: "/login"});
-        }
-    }, [JSON.parse( localStorage.getItem('user'))]);
-
-    return (
-        <Switch>
-            <ProtectedRoutes Component="Login" path="/login" exact >
-                <div className="section-content">
-                    <Login/>
-                </div>
-            </ProtectedRoutes>
-            <ProtectedRoutes Component="Home" path="/" exact >
-                <div className="section-content">
-                    <Home userData={JSON.parse( localStorage.getItem('user'))} /> 
-                </div>
-            </ProtectedRoutes>
-        </Switch>
-    )
+  return (
+    <Switch>
+      <ProtectedRoutes path="/" exact>
+        <Redirect to="/home" />
+      </ProtectedRoutes>
+      <ProtectedRoutes Component="Home" path="/home" exact>
+        <div className="section-content">
+          <Home />
+        </div>
+      </ProtectedRoutes>
+      {/* Start Login Section */}
+      <Route path="/login" exact>
+        <div className="section-content">
+          <Login />
+        </div>
+      </Route>
+      <Route path="/sign-up" exact>
+        <div className="section-content">
+          <SignUp />
+        </div>
+      </Route>
+      <Route path="/recover-password" exact>
+        <div className="section-content">
+          <RecoverPassword />
+        </div>
+      </Route>
+    </Switch>
+  );
 }
 
 export default Routes;
