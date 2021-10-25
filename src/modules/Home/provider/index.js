@@ -78,8 +78,13 @@ export const deleteTask = async (idTaskToDelete) => {
   // console.log(idTaskToDelete);
   try {
     const docRefToDelete = doc(db, "todos", idTaskToDelete);
-    console.log(docRefToDelete);
     return await deleteDoc(docRefToDelete);
+
+    // TODO - Refresh the all tasks in the interface correclty
+
+    // const taskDeleted = await getDoc(idTaskToDelete);
+    // console.log(taskDeleted);
+    // return taskDeleted;
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;

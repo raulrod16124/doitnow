@@ -39,7 +39,8 @@ export const UpdateTask = (idTaskToDelete, data) => {
 
 export const DeleteTask = (idTaskToDelete) => {
   return async (dispatch) => {
-    await deleteTask(idTaskToDelete);
+    const taskDeleted = await deleteTask(idTaskToDelete);
+    console.log(taskDeleted);
     dispatch({
       type: TYPES.deleteTask,
       payload: idTaskToDelete,
