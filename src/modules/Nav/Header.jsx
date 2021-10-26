@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
-import auth from "../../../../firebase/config";
+import auth from "../../firebase/config";
 
 export const Header = ({ todos }) => {
   const history = useHistory();
@@ -24,7 +24,9 @@ export const Header = ({ todos }) => {
 
   return (
     <div className="header">
-      <div className="logo-app">DOITNOW</div>
+      <div className="logo-app">
+        <h1>DOITNOW</h1>
+      </div>
       <div className="nav-bar">
         <div className="navegation-content">
           <a href="/home" className={homeSelected}>
@@ -39,7 +41,9 @@ export const Header = ({ todos }) => {
         <p className="user-name">
           {userData && userData.email ? userData.email.split("@")[0] : ""}
         </p>
-        <div className="user-avatar">🐱‍👤</div>
+        <a href="/profile" className="user-avatar">
+          🐱‍👤
+        </a>
       </div>
     </div>
   );
