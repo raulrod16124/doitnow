@@ -1,9 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
-import { Button } from "../../../../stories/Button";
-import { Message } from "../../../global/Message";
+import { Button } from "../../stories/Button";
+import { Footer } from "../global/Footer";
+import { Message } from "../global/Message";
+import { CreateTask } from "../Home/state/actions";
 
-export const FormTodo = ({ handleCreateTodo, handleFormVisbility }) => {
+export const FormTodo = () => {
   const initialTodoState = {
     title: "",
     level: "easy",
@@ -11,27 +15,33 @@ export const FormTodo = ({ handleCreateTodo, handleFormVisbility }) => {
     description: "",
   };
 
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   // Todo state
   const [todo, setTodo] = useState(initialTodoState);
 
   // Section Selected
   const [sectionVisibility, setSectionVisibility] = useState({
-    form: true,
-    contacts: false,
+    home: true,
     stats: false,
+    profile: false,
   });
 
-  // Section class Selected controller
-  let classNames = require("classnames");
-  let sectionFormClass = classNames("section", {
-    selected: sectionVisibility.form,
-  });
-  let sectionContacsClass = classNames("section", {
-    selected: sectionVisibility.contacts,
-  });
-  let sectionStatsClass = classNames("section", {
-    selected: sectionVisibility.stats,
-  });
+  useEffect(() => {
+    switch (history.location.pathname) {
+      case "/home":
+        setSectionVisibility({ home: true, stats: false, profile: false });
+        break;
+      case "/stats":
+        setSectionVisibility({ home: false, stats: true, profile: false });
+        break;
+      case "/profile":
+        setSectionVisibility({ home: false, stats: false, profile: true });
+        break;
+    }
+  }, [history.location.pathname]);
 
   // Error State
   const [error, setError] = useState({
@@ -68,7 +78,8 @@ export const FormTodo = ({ handleCreateTodo, handleFormVisbility }) => {
       titleForm.current.value = "";
       levelForm.current.value = "easy";
       descriptionForm.current.value = "";
-      return handleCreateTodo(newTask);
+
+      dispatch(CreateTask(newTask));
     } else {
       setError({ ...error, visible: true });
       setTimeout(() => {
@@ -79,35 +90,8 @@ export const FormTodo = ({ handleCreateTodo, handleFormVisbility }) => {
 
   return (
     <form className="form" onSubmit={handleSaveTodo}>
-      <div className="logo-app">DoItNow</div>
-      <ul className="content-sections">
-        <li
-          className={sectionFormClass}
-          onClick={() =>
-            setSectionVisibility({ form: true, contacts: false, stats: false })
-          }
-        >
-          Task Form
-        </li>
-        <li
-          className={sectionStatsClass}
-          onClick={() =>
-            setSectionVisibility({ form: false, contacts: false, stats: true })
-          }
-        >
-          Stats
-        </li>
-        <li
-          className={sectionContacsClass}
-          onClick={() =>
-            setSectionVisibility({ form: false, contacts: true, stats: false })
-          }
-        >
-          Contacts
-        </li>
-      </ul>
       <div className="content-form">
-        {sectionVisibility.form && (
+        {sectionVisibility.home && (
           <>
             <div className="title-form">Create your task</div>
             <input
@@ -150,13 +134,14 @@ export const FormTodo = ({ handleCreateTodo, handleFormVisbility }) => {
             </div>
           </>
         )}
-        {sectionVisibility.contacts && (
-          <p style={{ color: "#fff" }}>Here the contacts section</p>
-        )}
         {sectionVisibility.stats && (
           <p style={{ color: "#fff" }}>Here the Stats section</p>
         )}
+        {sectionVisibility.profile && (
+          <p style={{ color: "#fff" }}>Here the Profile section</p>
+        )}
       </div>
+      <Footer />
     </form>
   );
 };

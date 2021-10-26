@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 import auth from "../../../firebase/config";
 import { Button } from "../../../stories/Button";
-import { Footer } from "../../global/Footer";
 import { CheckUser } from "../state/actions";
 
 function Login() {
@@ -83,7 +82,6 @@ function Login() {
         </form>
         <div className="login-picture"></div>
       </div>
-      <Footer />
     </div>
   );
 }

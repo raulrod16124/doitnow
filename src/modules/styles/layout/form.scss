@@ -1,77 +1,43 @@
-.form{
-    position: absolute;
-    position: fixed;
-    width: 20%;
-    min-height: 100vh;
-    background-color: $DarkOcean;
-    
-    .logo-app{
-        min-height: 8vh;
-        font-size: 4vmin;
-        align-items: center;
-        padding: 1vmin 3vmin;
-        color: $White;
-    }
+.form {
+  position: absolute;
+  position: fixed;
+  width: 20%;
+  top: 10vh;
+  left: 0;
+  min-height: 100vh;
+  background-color: $DarkOcean;
 
-    .content-sections{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        list-style: none;
-        height: 5vh;
-        text-align: center;
-        background-color: darken($color: $DarkOcean, $amount: 20);
-        
-        .section{
-            cursor: pointer;
-            margin-top: 5%;
-            padding-top: 1.5vh;
-            background-color: darken($color: $DarkOcean, $amount: 5);
-            color: $DarkGrey;
-            height: 100%;
-            border-left: 20deg solid;
-            border-radius: .5em .5em 0 0;
-            transition: all .3s;
-            
-            &.selected{
-                font-weight: 700;
-                color: $White;
-                background-color: $DarkOcean;
-            }
-        }
-    }
+  .content-form {
+    padding: 3vmin;
+  }
 
-    .content-form{
-        padding: 3vmin;
-    }
+  .title-form {
+    font-size: 3vmin;
+    font-weight: bolder;
+    margin: 0 auto 4vh auto;
+    color: $White;
+  }
 
-    .title-form{
-        font-size: 3vmin;
-        font-weight: bolder;
-        margin: 0 auto 4vh auto;
-        color: $White;
-    }
+  .form-title,
+  .form-level,
+  .form-description {
+    display: block;
+    width: 100%;
+    padding: $padding1 * 10;
+    border-radius: $SmallSize * 10;
+    border: $SmallSize / 6 solid $DarkBlue;
+    margin: $margin1 * 20 auto;
+    font-size: 2.2vmin;
+    background: lighten($color: $DarkGrey, $amount: 25);
+  }
 
-    .form-title,
-    .form-level,
-    .form-description{
-        display: block;
-        width: 100%;
-        padding: $padding1 * 10;
-        border-radius: $SmallSize * 10;
-        border: $SmallSize / 6 solid $DarkBlue;
-        margin: $margin1 * 20 auto;
-        font-size: 2.2vmin;
-        background: lighten($color: $DarkGrey, $amount: 25);
-    }
+  .form-description {
+    min-height: $BigSize * 20;
+  }
 
-    .form-description{
-        min-height: $BigSize * 20;
-    }
-
-    .content-message{
-        position: relative;
-        width: 100%;
-        margin: 5vh auto;
-    }
-
+  .content-message {
+    position: relative;
+    width: 100%;
+    margin: 5vh auto;
+  }
 }

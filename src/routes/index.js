@@ -2,23 +2,20 @@ import React, { useContext, useEffect } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router";
 
 import { AuthContext } from "../auth/Auth";
-import auth from "../firebase/config";
 import Home from "../modules/Home/views/Home";
 import Login from "../modules/Login/views/Login";
 import RecoverPassword from "../modules/Login/views/RecoverPassword";
 import SignUp from "../modules/Login/views/SingUp";
+import { Header } from "../modules/Nav/Header";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 function Routes() {
-  const history = useHistory();
-
   // User Access
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     if (currentUser && currentUser.accessToken !== undefined) {
       localStorage.setItem("user", JSON.stringify(currentUser));
-      history.push({ pathname: "/home" });
     }
   }, [currentUser]);
 
@@ -28,25 +25,28 @@ function Routes() {
         <Redirect to="/home" />
       </ProtectedRoutes>
       <ProtectedRoutes Component="Home" path="/home" exact>
-        <div className="section-content">
-          <Home />
-        </div>
+        <Header />
+        <Home />
+      </ProtectedRoutes>
+      <ProtectedRoutes Component="Stats" path="/stats" exact>
+        <Header />
+        Stats Section
+        {/* <Stats /> */}
+      </ProtectedRoutes>
+      <ProtectedRoutes Component="Profile" path="/profile" exact>
+        <Header />
+        Profile Section
+        {/* <Profile /> */}
       </ProtectedRoutes>
       {/* Start Login Section */}
       <Route path="/login" exact>
-        <div className="section-content">
-          <Login />
-        </div>
+        <Login />
       </Route>
       <Route path="/sign-up" exact>
-        <div className="section-content">
-          <SignUp />
-        </div>
+        <SignUp />
       </Route>
       <Route path="/recover-password" exact>
-        <div className="section-content">
-          <RecoverPassword />
-        </div>
+        <RecoverPassword />
       </Route>
     </Switch>
   );

@@ -1,36 +1,38 @@
-*, *:after, *:before{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-    box-sizing: inherit;    
-    font-size: 62.5%;
+html {
+  box-sizing: inherit;
+  font-size: 62.5%;
 }
 
-body{
-    font-size: 1.8vmin;
-    font-family: $font-principal;
+body {
+  font-size: 1.8vmin;
+  font-family: $font-principal;
 }
 
 // Globals
 
-.icon{
-    cursor: pointer;
+.icon {
+  cursor: pointer;
 }
 
-.message{
-    width: 100%;
-    text-align: center;
-    border: .5vmin solid;
-    border-radius: 1vmin;
-    font-size: 3.2vmin;
-    font-weight: bolder;
+.message {
+  width: 100%;
+  text-align: center;
+  border: 0.5vmin solid;
+  border-radius: 1vmin;
+  font-size: 3.2vmin;
+  font-weight: bolder;
 }
 
 // App
 
-.App{
-   overflow-x: hidden;
+.App {
+  overflow-x: hidden;
 }

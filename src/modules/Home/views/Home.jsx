@@ -5,10 +5,8 @@ import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
 import { Footer } from "../../global/Footer";
-import { CreateTask, DeleteTask, GetTasks, UpdateTask } from "../state/actions";
+import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { DragDropController } from "./components/DragDropController";
-import { FormTodo } from "./components/FormTodo";
-import { Header } from "./components/Header";
 import List from "./components/List";
 
 // import { Header } from '../global/Header';
@@ -80,10 +78,6 @@ function Home() {
       setAllTodos(todosState.data);
     }
   }, [todosState]);
-
-  const handleCreateTodo = (newTask) => {
-    dispatch(CreateTask(newTask));
-  };
 
   const handleDeleteTodoById = (idTodo) => {
     dispatch(DeleteTask(idTodo));
@@ -262,8 +256,19 @@ function Home() {
           onDragStart={(result) => handleDetectDragging(result, "task")}
         >
           <div className="main" ref={mainClass}>
-            <FormTodo handleCreateTodo={handleCreateTodo} />
-            <Header todos={allTodos} />
+            <div className="progress-bar">
+              <div className="level-bar">
+                <div
+                  className="green-fill"
+                  style={{
+                    width:
+                      allTodos.length > 0
+                        ? (doneTodo.length / allTodos.length) * 100 + "%"
+                        : 0 + "%",
+                  }}
+                ></div>
+              </div>
+            </div>
             <div className="content-body">
               <div className="content-lists">
                 <List
@@ -287,14 +292,13 @@ function Home() {
                   droppableID="done"
                   list={doneTodo}
                   className={doneDragDetectedClass}
-                  titleList="DONE"
+                  titleList="COMPLETED"
                   handleDeleteTodoById={handleDeleteTodoById}
                 />
               </div>
             </div>
           </div>
         </DragDropContext>
-        <Footer />
       </div>
     </>
   );
