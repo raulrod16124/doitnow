@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
+import avatar from "./../../assets/avatars/girl1.png";
 import auth from "../../firebase/config";
 
 export const Header = ({ todos }) => {
@@ -21,6 +22,9 @@ export const Header = ({ todos }) => {
   let statsSelected = className("section", {
     selected: history.location.pathname === "/stats",
   });
+  let profileSelected = className("user-settings", {
+    selected: history.location.pathname === "/profile",
+  });
 
   return (
     <div className="header">
@@ -37,12 +41,12 @@ export const Header = ({ todos }) => {
           </a>
         </div>
       </div>
-      <div className="user-settings">
+      <div className={profileSelected}>
         <p className="user-name">
-          {userData && userData.email ? userData.email.split("@")[0] : ""}
+          {userData && userData.name ? userData.name : ""}
         </p>
         <a href="/profile" className="user-avatar">
-          🐱‍👤
+          <img className="avatar" src={avatar} alt="avatar" />
         </a>
       </div>
     </div>

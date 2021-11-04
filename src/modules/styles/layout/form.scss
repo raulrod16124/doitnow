@@ -1,4 +1,4 @@
-.form {
+.aside {
   position: absolute;
   position: fixed;
   width: 20%;
@@ -7,37 +7,104 @@
   min-height: 100vh;
   background-color: $DarkOcean;
 
-  .content-form {
-    padding: 3vmin;
-  }
-
-  .title-form {
-    font-size: 3vmin;
-    font-weight: bolder;
-    margin: 0 auto 4vh auto;
-    color: $White;
-  }
-
-  .form-title,
-  .form-level,
-  .form-description {
-    display: block;
-    width: 100%;
-    padding: $padding1 * 10;
-    border-radius: $SmallSize * 10;
-    border: $SmallSize / 6 solid $DarkBlue;
-    margin: $margin1 * 20 auto;
-    font-size: 2.2vmin;
-    background: lighten($color: $DarkGrey, $amount: 25);
-  }
-
-  .form-description {
-    min-height: $BigSize * 20;
-  }
-
-  .content-message {
+  .home-view-selector {
     position: relative;
     width: 100%;
-    margin: 5vh auto;
+    height: 5vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    color: $White;
+    background: darken($color: $DarkOcean, $amount: 10);
+
+    .home-view {
+      text-align: center;
+      padding-top: 1.5vh;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .bg-hide {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 5vh;
+      background-color: $DarkOcean;
+      transition: all 0.3s;
+      z-index: 1;
+    }
+  }
+
+  .form {
+    .content-form {
+      padding: 3vmin;
+    }
+
+    .title-form {
+      font-size: 3vmin;
+      font-weight: bolder;
+      margin: 0 auto 4vh auto;
+      color: $White;
+    }
+
+    .start-date-selector,
+    .form-title,
+    .form-level,
+    .form-description {
+      display: block;
+      width: 100%;
+      padding: $padding1 * 10;
+      border-radius: $SmallSize * 10;
+      border: $SmallSize / 6 solid $DarkBlue;
+      margin: $margin1 * 20 auto;
+      font-size: 2.2vmin;
+      background: $White;
+    }
+
+    .start-date-selector {
+      display: flex;
+      justify-content: space-between;
+      padding: 1vmin;
+    }
+
+    .react-calendar {
+      margin: -3vh 0.05vw 0 0.05vw;
+      background-color: #fff;
+      border-radius: 1vmin;
+      line-height: 1.125em;
+    }
+
+    .react-calendar__month-view__weekdays {
+      padding: 0.5vmin;
+      text-align: center;
+      border: none;
+    }
+
+    .react-calendar p {
+      padding: 1vh 0;
+    }
+
+    .react-calendar button {
+      background-color: #fff;
+      border: none;
+      padding: 1vmin;
+      font-size: 1.5vmin;
+      transition: all 0.3s;
+    }
+
+    .react-calendar button:hover {
+      cursor: pointer;
+      background-color: #ddd;
+    }
+
+    .form-description {
+      min-height: $BigSize * 20;
+    }
+
+    .content-message {
+      position: relative;
+      width: 100%;
+      margin: 5vh auto;
+    }
   }
 }

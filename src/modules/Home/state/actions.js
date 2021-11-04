@@ -19,7 +19,7 @@ export const GetTasks = (user) => {
 export const CreateTask = (task) => {
   return async (dispatch) => {
     const newTask = await createNewTask(task);
-    // console.log(newTask);
+    console.log(newTask);
     dispatch({
       type: TYPES.createTask,
       payload: newTask,

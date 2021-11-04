@@ -10,9 +10,11 @@ export const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.checkUser:
       let userData = null;
+      console.log(action.payload);
       if (action.payload.user?.stsTokenManager.refreshToken) {
         userData = {
-          token: action.payload.user.stsTokenManager.refreshToken,
+          id: action.payload._tokenResponse.localId,
+          token: action.payload._tokenResponse.idToken,
           email: action.payload.user.providerData[0].email,
           name: action.payload.user.providerData[0].email.split("@")[0],
         };

@@ -1,9 +1,14 @@
+import { CreateUserProfile, GetUserProfile } from "../../Profile/state/actions";
 import { createUser, verifyUser } from "../provides";
 import { TYPES } from "./type";
 
 export const CheckUser = (user) => {
   return async (dispatch) => {
     const userData = await verifyUser(user);
+    if (userData._tokenResponse) {
+      console.log("Token exists");
+      dispatch(GetUserProfile(userData._tokenResponse));
+    }
     dispatch({
       type: TYPES.checkUser,
       payload: userData,
@@ -13,11 +18,21 @@ export const CheckUser = (user) => {
 
 export const CreateUser = (user) => {
   return async (dispatch) => {
-    const userData = await createUser(user);
-
+    const { userTokenCreated, newUser } = await createUser(user);
+    if (userTokenCreated) {
+      console.log("Token Created");
+      const userProfile = {
+        id: userTokenCreated.localId,
+        name: user.email.split("@")[0],
+        email: user.email,
+        avatar: "./../../assets/avatars/girl1.png",
+      };
+      dispatch(CreateUserProfile(userProfile));
+    }
+    console.log("Second Dispatch");
     dispatch({
       type: TYPES.createNewUser,
-      payload: userData,
+      payload: newUser,
     });
   };
 };

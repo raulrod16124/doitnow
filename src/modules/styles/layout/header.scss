@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 20% 70% 10%;
   background-color: $White;
-  border-bottom: 0.2vmin solid $DarkOcean;
+  // border-bottom: 0.2vmin solid $DarkOcean;
   align-items: center;
   z-index: 100;
 
@@ -19,7 +19,7 @@
     .navegation-content {
       width: 40%;
       height: 6vh;
-      margin-top: 3.8vh;
+      margin-top: 4vh;
       list-style: none;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -44,12 +44,20 @@
   .user-settings {
     align-items: center;
     padding: 1vmin;
-    margin-right: 2.5vw;
+    padding-right: 2.5vw;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+    &.selected {
+      background: lighten($color: $DarkGrey, $amount: 25);
+    }
+
     .user-name {
       font-size: 2vmin;
+    }
+
+    .avatar {
+      width: 100%;
     }
   }
 }

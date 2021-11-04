@@ -9,9 +9,14 @@ export const createUser = async (newUser) => {
   console.log("Enter to checkUser");
   console.log(newUser);
   try {
-    await createUserWithEmailAndPassword(auth, newUser.email, newUser.password);
-    console.log(newUser);
-    return newUser;
+    const userCreated = await createUserWithEmailAndPassword(
+      auth,
+      newUser.email,
+      newUser.password
+    );
+    console.log(userCreated);
+    const userTokenCreated = userCreated._tokenResponse;
+    return { userTokenCreated, newUser };
   } catch (error) {
     const errorData = JSON.stringify(error);
     return JSON.parse(errorData).code;
@@ -25,6 +30,7 @@ export const verifyUser = async (user) => {
       user.email,
       user.password
     );
+    console.log(userLogged);
     return userLogged;
   } catch (error) {
     const errorData = JSON.stringify(error);

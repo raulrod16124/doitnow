@@ -42,9 +42,10 @@ export const getAllTasks = async (user) => {
 
 export const createNewTask = async (newTask) => {
   console.log("Enter to createNewTask");
-  // console.log(newTask);
+  console.log(newTask);
   try {
     const tasksCall = collection(db, "todos");
+    console.log(tasksCall);
     // const taskCreated = await addDoc(tasksCall, newTask);
     // console.log(taskCreated);
     return await addDoc(tasksCall, newTask);

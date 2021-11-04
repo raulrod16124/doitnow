@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../auth/Auth";
 import Routes from "../routes";
 import store from "../store/store";
-import { FormTodo } from "./Aside/FormTodo";
+import { FormTodo } from "./Aside/views/FormTodo";
 
 export default function App() {
   return (

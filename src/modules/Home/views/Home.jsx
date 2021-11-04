@@ -1,19 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
-import { Footer } from "../../global/Footer";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { DragDropController } from "./components/DragDropController";
-import List from "./components/List";
+import { Timestamp } from "./components/Timestamp";
+import { Today } from "./components/Today";
 
-// import { Header } from '../global/Header';
-
-function Home() {
+export const Home = () => {
+  // listenners
   const todosState = useSelector((state) => {
     return state.TodosReducer;
+  });
+
+  const homeViewState = useSelector((state) => {
+    return state.AsideReducer;
   });
 
   const dispatch = useDispatch();
@@ -32,30 +35,15 @@ function Home() {
 
   // const [ dragTaskDetected, setDragTaskDetected] = useState();
 
-  // Class Detect dragging in List
-  let classNames = require("classnames");
-  let todoDragDetectedClass = classNames("list", {
-    dragging: dragListDetected.todo,
-  });
-  let inProgressDragDetectedClass = classNames("list", {
-    dragging: dragListDetected.inProgress,
-  });
-  let doneDragDetectedClass = classNames("list", {
-    dragging: dragListDetected.done,
-  });
-
-  // References
-  const mainClass = useRef();
-
   // User Access
-  const { currentUser } = useContext(AuthContext);
+  const userLogged = useContext(AuthContext);
 
   useEffect(async () => {
-    if (currentUser) {
-      dispatch(GetTasks(currentUser.email));
+    if (userLogged.currentUser) {
+      dispatch(GetTasks(userLogged.currentUser.email));
       return <Redirect to="/" />;
     }
-  }, [currentUser]);
+  }, [userLogged]);
 
   useEffect(async () => {
     const userData = JSON.parse(localStorage.getItem("user"));
@@ -248,60 +236,27 @@ function Home() {
   };
 
   return (
-    <>
-      <div className="home">
+    <div className="home">
+      {!homeViewState ? (
         <DragDropContext
           onDragEnd={(result) => handleDragEnd(result)}
           onDragUpdate={(result) => handleDetectDragging(result, "list")}
           onDragStart={(result) => handleDetectDragging(result, "task")}
         >
-          <div className="main" ref={mainClass}>
-            <div className="progress-bar">
-              <div className="level-bar">
-                <div
-                  className="green-fill"
-                  style={{
-                    width:
-                      allTodos.length > 0
-                        ? (doneTodo.length / allTodos.length) * 100 + "%"
-                        : 0 + "%",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className="content-body">
-              <div className="content-lists">
-                <List
-                  key="todo"
-                  droppableID="todo"
-                  list={todo}
-                  className={todoDragDetectedClass}
-                  titleList="TO DO"
-                  handleDeleteTodoById={handleDeleteTodoById}
-                />
-                <List
-                  key="inProgress"
-                  droppableID="inProgress"
-                  list={inProgress}
-                  className={inProgressDragDetectedClass}
-                  titleList="IN PROGRESS"
-                  handleDeleteTodoById={handleDeleteTodoById}
-                />
-                <List
-                  key="doneTodo"
-                  droppableID="done"
-                  list={doneTodo}
-                  className={doneDragDetectedClass}
-                  titleList="COMPLETED"
-                  handleDeleteTodoById={handleDeleteTodoById}
-                />
-              </div>
-            </div>
-          </div>
+          <Today
+            allTodos={allTodos}
+            todo={todo}
+            inProgress={inProgress}
+            doneTodo={doneTodo}
+            dragListDetected={dragListDetected}
+            handleDeleteTodoById={handleDeleteTodoById}
+          />
         </DragDropContext>
-      </div>
-    </>
+      ) : (
+        <div className="timestamp-view">
+          <Timestamp allTodos={allTodos} />
+        </div>
+      )}
+    </div>
   );
-}
-
-export default Home;
+};

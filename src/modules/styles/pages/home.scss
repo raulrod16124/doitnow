@@ -1,10 +1,12 @@
 .home {
   overflow: hidden;
   margin-top: 10vh;
-  .main {
+  background: lighten($color: $DarkGrey, $amount: 25);
+
+  // Today View
+  .toady-main {
     max-width: 100vw;
     min-height: 100%;
-    background: lighten($color: $DarkGrey, $amount: 25);
   }
 
   .progress-bar {
@@ -12,22 +14,19 @@
     position: fixed;
     top: 10vh;
     left: 20%;
-    display: grid;
     width: 80%;
-    grid-template-columns: 80% 20%;
-    background-color: lighten($color: $DarkGrey, $amount: 10);
-    align-content: center;
     height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: lighten($color: $DarkGrey, $amount: 10);
     z-index: 100;
 
     .level-bar {
       width: 40%;
       height: 4vh;
       margin: 2vh 0 2vh 8vw;
-      // border: .1vmin solid $DarkGrey;
-      border-radius: 2vmin;
+      border-radius: 0.5vmin;
       background-color: $White;
-      // box-shadow: inset .5vmin .5vmin 1vmin #ddd, inset -.5vmin -.5vmin 1vmin #ddd;
       overflow: hidden;
     }
 
@@ -35,6 +34,16 @@
       height: 100%;
       background: linear-gradient(360deg, darken($Green, 10%), $Green);
       transition: all 0.5s;
+    }
+
+    .task-counter {
+      height: 4vh;
+      margin: 0 2vw;
+      .task-counter-text {
+        color: $White;
+        font-size: 3vmin;
+        font-weight: 700;
+      }
     }
   }
 
@@ -84,134 +93,235 @@
     .list-title {
       color: $DarkGrey;
     }
+  }
 
-    .item {
+  .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1vmin;
+    margin: 1vmin auto;
+    border-radius: 0.5vmin;
+    background: $White;
+    border-left: 0.5vh solid $Red;
+    box-shadow: 0.5vmin 0.5vmin 0.5vmin #aaa;
+    min-height: 10vh;
+    height: auto;
+    width: 100%;
+    transform: rotate(0deg);
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &.in-progress {
+      border-left: 0.5vh solid $Earth;
+    }
+    &.done {
+      border-left: 0.5vh solid $Green;
+    }
+
+    &.dragging {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 1vmin;
-      margin: 1vmin auto;
-      border-radius: 0.5vmin;
-      background: $White;
-      border-left: 1vh solid $Red;
-      box-shadow: 0.5vmin 0.5vmin 0.5vmin #aaa;
-      min-height: 20vh;
-      height: auto;
-      width: 100%;
-      transform: rotate(0deg);
-      overflow: hidden;
-      transition: all 0.3s;
-
-      &.in-progress {
-        border-left: 1vh solid $Earth;
-      }
-      &.done {
-        border-left: 1vh solid $Green;
-      }
-
-      &.dragging {
-        position: relative;
-        box-shadow: 1vmin 1vmin 2vmin #aaa;
-        transform: rotate(-10deg);
-      }
-    }
-
-    .content-todo {
-      display: grid;
-      grid-template-columns: 40% 60%;
-    }
-
-    .content-data-todo-rigth {
-      width: 100%;
-      font-size: 2.8vmin;
-      justify-content: space-between;
-      column-gap: 2vw;
-      width: 100%;
-      z-index: 10;
-    }
-
-    .content-data-todo-left {
-      display: flex;
-      flex-direction: column;
-      z-index: 10;
-
-      .editing {
-        margin: 0.5vmin;
-        padding: 0.5vmin;
-      }
-    }
-
-    .todo-title {
-      height: fit-content;
-      font-size: 3vmin;
-      z-index: 10;
-    }
-
-    .todo-description {
-      word-wrap: break-word;
-      z-index: 10;
-
-      .editing {
-        height: 100px;
-      }
-    }
-
-    .content-icons {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2vh;
-      z-index: 10;
+      box-shadow: 1vmin 1vmin 2vmin #aaa;
+      transform: rotate(-10deg);
     }
   }
 
-  .content-edit-todo {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    column-gap: $BigSize * 1;
-    width: 140%;
-    height: auto;
+  .editing {
+    font-size: 1.8vmin;
+    padding: 0.5vmin;
+    border-radius: 0.5vmin;
+    border: 0.2vmin solid $DarkGrey;
+  }
+  .todo-title {
+    display: flex;
+    justify-content: space-between;
+    word-wrap: break-word;
+    height: fit-content;
+    font-size: 3vmin;
+    margin-bottom: 2vh;
     z-index: 10;
 
-    .todo-title,
-    .todo-level,
+    .todo-date {
+      font-size: 1.5vmin;
+    }
+
+    .editing {
+      font-size: 3vmin;
+    }
+  }
+
+  .todo-description {
+    word-wrap: break-word;
+    z-index: 10;
+
+    &.editing {
+      margin: 1vh 0;
+      min-height: 10vh;
+      height: auto;
+    }
+  }
+
+  .todo-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+    align-items: center;
+  }
+
+  .content-icons {
+    display: flex;
+    justify-content: flex-end;
+    z-index: 10;
+
+    & svg {
+      margin-left: 1vw;
+    }
+  }
+
+  .start-date-selector {
+    display: block;
+    width: 100%;
+    padding: 0.5vmin;
+    border-radius: 0.5vmin;
+    border: 0.2vmin solid $DarkGrey;
+    margin: 1vmin 0;
+    font-size: 1.8vmin;
+    background: $White;
+    cursor: pointer;
+  }
+
+  .start-date-selector {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vmin;
+  }
+
+  .react-calendar {
+    margin: 0 0.05vw 0 0.05vw;
+    background-color: #fff;
+    border-radius: 1vmin;
+    border: 0.2vmin solid $DarkGrey;
+    line-height: 1.125em;
+  }
+
+  .react-calendar__month-view__weekdays {
+    padding: 0.5vmin;
+    text-align: center;
+    border: none;
+  }
+
+  .react-calendar p {
+    padding: 1vh 0;
+  }
+
+  .react-calendar button {
+    background-color: #fff;
+    border: none;
+    padding: 1vmin;
+    font-size: 1.5vmin;
+    transition: all 0.3s;
+  }
+
+  .react-calendar button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+  }
+
+  // TIMESTAMP SECTION
+
+  .item.timestamp {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4vmin;
+    min-height: 12vh;
+    height: auto;
+    margin: 1vh auto;
+    overflow: hidden;
+    word-wrap: anywhere;
+    overflow-wrap: anywhere;
+
     .todo-description {
-      display: block;
+      font-size: 1.8vmin;
+      word-wrap: anywhere;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .week-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    margin: 1vh auto;
+  }
+
+  .timestamp-arrow {
+    background-color: $Grey;
+    border-radius: 50%;
+    padding: 1vmin;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $DarkGrey;
+    }
+
+    &.arrow-left {
+      transform: rotate(90deg);
+    }
+
+    &.arrow-right {
+      transform: rotate(-90deg);
+    }
+  }
+
+  // Timestamp View
+  .timestamp-view {
+    height: 90vh;
+    width: 80%;
+    padding: 1vmin;
+    margin-left: 20%;
+  }
+
+  .timestamp {
+    height: 75%;
+    width: 95%;
+    margin: 5vh auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 0.2vw;
+    overflow-y: scroll;
+  }
+
+  .content-days {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .day {
+      position: relative;
       width: 100%;
-      padding: $padding1 * 10;
-      border-radius: $SmallSize * 10;
-      border: $SmallSize / 6 solid $DarkBlue;
-      margin: $margin1 * 5 auto;
-      font-size: 2.5vmin;
+      height: 100%;
+      background-color: $Grey;
+      overflow: hidden;
+    }
+
+    .day-text {
+      text-align: center;
+      position: absolute;
+      position: fixed;
+      width: 10.4%;
+      padding: 1vmin;
+      background-color: #fff;
       z-index: 10;
     }
 
-    .todo-level {
-      margin: 0.5vmin;
-    }
-
-    .todo-description {
-      min-height: 15vh;
-    }
-
-    .btn-todo {
-      width: 100%;
-      background-color: $ClearPurple;
-      border: none;
-      transition: all 0.3s;
-      font-size: 2.2vmin;
-      font-weight: 700;
-      color: $White;
-
-      &:hover {
-        background-color: $Pink;
-      }
-    }
-
-    .content-icons {
-      margin-top: $SmallSize * 20;
-      justify-content: space-around;
-      z-index: 10;
+    .day-tasks {
+      margin-top: 5vh;
+      padding: 1vmin;
+      height: 100%;
     }
   }
 }

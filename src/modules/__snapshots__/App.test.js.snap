@@ -15,7 +15,12 @@ exports[`Testing App Component should render App component correctly 1`] = `
   <div
     className="App"
   >
-    <Home />
+    <AuthProvider>
+      <BrowserRouter>
+        <FormTodo />
+        <Routes />
+      </BrowserRouter>
+    </AuthProvider>
   </div>
 </Provider>
 `;

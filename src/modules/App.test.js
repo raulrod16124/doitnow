@@ -1,24 +1,16 @@
-import { mount, shallow } from 'enzyme';
+import { mount, shallow } from "enzyme";
 
-import App from './App';
-import { Home } from './Home/views/Home';
+import App from "./App";
 
-describe('Testing App Component', ()=>{
+describe("Testing App Component", () => {
+  let wrapper = shallow(<App />);
 
-  let wrapper = shallow( <App /> );
+  test("should render App component correctly", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 
-  test('should render App component correctly', () => {
-    expect( wrapper ).toMatchSnapshot();
-  })
-
-  test('should find one App className', () => {
-    wrapper = mount(<App/>);
-    expect(wrapper.find('.App')).toHaveLength(1);
-  })
-
-  test('should render Home component correctly', () => {
-    wrapper = mount(<App/>);
-    expect(wrapper.find(Home)).toHaveLength(1);
-  })
-
-})
+  test("should find one App className", () => {
+    wrapper = mount(<App />);
+    expect(wrapper.find(".App")).toHaveLength(1);
+  });
+});
