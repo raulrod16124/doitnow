@@ -1,7 +1,6 @@
 import { datesGenerator } from "dates-generator";
 import React, { useEffect, useState } from "react";
 
-import { ArrowDownIcon } from "../../../global/Icons";
 import { days, months } from "./dateData";
 import { TimestampItem } from "./TimestampItem";
 
@@ -56,20 +55,18 @@ export const Timestamp = ({
   return (
     <>
       <div className="week-pagination">
-        <ArrowDownIcon
-          className="timestamp-arrow arrow-left"
-          size="5"
+        <i
+          class="fas fa-arrow-left timestamp-arrow"
           onClick={() => handleChangeWeek("previous")}
-        />
+        ></i>
         <h2>
           {Object.values(months[currentTime.month])} {currentWeek[0]?.date} -{" "}
           {currentWeek[6]?.date}
         </h2>
-        <ArrowDownIcon
-          className="timestamp-arrow arrow-right"
-          size="5"
+        <i
+          class="fas fa-arrow-right timestamp-arrow"
           onClick={() => handleChangeWeek("next")}
-        />
+        ></i>
       </div>
       <div className="timestamp">
         {currentWeek.map((day, index) => {
