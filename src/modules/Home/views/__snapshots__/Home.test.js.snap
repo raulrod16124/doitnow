@@ -10,6 +10,13 @@ exports[`Visual Tests of Home Component should render Home component correctly 1
     <div
       className="progress-bar"
     >
+      <button
+        className="button button--mediun button--secondary"
+        onClick={[Function]}
+        type="submit"
+      >
+        New task
+      </button>
       <div
         className="level-bar"
       >

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 import avatar from "./../../assets/avatars/girl1.png";
 import auth from "../../firebase/config";
@@ -33,21 +34,21 @@ export const Header = ({ todos }) => {
       </div>
       <div className="nav-bar">
         <div className="navegation-content">
-          <a href="/home" className={homeSelected}>
-            Home
-          </a>
-          <a href="/stats" className={statsSelected}>
-            Stats
-          </a>
+          <Link to="/home" className={homeSelected}>
+            <i class="fas fa-home"></i>
+          </Link>
+          <Link to="/stats" className={statsSelected}>
+            <i class="fas fa-chart-bar"></i>
+          </Link>
         </div>
       </div>
       <div className={profileSelected}>
         <p className="user-name">
           {userData && userData.name ? userData.name : ""}
         </p>
-        <a href="/profile" className="user-avatar">
+        <Link to="/profile" className="user-avatar">
           <img className="avatar" src={avatar} alt="avatar" />
-        </a>
+        </Link>
       </div>
     </div>
   );

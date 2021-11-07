@@ -5,7 +5,11 @@ import { ArrowDownIcon } from "../../../global/Icons";
 import { days, months } from "./dateData";
 import { TimestampItem } from "./TimestampItem";
 
-export const Timestamp = ({ allTodos }) => {
+export const Timestamp = ({
+  allTodos,
+  handleGetEditItem,
+  handleDeleteTodoById,
+}) => {
   const today = new Date().toLocaleDateString().split("/");
 
   const [currentTime, setCurrentTime] = useState({
@@ -92,7 +96,13 @@ export const Timestamp = ({ allTodos }) => {
                 <div className="day-tasks">
                   {allTodos.map((todo) => {
                     if (todo.date === day.jsDate.split(" ")[0]) {
-                      return <TimestampItem todo={todo} />;
+                      return (
+                        <TimestampItem
+                          todo={todo}
+                          handleGetEditItem={handleGetEditItem}
+                          handleDeleteTodoById={handleDeleteTodoById}
+                        />
+                      );
                     }
                   })}
                 </div>

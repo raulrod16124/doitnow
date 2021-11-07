@@ -13,7 +13,9 @@ export const Footer = () => {
   };
   return (
     <footer className="footer" onClick={handleLogoutUser}>
-      <p className="footer-text">Desconect</p>
+      <p className="footer-text">
+        <i class="fas fa-sign-out-alt"></i> Desconect
+      </p>
     </footer>
   );
 };

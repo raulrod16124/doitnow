@@ -17,7 +17,7 @@ exports[`Testing App Component should render App component correctly 1`] = `
   >
     <AuthProvider>
       <BrowserRouter>
-        <FormTodo />
+        <AsideNav />
         <Routes />
       </BrowserRouter>
     </AuthProvider>

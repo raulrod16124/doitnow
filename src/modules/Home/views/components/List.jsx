@@ -9,6 +9,7 @@ function List({
   titleList,
   handleDeleteTodoById,
   className,
+  handleGetEditItem,
 }) {
   // console.log(list);
   return (
@@ -31,6 +32,7 @@ function List({
                 item={item}
                 index={index}
                 handleDeleteTodoById={handleDeleteTodoById}
+                handleGetEditItem={handleGetEditItem}
               />
             );
           })}

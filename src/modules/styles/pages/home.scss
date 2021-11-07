@@ -12,14 +12,15 @@
   .progress-bar {
     position: absolute;
     position: fixed;
+    padding: 0 2vw;
     top: 10vh;
-    left: 20%;
-    width: 80%;
+    left: 15%;
+    width: 85%;
     height: 10vh;
     display: flex;
     align-items: center;
     background-color: lighten($color: $DarkGrey, $amount: 10);
-    z-index: 100;
+    z-index: 19;
 
     .level-bar {
       width: 40%;
@@ -47,12 +48,119 @@
     }
   }
 
+  // Form new task and edit task
+
+  .bg-form {
+    position: absolute;
+    position: fixed;
+    top: 5vh;
+    left: 15%;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000, $alpha: 0.1);
+    backdrop-filter: blur(0.5vmin);
+    -webkit-backdrop-filter: blur(0.5vmin);
+    z-index: 20;
+  }
+
+  .form {
+    position: absolute;
+    position: fixed;
+    top: 12vh;
+    left: 25%;
+    width: 30%;
+    height: auto;
+    background-color: $White;
+    border-radius: 0.5vmin;
+    padding: 1vmin;
+
+    .close-icon {
+      position: absolute;
+      font-size: 2.5vmin;
+      top: 2vh;
+      right: 2vw;
+      cursor: pointer;
+    }
+
+    .content-form {
+      padding: 3vmin;
+    }
+
+    .title-form {
+      font-size: 3vmin;
+      font-weight: bolder;
+      margin: 0 auto 2vh auto;
+    }
+
+    .form-description {
+      min-height: $BigSize * 20;
+    }
+
+    .content-message {
+      position: relative;
+      width: 100%;
+      margin: 5vh auto;
+    }
+  }
+
+  .start-date-selector,
+  .form-title,
+  .form-level,
+  .form-description {
+    display: block;
+    width: 100%;
+    padding: $padding1 * 10;
+    border-radius: $SmallSize * 10;
+    border: $SmallSize / 6 solid $DarkBlue;
+    margin: $margin1 * 20 auto;
+    font-size: 2.2vmin;
+    background: $White;
+  }
+
+  .start-date-selector {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vmin;
+  }
+
+  .react-calendar {
+    margin: -3vh 0.05vw 0 0.05vw;
+    background-color: #fff;
+    border-radius: 1vmin;
+    line-height: 1.125em;
+  }
+
+  .react-calendar__month-view__weekdays {
+    padding: 0.5vmin;
+    text-align: center;
+    border: none;
+  }
+
+  .react-calendar p {
+    padding: 1vh 0;
+  }
+
+  .react-calendar button {
+    background-color: #fff;
+    border: none;
+    padding: 1vmin;
+    font-size: 1.5vmin;
+    transition: all 0.3s;
+  }
+
+  .react-calendar button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+  }
+
+  // Content Items
+
   .content-lists {
     position: relative;
     display: flex;
     list-style: none;
-    margin: 10vh auto 0 21%;
-    width: 80vw;
+    margin: 10vh auto 0 16%;
+    width: 85vw;
     height: 100%;
     z-index: 6;
 
@@ -94,6 +202,8 @@
       color: $DarkGrey;
     }
   }
+
+  // Item and Edit
 
   .item {
     display: flex;
@@ -170,7 +280,8 @@
 
   .content-icons {
     display: flex;
-    justify-content: flex-end;
+    width: 15%;
+    justify-content: space-between;
     z-index: 10;
 
     & svg {
@@ -178,61 +289,11 @@
     }
   }
 
-  .start-date-selector {
-    display: block;
-    width: 100%;
-    padding: 0.5vmin;
-    border-radius: 0.5vmin;
-    border: 0.2vmin solid $DarkGrey;
-    margin: 1vmin 0;
-    font-size: 1.8vmin;
-    background: $White;
-    cursor: pointer;
-  }
-
-  .start-date-selector {
-    display: flex;
-    justify-content: space-between;
-    padding: 1vmin;
-  }
-
-  .react-calendar {
-    margin: 0 0.05vw 0 0.05vw;
-    background-color: #fff;
-    border-radius: 1vmin;
-    border: 0.2vmin solid $DarkGrey;
-    line-height: 1.125em;
-  }
-
-  .react-calendar__month-view__weekdays {
-    padding: 0.5vmin;
-    text-align: center;
-    border: none;
-  }
-
-  .react-calendar p {
-    padding: 1vh 0;
-  }
-
-  .react-calendar button {
-    background-color: #fff;
-    border: none;
-    padding: 1vmin;
-    font-size: 1.5vmin;
-    transition: all 0.3s;
-  }
-
-  .react-calendar button:hover {
-    cursor: pointer;
-    background-color: #ddd;
-  }
-
   // TIMESTAMP SECTION
 
   .item.timestamp {
     display: flex;
     flex-direction: column;
-    font-size: 1.4vmin;
     min-height: 12vh;
     height: auto;
     margin: 1vh auto;
@@ -240,10 +301,28 @@
     word-wrap: anywhere;
     overflow-wrap: anywhere;
 
+    .todo-title {
+      font-size: 2vmin;
+      word-wrap: anywhere;
+      overflow-wrap: anywhere;
+    }
     .todo-description {
       font-size: 1.8vmin;
       word-wrap: anywhere;
       overflow-wrap: anywhere;
+    }
+
+    .content-icons {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: 1vh;
+      column-gap: 20%;
+      z-index: 10;
+
+      & svg {
+        margin-left: 1vw;
+      }
     }
   }
 
@@ -278,9 +357,9 @@
   // Timestamp View
   .timestamp-view {
     height: 90vh;
-    width: 80%;
+    width: 85%;
     padding: 1vmin;
-    margin-left: 20%;
+    margin-left: 15%;
   }
 
   .timestamp {
@@ -312,7 +391,7 @@
       text-align: center;
       position: absolute;
       position: fixed;
-      width: 10.4%;
+      width: 11.1%;
       padding: 1vmin;
       background-color: #fff;
       z-index: 10;

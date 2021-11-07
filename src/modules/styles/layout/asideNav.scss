@@ -1,0 +1,45 @@
+.aside {
+  position: absolute;
+  position: fixed;
+  width: 15%;
+  top: 10vh;
+  left: 0;
+  min-height: 100vh;
+  background-color: $DarkOcean;
+
+  .home-view-selector {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: $White;
+    margin: 2vh auto;
+    list-style: none;
+
+    .home-view {
+      padding: 1vh 0 1vh 2vw;
+      cursor: pointer;
+      border-radius: 0.5vmin 0 0 0.5vmin;
+      transition: all 0.3s;
+      margin: 0.5vh 0 0.5vh 0.5vw;
+
+      .view-text {
+        font-size: 2vmin;
+
+        .icon {
+          color: $White;
+          padding-right: 0.5vw;
+        }
+      }
+
+      &:hover {
+        background: lighten($color: $DarkOcean, $amount: 5);
+      }
+
+      &.selected {
+        background: lighten($color: $DarkOcean, $amount: 10);
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { Redirect } from "react-router";
 import { AuthContext } from "../../../auth/Auth";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { DragDropController } from "./components/DragDropController";
+import { FormTodo } from "./components/FormTodo";
 import { Timestamp } from "./components/Timestamp";
 import { Today } from "./components/Today";
 
@@ -32,6 +33,13 @@ export const Home = () => {
     inProgress: false,
     done: false,
   });
+
+  const [formVisibility, setFormVisibility] = useState(false);
+
+  const handleGetVisibilityFormState = (boolean) => {
+    setFormVisibility(boolean);
+    setItemToEdit(undefined);
+  };
 
   // const [ dragTaskDetected, setDragTaskDetected] = useState();
 
@@ -235,6 +243,12 @@ export const Home = () => {
     }
   };
 
+  const [itemToEdit, setItemToEdit] = useState(!formVisibility && undefined);
+  const handleGetEditItem = (item) => {
+    setItemToEdit(item);
+    setFormVisibility(true);
+  };
+
   return (
     <div className="home">
       {!homeViewState ? (
@@ -250,12 +264,24 @@ export const Home = () => {
             doneTodo={doneTodo}
             dragListDetected={dragListDetected}
             handleDeleteTodoById={handleDeleteTodoById}
+            handleGetVisibilityFormState={handleGetVisibilityFormState}
+            handleGetEditItem={handleGetEditItem}
           />
         </DragDropContext>
       ) : (
         <div className="timestamp-view">
-          <Timestamp allTodos={allTodos} />
+          <Timestamp
+            allTodos={allTodos}
+            handleGetEditItem={handleGetEditItem}
+            handleDeleteTodoById={handleDeleteTodoById}
+          />
         </div>
+      )}
+      {formVisibility && (
+        <FormTodo
+          handleGetVisibilityFormState={handleGetVisibilityFormState}
+          itemToEdit={itemToEdit}
+        />
       )}
     </div>
   );

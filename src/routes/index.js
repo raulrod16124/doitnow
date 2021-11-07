@@ -13,6 +13,9 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function Routes() {
   const history = useHistory();
 
+  // Routes
+  const existingRoutes = ["/home", "/stats", "/profile"];
+
   // User Access
   const { currentUser } = useContext(AuthContext);
 
@@ -30,7 +33,15 @@ function Routes() {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("user"))) {
+    const routesCondition = existingRoutes.some(
+      (route) => route === history.location.pathname
+    );
+    console.log(routesCondition);
+    if (JSON.parse(localStorage.getItem("user"))) {
+      if (!routesCondition) {
+        history.push({ pathname: "/home" });
+      }
+    } else {
       history.push({ pathname: "/login" });
     }
   }, []);

@@ -20,6 +20,11 @@ body {
 
 .icon {
   cursor: pointer;
+  color: $DarkOcean;
+
+  &:hover {
+    color: lighten($color: $DarkOcean, $amount: 10);
+  }
 }
 
 .message {

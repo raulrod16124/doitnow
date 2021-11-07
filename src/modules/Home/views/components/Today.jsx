@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Button } from "../../../../stories/Button";
 import List from "./List";
 
 export const Today = ({
@@ -9,6 +10,8 @@ export const Today = ({
   inProgress,
   dragListDetected,
   handleDeleteTodoById,
+  handleGetVisibilityFormState,
+  handleGetEditItem,
 }) => {
   // Class Detect dragging in List
   let classNames = require("classnames");
@@ -25,6 +28,11 @@ export const Today = ({
   return (
     <div className="today-main">
       <div className="progress-bar">
+        <Button
+          size="mediun"
+          label="New task"
+          onClick={() => handleGetVisibilityFormState(true)}
+        />
         <div className="level-bar">
           <div
             className="green-fill"
@@ -51,6 +59,7 @@ export const Today = ({
             className={todoDragDetectedClass}
             titleList="TO DO"
             handleDeleteTodoById={handleDeleteTodoById}
+            handleGetEditItem={handleGetEditItem}
           />
           <List
             key="inProgress"
@@ -59,6 +68,7 @@ export const Today = ({
             className={inProgressDragDetectedClass}
             titleList="IN PROGRESS"
             handleDeleteTodoById={handleDeleteTodoById}
+            handleGetEditItem={handleGetEditItem}
           />
           <List
             key="doneTodo"
@@ -67,6 +77,7 @@ export const Today = ({
             className={doneDragDetectedClass}
             titleList="COMPLETED"
             handleDeleteTodoById={handleDeleteTodoById}
+            handleGetEditItem={handleGetEditItem}
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../auth/Auth";
 import Routes from "../routes";
 import store from "../store/store";
-import { FormTodo } from "./Aside/views/FormTodo";
+import { AsideNav } from "./Aside/views/AsideNav";
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
       <div className="App">
         <AuthProvider>
           <Router>
-            <FormTodo />
+            <AsideNav />
             <Routes />
           </Router>
         </AuthProvider>

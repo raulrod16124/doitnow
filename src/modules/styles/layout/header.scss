@@ -5,9 +5,8 @@
   width: 100%;
   height: 10vh;
   display: grid;
-  grid-template-columns: 20% 70% 10%;
+  grid-template-columns: 15% 75% 10%;
   background-color: $White;
-  // border-bottom: 0.2vmin solid $DarkOcean;
   align-items: center;
   z-index: 100;
 
@@ -17,7 +16,7 @@
 
   .nav-bar {
     .navegation-content {
-      width: 40%;
+      width: 20%;
       height: 6vh;
       margin-top: 4vh;
       list-style: none;
