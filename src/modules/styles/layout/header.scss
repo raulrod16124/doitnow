@@ -1,62 +1,27 @@
-.header {
+.avatar-header {
   position: absolute;
   position: fixed;
   top: 0;
-  width: 100%;
+  right: 0;
+  width: 12%;
   height: 10vh;
-  display: grid;
-  grid-template-columns: 15% 75% 10%;
-  background-color: $White;
   align-items: center;
-  z-index: 100;
+  z-index: 19;
 
-  .logo-app {
-    text-align: center;
-  }
-
-  .nav-bar {
-    .navegation-content {
-      width: 20%;
-      height: 6vh;
-      margin-top: 4vh;
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 0.2vw;
-    }
-
-    .section {
-      text-decoration: none;
-      font-size: 2.5vmin;
-      width: 100%;
-      height: 100%;
-      border-radius: 1vh 1vh 0 0;
-      text-align: center;
-      padding-top: 2vh;
-
-      &.selected {
-        background: lighten($color: $DarkGrey, $amount: 25);
-      }
-    }
-  }
-
-  .user-settings {
+  .avatar-content {
     align-items: center;
     padding: 1vmin;
     padding-right: 2.5vw;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
-    &.selected {
-      background: lighten($color: $DarkGrey, $amount: 25);
-    }
-
     .user-name {
-      font-size: 2vmin;
+      font-size: 3vmin;
+      font-weight: 700;
     }
 
     .avatar {
-      width: 100%;
+      width: 80%;
     }
   }
 }

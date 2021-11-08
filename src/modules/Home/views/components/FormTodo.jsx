@@ -52,7 +52,8 @@ export const FormTodo = ({
     setTodo({ ...todo, date: e.toLocaleDateString() });
   };
 
-  const handleSaveTodo = () => {
+  const handleSaveTodo = (e) => {
+    e.preventDefault();
     if (todo.title !== "") {
       const userOwner = JSON.parse(localStorage.getItem("user"));
       const newTask = {
@@ -137,7 +138,7 @@ export const FormTodo = ({
           <Button
             size="large"
             label={itemToEdit === undefined ? "Create" : "Update"}
-            onClick={handleSaveTodo}
+            onClick={(e) => handleSaveTodo(e)}
           />
           <div className="content-message">
             {error.visible && (

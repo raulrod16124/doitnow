@@ -101,11 +101,7 @@ function SignUp() {
           </fieldset>
           <div className="buttons-content">
             <Link to="/login">login</Link>
-            <Button
-              primary
-              label="Sign up"
-              onClick={(e) => handleCreateNewUser(e)}
-            />
+            <Button label="Sign up" onClick={(e) => handleCreateNewUser(e)} />
           </div>
         </form>
         <div className="login-picture"></div>

@@ -23,7 +23,7 @@ function RecoverPassword() {
           </fieldset>
           <div className="buttons-content">
             <Link to="/login">login</Link>
-            <Button primary label="Recover" />
+            <Button label="Recover" />
           </div>
         </form>
         <div className="login-picture"></div>

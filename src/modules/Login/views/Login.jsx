@@ -73,11 +73,7 @@ function Login() {
           <div className="buttons-content">
             <Link to="/sign-up">Sign up</Link>
             <Link to="/recover-password">Forgot password?</Link>
-            <Button
-              primary
-              label="login"
-              onClick={(e) => handleVerifyUser(e)}
-            />
+            <Button label="login" onClick={(e) => handleVerifyUser(e)} />
           </div>
         </form>
         <div className="login-picture"></div>

@@ -12,11 +12,12 @@
 /* Backgrounds */
 
 .button--primary {
-  background-color: #b5179e;
+  color: #0a425c;
+  background-color: #ddd;
 }
 
 .button--primary:hover {
-  background-color: #f72585;
+  background-color: #aaa;
 }
 
 .button--secondary {

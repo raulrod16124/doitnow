@@ -1,7 +1,80 @@
 .home {
   overflow: hidden;
-  margin-top: 10vh;
   background: lighten($color: $DarkGrey, $amount: 25);
+
+  .content-options-bar {
+    position: absolute;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 14%;
+    font-size: 1.8vmin;
+    top: 2.5vh;
+    left: 11%;
+    z-index: 18;
+
+    .filter-options {
+      width: 45%;
+      margin-left: 1vw;
+      border-radius: 0.5vmin;
+      font-size: 2vmin;
+
+      .filter-label {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        cursor: pointer;
+        color: $DarkOcean;
+      }
+    }
+
+    .content-options {
+      position: absolute;
+      width: 50%;
+      top: 5vh;
+      list-style: none;
+      padding: 1vmin;
+      background: $White;
+      border-radius: 0.5vmin;
+      box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
+
+      .option {
+        width: 100%;
+        margin: 1vh 0;
+        cursor: pointer;
+        padding: 0.5vmin;
+        align-items: center;
+        transition: all 0.3s;
+        border-radius: 0.5vmin;
+        display: flex;
+        justify-content: space-between;
+
+        .icon {
+          font-size: 1.4vmin;
+        }
+
+        &:hover {
+          background: $Grey;
+        }
+      }
+
+      .react-calendar {
+        position: absolute;
+        top: 7vh;
+        left: 7vw;
+        width: 200%;
+        margin: -1vh 0.05vw 0 0.05vw;
+        padding: 1vmin;
+        background-color: #fff;
+        border-radius: 0 0.5vmin 0.5vmin 0.5vmin;
+        box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
+        line-height: 1.125em;
+      }
+    }
+  }
 
   // Today View
   .toady-main {
@@ -13,19 +86,20 @@
     position: absolute;
     position: fixed;
     padding: 0 2vw;
-    top: 10vh;
-    left: 15%;
-    width: 85%;
+    top: 0vh;
+    left: 10%;
+    width: 90%;
     height: 10vh;
     display: flex;
     align-items: center;
-    background-color: lighten($color: $DarkGrey, $amount: 10);
-    z-index: 19;
+    background: lighten($color: $DarkGrey, $amount: 25);
+    border-radius: 0 0 0 0.5vmin;
+    z-index: 15;
 
     .level-bar {
       width: 40%;
       height: 4vh;
-      margin: 2vh 0 2vh 8vw;
+      margin: 2vh 0 2vh 15vw;
       border-radius: 0.5vmin;
       background-color: $White;
       overflow: hidden;
@@ -41,7 +115,7 @@
       height: 4vh;
       margin: 0 2vw;
       .task-counter-text {
-        color: $White;
+        color: $DarkOcean;
         font-size: 3vmin;
         font-weight: 700;
       }
@@ -53,8 +127,8 @@
   .bg-form {
     position: absolute;
     position: fixed;
-    top: 5vh;
-    left: 15%;
+    top: 0vh;
+    left: 10%;
     width: 100%;
     height: 100%;
     background: rgba($color: #000, $alpha: 0.1);
@@ -66,7 +140,7 @@
   .form {
     position: absolute;
     position: fixed;
-    top: 12vh;
+    top: 8vh;
     left: 25%;
     width: 30%;
     height: auto;
@@ -99,7 +173,7 @@
     .content-message {
       position: relative;
       width: 100%;
-      margin: 5vh auto;
+      margin: 0.5vh auto;
     }
   }
 
@@ -121,10 +195,11 @@
     display: flex;
     justify-content: space-between;
     padding: 1vmin;
+    cursor: pointer;
   }
 
   .react-calendar {
-    margin: -3vh 0.05vw 0 0.05vw;
+    margin: -1vh 0.05vw 0 0.05vw;
     background-color: #fff;
     border-radius: 1vmin;
     line-height: 1.125em;
@@ -159,15 +234,15 @@
     position: relative;
     display: flex;
     list-style: none;
-    margin: 10vh auto 0 16%;
-    width: 85vw;
+    margin: 12vh auto 0 11%;
+    width: 90vw;
     height: 100%;
     z-index: 6;
 
     .list {
       width: 30%;
       height: auto;
-      min-height: 78vh;
+      min-height: 87vh;
       background-color: $Grey;
       border-radius: 1vmin;
       list-style: none;
@@ -221,6 +296,10 @@
     transform: rotate(0deg);
     overflow: hidden;
     transition: all 0.3s;
+
+    &:first-of-type {
+      margin-top: 2.5vh;
+    }
 
     &.in-progress {
       border-left: 0.5vh solid $Earth;
@@ -356,14 +435,15 @@
 
   // Timestamp View
   .timestamp-view {
-    height: 90vh;
-    width: 85%;
+    height: 100vh;
+    width: 90%;
     padding: 1vmin;
-    margin-left: 15%;
+    padding-top: 5vh;
+    margin-left: 10%;
   }
 
   .timestamp {
-    height: 75%;
+    height: 80%;
     width: 95%;
     margin: 5vh auto 0 auto;
     display: grid;
@@ -391,7 +471,7 @@
       text-align: center;
       position: absolute;
       position: fixed;
-      width: 11.1%;
+      width: 11.8%;
       padding: 1vmin;
       background-color: #fff;
       z-index: 10;

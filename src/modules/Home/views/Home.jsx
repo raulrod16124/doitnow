@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
+import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
+import { Button } from "../../../stories/Button";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { DragDropController } from "./components/DragDropController";
 import { FormTodo } from "./components/FormTodo";
@@ -27,6 +29,8 @@ export const Home = () => {
   const [doneTodo, setDoneTodo] = useState([]);
 
   const [allTodos, setAllTodos] = useState([]);
+
+  const [todoFilter, setTodoFilter] = useState("All");
 
   const [dragListDetected, setDragListDetected] = useState({
     todo: false,
@@ -62,18 +66,51 @@ export const Home = () => {
     ) {
       dispatch(GetTasks(userData.email));
     }
-    if (todosState.status === "success") {
+    if (todosState.status === "success" && todoFilter === "All") {
       console.log(todosState);
-      setTodo(() => todosState.data.filter((item) => item.status === "todo"));
-      setInProgress(() =>
-        todosState.data.filter((item) => item.status === "inProgress")
-      );
-      setDoneTodo(() =>
-        todosState.data.filter((item) => item.status === "done")
-      );
+      handleOrderTaskPerStatus(todosState.data);
       setAllTodos(todosState.data);
     }
   }, [todosState]);
+
+  const handleOrderTaskPerStatus = (allTasks) => {
+    setTodo(() => allTasks.filter((item) => item.status === "todo"));
+    setInProgress(() =>
+      allTasks.filter((item) => item.status === "inProgress")
+    );
+    setDoneTodo(() => allTasks.filter((item) => item.status === "done"));
+  };
+
+  // Filter options
+  const [filterDate, setFilterDate] = useState(new Date());
+  const [
+    timestampSelectorVisibility,
+    setTimestampSelectorVisibility,
+  ] = useState(false);
+
+  const [filterVisibility, setFilterVisibility] = useState(false);
+
+  const handleFilterTask = (condition) => {
+    switch (condition) {
+      case "All":
+        handleOrderTaskPerStatus(allTodos);
+        break;
+      case "Today":
+        const todayTasks = allTodos.filter(
+          (todo) => todo.date === new Date().toLocaleDateString()
+        );
+        handleOrderTaskPerStatus(todayTasks);
+        break;
+      case "Yesterday":
+        let yesterday = new Date().toLocaleDateString().split("/");
+        yesterday = `${yesterday[0] - 1}/${yesterday[1]}/${yesterday[2]}`;
+        const yesterdayTasks = allTodos.filter(
+          (todo) => todo.date === yesterday
+        );
+        handleOrderTaskPerStatus(yesterdayTasks);
+        break;
+    }
+  };
 
   const handleDeleteTodoById = (idTodo) => {
     dispatch(DeleteTask(idTodo));
@@ -251,6 +288,49 @@ export const Home = () => {
 
   return (
     <div className="home">
+      <div className="content-options-bar">
+        <Button
+          size="mediun"
+          label="New task"
+          onClick={() => handleGetVisibilityFormState(true)}
+        />
+        <div className="filter-options">
+          <label
+            className="filter-label"
+            onClick={() => {
+              setFilterVisibility(!filterVisibility);
+              setTimestampSelectorVisibility(false);
+            }}
+          >
+            <i class="far fa-calendar-times"></i>
+            <p>Filter day</p>
+            <i class="fas fa-chevron-down"></i>
+          </label>
+          {filterVisibility && (
+            <div className="content-options">
+              <li className="option">All</li>
+              <li
+                className="option"
+                onClick={() =>
+                  setTimestampSelectorVisibility(!timestampSelectorVisibility)
+                }
+              >
+                Select day <i class="fas fa-chevron-right icon"></i>
+              </li>
+              {timestampSelectorVisibility && (
+                <div className="timeStamp-input">
+                  <Calendar
+                    locale="en-EN"
+                    onChange={() => setFilterDate(filterDate)}
+                    value={filterDate}
+                    onClickDay={(e) => handleFilterTask(e)}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
       {!homeViewState ? (
         <DragDropContext
           onDragEnd={(result) => handleDragEnd(result)}

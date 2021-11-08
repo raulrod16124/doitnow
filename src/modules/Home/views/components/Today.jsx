@@ -10,7 +10,6 @@ export const Today = ({
   inProgress,
   dragListDetected,
   handleDeleteTodoById,
-  handleGetVisibilityFormState,
   handleGetEditItem,
 }) => {
   // Class Detect dragging in List
@@ -28,11 +27,6 @@ export const Today = ({
   return (
     <div className="today-main">
       <div className="progress-bar">
-        <Button
-          size="mediun"
-          label="New task"
-          onClick={() => handleGetVisibilityFormState(true)}
-        />
         <div className="level-bar">
           <div
             className="green-fill"
