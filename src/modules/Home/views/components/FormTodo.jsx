@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Calendar from "react-calendar";
+import { CirclePicker } from "react-color";
 import { useDispatch } from "react-redux";
 
 import { Button } from "../../../../stories/Button";
 import { Message } from "../../../global/Message";
 import { CreateTask, UpdateTask } from "../../state/actions";
+import { Tag } from "./Tag";
 
 export const FormTodo = ({
   handleGetVisibilityFormState,
@@ -15,6 +17,7 @@ export const FormTodo = ({
     level: "easy",
     status: "todo",
     description: "",
+    tags: [],
     date: new Date().toLocaleDateString(),
   };
 
@@ -22,6 +25,13 @@ export const FormTodo = ({
 
   // Todo state
   const [todo, setTodo] = useState(initialTodoState);
+
+  const tagRef = useRef();
+
+  const [showColors, setshowColors] = useState({
+    visibility: false,
+    color: "#63CFE0",
+  });
 
   useEffect(() => {
     setTodo(initialTodoState);
@@ -62,9 +72,9 @@ export const FormTodo = ({
         status: todo.status,
         description: todo.description,
         date: todo.date,
+        tags: todo.tags,
         owner: userOwner.email,
       };
-
       setTimestamp(new Date());
       if (itemToEdit !== undefined) {
         dispatch(UpdateTask(todo.id, newTask));
@@ -79,6 +89,27 @@ export const FormTodo = ({
         setError({ ...error, visible: false });
       }, 2500);
     }
+  };
+
+  const handleSetTags = () => {
+    const newTag = tagRef.current.value;
+    if (todo.tags) {
+      setTodo({
+        ...todo,
+        tags: [...todo.tags, { tag: newTag, color: showColors.color }],
+      });
+    } else {
+      setTodo({
+        ...todo,
+        ["tags"]: [{ tag: newTag, color: showColors.color }],
+      });
+    }
+    tagRef.current.value = "";
+  };
+
+  const handleDeleteTag = (tagToDelete) => {
+    const updateTags = todo.tags.filter((tag) => tag.tag !== tagToDelete);
+    setTodo({ ...todo, tags: updateTags });
   };
 
   return (
@@ -111,6 +142,29 @@ export const FormTodo = ({
             <option className="select-level">killing</option>
             <option className="select-level">💀</option>
           </select>
+          <select
+            className="form-status"
+            defaultValue="-- select --"
+            onChange={(e) => setTodo({ ...todo, status: e.target.value })}
+          >
+            <option
+              className="select-level"
+              value="-- select --"
+              disabled
+              selected
+            >
+              -- select --
+            </option>
+            <option className="select-level" value="todo">
+              To Do
+            </option>
+            <option className="select-level" value="inProgress">
+              In Progress
+            </option>
+            <option className="select-level" value="done">
+              Completed
+            </option>
+          </select>
           <div
             className="start-date-selector"
             onClick={() =>
@@ -135,6 +189,46 @@ export const FormTodo = ({
             placeholder="Description..."
             onChange={(e) => setTodo({ ...todo, description: e.target.value })}
           />
+          <div className="content-tag-input">
+            {showColors && showColors.visibility && (
+              <CirclePicker
+                className="color-selector"
+                color={showColors.color}
+                onClick={(e) =>
+                  e.target.className !== "color-selector" &&
+                  handleGetVisibilityFormState(false)
+                }
+                onChangeComplete={(e) =>
+                  setshowColors({ visibility: false, color: e.hex })
+                }
+              />
+            )}
+            <div
+              className="color-selected"
+              style={{ backgroundColor: showColors.color }}
+              onClick={() => {
+                setshowColors({
+                  ...showColors,
+                  visibility: !showColors.visibility,
+                });
+              }}
+            ></div>
+            <input ref={tagRef} type="text" className="form-tag" />
+            <i className="fas fa-plus-square icon" onClick={handleSetTags}></i>
+          </div>
+          <div className="content-tags">
+            {todo.tags &&
+              todo.tags.length > 0 &&
+              todo.tags.map((tag) => {
+                return (
+                  <Tag
+                    key={tag.tag}
+                    tag={tag}
+                    handleDeleteTag={handleDeleteTag}
+                  />
+                );
+              })}
+          </div>
           <Button
             size="large"
             label={itemToEdit === undefined ? "Create" : "Update"}
@@ -152,7 +246,7 @@ export const FormTodo = ({
           </div>
         </div>
         <i
-          class="far fa-window-close icon close-icon"
+          className="far fa-window-close icon close-icon"
           onClick={() => {
             handleGetVisibilityFormState(false);
             setTodo(initialTodoState);

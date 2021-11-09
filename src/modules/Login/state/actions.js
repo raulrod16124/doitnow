@@ -5,10 +5,10 @@ import { TYPES } from "./type";
 export const CheckUser = (user) => {
   return async (dispatch) => {
     const userData = await verifyUser(user);
-    if (userData._tokenResponse) {
-      console.log("Token exists");
-      dispatch(GetUserProfile(userData._tokenResponse));
-    }
+    // if (userData._tokenResponse) {
+    //   console.log("Token exists");
+    //   dispatch(GetUserProfile(userData._tokenResponse));
+    // }
     dispatch({
       type: TYPES.checkUser,
       payload: userData,

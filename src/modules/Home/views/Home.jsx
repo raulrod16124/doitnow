@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +29,7 @@ export const Home = () => {
   const [doneTodo, setDoneTodo] = useState([]);
 
   const [allTodos, setAllTodos] = useState([]);
+  const [alltasksFiltered, setAlltasksFiltered] = useState(allTodos);
 
   const [todoFilter, setTodoFilter] = useState("All");
 
@@ -79,10 +80,12 @@ export const Home = () => {
       allTasks.filter((item) => item.status === "inProgress")
     );
     setDoneTodo(() => allTasks.filter((item) => item.status === "done"));
+    setAlltasksFiltered(allTasks);
   };
 
   // Filter options
-  const [filterDate, setFilterDate] = useState(new Date());
+  const [calendarDateValue, setCalendarDateValue] = useState(new Date());
+  const [filterDate, setFilterDate] = useState("All");
   const [
     timestampSelectorVisibility,
     setTimestampSelectorVisibility,
@@ -90,26 +93,33 @@ export const Home = () => {
 
   const [filterVisibility, setFilterVisibility] = useState(false);
 
+  const optionInputRef = useRef();
+
   const handleFilterTask = (condition) => {
-    switch (condition) {
-      case "All":
-        handleOrderTaskPerStatus(allTodos);
-        break;
-      case "Today":
-        const todayTasks = allTodos.filter(
-          (todo) => todo.date === new Date().toLocaleDateString()
-        );
-        handleOrderTaskPerStatus(todayTasks);
-        break;
-      case "Yesterday":
-        let yesterday = new Date().toLocaleDateString().split("/");
-        yesterday = `${yesterday[0] - 1}/${yesterday[1]}/${yesterday[2]}`;
-        const yesterdayTasks = allTodos.filter(
-          (todo) => todo.date === yesterday
-        );
-        handleOrderTaskPerStatus(yesterdayTasks);
-        break;
+    if (condition === "All") {
+      handleOrderTaskPerStatus(allTodos);
+      setFilterDate(condition);
+    } else if (condition.toString().includes("GMT")) {
+      const selectedDay = allTodos.filter(
+        (todo) => todo.date === condition.toLocaleDateString()
+      );
+      handleOrderTaskPerStatus(selectedDay);
+      setFilterDate(condition.toLocaleDateString());
+    } else {
+      if (condition !== "") {
+        const selectedDay = allTodos.filter((todo) => {
+          if (todo.tags) {
+            if (todo.tags[0] !== undefined && todo.tags[0].tag === condition) {
+              return todo;
+            }
+          }
+        });
+        handleOrderTaskPerStatus(selectedDay);
+        setFilterDate(condition);
+      }
     }
+    setFilterVisibility(false);
+    setTimestampSelectorVisibility(false);
   };
 
   const handleDeleteTodoById = (idTodo) => {
@@ -294,41 +304,64 @@ export const Home = () => {
           label="New task"
           onClick={() => handleGetVisibilityFormState(true)}
         />
-        <div className="filter-options">
-          <label
-            className="filter-label"
-            onClick={() => {
-              setFilterVisibility(!filterVisibility);
-              setTimestampSelectorVisibility(false);
-            }}
-          >
-            <i class="far fa-calendar-times"></i>
-            <p>Filter day</p>
-            <i class="fas fa-chevron-down"></i>
+        <div className="filter-content">
+          <label className="filter-label">
+            <i className="far fa-calendar-times"></i> Filter:
           </label>
-          {filterVisibility && (
-            <div className="content-options">
-              <li className="option">All</li>
-              <li
-                className="option"
-                onClick={() =>
-                  setTimestampSelectorVisibility(!timestampSelectorVisibility)
-                }
-              >
-                Select day <i class="fas fa-chevron-right icon"></i>
-              </li>
-              {timestampSelectorVisibility && (
-                <div className="timeStamp-input">
-                  <Calendar
-                    locale="en-EN"
-                    onChange={() => setFilterDate(filterDate)}
-                    value={filterDate}
-                    onClickDay={(e) => handleFilterTask(e)}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          <div className="filter-options">
+            <label
+              className="day-selected"
+              onClick={() => {
+                setFilterVisibility(!filterVisibility);
+                setTimestampSelectorVisibility(false);
+              }}
+            >
+              <p className="day-selected-data">{filterDate}</p>
+              <i className="fas fa-chevron-down icon"></i>
+            </label>
+            {filterVisibility && (
+              <div className="content-options">
+                <li className="option" onClick={() => handleFilterTask("All")}>
+                  All
+                </li>
+                <li
+                  className="option"
+                  onClick={() =>
+                    setTimestampSelectorVisibility(!timestampSelectorVisibility)
+                  }
+                >
+                  Select day <i className="fas fa-chevron-right icon"></i>
+                </li>
+                {timestampSelectorVisibility && (
+                  <div className="timeStamp-input">
+                    <Calendar
+                      locale="en-EN"
+                      onChange={() => setCalendarDateValue(calendarDateValue)}
+                      value={calendarDateValue}
+                      onClickDay={(e) => handleFilterTask(e)}
+                    />
+                  </div>
+                )}
+                <li className="option-tag">
+                  <label className="option-tag-level">Search tag</label>
+                  <div className="input-content">
+                    <input
+                      ref={optionInputRef}
+                      className="option-tag-input"
+                      type="text"
+                      placeholder="Write your tag here"
+                    />
+                    <i
+                      className="fas fa-search icon"
+                      onClick={() =>
+                        handleFilterTask(optionInputRef.current.value)
+                      }
+                    ></i>
+                  </div>
+                </li>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {!homeViewState ? (
@@ -338,7 +371,7 @@ export const Home = () => {
           onDragStart={(result) => handleDetectDragging(result, "task")}
         >
           <Today
-            allTodos={allTodos}
+            allTodos={alltasksFiltered}
             todo={todo}
             inProgress={inProgress}
             doneTodo={doneTodo}

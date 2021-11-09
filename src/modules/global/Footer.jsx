@@ -14,7 +14,7 @@ export const Footer = () => {
   return (
     <footer className="footer" onClick={handleLogoutUser}>
       <p className="footer-text">
-        <i class="fas fa-sign-out-alt"></i> Desconect
+        <i className="fas fa-sign-out-alt"></i> Desconect
       </p>
     </footer>
   );

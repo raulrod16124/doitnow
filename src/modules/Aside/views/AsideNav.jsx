@@ -42,7 +42,7 @@ export const AsideNav = () => {
           <div className={homeSelected}>
             <Link to="/home" className="link">
               <li className="section-content">
-                <i class="fas fa-home icon"></i> Home
+                <i className="fas fa-home icon"></i> Home
               </li>
             </Link>
             {location.pathname === "/home" && (
@@ -52,7 +52,7 @@ export const AsideNav = () => {
                   onClick={() => handleShowHomeViews(false)}
                 >
                   <p className="view-text">
-                    <i class="fas fa-tasks icon"></i> Today
+                    <i className="fas fa-tasks icon"></i> Today
                   </p>
                 </li>
                 <li
@@ -60,7 +60,7 @@ export const AsideNav = () => {
                   onClick={() => handleShowHomeViews(true)}
                 >
                   <p className="view-text">
-                    <i class="far fa-calendar-alt icon"></i> Calendar
+                    <i className="far fa-calendar-alt icon"></i> Calendar
                   </p>
                 </li>
               </ul>
@@ -69,19 +69,19 @@ export const AsideNav = () => {
           <div className={statsSelected}>
             <Link to="/stats" className="link">
               <li className="section-content">
-                <i class="fas fa-chart-bar icon"></i> Stats
+                <i className="fas fa-chart-bar icon"></i> Stats
               </li>
             </Link>
             {location.pathname === "/stats" && (
               <ul className="section-selector">
                 <li className="view selected">
                   <p className="view-text">
-                    <i class="fas fa-chart-pie icon"></i> Global
+                    <i className="fas fa-chart-pie icon"></i> Global
                   </p>
                 </li>
                 <li className="view">
                   <p className="view-text">
-                    <i class="fas fa-angle-double-up icon"></i> Perfomance
+                    <i className="fas fa-angle-double-up icon"></i> Perfomance
                   </p>
                 </li>
               </ul>
@@ -90,19 +90,19 @@ export const AsideNav = () => {
           <div className={profileSelected}>
             <Link to="/profile" className="link">
               <li className="section-content">
-                <i class="far fa-user-circle icon"></i> Profile
+                <i className="far fa-user-circle icon"></i> Profile
               </li>
             </Link>
             {location.pathname === "/profile" && (
               <ul className="section-selector">
                 <li className="view selected">
                   <p className="view-text">
-                    <i class="fas fa-user icon"></i> Account
+                    <i className="fas fa-user icon"></i> Account
                   </p>
                 </li>
                 <li className="view">
                   <p className="view-text">
-                    <i class="fas fa-cog icon"></i> Settings
+                    <i className="fas fa-cog icon"></i> Settings
                   </p>
                 </li>
               </ul>

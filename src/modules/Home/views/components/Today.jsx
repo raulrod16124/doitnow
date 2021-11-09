@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Button } from "../../../../stories/Button";
 import List from "./List";
 
 export const Today = ({
@@ -42,6 +41,9 @@ export const Today = ({
           <p className="task-counter-text">
             {doneTodo.length} / {allTodos.length}
           </p>
+        </div>
+        <div className="experience-counter">
+          <p className="experience-counter-text">{doneTodo.length * 50} exp.</p>
         </div>
       </div>
       <div className="content-body">

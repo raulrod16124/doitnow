@@ -19,9 +19,12 @@ export const TimestampItem = ({
       <h3 className="todo-title">{todo.title}</h3>
       <p className="todo-description">{todo.description}</p>
       <div className="content-icons">
-        <i class="fas fa-edit icon" onClick={() => handleGetEditItem(todo)}></i>
         <i
-          class="fas fa-trash icon"
+          className="fas fa-edit icon"
+          onClick={() => handleGetEditItem(todo)}
+        ></i>
+        <i
+          className="fas fa-trash icon"
           onClick={() => handleDeleteTodoById(todo.id)}
         ></i>
       </div>

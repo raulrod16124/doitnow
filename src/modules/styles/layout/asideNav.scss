@@ -46,7 +46,7 @@
       }
 
       &.selected {
-        background: lighten($color: $DarkOcean, $amount: 5);
+        background: darken($color: $DarkOcean, $amount: 10);
       }
     }
   }

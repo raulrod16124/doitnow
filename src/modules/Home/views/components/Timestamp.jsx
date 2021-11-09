@@ -1,6 +1,9 @@
 import { datesGenerator } from "dates-generator";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
+import { GetTasks } from "../../state/actions";
 import { days, months } from "./dateData";
 import { TimestampItem } from "./TimestampItem";
 
@@ -9,6 +12,12 @@ export const Timestamp = ({
   handleGetEditItem,
   handleDeleteTodoById,
 }) => {
+  const todosState = useSelector((state) => {
+    return state.TodosReducer;
+  });
+
+  const dispatch = useDispatch();
+
   const today = new Date().toLocaleDateString().split("/");
 
   const [currentTime, setCurrentTime] = useState({
@@ -24,6 +33,13 @@ export const Timestamp = ({
   useEffect(() => {
     handleSetWeek(currentTime, dateSelected);
   }, [currentTime, dateSelected]);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (todosState.status === "task updated") {
+      dispatch(GetTasks(userData.email));
+    }
+  }, [todosState]);
 
   const handleSetWeek = (timeSelected, dateSelected) => {
     const { dates } = datesGenerator(timeSelected);
@@ -56,7 +72,7 @@ export const Timestamp = ({
     <>
       <div className="week-pagination">
         <i
-          class="fas fa-arrow-left timestamp-arrow"
+          className="fas fa-arrow-left timestamp-arrow"
           onClick={() => handleChangeWeek("previous")}
         ></i>
         <h2>
@@ -64,7 +80,7 @@ export const Timestamp = ({
           {currentWeek[6]?.date}
         </h2>
         <i
-          class="fas fa-arrow-right timestamp-arrow"
+          className="fas fa-arrow-right timestamp-arrow"
           onClick={() => handleChangeWeek("next")}
         ></i>
       </div>

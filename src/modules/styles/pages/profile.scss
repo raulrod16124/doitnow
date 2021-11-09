@@ -5,4 +5,91 @@
   width: 90%;
   height: 100vh;
   background: lighten($color: $DarkGrey, $amount: 25);
+
+  .profile-top {
+    width: 60%;
+    height: auto;
+    margin: 6vh 0 5vh 5vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2vw;
+  }
+
+  .user-data-content {
+    width: 100%;
+    border-radius: 0.5vmin;
+
+    .user-data {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: $White;
+      border-radius: 0.5vmin;
+      padding: 1vmin;
+    }
+
+    .user-level {
+      position: absolute;
+      top: 1vh;
+      left: 1vw;
+      font-size: 2.5vmin;
+      color: $DarkGrey;
+    }
+
+    .user-avatar {
+      background-image: url(./../../../assets/avatars/girl1.png);
+      background-position: center center;
+      background-size: cover;
+      width: 10vw;
+      height: 20vh;
+      margin: 0 auto;
+    }
+
+    .user-name,
+    .user-email {
+      text-align: center;
+      margin: 1vh auto;
+      font-size: 3vmin;
+    }
+
+    .user-progress-level-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5vmin;
+
+      .user-level-bar {
+        margin: 1vh auto;
+        width: 80%;
+        height: 4vh;
+        border: 0.1vmin solid $DarkGrey;
+        border-radius: 0.5vmin;
+      }
+
+      .user-green-fill {
+        width: 10%;
+        height: 100%;
+        background-color: $Green;
+      }
+
+      .user-progress-data {
+        width: 80%;
+        margin: 0 auto 2vh auto;
+        font-weight: 700;
+        font-style: italic;
+        color: $DarkGrey;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .user-task-done {
+    width: 100%;
+    height: 100%;
+    background-color: $White;
+    border-radius: 0.5vmin;
+  }
 }

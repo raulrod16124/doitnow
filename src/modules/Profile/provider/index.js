@@ -1,38 +1,18 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-} from "@firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc } from "@firebase/firestore";
 
 import { db } from "../../../firebase/config";
 
 export const getUserProfile = async (user) => {
   console.log("Enter to getUserProfile");
   try {
-    const userProfileCall = collection(db, "users");
-    const userProfileSnapshot = await getDocs(userProfileCall);
-    // console.log(tasksSnapshot);
-    const userProfile = userProfileSnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    const userProfileById = userProfile.filter((userProfile) => {
-      if (userProfile.uid === user) {
-        return userProfile;
-      }
-    });
+    const userProfileCall = doc(db, "users", user);
+    const userProfileSnapshot = await getDoc(userProfileCall);
+    return userProfileSnapshot;
 
     // TODO - Fix permissions to get the info from the db in firebase
     // https://firebase.google.com/docs/firestore/solutions/role-based-access
     // TODO - Filter by user before return
-
-    return userProfileById;
   } catch (error) {
-    // const errorData = JSON.stringify(error);
-    // return JSON.parse(errorData).code;
     console.log(error);
     return error;
   }

@@ -3,7 +3,22 @@ import { TYPES } from "./type";
 
 export const GetUserProfile = (user) => {
   return async (dispatch) => {
-    const userProfile = await getUserProfile(user);
+    const userProfileData = await getUserProfile(user);
+    console.log(userProfileData._document.data.value.mapValue.fields.name);
+    const userProfile = {
+      id: Object.values(
+        userProfileData._document.data.value.mapValue.fields.id
+      )[0],
+      name: Object.values(
+        userProfileData._document.data.value.mapValue.fields.name
+      )[0],
+      email: Object.values(
+        userProfileData._document.data.value.mapValue.fields.email
+      )[0],
+      avatar: Object.values(
+        userProfileData._document.data.value.mapValue.fields.avatar
+      )[0],
+    };
     dispatch({
       type: TYPES.getUserProfile,
       payload: userProfile,

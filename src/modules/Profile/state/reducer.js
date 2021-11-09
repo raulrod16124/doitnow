@@ -9,8 +9,7 @@ const initialState = {
 export const ProfileReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.getUserProfile:
-      // console.log(action.payload.length);
-      if (action.payload.length > 0) {
+      if (action.payload) {
         return {
           ...state,
           data: action.payload,
