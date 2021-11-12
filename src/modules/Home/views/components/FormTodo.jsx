@@ -213,7 +213,12 @@ export const FormTodo = ({
                 });
               }}
             ></div>
-            <input ref={tagRef} type="text" className="form-tag" />
+            <input
+              ref={tagRef}
+              type="text"
+              className="form-tag"
+              placeholder="Write your tag here"
+            />
             <i className="fas fa-plus-square icon" onClick={handleSetTags}></i>
           </div>
           <div className="content-tags">

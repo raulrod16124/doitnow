@@ -31,35 +31,58 @@
 
     .section {
       position: relative;
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
 
       .section-content {
         width: 100%;
         color: $White;
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        align-items: center;
         font-size: 2vmin;
-        padding: 1vh 0 1vh 1vw;
+        padding: 1vmin;
         text-decoration: none;
+        cursor: pointer;
 
-        .link a {
+        & a {
+          display: flex;
           text-decoration: none;
+          color: $White;
+        }
+
+        .arrow {
+          align-items: flex-end;
+          font-size: 1.5vmin;
+          color: $DarkGrey;
         }
       }
 
       &.selected {
-        background: darken($color: $DarkOcean, $amount: 10);
+        border-radius: 1vmin;
+        background: lighten($color: $DarkOcean, $amount: 10);
       }
     }
+  }
+
+  .link a {
+    text-decoration: none;
   }
 
   .section-selector {
     width: 100%;
     display: flex;
     flex-direction: column;
-    color: lighten($color: $DarkOcean, $amount: 60);
     padding: 2vh 0;
     padding-left: 10%;
     list-style: none;
-    background: darken($color: $DarkOcean, $amount: 5);
+    background: lighten($color: $DarkOcean, $amount: 5);
+    border-radius: 0 0 1vmin 1vmin;
+
+    a {
+      color: $DarkGrey;
+      text-decoration: none;
+    }
 
     .icon {
       color: lighten($color: $DarkOcean, $amount: 60);
