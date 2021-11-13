@@ -91,5 +91,28 @@
     height: 100%;
     background-color: $White;
     border-radius: 0.5vmin;
+
+    .circle-bar-content {
+      width: 50%;
+      margin: 4vh auto;
+    }
+
+    .text-content {
+      text-align: center;
+      font-size: 2vmin;
+      height: 8vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .text {
+        font-weight: 400;
+      }
+
+      .counter {
+        font-size: 3vmin;
+        color: $DarkGrey;
+      }
+    }
   }
 }

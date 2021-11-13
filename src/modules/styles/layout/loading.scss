@@ -5,8 +5,14 @@
   margin-left: 10%;
 
   .content-spinner {
-    width: 10%;
+    width: 12%;
     height: 15%;
     margin: 30vh auto;
+
+    .text {
+      font-size: 4vmin;
+      font-style: italic;
+      text-align: center;
+    }
   }
 }

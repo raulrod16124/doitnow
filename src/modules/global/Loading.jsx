@@ -7,6 +7,7 @@ export const Loading = () => {
     <div className="loading">
       <div className="content-spinner">
         <img src={SpinnerLoading} alt="Loading spinner" />
+        <h2 className="text">Loading...</h2>
       </div>
     </div>
   );
