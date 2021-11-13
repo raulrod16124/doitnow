@@ -110,10 +110,17 @@ export const Profile = () => {
               <div className="text-content">
                 <h3 className="text">Completed tasks</h3>
                 <span className="counter">
-                  {tasksDoneForProfileData.length} /{" "}
-                  {allTasksForProfileData.length}
+                  <span className="counter-done">
+                    {tasksDoneForProfileData.length}{" "}
+                  </span>
+                  / {allTasksForProfileData.length}
                 </span>
               </div>
+            </div>
+            <div className="content-extra-profile-data">
+              <div className="daily-record"></div>
+              <div className="best-week-record"></div>
+              <div className="best-streak"></div>
             </div>
           </div>
           <div className="profile-bottom">

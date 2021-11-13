@@ -7,11 +7,11 @@
   background: lighten($color: $DarkGrey, $amount: 25);
 
   .profile-top {
-    width: 60%;
+    width: 90%;
     height: auto;
-    margin: 6vh 0 5vh 5vw;
+    margin: 5vh auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) 0.5fr;
     column-gap: 2vw;
   }
 
@@ -91,10 +91,11 @@
     height: 100%;
     background-color: $White;
     border-radius: 0.5vmin;
+    padding: 1vmin;
 
     .circle-bar-content {
       width: 50%;
-      margin: 4vh auto;
+      margin: 2vh auto;
     }
 
     .text-content {
@@ -110,9 +111,41 @@
       }
 
       .counter {
+        font-weight: 600;
         font-size: 3vmin;
         color: $DarkGrey;
+
+        .counter-done {
+          color: $Green;
+        }
       }
     }
+  }
+
+  .content-extra-profile-data {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 8vh;
+
+    .daily-record,
+    .best-week-record,
+    .best-streak {
+      background-color: $White;
+      border-radius: 0.5vmin;
+      height: 10vh;
+    }
+  }
+
+  // Bottom
+
+  .profile-bottom {
+    width: 90%;
+    height: 40vh;
+    background-color: $White;
+    border-radius: 0.5vmin;
+    margin: 2.5vh auto;
   }
 }
