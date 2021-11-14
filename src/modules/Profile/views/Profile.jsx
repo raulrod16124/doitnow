@@ -60,7 +60,7 @@ export const Profile = () => {
 
   const levelBar =
     allTasksForProfileData.length > 0
-      ? (tasksDoneForProfileData.length / (2500 / 50)) * 100 + "%"
+      ? (tasksDoneForProfileData.length / (5000 / 50)) * 100 + "%"
       : 0 + "%";
 
   return (
@@ -103,6 +103,7 @@ export const Profile = () => {
                   styles={buildStyles({
                     textSize: "1.8vmin",
                     pathTransitionDuration: 0.5,
+                    strokeLinecap: "butt",
                     pathColor: "#1dd620",
                   })}
                 />
@@ -118,9 +119,33 @@ export const Profile = () => {
               </div>
             </div>
             <div className="content-extra-profile-data">
-              <div className="daily-record"></div>
-              <div className="best-week-record"></div>
-              <div className="best-streak"></div>
+              <div className="daily-record">
+                <i class="fas fa-fire icon daily"></i>
+                <div className="content-data">
+                  <span className="data">
+                    5 <p className="data-text">tasks</p>
+                  </span>
+                  <p className="text">Daily Record</p>
+                </div>
+              </div>
+              <div className="best-week-record">
+                <i class="fas fa-medal icon week"></i>
+                <div className="content-data">
+                  <span className="data">
+                    12 <p className="data-text">tasks</p>
+                  </span>
+                  <p className="text">Week Record</p>
+                </div>
+              </div>
+              <div className="best-streak">
+                <i class="fas fa-trophy icon streak"></i>
+                <div className="content-data">
+                  <span className="data">
+                    6 <p className="data-text">days</p>
+                  </span>
+                  <p className="text">Best Streak</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="profile-bottom">
