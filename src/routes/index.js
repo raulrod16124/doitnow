@@ -14,7 +14,7 @@ function Routes() {
   const history = useHistory();
 
   // Routes
-  const existingRoutes = ["/home", "/stats", "/profile"];
+  const existingRoutes = ["/home", "/profile"];
 
   // User Access
   const { currentUser } = useContext(AuthContext);
@@ -55,15 +55,15 @@ function Routes() {
         <Header />
         <Home />
       </ProtectedRoutes>
-      <ProtectedRoutes Component="Stats" path="/stats" exact>
-        <Header />
-        Stats Section
-        {/* <Stats /> */}
-      </ProtectedRoutes>
       <ProtectedRoutes Component="Profile" path="/profile" exact>
         <Header />
         <Profile />
       </ProtectedRoutes>
+      {/* <ProtectedRoutes Component="Stats" path="/stats" exact>
+        <Header />
+        Stats Section
+        <Stats />
+      </ProtectedRoutes> */}
       {/* Start Login Section */}
       <Route path="/login" exact>
         <Login />

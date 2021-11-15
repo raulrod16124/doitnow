@@ -92,7 +92,7 @@ export const Home = () => {
 
   // Filter options
   const [calendarDateValue, setCalendarDateValue] = useState(new Date());
-  const [filterDate, setFilterDate] = useState("All");
+  const [filterDate, setFilterDate] = useState("ALL");
   const [
     timestampSelectorVisibility,
     setTimestampSelectorVisibility,

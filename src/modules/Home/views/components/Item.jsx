@@ -13,6 +13,11 @@ function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
     // {dragging: dragTaskDetected}
   );
 
+  const handleArchiveCompletedTask = () => {
+    console.log(item);
+    // dispatch(UpdateTask(todo.id, newTask));
+  };
+
   return (
     <>
       {item && (
@@ -42,6 +47,12 @@ function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
                     className="fas fa-edit icon"
                     onClick={() => handleGetEditItem(item)}
                   ></i>
+                  {item.status === "done" && (
+                    <i
+                      className="fas fa-archive icon"
+                      onClick={handleArchiveCompletedTask}
+                    ></i>
+                  )}
                   <i
                     className="fas fa-trash icon"
                     onClick={() => handleDeleteTodoById(item.id)}

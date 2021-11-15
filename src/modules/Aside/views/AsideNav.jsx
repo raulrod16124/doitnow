@@ -23,9 +23,9 @@ export const AsideNav = () => {
   let homeSelected = classNames("section", {
     selected: location.pathname === "/home",
   });
-  let statsSelected = classNames("section", {
-    selected: location.pathname === "/stats",
-  });
+  // let statsSelected = classNames("section", {
+  //   selected: location.pathname === "/stats",
+  // });
   let profileSelected = classNames("section", {
     selected: location.pathname === "/profile",
   });
@@ -90,7 +90,7 @@ export const AsideNav = () => {
               </ul>
             )}
           </div>
-          <div className={statsSelected}>
+          {/* <div className={statsSelected}>
             <li
               className="section-content"
               onClick={() =>
@@ -118,7 +118,7 @@ export const AsideNav = () => {
                 </Link>
               </ul>
             )}
-          </div>
+          </div> */}
           <div className={profileSelected}>
             <li
               className="section-content"
@@ -156,6 +156,7 @@ export const AsideNav = () => {
               </ul>
             )}
           </div>
+          <i className="fas fa-archive icon archive-aside-nav"></i>
         </div>
       </div>
       <Footer />
