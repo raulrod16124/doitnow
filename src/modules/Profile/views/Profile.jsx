@@ -49,10 +49,12 @@ export const Profile = () => {
     if (profileTasksData) {
       setallTasksForProfileData(profileTasksData);
       setTasksDoneForProfileData(
-        profileTasksData.filter((task) => task.status === "done")
+        profileTasksData.filter(
+          (task) => task.status === "done" || task.status === "archive"
+        )
       );
       const doneTasks = profileTasksData.filter(
-        (task) => task.status === "done"
+        (task) => task.status === "done" || task.status === "archive"
       );
       setcircleBarValue(doneTasks.length / profileTasksData.length);
     }
@@ -120,7 +122,7 @@ export const Profile = () => {
             </div>
             <div className="content-extra-profile-data">
               <div className="daily-record">
-                <i class="fas fa-fire icon daily"></i>
+                <i className="fas fa-fire icon daily"></i>
                 <div className="content-data">
                   <span className="data">
                     5 <p className="data-text">tasks</p>
@@ -129,7 +131,7 @@ export const Profile = () => {
                 </div>
               </div>
               <div className="best-week-record">
-                <i class="fas fa-medal icon week"></i>
+                <i className="fas fa-medal icon week"></i>
                 <div className="content-data">
                   <span className="data">
                     12 <p className="data-text">tasks</p>
@@ -138,7 +140,7 @@ export const Profile = () => {
                 </div>
               </div>
               <div className="best-streak">
-                <i class="fas fa-trophy icon streak"></i>
+                <i className="fas fa-trophy icon streak"></i>
                 <div className="content-data">
                   <span className="data">
                     6 <p className="data-text">days</p>

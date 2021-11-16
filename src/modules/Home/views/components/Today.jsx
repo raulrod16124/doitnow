@@ -39,7 +39,8 @@ export const Today = ({
         </div>
         <div className="task-counter">
           <p className="task-counter-text">
-            {doneTodo.length} / {allTodos.length}
+            {doneTodo.length} /{" "}
+            {allTodos.filter((todo) => todo.status !== "archive").length}
           </p>
         </div>
         <div className="experience-counter">

@@ -1,21 +1,26 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
 
-import { Tag } from "./Tag";
+import { UpdateTask } from "../../modules/Home/state/actions";
+import { Tag } from "./../Home/views/components/Tag";
 
 function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
+  const dispatch = useDispatch();
+
   // ClassName Item controller
   let classNames = require("classnames");
   let itemClass = classNames(
     "item",
-    { done: item.status === "done" },
+    { done: item.status === "done" || item.status === "archive" },
     { "in-progress": item.status === "inProgress" }
     // {dragging: dragTaskDetected}
   );
 
   const handleArchiveCompletedTask = () => {
+    item.status = "archive";
     console.log(item);
-    // dispatch(UpdateTask(todo.id, newTask));
+    dispatch(UpdateTask(item.id, item));
   };
 
   return (

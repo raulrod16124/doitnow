@@ -93,16 +93,18 @@ export const FormTodo = ({
 
   const handleSetTags = () => {
     const newTag = tagRef.current.value;
-    if (todo.tags) {
-      setTodo({
-        ...todo,
-        tags: [...todo.tags, { tag: newTag, color: showColors.color }],
-      });
-    } else {
-      setTodo({
-        ...todo,
-        ["tags"]: [{ tag: newTag, color: showColors.color }],
-      });
+    if (newTag !== "") {
+      if (todo.tags) {
+        setTodo({
+          ...todo,
+          tags: [...todo.tags, { tag: newTag, color: showColors.color }],
+        });
+      } else {
+        setTodo({
+          ...todo,
+          ["tags"]: [{ tag: newTag, color: showColors.color }],
+        });
+      }
     }
     tagRef.current.value = "";
   };

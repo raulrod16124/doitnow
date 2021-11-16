@@ -87,7 +87,7 @@ export const Timestamp = ({
       <div className="timestamp">
         {currentWeek.map((day, index) => {
           return (
-            <div className="content-days">
+            <div key={day + index} className="content-days">
               <div className="day">
                 <div
                   className="day-text"
@@ -111,6 +111,7 @@ export const Timestamp = ({
                     if (todo.date === day.jsDate.split(" ")[0]) {
                       return (
                         <TimestampItem
+                          key={todo.title}
                           todo={todo}
                           handleGetEditItem={handleGetEditItem}
                           handleDeleteTodoById={handleDeleteTodoById}

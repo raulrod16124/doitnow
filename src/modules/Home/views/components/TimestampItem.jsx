@@ -9,7 +9,7 @@ export const TimestampItem = ({
   let classNames = require("classnames");
   let itemClass = classNames(
     "item",
-    { done: todo.status === "done" },
+    { done: todo.status === "done" || todo.status === "archive" },
     { "in-progress": todo.status === "inProgress" }
     // {dragging: dragTaskDetected}
   );

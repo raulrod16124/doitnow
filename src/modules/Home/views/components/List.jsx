@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 
-import Item from "./Item";
+import Item from "./../../../global/Item";
 
 function List({
   droppableID,
@@ -30,7 +30,6 @@ function List({
           {Object.values(list)
             .slice(0, seeMore)
             .map((item, index) => {
-              // console.log(item)
               return (
                 <Item
                   key={item.id}
