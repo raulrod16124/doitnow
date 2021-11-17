@@ -231,6 +231,7 @@ export const FormTodo = ({
                   <Tag
                     key={tag.tag}
                     tag={tag}
+                    fromForm={true}
                     handleDeleteTag={handleDeleteTag}
                   />
                 );

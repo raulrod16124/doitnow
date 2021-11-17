@@ -3,14 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 
 import Item from "./../../../global/Item";
 
-function List({
-  droppableID,
-  list,
-  titleList,
-  handleDeleteTodoById,
-  className,
-  handleGetEditItem,
-}) {
+function List({ droppableID, list, titleList, className, handleGetEditItem }) {
   // console.log(list);
 
   // Extend List View Controller
@@ -35,7 +28,6 @@ function List({
                   key={item.id}
                   item={item}
                   index={index}
-                  handleDeleteTodoById={handleDeleteTodoById}
                   handleGetEditItem={handleGetEditItem}
                 />
               );

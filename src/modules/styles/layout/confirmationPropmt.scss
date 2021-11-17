@@ -1,0 +1,33 @@
+.confirmation-propmt {
+  position: absolute;
+  position: fixed;
+  top: 20vh;
+  left: 40%;
+  width: 20%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  column-gap: 1vh;
+  background-color: $White;
+  border-radius: 0.5vmin;
+  box-shadow: 0.5vmin 0.5vmin 1.5vmin $DarkGrey;
+  padding: 1vh 1.5vw;
+  z-index: 151;
+
+  .close-icon {
+    text-align: right;
+  }
+
+  .text {
+    text-align: center;
+    font-size: 2.5vmin;
+    padding: 1vh 0;
+  }
+
+  .content-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vmin;
+  }
+}

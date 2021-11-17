@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
-import { Button } from "../../../stories/Button";
 import { Loading } from "../../global/Loading";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
+import { ArchiveTasks } from "./components/ArchiveTasks";
 import { DragDropController } from "./components/DragDropController";
 import { FormTodo } from "./components/FormTodo";
+import { HomeTopBar } from "./components/HomeTopBar";
 import { Timestamp } from "./components/Timestamp";
 import { Today } from "./components/Today";
 
@@ -37,8 +37,6 @@ export const Home = () => {
   const [allTodos, setAllTodos] = useState([]);
   const [alltasksFiltered, setAlltasksFiltered] = useState(allTodos);
 
-  const [todoFilter, setTodoFilter] = useState("All");
-
   const [dragListDetected, setDragListDetected] = useState({
     todo: false,
     inProgress: false,
@@ -53,6 +51,11 @@ export const Home = () => {
   };
 
   // const [ dragTaskDetected, setDragTaskDetected] = useState();
+  const [todoFilter, setTodoFilter] = useState("All");
+
+  const handleGetTodoFilter = (taskToFilter) => {
+    setTodoFilter(taskToFilter);
+  };
 
   // User Access
   const userLogged = useContext(AuthContext);
@@ -88,69 +91,6 @@ export const Home = () => {
     );
     setDoneTodo(() => allTasks.filter((item) => item.status === "done"));
     setAlltasksFiltered(allTasks);
-  };
-
-  // Filter options
-  const [calendarDateValue, setCalendarDateValue] = useState(new Date());
-  const [filterDate, setFilterDate] = useState("ALL");
-  const [
-    timestampSelectorVisibility,
-    setTimestampSelectorVisibility,
-  ] = useState(false);
-
-  const [filterVisibility, setFilterVisibility] = useState(false);
-
-  const optionInputRef = useRef();
-
-  const handleFilterTask = (condition, value) => {
-    switch (condition) {
-      case "ALL":
-        handleOrderTaskPerStatus(allTodos);
-        setFilterDate(condition);
-        setTodoFilter(condition);
-        break;
-      case "TODAY":
-        const todayDay = allTodos.filter(
-          (todo) => todo.date === new Date().toLocaleDateString()
-        );
-        handleOrderTaskPerStatus(todayDay);
-        setFilterDate(condition);
-        setTodoFilter(condition);
-        break;
-      case "CALENDAR":
-        const selectCalendarDay = allTodos.filter(
-          (todo) => todo.date === value.toLocaleDateString()
-        );
-        handleOrderTaskPerStatus(selectCalendarDay);
-        setFilterDate(value.toLocaleDateString());
-        setTodoFilter(condition);
-        break;
-      case "TAG":
-        if (condition !== "") {
-          const tagFilter = allTodos.filter((todo) => {
-            if (todo.tags) {
-              if (todo.tags[0] !== undefined && todo.tags[0].tag === value) {
-                return todo;
-              }
-            }
-          });
-          handleOrderTaskPerStatus(tagFilter);
-          setFilterDate(value);
-        }
-        setTodoFilter(condition);
-        break;
-      default:
-        handleOrderTaskPerStatus(allTodos);
-        setFilterDate(condition);
-        setTodoFilter(condition);
-        break;
-    }
-    setFilterVisibility(false);
-    setTimestampSelectorVisibility(false);
-  };
-
-  const handleDeleteTodoById = (idTodo) => {
-    dispatch(DeleteTask(idTodo));
   };
 
   // Function to reorder a List
@@ -323,94 +263,38 @@ export const Home = () => {
     setFormVisibility(true);
   };
 
+  // Archive logic
+  const [archiveVisibility, setArchiveVisibility] = useState(false);
+  const handleArchiveVisibility = (booleanData) => {
+    setArchiveVisibility(booleanData);
+  };
+
   return (
     <>
       {loadingVisibility ? (
         <Loading />
       ) : (
-        <div className="home">
-          <div className="content-options-bar">
-            <Button
-              size="mediun"
-              label="New task"
-              onClick={() => handleGetVisibilityFormState(true)}
-            />
-            <div className="filter-content">
-              <label className="filter-label">
-                <i className="far fa-calendar-times"></i> Filter:
-              </label>
-              <div className="filter-options">
-                <label
-                  className="day-selected"
-                  onClick={() => {
-                    setFilterVisibility(!filterVisibility);
-                    setTimestampSelectorVisibility(false);
-                  }}
-                >
-                  <p className="day-selected-data">{filterDate}</p>
-                  <i className="fas fa-chevron-down icon"></i>
-                </label>
-                {filterVisibility && (
-                  <div className="content-options">
-                    <li
-                      className="option"
-                      onClick={() => handleFilterTask("ALL")}
-                    >
-                      All
-                    </li>
-                    <li
-                      className="option"
-                      onClick={() => handleFilterTask("TODAY")}
-                    >
-                      Today
-                    </li>
-                    <li
-                      className="option"
-                      onClick={() =>
-                        setTimestampSelectorVisibility(
-                          !timestampSelectorVisibility
-                        )
-                      }
-                    >
-                      Select day <i className="fas fa-chevron-right icon"></i>
-                    </li>
-                    {timestampSelectorVisibility && (
-                      <div className="timeStamp-input">
-                        <Calendar
-                          locale="en-EN"
-                          onChange={() =>
-                            setCalendarDateValue(calendarDateValue)
-                          }
-                          value={calendarDateValue}
-                          onClickDay={(e) => handleFilterTask("CALENDAR", e)}
-                        />
-                      </div>
-                    )}
-                    <li className="option-tag">
-                      <label className="option-tag-level">Search tag</label>
-                      <div className="input-content">
-                        <input
-                          ref={optionInputRef}
-                          className="option-tag-input"
-                          type="text"
-                          placeholder="Write your tag here"
-                        />
-                        <i
-                          className="fas fa-search icon"
-                          onClick={() =>
-                            handleFilterTask(
-                              "TAG",
-                              optionInputRef.current.value
-                            )
-                          }
-                        ></i>
-                      </div>
-                    </li>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+        <div
+          className="home"
+          onClick={(e) =>
+            e.target.className === "bg-archive" && setArchiveVisibility(false)
+          }
+        >
+          <HomeTopBar
+            homeViewState={homeViewState}
+            alltasksFiltered={alltasksFiltered}
+            allTodos={allTodos}
+            doneTodo={doneTodo}
+            handleGetVisibilityFormState={handleGetVisibilityFormState}
+            handleOrderTaskPerStatus={handleOrderTaskPerStatus}
+            handleGetTodoFilter={handleGetTodoFilter}
+            handleArchiveVisibility={handleArchiveVisibility}
+          />
+          {/* Archive section */}
+          {archiveVisibility && (
+            <ArchiveTasks handleArchiveVisibility={handleArchiveVisibility} />
+          )}
+          {/* Home views */}
           {!homeViewState ? (
             <DragDropContext
               onDragEnd={(result) => handleDragEnd(result)}
@@ -423,7 +307,6 @@ export const Home = () => {
                 inProgress={inProgress}
                 doneTodo={doneTodo}
                 dragListDetected={dragListDetected}
-                handleDeleteTodoById={handleDeleteTodoById}
                 handleGetVisibilityFormState={handleGetVisibilityFormState}
                 handleGetEditItem={handleGetEditItem}
               />
@@ -433,7 +316,6 @@ export const Home = () => {
               <Timestamp
                 allTodos={allTodos}
                 handleGetEditItem={handleGetEditItem}
-                handleDeleteTodoById={handleDeleteTodoById}
               />
             </div>
           )}

@@ -2,10 +2,11 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 
-import { UpdateTask } from "../../modules/Home/state/actions";
+import { DeleteTask, UpdateTask } from "../../modules/Home/state/actions";
 import { Tag } from "./../Home/views/components/Tag";
+import { OpenConfirmationPropmt } from "./ConfirmationPropmt/state/actions";
 
-function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
+function Item({ item, index, handleGetEditItem }) {
   const dispatch = useDispatch();
 
   // ClassName Item controller
@@ -17,10 +18,26 @@ function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
     // {dragging: dragTaskDetected}
   );
 
-  const handleArchiveCompletedTask = () => {
-    item.status = "archive";
+  const handleArchiveCompletedTask = (item) => {
     console.log(item);
-    dispatch(UpdateTask(item.id, item));
+    item.status = "archive";
+    dispatch(
+      OpenConfirmationPropmt({
+        message: `Do you want to archive the task ${item.title} ?`,
+        acceptButton: "Archive",
+        handleAccept: () => UpdateTask(item.id, item),
+      })
+    );
+  };
+
+  const handleDeleteItemById = (item) => {
+    dispatch(
+      OpenConfirmationPropmt({
+        message: `Do you want to delete the task ${item.title} ?`,
+        acceptButton: "Delete",
+        handleAccept: () => DeleteTask(item.id),
+      })
+    );
   };
 
   return (
@@ -55,12 +72,13 @@ function Item({ item, index, handleDeleteTodoById, handleGetEditItem }) {
                   {item.status === "done" && (
                     <i
                       className="fas fa-archive icon"
-                      onClick={handleArchiveCompletedTask}
+                      onClick={() => handleArchiveCompletedTask(item)}
                     ></i>
                   )}
                   <i
                     className="fas fa-trash icon"
-                    onClick={() => handleDeleteTodoById(item.id)}
+                    // onClick={() => handleDeleteTodoById(item.id)}
+                    onClick={() => handleDeleteItemById(item)}
                   ></i>
                 </div>
               </div>

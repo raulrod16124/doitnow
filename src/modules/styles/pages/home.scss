@@ -2,157 +2,319 @@
   overflow: hidden;
   background: lighten($color: $DarkGrey, $amount: 25);
 
-  .content-options-bar {
+  .bg-home-top-bar {
     position: absolute;
     position: fixed;
-    display: flex;
-    justify-content: space-between;
-    width: 15%;
-    font-size: 1.8vmin;
-    top: 2.5vh;
-    left: 11%;
-    z-index: 18;
-
-    .filter-content {
-      width: 50%;
-      display: grid;
-      grid-template-columns: 60% 40%;
-      align-items: center;
-    }
-
-    .filter-options {
-      margin-left: 12%;
-      border-radius: 0.5vmin;
-      font-size: 2vmin;
-
-      .filter-label {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        height: 100%;
-        cursor: pointer;
-        color: $DarkOcean;
-      }
-
-      .day-selected {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 700;
-
-        .icon {
-          font-size: 1.5vmin;
-        }
-      }
-    }
-
-    .content-options {
-      position: absolute;
-      width: 70%;
-      top: 5vh;
-      left: 50%;
-      list-style: none;
-      padding: 1vmin;
-      background: $White;
-      border-radius: 0.5vmin;
-      box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
-
-      .option {
-        width: 100%;
-        margin: 1vh 0;
-        cursor: pointer;
-        padding: 0.5vmin;
-        align-items: center;
-        transition: all 0.3s;
-        border-radius: 0.5vmin;
-        display: flex;
-        justify-content: space-between;
-
-        .icon {
-          font-size: 1.4vmin;
-        }
-
-        &:hover {
-          background: $Grey;
-        }
-      }
-
-      .option-tag {
-        width: 100%;
-        margin: 1vh 0;
-        padding: 0.5vmin;
-        border-radius: 0.5vmin;
-        position: relative;
-        align-items: center;
-
-        .input-content {
-          display: flex;
-          margin-top: 1vmin;
-          border-radius: 0.5vmin 0 0 0.5vmin;
-        }
-
-        .option-tag-input {
-          width: 100%;
-          padding: 0.5vmin;
-          font-size: 1.6vmin;
-          border: none;
-          border-bottom: 0.1vmin solid;
-        }
-
-        .icon {
-          padding: 1vmin;
-          background-color: $DarkOcean;
-          border-radius: 0 0.5vmin 0.5vmin 0;
-          color: $White;
-          font-size: 1.4vmin;
-        }
-      }
-
-      .react-calendar {
-        position: absolute;
-        top: 7vh;
-        left: 10.5vw;
-        width: 200%;
-        margin: -1vh 0.05vw 0 0.05vw;
-        padding: 1vmin;
-        background-color: #fff;
-        border-radius: 0 0.5vmin 0.5vmin 0.5vmin;
-        box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
-        line-height: 1.125em;
-      }
-    }
+    top: 0vh;
+    left: 10%;
+    width: 90%;
+    height: 10vh;
+    background: lighten($color: $DarkGrey, $amount: 25);
   }
 
-  // Today View
-  .toady-main {
-    max-width: 100vw;
-    min-height: 100%;
-  }
-
-  .progress-bar {
+  .home-top-bar {
     position: absolute;
     position: fixed;
-    padding: 0 5%;
+    padding: 2vh 20% 2vh 2%;
     top: 0vh;
     left: 10%;
     width: 90%;
     height: 10vh;
     display: flex;
+    justify-content: space-between;
+    z-index: 15;
+
+    .content-options-bar {
+      width: 20%;
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.8vmin;
+      z-index: 15;
+
+      .filter-content {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        column-gap: 5%;
+        word-wrap: break-word;
+        align-items: center;
+        width: 40%;
+      }
+
+      .filter-options {
+        border-radius: 0.5vmin;
+        font-size: 2vmin;
+        word-wrap: break-word;
+
+        .filter-label {
+          text-align: center;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          cursor: pointer;
+          color: $DarkOcean;
+        }
+
+        .day-selected {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 700;
+
+          .icon {
+            font-size: 1.5vmin;
+          }
+        }
+      }
+
+      .content-options {
+        position: absolute;
+        position: fixed;
+        top: 9vh;
+        left: 20%;
+        list-style: none;
+        padding: 1vmin;
+        background: $White;
+        border-radius: 0.5vmin;
+        box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
+        z-index: 15;
+
+        .option {
+          margin: 1vh 0;
+          cursor: pointer;
+          padding: 0.5vmin;
+          align-items: center;
+          transition: all 0.3s;
+          border-radius: 0.5vmin;
+          display: flex;
+          justify-content: space-between;
+
+          .icon {
+            font-size: 1.4vmin;
+          }
+
+          &:hover {
+            background: $Grey;
+          }
+        }
+
+        .option-tag {
+          width: 100%;
+          margin: 1vh 0;
+          padding: 0.5vmin;
+          border-radius: 0.5vmin;
+          position: relative;
+          align-items: center;
+
+          .input-content {
+            display: flex;
+            margin-top: 1vmin;
+            border-radius: 0.5vmin 0 0 0.5vmin;
+          }
+
+          .option-tag-input {
+            width: 100%;
+            padding: 0.5vmin;
+            font-size: 1.6vmin;
+            border: none;
+            border-bottom: 0.1vmin solid;
+          }
+
+          .icon {
+            padding: 1vmin;
+            background-color: $DarkOcean;
+            border-radius: 0 0.5vmin 0.5vmin 0;
+            color: $White;
+            font-size: 1.4vmin;
+          }
+        }
+
+        .react-calendar {
+          position: absolute;
+          top: 10vh;
+          left: 100%;
+          width: 200%;
+          margin: -1vh 0.05vw 0 0.05vw;
+          padding: 1vmin;
+          background-color: #fff;
+          border-radius: 0 0.5vmin 0.5vmin 0.5vmin;
+          box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
+          line-height: 1.125em;
+        }
+      }
+    }
+
+    .show-archive-view {
+      display: flex;
+      justify-content: space-between;
+      width: 10%;
+      margin: 2vh 0;
+      align-items: center;
+      font-size: 2vmin;
+      font-weight: 600;
+      color: $DarkGrey;
+      cursor: pointer;
+      z-index: 15;
+
+      .icon {
+        padding-right: 2%;
+        color: $DarkGrey;
+      }
+    }
+
+    // Archive view
+  }
+  .bg-archive {
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: $DarkOcean, $alpha: 0.5);
+    backdrop-filter: blur(0.5vmin);
+    -webkit-backdrop-filter: blur(0.5vmin);
+    z-index: 150;
+  }
+
+  .archive {
+    position: absolute;
+    position: fixed;
+    top: 5vh;
+    left: 20%;
+    width: 60%;
+    height: auto;
+    padding: 0 2vw 8vh 2vw;
+    max-height: 85vh;
+    background-color: $White;
+    border-radius: 0.5vmin;
+    overflow: hidden;
+    z-index: 150;
+
+    .close-icon {
+      position: absolute;
+      top: 2vh;
+      right: 4rem;
+    }
+
+    .archive-title {
+      width: 100%;
+      margin: 4vh auto;
+      text-align: center;
+
+      .icon {
+        padding-right: 2%;
+      }
+    }
+
+    .content-archive-tasks {
+      padding: 2vmin;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-height: 66vh;
+      background-color: $Grey;
+      border-radius: 0.5vmin;
+      overflow-y: scroll;
+    }
+
+    .archive-item {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding: 1.5vmin;
+      margin: 1vmin auto;
+      border-radius: 0.5vmin;
+      background: $White;
+      box-shadow: 0.5vmin 0.5vmin 0.5vmin #aaa;
+      min-height: 10vh;
+      height: auto;
+      width: 100%;
+      transform: rotate(0deg);
+      transition: all 0.3s;
+
+      &:first-of-type {
+        margin-top: 1vh;
+      }
+    }
+    .item-title {
+      display: flex;
+      justify-content: space-between;
+      word-wrap: break-word;
+      height: fit-content;
+      font-size: 2.2vmin;
+      margin-bottom: 1.5vh;
+      z-index: 10;
+
+      .item-date {
+        font-size: 1.5vmin;
+      }
+    }
+
+    .item-tags {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      word-wrap: break-word;
+      height: auto;
+    }
+
+    .item-description {
+      word-wrap: break-word;
+      margin-bottom: 1vh;
+      z-index: 10;
+    }
+
+    .item-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1vh;
+      align-items: flex-end;
+    }
+
+    .content-icons {
+      display: flex;
+      width: 20%;
+      justify-content: space-between;
+      z-index: 10;
+
+      & svg {
+        margin-left: 1vw;
+      }
+    }
+
+    .tag {
+      width: fit-content;
+      border-radius: 0.5vmin;
+      padding: 0.5vmin;
+      font-size: 1.6vmin;
+      font-style: italic;
+      font-weight: 600;
+      margin: 0.5vh 0.5vw 0.5vh 0;
+      cursor: pointer;
+
+      .icon {
+        margin: 0 0.5vw;
+      }
+    }
+  }
+  .progress-bar {
+    width: 60%;
+    height: 90%;
+    display: flex;
     align-items: center;
-    background: lighten($color: $DarkGrey, $amount: 25);
     border-radius: 0 0 0 0.5vmin;
     z-index: 15;
 
     .level-bar {
-      width: 40%;
-      height: 4vh;
-      margin: 2vh 0 2vh 15vw;
+      width: 60%;
+      height: 80%;
       border-radius: 0.5vmin;
       background-color: $White;
       overflow: hidden;
     }
 
     .green-fill {
+      width: auto;
       height: 100%;
       background: linear-gradient(360deg, darken($Green, 10%), $Green);
       transition: all 0.5s;
@@ -177,6 +339,12 @@
         color: darken($color: $Green, $amount: 10);
       }
     }
+  }
+
+  // Today View
+  .toady-main {
+    max-width: 100vw;
+    min-height: 100%;
   }
 
   // Form new task and edit task
@@ -581,11 +749,13 @@
   }
 
   .week-pagination {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 20%;
     margin: 1vh auto;
+    z-index: 20;
   }
 
   .timestamp-arrow {

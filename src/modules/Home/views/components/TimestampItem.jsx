@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-export const TimestampItem = ({
-  todo,
-  handleGetEditItem,
-  handleDeleteTodoById,
-}) => {
+import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { DeleteTask } from "../../state/actions";
+
+export const TimestampItem = ({ todo, handleGetEditItem }) => {
   // ClassName Item controller
   let classNames = require("classnames");
   let itemClass = classNames(
@@ -14,11 +14,23 @@ export const TimestampItem = ({
     // {dragging: dragTaskDetected}
   );
 
+  const dispatch = useDispatch();
+
   const [descriptionVisibility, setdescriptionVisibility] = useState(false);
 
   const handleDescribeVisinility = () => {
     console.log("OP");
     setdescriptionVisibility(!descriptionVisibility);
+  };
+
+  const handleDeleteItemById = (item) => {
+    dispatch(
+      OpenConfirmationPropmt({
+        message: `Do you want to delete the task ${item.title} ?`,
+        acceptButton: "Delete",
+        handleAccept: () => DeleteTask(item.id),
+      })
+    );
   };
 
   return (
@@ -49,7 +61,7 @@ export const TimestampItem = ({
           ></i>
           <i
             className="fas fa-trash icon"
-            onClick={() => handleDeleteTodoById(todo.id)}
+            onClick={() => handleDeleteItemById(todo)}
           ></i>
         </div>
       </div>

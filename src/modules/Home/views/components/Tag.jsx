@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Tag = ({ tag, handleDeleteTag }) => {
+export const Tag = ({ tag, fromForm = false, handleDeleteTag }) => {
   const colorCondition =
     tag.color === "#ffeb3b" ||
     tag.color === "#cddc39" ||
@@ -14,11 +14,13 @@ export const Tag = ({ tag, handleDeleteTag }) => {
       style={{ backgroundColor: tag.color, color: colorCondition }}
     >
       {tag.tag}
-      <i
-        class="fas fa-times icon"
-        style={{ color: colorCondition }}
-        onClick={() => handleDeleteTag(tag.tag)}
-      ></i>
+      {fromForm && (
+        <i
+          class="fas fa-times icon"
+          style={{ color: colorCondition }}
+          onClick={() => handleDeleteTag(tag.tag)}
+        ></i>
+      )}
     </div>
   );
 };

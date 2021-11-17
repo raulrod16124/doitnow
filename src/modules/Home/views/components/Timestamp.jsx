@@ -7,11 +7,7 @@ import { GetTasks } from "../../state/actions";
 import { days, months } from "./dateData";
 import { TimestampItem } from "./TimestampItem";
 
-export const Timestamp = ({
-  allTodos,
-  handleGetEditItem,
-  handleDeleteTodoById,
-}) => {
+export const Timestamp = ({ allTodos, handleGetEditItem }) => {
   const todosState = useSelector((state) => {
     return state.TodosReducer;
   });
@@ -114,7 +110,6 @@ export const Timestamp = ({
                           key={todo.title}
                           todo={todo}
                           handleGetEditItem={handleGetEditItem}
-                          handleDeleteTodoById={handleDeleteTodoById}
                         />
                       );
                     }

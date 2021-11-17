@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 
 import { Footer } from "../../global/Footer";
 import { HomeViewsVisibility } from "../state/action";
-import { ArchiveTasks } from "./components/ArchiveTasks";
 
-export const AsideNav = ({ handleArchiveVisibility }) => {
+export const AsideNav = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -157,10 +156,6 @@ export const AsideNav = ({ handleArchiveVisibility }) => {
               </ul>
             )}
           </div>
-          <i
-            className="fas fa-archive icon archive-aside-nav"
-            onClick={() => handleArchiveVisibility(true)}
-          ></i>
         </div>
       </div>
       <Footer />

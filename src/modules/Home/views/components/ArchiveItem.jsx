@@ -1,16 +1,32 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { UpdateTask } from "../../../Home/state/actions";
+import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { DeleteTask, UpdateTask } from "../../../Home/state/actions";
 import { Tag } from "../../../Home/views/components/Tag";
 
-export const ArchiveItem = ({ item, handleDeleteTodoById }) => {
+export const ArchiveItem = ({ item }) => {
   const dispatch = useDispatch();
 
-  const handleUnarchiveCompletedTask = () => {
+  const handleUnarchiveCompletedTask = (item) => {
     item.status = "done";
-    console.log(item);
-    dispatch(UpdateTask(item.id, item));
+    dispatch(
+      OpenConfirmationPropmt({
+        message: `Do you want to unarchive the task ${item.title} ?`,
+        acceptButton: "Unarchive",
+        handleAccept: () => UpdateTask(item.id, item),
+      })
+    );
+  };
+
+  const handleDeleteItemById = (item) => {
+    dispatch(
+      OpenConfirmationPropmt({
+        message: `Do you want to delete the task ${item.title} ?`,
+        acceptButton: "Delete",
+        handleAccept: () => DeleteTask(item.id),
+      })
+    );
   };
 
   return (
@@ -31,11 +47,11 @@ export const ArchiveItem = ({ item, handleDeleteTodoById }) => {
         <div className="content-icons">
           <i
             className="fas fa-archive icon"
-            onClick={handleUnarchiveCompletedTask}
+            onClick={() => handleUnarchiveCompletedTask(item)}
           ></i>
           <i
             className="fas fa-trash icon"
-            onClick={() => handleDeleteTodoById(item.id)}
+            onClick={() => handleDeleteItemById(item)}
           ></i>
         </div>
       </div>
