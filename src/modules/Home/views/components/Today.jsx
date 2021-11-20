@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Search } from "../../../../stories/Search";
 import List from "./List";
 
 export const Today = ({
@@ -24,6 +25,7 @@ export const Today = ({
   return (
     <div className="today-main">
       <div className="content-body">
+        <Search size="28" margin="1vh auto 1vh 2%;" borderNone />
         <div className="content-lists">
           <List
             key="todo"

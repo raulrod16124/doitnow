@@ -17,6 +17,7 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
   const today = new Date().toLocaleDateString().split("/");
 
   const [currentTime, setCurrentTime] = useState({
+    startingDay: 1,
     day: new Date().getDate(),
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
@@ -57,6 +58,7 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
     const month = weekChanged[1] - 1;
     const convertDate = `${weekChanged[0]}/${weekChanged[1]}/${weekChanged[2]}`;
     setCurrentTime({
+      ...currentTime,
       day: Number(weekChanged[0]),
       month: month,
       year: Number(weekChanged[2]),

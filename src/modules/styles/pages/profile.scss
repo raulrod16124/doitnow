@@ -11,7 +11,7 @@
     height: auto;
     margin: 5vh auto 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 0.35fr;
+    grid-template-columns: 1fr 1fr 0.5fr;
     column-gap: 2vw;
   }
 
@@ -52,6 +52,10 @@
       text-align: center;
       margin: 0.5vh auto;
       font-size: 2.5vmin;
+    }
+
+    .user-name {
+      text-transform: capitalize;
     }
 
     .user-progress-level-bar {
@@ -129,14 +133,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 6vh;
+    // padding-top: 6vh;
 
     .daily-record,
     .best-week-record,
     .best-streak {
       background-color: $White;
       border-radius: 0.5vmin;
-      height: 10vh;
+      height: 11vh;
       display: grid;
       grid-template-columns: 0.5fr 1fr;
       width: 100%;
@@ -145,7 +149,7 @@
 
     .icon {
       font-size: 5vmin;
-      text-align: right;
+      text-align: center;
       cursor: default;
 
       &.daily {
@@ -173,8 +177,8 @@
         font-size: 2.8vmin;
         font-weight: 700;
         display: flex;
+        align-items: flex-end;
         column-gap: 5%;
-        padding-left: 20%;
       }
 
       .data-text {
@@ -185,6 +189,8 @@
       .text {
         color: $DarkGrey;
         font-weight: 600;
+        text-align: left;
+        padding-top: 1vh;
       }
     }
   }
@@ -194,8 +200,88 @@
   .profile-bottom {
     width: 90%;
     height: 45vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 0.5fr;
+    padding: 1vmin;
     background-color: $White;
     border-radius: 0.5vmin;
     margin: 2.5vh auto;
+
+    .month-overview {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 1vmin 0.5vmin;
+
+      .month-title {
+        width: 90%;
+        margin: 0 auto;
+        font-weight: 400;
+      }
+
+      .month-name {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+
+    .monthly-activity {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 2vmin;
+
+      .day-of-current-month {
+        position: relative;
+        min-height: 6vh;
+        border-radius: 0.5vmin;
+        margin: 0.5vmin;
+        padding: 1vmin;
+        font-style: italic;
+        background: linear-gradient(45deg, $Grey, $White);
+      }
+
+      .fill-green {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50%;
+        width: 100%;
+        border-radius: 0.5vmin;
+        background: linear-gradient(45deg, $DarkGreen, $Green 50%);
+        z-index: 10;
+      }
+
+      .day-text {
+        position: absolute;
+        z-index: 50;
+      }
+    }
+
+    .total-tasks {
+      height: 80%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      font-weight: 400;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+
+      .total-title {
+        font-size: 3vmin;
+        color: darken($color: $DarkGrey, $amount: 30);
+      }
+
+      .data-task {
+        font-size: 5vmin;
+        color: $DarkGrey;
+      }
+
+      .data-title {
+        font-size: 1.8vmin;
+        color: darken($color: $DarkGrey, $amount: 20);
+      }
+    }
   }
 }

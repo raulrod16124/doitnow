@@ -1,11 +1,11 @@
 export const days = [
-  "Sunday",
   "Monday",
   "Thursday",
   "Wednesday",
   "Tuesday",
   "Friday",
   "Saturday",
+  "Sunday",
 ];
 
 export const months = {
