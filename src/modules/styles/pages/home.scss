@@ -559,20 +559,22 @@
     display: flex;
     list-style: none;
     margin: 0 auto;
+    padding-bottom: 2vh;
     width: 90vw;
-    height: 84vh;
+    height: auto;
+    min-height: 84vh;
+    overflow: auto;
     z-index: 6;
 
     .list {
       width: 30%;
-      height: 100%;
+      height: auto;
       min-height: 80vh;
       background-color: $Grey;
       border-radius: 1vmin;
       list-style: none;
       padding: 2vmin;
       border: 1vmin solid transparent;
-      padding-bottom: 5vh;
       margin: 1vh 1vw 0 1vw;
       transition: all 0.4s;
 
@@ -603,8 +605,8 @@
         font-style: italic;
         font-weight: 700;
         padding: 0.5vmin;
-        border: 0.1vmin solid $Grey;
         border-radius: 0.5vmin;
+        margin-top: 4vh;
         display: flex;
         justify-content: flex-end;
         cursor: pointer;

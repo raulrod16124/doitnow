@@ -9,6 +9,7 @@ export const Today = ({
   inProgress,
   dragListDetected,
   handleGetEditItem,
+  handleSearchArchiveTask,
 }) => {
   // Class Detect dragging in List
   let classNames = require("classnames");
@@ -25,7 +26,12 @@ export const Today = ({
   return (
     <div className="today-main">
       <div className="content-body">
-        <Search size="28" margin="1vh auto 1vh 2%;" borderNone />
+        <Search
+          width="28"
+          margin="1vh auto 1vh 2%;"
+          borderNone
+          onChange={handleSearchArchiveTask}
+        />
         <div className="content-lists">
           <List
             key="todo"

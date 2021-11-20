@@ -269,6 +269,22 @@ export const Home = () => {
     setArchiveVisibility(booleanData);
   };
 
+  // Search tasks
+  const handleSearchArchiveTask = (e) => {
+    if (e.target.value === "") {
+      handleOrderTaskPerStatus(allTodos);
+    }
+    const searchingArchiveTask = allTodos.filter((task) => {
+      if (
+        task.title.includes(e.target.value) ||
+        task.description.includes(e.target.value)
+      ) {
+        return task;
+      }
+    });
+    handleOrderTaskPerStatus(searchingArchiveTask);
+  };
+
   return (
     <>
       {loadingVisibility ? (
@@ -309,6 +325,7 @@ export const Home = () => {
                 dragListDetected={dragListDetected}
                 handleGetVisibilityFormState={handleGetVisibilityFormState}
                 handleGetEditItem={handleGetEditItem}
+                handleSearchArchiveTask={handleSearchArchiveTask}
               />
             </DragDropContext>
           ) : (

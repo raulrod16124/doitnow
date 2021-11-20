@@ -37,7 +37,7 @@ function List({ droppableID, list, titleList, className, handleGetEditItem }) {
             <>
               {seeMore === 3 ? (
                 <p className="see-more" onClick={() => setSeeMore(1000)}>
-                  See more ({Object.values(list).length})
+                  See more ({Object.values(list).length - 3})
                 </p>
               ) : (
                 <p className="see-more" onClick={() => setSeeMore(3)}>

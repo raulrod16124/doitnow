@@ -51,7 +51,7 @@ export const ArchiveTasks = ({ handleArchiveVisibility }) => {
             tasks
           </h2>
           <Search
-            size="40"
+            width="40"
             margin="4vmin"
             onChange={(e) => handleSearchArchiveTask(e)}
           />
