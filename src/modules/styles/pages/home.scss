@@ -8,36 +8,36 @@
     top: 0vh;
     left: 10%;
     width: 90%;
-    height: 10vh;
+    height: 12vh;
     background: lighten($color: $DarkGrey, $amount: 25);
   }
 
   .home-top-bar {
     position: absolute;
     position: fixed;
-    padding: 2vh 20% 2vh 2%;
-    top: 0vh;
+    padding: 2vh 2% 2vh 0;
+    top: 2.5vh;
     left: 10%;
-    width: 90%;
+    width: 75%;
     height: 10vh;
     display: flex;
     justify-content: space-between;
-    z-index: 15;
+    z-index: 17;
 
     .content-options-bar {
-      width: 20%;
+      width: 25%;
       display: flex;
       justify-content: space-around;
       font-size: 1.8vmin;
       z-index: 15;
 
       .filter-content {
-        display: grid;
-        grid-template-columns: 60% 40%;
+        display: flex;
+        justify-content: space-between;
         column-gap: 5%;
         word-wrap: break-word;
         align-items: center;
-        width: 40%;
+        width: 30%;
       }
 
       .filter-options {
@@ -69,14 +69,14 @@
       .content-options {
         position: absolute;
         position: fixed;
-        top: 9vh;
+        top: 11vh;
         left: 20%;
         list-style: none;
         padding: 1vmin;
         background: $White;
         border-radius: 0.5vmin;
         box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
-        z-index: 15;
+        z-index: 17;
 
         .option {
           margin: 1vh 0;
@@ -141,6 +141,11 @@
           line-height: 1.125em;
         }
       }
+    }
+
+    .search-component {
+      width: 60%;
+      z-index: 15;
     }
 
     .show-archive-view {
@@ -319,50 +324,6 @@
 
       .icon {
         margin: 0 0.5vw;
-      }
-    }
-  }
-  .progress-bar {
-    width: 60%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    border-radius: 0 0 0 0.5vmin;
-    z-index: 15;
-
-    .level-bar {
-      width: 60%;
-      height: 80%;
-      border-radius: 0.5vmin;
-      background-color: $White;
-      overflow: hidden;
-    }
-
-    .green-fill {
-      width: auto;
-      border-radius: 0.5vmin;
-      height: 100%;
-      background: linear-gradient(360deg, darken($Green, 10%), $Green);
-      transition: all 0.5s;
-    }
-
-    .task-counter {
-      height: 4vh;
-      margin: 0 2vw;
-      .task-counter-text {
-        color: $DarkOcean;
-        font-size: 3vmin;
-        font-weight: 700;
-      }
-    }
-
-    .experience-counter {
-      margin-left: 5%;
-
-      .experience-counter-text {
-        font-size: 3vmin;
-        font-weight: 600;
-        color: darken($color: $Green, $amount: 10);
       }
     }
   }
@@ -551,7 +512,76 @@
   // Content Items
 
   .content-body {
-    margin: 10vh auto 0 11%;
+    margin: 12vh auto 0 11%;
+  }
+
+  .content-top-bar {
+    width: 100%;
+    margin-left: 1.2%;
+    display: flex;
+    align-items: center;
+    padding: 1vh 0;
+    z-index: 15;
+
+    .progress-bar {
+      width: 95%;
+      height: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 15;
+
+      .level-bar {
+        position: relative;
+        width: 100%;
+        height: 3.2vmin;
+        border-radius: 0.5vmin;
+        background-color: $White;
+        overflow: hidden;
+      }
+
+      .green-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        border-radius: 0.5vmin;
+        height: 100%;
+        background: linear-gradient(360deg, darken($Green, 10%), $Green);
+        transition: all 0.5s;
+        z-index: 15;
+      }
+
+      .task-counter {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 16;
+
+        .task-counter-text {
+          color: $DarkOcean;
+          font-size: 2.5vmin;
+          font-weight: 700;
+        }
+      }
+
+      .experience-counter {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 2vw;
+        width: 100%;
+        z-index: 16;
+
+        .experience-counter-text {
+          font-size: 2.5vmin;
+          font-weight: 600;
+          color: darken($color: $Green, $amount: 10);
+        }
+      }
+    }
   }
 
   .content-lists {
@@ -559,23 +589,23 @@
     display: flex;
     list-style: none;
     margin: 0 auto;
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
     width: 90vw;
     height: auto;
-    min-height: 84vh;
+    min-height: 75vh;
     overflow: auto;
     z-index: 6;
 
     .list {
       width: 30%;
       height: auto;
-      min-height: 80vh;
+      min-height: 75vh;
       background-color: $Grey;
       border-radius: 1vmin;
       list-style: none;
-      padding: 2vmin;
+      padding: 1.5vh 1vw;
       border: 1vmin solid transparent;
-      margin: 1vh 1vw 0 1vw;
+      margin: 1vh 1vw;
       transition: all 0.4s;
 
       &.dragging {
@@ -703,8 +733,12 @@
   .content-icons {
     display: flex;
     width: 20%;
-    justify-content: space-between;
+    justify-content: flex-end;
     z-index: 10;
+
+    .fas {
+      margin-left: 1vw;
+    }
 
     & svg {
       margin-left: 1vw;

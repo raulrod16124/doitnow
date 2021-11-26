@@ -35,7 +35,7 @@ export const getAllTasks = async (user) => {
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    console.log(error);
+    console.log(Object.values(error));
     return error;
   }
 };
@@ -52,7 +52,7 @@ export const createNewTask = async (newTask) => {
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    console.log(error);
+    console.log(Object.values(error)[0]);
     return error;
   }
 };

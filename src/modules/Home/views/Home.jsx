@@ -298,13 +298,12 @@ export const Home = () => {
         >
           <HomeTopBar
             homeViewState={homeViewState}
-            alltasksFiltered={alltasksFiltered}
             allTodos={allTodos}
-            doneTodo={doneTodo}
             handleGetVisibilityFormState={handleGetVisibilityFormState}
             handleOrderTaskPerStatus={handleOrderTaskPerStatus}
             handleGetTodoFilter={handleGetTodoFilter}
             handleArchiveVisibility={handleArchiveVisibility}
+            handleSearchArchiveTask={handleSearchArchiveTask}
           />
           {/* Archive section */}
           {archiveVisibility && (

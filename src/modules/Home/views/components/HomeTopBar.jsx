@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 import Calendar from "react-calendar";
 
 import { Button } from "../../../../stories/Button";
+import { Search } from "../../../../stories/Search";
 
 export const HomeTopBar = ({
   handleGetVisibilityFormState,
   handleOrderTaskPerStatus,
   handleGetTodoFilter,
-  alltasksFiltered,
+  handleSearchArchiveTask,
   allTodos,
-  doneTodo,
   homeViewState,
   handleArchiveVisibility,
 }) => {
@@ -83,7 +83,7 @@ export const HomeTopBar = ({
         />
         <div className="filter-content">
           <label className="filter-label">
-            <i className="far fa-calendar-times"></i> Filter:
+            <i className="far fa-calendar-times"></i>
           </label>
           <div className="filter-options">
             <label
@@ -148,32 +148,13 @@ export const HomeTopBar = ({
         </div>
       </div>
       {!homeViewState && (
-        <div className="progress-bar">
-          <div className="level-bar">
-            <div
-              className="green-fill"
-              style={{
-                width:
-                  alltasksFiltered.length > 0
-                    ? (doneTodo.length / alltasksFiltered.length) * 100 + "%"
-                    : 0 + "%",
-              }}
-            ></div>
-          </div>
-          <div className="task-counter">
-            <p className="task-counter-text">
-              {doneTodo.length} /{" "}
-              {
-                alltasksFiltered.filter((todo) => todo.status !== "archive")
-                  .length
-              }
-            </p>
-          </div>
-          <div className="experience-counter">
-            <p className="experience-counter-text">
-              {doneTodo.length * 50} exp.
-            </p>
-          </div>
+        <div className="search-component">
+          <Search
+            width="100"
+            height="5"
+            borderNone
+            onChange={handleSearchArchiveTask}
+          />
         </div>
       )}
       <div

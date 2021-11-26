@@ -2,9 +2,9 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 
-import { DeleteTask, UpdateTask } from "../../modules/Home/state/actions";
-import { Tag } from "./../Home/views/components/Tag";
-import { OpenConfirmationPropmt } from "./ConfirmationPropmt/state/actions";
+import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { DeleteTask, UpdateTask } from "../../state/actions";
+import { Tag } from "./Tag";
 
 function Item({ item, index, handleGetEditItem }) {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 
-import Item from "./../../../global/Item";
+import Item from "./Item";
 
 function List({ droppableID, list, titleList, className, handleGetEditItem }) {
   // console.log(list);
