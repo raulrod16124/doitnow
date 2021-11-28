@@ -48,13 +48,14 @@ export const Profile = () => {
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
+        console.log(profileState.data);
         setUserData(profileState.data);
         setLoadingVisibility(false);
         // TODO - implement default img value
-        avatarImg.current.style.backgroundImage =
-          userData && `url(${userData.avatar})`;
         break;
     }
+
+    console.log(userDataFromLocalStore);
   }, [profileState]);
 
   // tasks Controller
@@ -162,6 +163,7 @@ export const Profile = () => {
               <div className="user-data">
                 <div className="user-level">Beginner</div>
                 <div className="user-avatar" ref={avatarImg}></div>
+                {/* <img className="user-avatar" src={userData.avatar} /> */}
                 <p className="user-name">{userData && userData.name}</p>
                 <p className="user-email">{userData && userData.email}</p>
                 <div className="user-progress-level-bar">

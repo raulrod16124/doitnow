@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 import { Footer } from "../../global/Footer";
-import { HomeViewsVisibility } from "../state/action";
+import { HomeViewsVisibility, ViewSelected } from "../state/action";
 
 export const AsideNav = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ export const AsideNav = () => {
 
   const [sectionView, setSectionView] = useState(initialSectionView);
 
+  const viewState = useSelector((state) => {
+    return state.AsideReducer;
+  });
+
   let classNames = require("classnames");
   let homeSelected = classNames("section", {
     selected: location.pathname === "/home",
@@ -30,14 +35,40 @@ export const AsideNav = () => {
     selected: location.pathname === "/profile",
   });
 
-  // home view selector
-  const [homeView, setHomeView] = useState(false);
-  let todayViewClass = classNames("view", { selected: !homeView });
-  let timestampViewClass = classNames("view", { selected: homeView });
+  const initialViewSelected = {
+    today: true,
+    calendar: false,
+    account: false,
+    settings: false,
+  };
 
-  const handleShowHomeViews = (view) => {
-    dispatch(HomeViewsVisibility(view));
-    setHomeView(view);
+  // home view selector
+  const [viewSelected, setViewSelected] = useState(initialViewSelected);
+
+  useEffect(() => {
+    if (location.pathname === "/home") {
+      dispatch(ViewSelected("today"));
+    }
+    if (location.pathname === "/profile") {
+      dispatch(ViewSelected("account"));
+    }
+  }, []);
+
+  useEffect(() => {
+    setViewSelected(viewState);
+  }, [viewState]);
+
+  let todayViewClass = classNames("view", { selected: viewSelected.today });
+  let calendarClass = classNames("view", { selected: viewSelected.calendar });
+  let accountClass = classNames("view", { selected: viewSelected.account });
+  // let settingsClass = classNames("view", {
+  //   selected: viewSelected.settings,
+  // });
+
+  const handleSelectedView = (view) => {
+    console.log(view);
+    dispatch(ViewSelected(view));
+    // setHomeView(view);
   };
 
   return (
@@ -57,7 +88,11 @@ export const AsideNav = () => {
                 })
               }
             >
-              <Link to="/home" className="link">
+              <Link
+                to="/home"
+                className="link"
+                onClick={() => handleSelectedView("today")}
+              >
                 <i className="fas fa-home icon"></i>
                 <p className="text">Home</p>
               </Link>
@@ -72,15 +107,15 @@ export const AsideNav = () => {
                 <Link to="/home" className="link">
                   <li
                     className={todayViewClass}
-                    onClick={() => handleShowHomeViews(false)}
+                    onClick={() => handleSelectedView("today")}
                   >
                     <p className="view-text">
                       <i className="fas fa-tasks icon"></i> Today
                     </p>
                   </li>
                   <li
-                    className={timestampViewClass}
-                    onClick={() => handleShowHomeViews(true)}
+                    className={calendarClass}
+                    onClick={() => handleSelectedView("calendar")}
                   >
                     <p className="view-text">
                       <i className="far fa-calendar-alt icon"></i> Calendar
@@ -129,7 +164,11 @@ export const AsideNav = () => {
                 })
               }
             >
-              <Link to="/profile" className="link">
+              <Link
+                to="/profile"
+                className="link"
+                onClick={() => handleSelectedView("account")}
+              >
                 <i className="far fa-user-circle icon"></i>
                 <p className="text">Profile</p>
               </Link>
@@ -142,16 +181,22 @@ export const AsideNav = () => {
             {sectionView.profile && (
               <ul className="section-selector">
                 <Link to="/profile" className="link">
-                  <li className="view">
+                  <li
+                    className={accountClass}
+                    onClick={() => handleSelectedView("account")}
+                  >
                     <p className="view-text">
                       <i className="fas fa-user icon"></i> Account
                     </p>
                   </li>
-                  <li className="view">
+                  {/* <li
+                    className={settingsClass}
+                    onClick={() => handleSelectedView("settings")}
+                  >
                     <p className="view-text">
                       <i className="fas fa-cog icon"></i> Settings
                     </p>
-                  </li>
+                  </li> */}
                 </Link>
               </ul>
             )}

@@ -1,11 +1,5 @@
-import { asideTypes } from "./type";
-
-export const HomeViewsVisibility = (view) => {
-  const typeofView = view
-    ? asideTypes.homeTodayView
-    : asideTypes.homeTimestampView;
+export const ViewSelected = (view) => {
   return {
-    type: typeofView,
-    payload: view,
+    type: view,
   };
 };

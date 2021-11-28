@@ -10,7 +10,7 @@ export const HomeTopBar = ({
   handleGetTodoFilter,
   handleSearchArchiveTask,
   allTodos,
-  homeViewState,
+  viewSelected,
   handleArchiveVisibility,
 }) => {
   // Filter options
@@ -74,7 +74,7 @@ export const HomeTopBar = ({
 
   return (
     <div className="home-top-bar">
-      {!homeViewState && <div className="bg-home-top-bar"></div>}
+      {viewSelected.today && <div className="bg-home-top-bar"></div>}
       <div className="content-options-bar">
         <Button
           size="mediun"
@@ -147,7 +147,7 @@ export const HomeTopBar = ({
           </div>
         </div>
       </div>
-      {!homeViewState && (
+      {viewSelected.today && (
         <div className="search-component">
           <Search
             width="100"

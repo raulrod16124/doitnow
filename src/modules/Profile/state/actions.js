@@ -4,7 +4,7 @@ import { TYPES } from "./type";
 export const GetUserProfile = (user) => {
   return async (dispatch) => {
     const userProfileData = await getUserProfile(user);
-    console.log(userProfileData._document.data.value.mapValue.fields.name);
+    // console.log(userProfileData._document.data.value.mapValue.fields);
     const userProfile = {
       id: Object.values(
         userProfileData._document.data.value.mapValue.fields.id
@@ -19,6 +19,7 @@ export const GetUserProfile = (user) => {
         userProfileData._document.data.value.mapValue.fields.avatar
       )[0],
     };
+    // console.log(userProfile);
     dispatch({
       type: TYPES.getUserProfile,
       payload: userProfile,

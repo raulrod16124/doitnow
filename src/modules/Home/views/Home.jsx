@@ -19,7 +19,9 @@ export const Home = () => {
     return state.TodosReducer;
   });
 
-  const homeViewState = useSelector((state) => {
+  const viewSelected = useSelector((state) => {
+    console.log(state.AsideReducer.today);
+    console.log(state.AsideReducer.calendar);
     return state.AsideReducer;
   });
 
@@ -297,7 +299,7 @@ export const Home = () => {
           }
         >
           <HomeTopBar
-            homeViewState={homeViewState}
+            viewSelected={viewSelected}
             allTodos={allTodos}
             handleGetVisibilityFormState={handleGetVisibilityFormState}
             handleOrderTaskPerStatus={handleOrderTaskPerStatus}
@@ -310,7 +312,7 @@ export const Home = () => {
             <ArchiveTasks handleArchiveVisibility={handleArchiveVisibility} />
           )}
           {/* Home views */}
-          {!homeViewState ? (
+          {viewSelected.today && (
             <DragDropContext
               onDragEnd={(result) => handleDragEnd(result)}
               onDragUpdate={(result) => handleDetectDragging(result, "list")}
@@ -327,7 +329,8 @@ export const Home = () => {
                 handleSearchArchiveTask={handleSearchArchiveTask}
               />
             </DragDropContext>
-          ) : (
+          )}
+          {viewSelected.calendar && (
             <div className="timestamp-view">
               <Timestamp
                 allTodos={allTodos}
