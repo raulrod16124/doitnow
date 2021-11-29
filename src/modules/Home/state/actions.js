@@ -7,6 +7,7 @@ import {
 import { TYPES } from "./type";
 
 export const GetTasks = (user) => {
+  console.log(user);
   return async (dispatch) => {
     const userTasks = await getAllTasks(user);
     // console.log(userTasks);

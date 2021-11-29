@@ -10,7 +10,7 @@ export const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.checkUser:
       let userData = null;
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.user?.stsTokenManager.refreshToken) {
         userData = {
           id: action.payload._tokenResponse.localId,
@@ -34,7 +34,7 @@ export const LoginReducer = (state = initialState, action) => {
       }
 
     case TYPES.createNewUser:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.email) {
         return {
           ...state,

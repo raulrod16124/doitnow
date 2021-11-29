@@ -64,7 +64,7 @@ export const Home = () => {
 
   useEffect(async () => {
     if (userLogged.currentUser) {
-      dispatch(GetTasks(userLogged.currentUser.email));
+      dispatch(GetTasks(userLogged.currentUser));
       return <Redirect to="/" />;
     }
   }, [userLogged]);
@@ -76,10 +76,10 @@ export const Home = () => {
       todosState.status === "task deleted" ||
       todosState.status === "task updated"
     ) {
-      dispatch(GetTasks(userData.email));
+      dispatch(GetTasks(userData));
     }
     if (todosState.status === "success" && todoFilter === "All") {
-      console.log(todosState);
+      // console.log(todosState);
       handleOrderTaskPerStatus(todosState.data);
       setAllTodos(todosState.data);
       setLoadingVisibility(false);

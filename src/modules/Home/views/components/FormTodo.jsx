@@ -66,6 +66,7 @@ export const FormTodo = ({
     e.preventDefault();
     if (todo.title !== "") {
       const userOwner = JSON.parse(localStorage.getItem("user"));
+      console.log(userOwner);
       const newTask = {
         title: todo.title,
         level: todo.level,
@@ -73,7 +74,7 @@ export const FormTodo = ({
         description: todo.description,
         date: todo.date,
         tags: todo.tags,
-        owner: userOwner.email,
+        owner: userOwner.id,
       };
       setTimestamp(new Date());
       if (itemToEdit !== undefined) {
@@ -135,7 +136,7 @@ export const FormTodo = ({
           />
           <select
             className="form-level"
-            defaultValue={todo.level}
+            defaultValue={todo && todo.level}
             onChange={(e) => setTodo({ ...todo, level: e.target.value })}
           >
             <option className="select-level">easy</option>

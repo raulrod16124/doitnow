@@ -7,14 +7,14 @@ import auth from "../../../firebase/config";
 
 export const createUser = async (newUser) => {
   console.log("Enter to checkUser");
-  console.log(newUser);
+  // console.log(newUser);
   try {
     const userCreated = await createUserWithEmailAndPassword(
       auth,
       newUser.email,
       newUser.password
     );
-    console.log(userCreated);
+    // console.log(userCreated);
     const userTokenCreated = userCreated._tokenResponse;
     return { userTokenCreated, newUser };
   } catch (error) {
@@ -30,7 +30,7 @@ export const verifyUser = async (user) => {
       user.email,
       user.password
     );
-    console.log(userLogged);
+    // console.log(userLogged);
     return userLogged;
   } catch (error) {
     const errorData = JSON.stringify(error);

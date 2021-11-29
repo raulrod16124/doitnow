@@ -34,7 +34,7 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (todosState.status === "task updated") {
-      dispatch(GetTasks(userData.email));
+      dispatch(GetTasks(userData));
     }
   }, [todosState]);
 
