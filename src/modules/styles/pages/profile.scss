@@ -299,6 +299,15 @@
         background: linear-gradient(45deg, $Grey, $White);
       }
 
+      .task-quantity {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20%;
+        opacity: 0.5;
+        z-index: 100;
+      }
+
       .fill-green {
         position: absolute;
         bottom: 0;

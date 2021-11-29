@@ -312,6 +312,9 @@ export const Profile = () => {
                           border: `.1vmin solid ${borderColor}`,
                         }}
                       >
+                        <div className="task-quantity">
+                          {day.tasks > 0 && day.tasks}
+                        </div>
                         <div
                           className="fill-green"
                           style={{
@@ -353,6 +356,9 @@ export const Profile = () => {
                           border: `.1vmin solid ${borderColor}`,
                         }}
                       >
+                        <div className="task-quantity">
+                          {day.tasks > 0 && day.tasks}
+                        </div>
                         <div
                           className="fill-green"
                           style={{

@@ -79,7 +79,7 @@ export const Home = () => {
       dispatch(GetTasks(userData));
     }
     if (todosState.status === "success" && todoFilter === "All") {
-      // console.log(todosState);
+      console.log(todosState);
       handleOrderTaskPerStatus(todosState.data);
       setAllTodos(todosState.data);
       setLoadingVisibility(false);

@@ -21,10 +21,8 @@ export const getAllTasks = async (user) => {
       ...doc.data(),
       id: doc.id,
     }));
-    // console.log(user);
     const taskByUser = tasksList.filter((task) => {
-      // console.log("SERACHING");
-      if (task.owner == user.email || task.owner == user.id) {
+      if (task.owner == user.email || task.owner == user.uid) {
         return task;
       }
     });
