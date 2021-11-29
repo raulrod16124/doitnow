@@ -37,6 +37,7 @@ export const updateProfile = async (idToUpdate, data) => {
   console.log(idToUpdate);
   console.log(data);
   try {
+    console.log("Enter to try");
     const docRefToUpdate = doc(db, "users", idToUpdate);
     await setDoc(docRefToUpdate, data);
     const userProfileUpdated = await getDoc(docRefToUpdate);

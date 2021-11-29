@@ -38,9 +38,9 @@ export const CreateUserProfile = (user) => {
 };
 
 // TODO - refactor to use firebase
-export const UpdateUserProfile = (user) => {
+export const UpdateUserProfile = (idUser, user) => {
   return async (dispatch) => {
-    const userUpdatedProfile = await updateProfile(user);
+    const userUpdatedProfile = await updateProfile(idUser, user);
     dispatch({
       type: TYPES.updateUserProfile,
       payload: userUpdatedProfile,

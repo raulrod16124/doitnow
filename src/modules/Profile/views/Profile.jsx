@@ -1,13 +1,15 @@
 import "react-circular-progressbar/dist/styles.css";
 
 import dayjs from "dayjs";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Loading } from "../../global/Loading";
 import { months } from "../../Home/views/components/dateData";
-import { GetUserProfile } from "../state/actions";
+import { GetUserProfile, UpdateUserProfile } from "../state/actions";
+import { avatars, defaultAvatar } from "./components/avatars";
+import { AvatarSelector } from "./components/AvatarSelector";
 import { DailyRecord, WeekRecord, weeklyAverage } from "./components/DataLogic";
 
 export const Profile = () => {
@@ -19,7 +21,7 @@ export const Profile = () => {
 
   const [userData, setUserData] = useState(undefined);
 
-  const avatarImg = useRef();
+  const [avatarSelectorView, setAvatarSelectorView] = useState(false);
 
   const daysInCurrentMonth = (prev) => {
     let formatDate = {
@@ -51,7 +53,6 @@ export const Profile = () => {
         console.log(profileState.data);
         setUserData(profileState.data);
         setLoadingVisibility(false);
-        // TODO - implement default img value
         break;
     }
 
@@ -152,18 +153,45 @@ export const Profile = () => {
     return count;
   };
 
+  const handleSetAvatarSelectorView = (boolean) => {
+    setAvatarSelectorView(boolean);
+  };
+
+  const handleUpdateUserData = (avatarSelected) => {
+    console.log(avatarSelected);
+    setUserData({ ...userData, avatar: avatarSelected });
+    dispatch(
+      UpdateUserProfile(userData.id, { ...userData, avatar: avatarSelected })
+    );
+  };
+
   return (
     <>
       {loadingVisibility ? (
         <Loading />
       ) : (
         <div className="profile">
+          {avatarSelectorView && (
+            <AvatarSelector
+              userData={userData}
+              handleSetAvatarSelectorView={handleSetAvatarSelectorView}
+              handleUpdateUserData={handleUpdateUserData}
+            />
+          )}
           <div className="profile-top">
             <div className="user-data-content">
               <div className="user-data">
                 <div className="user-level">Beginner</div>
-                <div className="user-avatar" ref={avatarImg}></div>
-                {/* <img className="user-avatar" src={userData.avatar} /> */}
+                <img
+                  className="user-avatar"
+                  src={userData ? userData.avatar : defaultAvatar}
+                />
+                <div className="avatarEditButton">
+                  <i
+                    className="fas fa-edit icon"
+                    onClick={() => handleSetAvatarSelectorView(true)}
+                  ></i>
+                </div>
                 <p className="user-name">{userData && userData.name}</p>
                 <p className="user-email">{userData && userData.email}</p>
                 <div className="user-progress-level-bar">

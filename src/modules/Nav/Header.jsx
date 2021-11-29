@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
-import avatar from "./../../assets/avatars/girl1.png";
 import auth from "../../firebase/config";
 import { ViewSelected } from "../Aside/state/action";
+import { defaultAvatar } from "../Profile/views/components/avatars";
 
 export const Header = () => {
   const [userData, setUserData] = useState();
@@ -28,7 +28,13 @@ export const Header = () => {
             {userData && userData.name ? userData.name : ""}
           </p>
           <Link to="/profile" onClick={() => dispatch(ViewSelected("account"))}>
-            <img className="avatar" src={avatar} alt="avatar" />
+            <img
+              className="avatar"
+              src={
+                userData && userData.avatar ? userData.avatar : defaultAvatar
+              }
+              alt="avatar"
+            />
           </Link>
         </div>
       )}
