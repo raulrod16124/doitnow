@@ -27,7 +27,7 @@ function Routes() {
         email: currentUser.email,
         avatar: "",
       };
-      // console.log(userData);
+      // // console.log(userData);
       localStorage.setItem("user", JSON.stringify(userData));
     }
   }, [currentUser]);
@@ -36,7 +36,7 @@ function Routes() {
     const routesCondition = existingRoutes.some(
       (route) => route === history.location.pathname
     );
-    // console.log(routesCondition);
+    // // console.log(routesCondition);
     if (JSON.parse(localStorage.getItem("user"))) {
       if (!routesCondition) {
         history.push({ pathname: "/home" });

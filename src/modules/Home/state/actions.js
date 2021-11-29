@@ -7,10 +7,10 @@ import {
 import { TYPES } from "./type";
 
 export const GetTasks = (user) => {
-  console.log(user);
+  // console.log(user);
   return async (dispatch) => {
     const userTasks = await getAllTasks(user);
-    // console.log(userTasks);
+    // // console.log(userTasks);
     dispatch({
       type: TYPES.getTasks,
       payload: userTasks,
@@ -20,7 +20,7 @@ export const GetTasks = (user) => {
 export const CreateTask = (task) => {
   return async (dispatch) => {
     const newTask = await createNewTask(task);
-    console.log(newTask);
+    // console.log(newTask);
     dispatch({
       type: TYPES.createTask,
       payload: newTask,
@@ -40,7 +40,7 @@ export const UpdateTask = (idTaskToDelete, data) => {
 export const DeleteTask = (idTaskToDelete) => {
   return async (dispatch) => {
     const taskDeleted = await deleteTask(idTaskToDelete);
-    console.log(taskDeleted);
+    // console.log(taskDeleted);
     dispatch({
       type: TYPES.deleteTask,
       payload: idTaskToDelete,

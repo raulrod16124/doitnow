@@ -66,7 +66,7 @@ export const AsideNav = () => {
   // });
 
   const handleSelectedView = (view) => {
-    console.log(view);
+    // console.log(view);
     dispatch(ViewSelected(view));
     // setHomeView(view);
   };

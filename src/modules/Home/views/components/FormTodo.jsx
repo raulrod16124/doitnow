@@ -57,7 +57,7 @@ export const FormTodo = ({
 
   const handleGetStartDate = (e) => {
     setTimestampSelectorVisibility(false);
-    // console.log(e.toLocaleDateString());
+    // // console.log(e.toLocaleDateString());
     setTimestamp(e);
     setTodo({ ...todo, date: e.toLocaleDateString() });
   };
@@ -66,7 +66,7 @@ export const FormTodo = ({
     e.preventDefault();
     if (todo.title !== "") {
       const userOwner = JSON.parse(localStorage.getItem("user"));
-      console.log(userOwner);
+      // console.log(userOwner);
       const newTask = {
         title: todo.title,
         level: todo.level,

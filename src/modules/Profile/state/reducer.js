@@ -23,7 +23,7 @@ export const ProfileReducer = (state = initialState, action) => {
         };
       }
     case TYPES.createUserProfile:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.length > 0) {
         return {
           ...state,
@@ -38,7 +38,6 @@ export const ProfileReducer = (state = initialState, action) => {
         };
       }
     case TYPES.updateUserProfile:
-      console.log(action.payload._document.data.value.mapValue.fields);
       if (action.payload) {
         return {
           ...state,

@@ -9,6 +9,7 @@ const initialState = {
 export const TodosReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.getTasks:
+      // console.log(action.payload);
       // console.log(action.payload.length);
       if (action.payload.length > 0) {
         localStorage.setItem("tasks", JSON.stringify(action.payload));
@@ -28,7 +29,7 @@ export const TodosReducer = (state = initialState, action) => {
       if (action.payload) {
         return {
           ...state,
-          status: "task created",
+          status: "task_created",
         };
       } else {
         return {
@@ -38,11 +39,11 @@ export const TodosReducer = (state = initialState, action) => {
         };
       }
     case TYPES.updateTask:
-      // console.log(action.payload);
+      // // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,
-          status: "task updated",
+          status: "task_updated",
         };
       } else {
         return {
@@ -55,7 +56,7 @@ export const TodosReducer = (state = initialState, action) => {
       if (action.payload) {
         return {
           ...state,
-          status: "task deleted",
+          status: "task_deleted",
         };
       } else {
         return {

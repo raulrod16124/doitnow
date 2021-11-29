@@ -22,10 +22,10 @@ export const Header = () => {
     const userDataFromLocalStore = await JSON.parse(
       localStorage.getItem("user")
     );
-    console.log(profileState.status);
+    // console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
-        console.log("GETTING ");
+        // console.log("GETTING ");
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "userData_updated":

@@ -19,7 +19,7 @@ export const TimestampItem = ({ todo, handleGetEditItem }) => {
   const [descriptionVisibility, setdescriptionVisibility] = useState(false);
 
   const handleDescribeVisinility = () => {
-    console.log("OP");
+    // console.log("OP");
     setdescriptionVisibility(!descriptionVisibility);
   };
 

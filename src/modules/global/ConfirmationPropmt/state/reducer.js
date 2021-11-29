@@ -10,10 +10,10 @@ const initialState = {
 export const ConfirmationPropmtReducer = (state = initialState, action) => {
   switch (action.type) {
     case "@open_confirmation_propmt":
-      console.log("OPEN POPUP");
+      // console.log("OPEN POPUP");
       return { ...state, status: "open", ...action.payload };
     case "@close_confirmation_propmt":
-      console.log("CLOSE POPUP");
+      // console.log("CLOSE POPUP");
       return initialState;
     default:
       return state;

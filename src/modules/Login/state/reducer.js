@@ -10,7 +10,7 @@ export const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.checkUser:
       let userData = null;
-      // console.log(action.payload);
+      // // console.log(action.payload);
       if (action.payload.user?.stsTokenManager.refreshToken) {
         userData = {
           id: action.payload._tokenResponse.localId,
@@ -34,7 +34,7 @@ export const LoginReducer = (state = initialState, action) => {
       }
 
     case TYPES.createNewUser:
-      // console.log(action.payload);
+      // // console.log(action.payload);
       if (action.payload.email) {
         return {
           ...state,
@@ -50,7 +50,7 @@ export const LoginReducer = (state = initialState, action) => {
       }
     // TODO - Refactor to use firebase
     case TYPES.updateUser:
-    // console.log(action.payload);
+    // // console.log(action.payload);
     // const updateTodo = state.map( todo => {
     //     if( todo.id === action.payload.id ){
     //         return todo = action.payload;
@@ -59,7 +59,7 @@ export const LoginReducer = (state = initialState, action) => {
     // } );
     // return updateTodo;
     case TYPES.deleteUser:
-    // console.log(action.payload);
+    // // console.log(action.payload);
     // const updateTodos = state.filter( todo => todo.id !== action.payload );
     // return updateTodos;
 

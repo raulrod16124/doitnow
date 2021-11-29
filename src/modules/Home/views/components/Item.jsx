@@ -19,7 +19,7 @@ function Item({ item, index, handleGetEditItem }) {
   );
 
   const handleArchiveCompletedTask = (item) => {
-    console.log(item);
+    // console.log(item);
     item.status = "archive";
     dispatch(
       OpenConfirmationPropmt({

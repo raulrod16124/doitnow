@@ -46,8 +46,9 @@
 
     .avatarToSelect.selected {
       border-radius: 50%;
-      border: 0.5vmin solid $Green;
-      transform: scale(1.1);
+      border: 1vmin solid $Green;
+      padding: 1vmin;
+      transform: scale(1.4);
     }
 
     button {
@@ -105,11 +106,37 @@
       margin: -2.5vh auto 1.5vh auto;
     }
 
+    .name-content,
+    .email-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1vmin;
+      width: 60%;
+      margin: 0 auto;
+
+      .user-name-edit,
+      .user-email-edit {
+        height: 100%;
+        padding: 0.5vmin;
+        border-radius: 0.5vmin;
+        border: 0.2vmin solid $DarkGrey;
+      }
+
+      .content-buttons {
+        display: flex;
+        column-gap: 0.5vmin;
+        margin: 0 0.5vmin;
+      }
+    }
+
     .user-name,
     .user-email {
       text-align: center;
-      margin: 0.5vh auto;
       font-size: 2.5vmin;
+      padding-right: 1vw;
+      padding-left: 2vw;
+      margin: 0;
     }
 
     .user-name {
@@ -123,9 +150,9 @@
       row-gap: 0.5vmin;
 
       .user-level-bar {
-        margin: 1vh auto;
+        margin: 1vh auto 0 auto;
         width: 80%;
-        height: 4vh;
+        height: 3vh;
         border-radius: 0.5vmin;
         background-color: $Grey;
       }
@@ -145,6 +172,14 @@
         color: $DarkGrey;
         display: flex;
         justify-content: space-between;
+      }
+    }
+
+    .icon {
+      opacity: 0.2;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 1;
       }
     }
   }

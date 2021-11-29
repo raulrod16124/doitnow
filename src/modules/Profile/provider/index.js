@@ -3,7 +3,7 @@ import { addDoc, collection, doc, getDoc, setDoc } from "@firebase/firestore";
 import { db } from "../../../firebase/config";
 
 export const getUserProfile = async (user) => {
-  console.log("Enter to getUserProfile");
+  // console.log("Enter to getUserProfile");
   try {
     const userProfileCall = doc(db, "users", user);
     const userProfileSnapshot = await getDoc(userProfileCall);
@@ -13,13 +13,13 @@ export const getUserProfile = async (user) => {
     // https://firebase.google.com/docs/firestore/solutions/role-based-access
     // TODO - Filter by user before return
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };
 
 export const createUserProfile = async (userData) => {
-  console.log("Enter to createUserProfile");
+  // console.log("Enter to createUserProfile");
   try {
     const userProfileCall = collection(db, "users");
     await addDoc(userProfileCall, userData);
@@ -27,17 +27,17 @@ export const createUserProfile = async (userData) => {
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };
 
 export const updateProfile = async (idToUpdate, data) => {
-  console.log("Enter to updateProfile");
-  console.log(idToUpdate);
-  console.log(data);
+  // console.log("Enter to updateProfile");
+  // console.log(idToUpdate);
+  // console.log(data);
   try {
-    console.log("Enter to try");
+    // console.log("Enter to try");
     const docRefToUpdate = doc(db, "users", idToUpdate);
     await setDoc(docRefToUpdate, data);
     const userProfileUpdated = await getDoc(docRefToUpdate);
@@ -45,7 +45,7 @@ export const updateProfile = async (idToUpdate, data) => {
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };

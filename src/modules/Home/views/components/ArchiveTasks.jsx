@@ -20,7 +20,7 @@ export const ArchiveTasks = ({ handleArchiveVisibility }) => {
     setFilterArchiveTasks(
       profileTasksData.filter((task) => task.status === "archive")
     );
-    console.log(archiveTasks);
+    // console.log(archiveTasks);
   }, [todosState]);
 
   const handleSearchArchiveTask = (e) => {

@@ -3,7 +3,7 @@ export const DragDropController = ({
   destinationStatus,
   draggableID,
 }) => {
-  console.log(sourceList);
+  // console.log(sourceList);
   const taskToMove = sourceList.filter((task) => {
     if (task.id === draggableID) {
       task.status = destinationStatus;

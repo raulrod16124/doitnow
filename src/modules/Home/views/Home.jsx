@@ -20,8 +20,6 @@ export const Home = () => {
   });
 
   const viewSelected = useSelector((state) => {
-    console.log(state.AsideReducer.today);
-    console.log(state.AsideReducer.calendar);
     return state.AsideReducer;
   });
 
@@ -70,16 +68,17 @@ export const Home = () => {
   }, [userLogged]);
 
   useEffect(async () => {
-    const userData = JSON.parse(localStorage.getItem("user"));
+    const userData = await JSON.parse(localStorage.getItem("user"));
     if (
-      todosState.status === "task created" ||
-      todosState.status === "task deleted" ||
-      todosState.status === "task updated"
+      todosState.status === "task_created" ||
+      todosState.status === "task_deleted" ||
+      todosState.status === "task_updated"
     ) {
       dispatch(GetTasks(userData));
     }
+    // // console.log(todosState);
     if (todosState.status === "success" && todoFilter === "All") {
-      console.log(todosState);
+      // // console.log(todosState);
       handleOrderTaskPerStatus(todosState.data);
       setAllTodos(todosState.data);
       setLoadingVisibility(false);
@@ -232,7 +231,7 @@ export const Home = () => {
   const handleDetectDragging = (result, item) => {
     if (result.destination !== null) {
       if (item === "list") {
-        // console.log(result);
+        // // console.log(result);
         switch (result.destination.droppableId) {
           case "todo":
             setDragListDetected({ todo: true, inProgress: false, done: false });
@@ -252,8 +251,8 @@ export const Home = () => {
             return;
         }
       } else {
-        // console.log(result);
-        // console.log(allTodos.find((task) => task.id === result.draggableId));
+        // // console.log(result);
+        // // console.log(allTodos.find((task) => task.id === result.draggableId));
         // setDragTaskDetected(result.draggableId);
       }
     }

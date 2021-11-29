@@ -16,7 +16,7 @@ export const Tag = ({ tag, fromForm = false, handleDeleteTag }) => {
       {tag.tag}
       {fromForm && (
         <i
-          class="fas fa-times icon"
+          className="fas fa-times icon"
           style={{ color: colorCondition }}
           onClick={() => handleDeleteTag(tag.tag)}
         ></i>

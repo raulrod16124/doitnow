@@ -38,7 +38,7 @@ export const WeekRecord = (list, param) => {
       formatDate = `${formatDate[1]}/${formatDate[0]}/${formatDate[2]}`;
       let date = dayjs(formatDate).format("YYYY-MM-DD");
       let week = dayjs(date).isoWeek();
-      // console.log(week);
+      // // console.log(week);
       if (weeks[week]) {
         weeks[week] = weeks[week] + 1;
       } else {
@@ -59,7 +59,7 @@ export const weeklyAverage = (list) => {
     let date = dayjs(formatDate).format("YYYY-MM-DD");
     let week = dayjs(date).isoWeek();
     if (item.status === "done" || item.status === "archive") {
-      // console.log(week);
+      // // console.log(week);
       if (weeks[week]) {
         weeks[week] = weeks[week] + 1;
       } else {

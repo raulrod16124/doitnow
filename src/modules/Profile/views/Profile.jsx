@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Button } from "../../../stories/Button";
 import { Loading } from "../../global/Loading";
 import { months } from "../../Home/views/components/dateData";
 import { GetUserProfile, UpdateUserProfile } from "../state/actions";
@@ -22,6 +23,10 @@ export const Profile = () => {
   const [userData, setUserData] = useState(undefined);
 
   const [avatarSelectorView, setAvatarSelectorView] = useState(false);
+  const [nameEditView, setNameEditView] = useState(false);
+  const [nameEdited, setNameEdited] = useState("");
+  const [emailEditView, setEmailEditView] = useState(false);
+  const [emailEdited, setEmailEdited] = useState("");
 
   const daysInCurrentMonth = (prev) => {
     let formatDate = {
@@ -45,23 +50,25 @@ export const Profile = () => {
     const userDataFromLocalStore = await JSON.parse(
       localStorage.getItem("user")
     );
-    console.log(profileState.status);
+    // console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
-        console.log("GETTING ");
+        // console.log("GETTING ");
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "userData_updated":
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
-        console.log(profileState.data);
+        // console.log(profileState.data);
         setUserData(profileState.data);
+        setNameEdited(profileState.data.name);
+        setEmailEdited(profileState.data.email);
         setLoadingVisibility(false);
         break;
     }
 
-    console.log(userDataFromLocalStore);
+    // console.log(userDataFromLocalStore);
   }, [profileState]);
 
   // tasks Controller
@@ -163,7 +170,7 @@ export const Profile = () => {
   };
 
   const handleUpdateUserData = (avatarSelected) => {
-    console.log(avatarSelected);
+    // console.log(avatarSelected);
     setUserData({ ...userData, avatar: avatarSelected });
     dispatch(
       UpdateUserProfile(userData.id, { ...userData, avatar: avatarSelected })
@@ -197,8 +204,86 @@ export const Profile = () => {
                     onClick={() => handleSetAvatarSelectorView(true)}
                   ></i>
                 </div>
-                <p className="user-name">{userData && userData.name}</p>
-                <p className="user-email">{userData && userData.email}</p>
+                <div className="name-content">
+                  {!nameEditView ? (
+                    <>
+                      <p className="user-name">{userData && userData.name}</p>
+                      <i
+                        className="fas fa-edit icon"
+                        onClick={() => setNameEditView(true)}
+                      ></i>
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        className="user-name-edit"
+                        value={nameEdited}
+                        onChange={(e) => setNameEdited(e.target.value)}
+                      />
+                      <div className="content-buttons">
+                        <Button
+                          label="Cancel"
+                          onClick={() => setNameEditView(false)}
+                          size="small"
+                        />
+                        <Button
+                          label="Save"
+                          onClick={() => {
+                            dispatch(
+                              UpdateUserProfile(userData.id, {
+                                ...userData,
+                                name: nameEdited,
+                              })
+                            );
+                            setNameEditView(false);
+                          }}
+                          size="small"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="email-content">
+                  {!emailEditView ? (
+                    <>
+                      <p className="user-email">{userData && userData.email}</p>
+                      <i
+                        className="fas fa-edit icon"
+                        onClick={() => setEmailEditView(true)}
+                      ></i>
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        className="user-email-edit"
+                        value={emailEdited}
+                        onChange={(e) => setEmailEdited(e.target.value)}
+                      />
+                      <div className="content-buttons">
+                        <Button
+                          label="Cancel"
+                          onClick={() => setEmailEditView(false)}
+                          size="small"
+                        />
+                        <Button
+                          label="Save"
+                          onClick={() => {
+                            dispatch(
+                              UpdateUserProfile(userData.id, {
+                                ...userData,
+                                email: emailEdited,
+                              })
+                            );
+                            setEmailEditView(false);
+                          }}
+                          size="small"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
                 <div className="user-progress-level-bar">
                   <div className="user-level-bar">
                     <div

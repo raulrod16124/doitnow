@@ -6,7 +6,7 @@ export const CheckUser = (user) => {
   return async (dispatch) => {
     const userData = await verifyUser(user);
     // if (userData._tokenResponse) {
-    //   console.log("Token exists");
+    //   // console.log("Token exists");
     //   dispatch(GetUserProfile(userData._tokenResponse));
     // }
     dispatch({
@@ -20,7 +20,7 @@ export const CreateUser = (user) => {
   return async (dispatch) => {
     const { userTokenCreated, newUser } = await createUser(user);
     if (userTokenCreated) {
-      console.log("Token Created");
+      // console.log("Token Created");
       const userProfile = {
         id: userTokenCreated.localId,
         name: user.email.split("@")[0],
@@ -29,7 +29,7 @@ export const CreateUser = (user) => {
       };
       dispatch(CreateUserProfile(userProfile));
     }
-    console.log("Second Dispatch");
+    // console.log("Second Dispatch");
     dispatch({
       type: TYPES.createNewUser,
       payload: newUser,
