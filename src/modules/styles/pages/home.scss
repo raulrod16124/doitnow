@@ -356,9 +356,11 @@
     left: 25%;
     width: 30%;
     height: auto;
+    max-height: 80vh;
     background-color: $White;
     border-radius: 0.5vmin;
     padding: 1vmin;
+    overflow: auto;
 
     .close-icon {
       position: absolute;
