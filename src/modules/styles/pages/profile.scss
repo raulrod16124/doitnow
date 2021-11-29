@@ -21,12 +21,12 @@
 
   .avatar-selector {
     position: relative;
-    width: 45%;
-    height: 55vh;
-    margin: 10vh auto;
+    width: 60%;
+    height: 85vh;
+    margin: 5vh auto;
     padding: 4vmin 2vmin;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     border-radius: 0.5vmin;
     background-color: $White;
     z-index: 200;

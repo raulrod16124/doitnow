@@ -45,8 +45,13 @@ export const Profile = () => {
     const userDataFromLocalStore = await JSON.parse(
       localStorage.getItem("user")
     );
+    console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
+        console.log("GETTING ");
+        dispatch(GetUserProfile(userDataFromLocalStore.id));
+        break;
+      case "userData_updated":
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":

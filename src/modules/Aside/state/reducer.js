@@ -1,5 +1,5 @@
 const initialStateViewSelected = {
-  today: false,
+  today: true,
   calendar: false,
   account: false,
   settings: false,

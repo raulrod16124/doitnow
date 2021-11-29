@@ -38,11 +38,11 @@ export const ProfileReducer = (state = initialState, action) => {
         };
       }
     case TYPES.updateUserProfile:
-      // console.log(action.payload);
+      console.log(action.payload._document.data.value.mapValue.fields);
       if (action.payload) {
         return {
           ...state,
-          status: "task updated",
+          status: "userData_updated",
         };
       } else {
         return {
