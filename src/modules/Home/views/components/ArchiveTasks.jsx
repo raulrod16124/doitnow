@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Search } from "../../../../stories/Search";
+import { GetTasks } from "../../state/actions";
 import { ArchiveItem } from "./ArchiveItem";
 
-export const ArchiveTasks = ({ handleArchiveVisibility }) => {
-  const todosState = useSelector((state) => {
-    return state.TodosReducer;
-  });
-
+export const ArchiveTasks = ({ allTodos, handleArchiveVisibility }) => {
   const [archiveTasks, setArchiveTasks] = useState([]);
   const [filterArchiveTasks, setFilterArchiveTasks] = useState([]);
 
-  useEffect(() => {
-    const profileTasksData = JSON.parse(localStorage.getItem("tasks"));
-    setArchiveTasks(
-      profileTasksData.filter((task) => task.status === "archive")
-    );
-    setFilterArchiveTasks(
-      profileTasksData.filter((task) => task.status === "archive")
-    );
+  useEffect(async () => {
+    setArchiveTasks(allTodos.filter((task) => task.status === "archive"));
+    setFilterArchiveTasks(allTodos.filter((task) => task.status === "archive"));
     // console.log(archiveTasks);
-  }, [todosState]);
+  }, []);
 
   const handleSearchArchiveTask = (e) => {
     if (e.target.value === "") {

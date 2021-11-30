@@ -18,6 +18,9 @@ export const GetUserProfile = (user) => {
       avatar: Object.values(
         userProfileData._document.data.value.mapValue.fields.avatar
       )[0],
+      level: Object.values(
+        userProfileData._document.data.value.mapValue.fields.level
+      )[0],
     };
     // // console.log(userProfile);
     dispatch({

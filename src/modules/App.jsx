@@ -8,6 +8,7 @@ import { AuthProvider } from "../auth/Auth";
 import Routes from "../routes";
 import store from "../store/store";
 import { AsideNav } from "./Aside/views/AsideNav";
+import { ExperiencePoints } from "./ExperiencePoints/ExperiencePoints";
 import { ConfirmationPropmt } from "./global/ConfirmationPropmt/ConfirmationPropmt";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
     <Provider store={store}>
       <div className="App">
         <AuthProvider>
+          <ExperiencePoints />
           <Router>
             <AsideNav />
             <Routes />

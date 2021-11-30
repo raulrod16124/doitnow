@@ -12,7 +12,6 @@ export const TodosReducer = (state = initialState, action) => {
       // console.log(action.payload);
       // console.log(action.payload.length);
       if (action.payload.length > 0) {
-        localStorage.setItem("tasks", JSON.stringify(action.payload));
         return {
           ...state,
           data: action.payload,

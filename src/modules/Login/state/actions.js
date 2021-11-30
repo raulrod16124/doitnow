@@ -26,6 +26,7 @@ export const CreateUser = (user) => {
         name: user.email.split("@")[0],
         email: user.email,
         avatar: "./../../assets/avatars/girl1.png",
+        level: 1,
       };
       dispatch(CreateUserProfile(userProfile));
     }

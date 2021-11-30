@@ -7,15 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "../../../stories/Button";
 import { Loading } from "../../global/Loading";
+import { GetTasks } from "../../Home/state/actions";
 import { months } from "../../Home/views/components/dateData";
 import { GetUserProfile, UpdateUserProfile } from "../state/actions";
-import { avatars, defaultAvatar } from "./components/avatars";
+import { defaultAvatar } from "./components/avatars";
 import { AvatarSelector } from "./components/AvatarSelector";
 import { DailyRecord, WeekRecord, weeklyAverage } from "./components/DataLogic";
 
 export const Profile = () => {
   const profileState = useSelector((state) => {
     return state.ProfileReducer;
+  });
+
+  const todosState = useSelector((state) => {
+    return state.TodosReducer;
   });
 
   const dispatch = useDispatch();
@@ -53,14 +58,14 @@ export const Profile = () => {
     // console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
-        // console.log("GETTING ");
+        // console.log("GETTING PROFILE");
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "userData_updated":
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
-        // console.log(profileState.data);
+        console.log(profileState.data);
         setUserData(profileState.data);
         setNameEdited(profileState.data.name);
         setEmailEdited(profileState.data.email);
@@ -86,30 +91,38 @@ export const Profile = () => {
 
   // Circle bar value
   const [circleBarValue, setcircleBarValue] = useState(0);
-  useEffect(() => {
-    const profileTasksData = JSON.parse(localStorage.getItem("tasks"));
-    if (profileTasksData) {
-      setallTasksForProfileData(profileTasksData);
+  useEffect(async () => {
+    const userDataLocalStorage = await JSON.parse(localStorage.getItem("user"));
+    if (
+      todosState.status === "initial" ||
+      todosState.status === "task_created" ||
+      todosState.status === "task_deleted" ||
+      todosState.status === "task_updated"
+    ) {
+      dispatch(GetTasks(userDataLocalStorage));
+    }
+    if (todosState.status === "success") {
+      setallTasksForProfileData(todosState.data);
       setTasksDoneForProfileData(
-        profileTasksData.filter(
+        todosState.data.filter(
           (task) => task.status === "done" || task.status === "archive"
         )
       );
-      const doneTasks = profileTasksData.filter(
+      const doneTasks = todosState.data.filter(
         (task) => task.status === "done" || task.status === "archive"
       );
       setcircleBarValue(
         doneTasks.filter((task) => task.date.split("/")[1] == currentMonth + 1)
           .length /
-          profileTasksData.filter(
+          todosState.data.filter(
             (task) => task.date.split("/")[1] == currentMonth + 1
           ).length
       );
-      handleGetStatsData(profileTasksData);
-      handleGetCurrentMonthlyActivity(profileTasksData);
-      handleGetCurrentMonthlyActivity(profileTasksData, "prev");
+      handleGetStatsData(todosState.data);
+      handleGetCurrentMonthlyActivity(todosState.data);
+      handleGetCurrentMonthlyActivity(todosState.data, "prev");
     }
-  }, []);
+  }, [todosState]);
 
   const levelBar =
     allTasksForProfileData.length > 0
@@ -193,7 +206,7 @@ export const Profile = () => {
           <div className="profile-top">
             <div className="user-data-content">
               <div className="user-data">
-                <div className="user-level">Beginner</div>
+                <div className="user-level">{userData && userData.level}</div>
                 <img
                   className="user-avatar"
                   src={userData ? userData.avatar : defaultAvatar}
@@ -248,10 +261,10 @@ export const Profile = () => {
                   {!emailEditView ? (
                     <>
                       <p className="user-email">{userData && userData.email}</p>
-                      <i
+                      {/* <i
                         className="fas fa-edit icon"
                         onClick={() => setEmailEditView(true)}
-                      ></i>
+                      ></i> */}
                     </>
                   ) : (
                     <>
@@ -295,6 +308,7 @@ export const Profile = () => {
                   </div>
                   <div className="user-progress-data">
                     <p className="actual-exp">
+                      {/* TODO - Implement function to calculate tasks from mode level */}
                       {tasksDoneForProfileData.length * 50} exp.
                     </p>
                     <p className="exp-goal">5000 exp.</p>

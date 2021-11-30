@@ -308,7 +308,10 @@ export const Home = () => {
           />
           {/* Archive section */}
           {archiveVisibility && (
-            <ArchiveTasks handleArchiveVisibility={handleArchiveVisibility} />
+            <ArchiveTasks
+              allTodos={allTodos}
+              handleArchiveVisibility={handleArchiveVisibility}
+            />
           )}
           {/* Home views */}
           {viewSelected.today && (

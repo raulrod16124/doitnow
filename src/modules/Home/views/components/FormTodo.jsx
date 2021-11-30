@@ -142,8 +142,6 @@ export const FormTodo = ({
             <option className="select-level">easy</option>
             <option className="select-level">medium</option>
             <option className="select-level">hard</option>
-            <option className="select-level">killing</option>
-            <option className="select-level">💀</option>
           </select>
           <select
             className="form-status"

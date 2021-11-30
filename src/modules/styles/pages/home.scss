@@ -360,7 +360,6 @@
     background-color: $White;
     border-radius: 0.5vmin;
     padding: 1vmin;
-    overflow: auto;
 
     .close-icon {
       position: absolute;
@@ -372,6 +371,8 @@
 
     .content-form {
       padding: 3vmin;
+      max-height: 75vh;
+      overflow-y: auto;
     }
 
     .title-form {
