@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
+import { Button } from "../../stories/Button";
 import { GetTasks } from "../Home/state/actions";
 import { UpdateUserProfile } from "../Profile/state/actions";
 import { XPLevels } from "./XPLevels";
@@ -13,9 +14,13 @@ export const ExperiencePoints = () => {
 
   const dispatch = useDispatch();
 
-  const [xpVisibility, setXpVisibility] = useState();
+  const [xpVisibility, setXpVisibility] = useState(false);
 
   const [expereincePoints, setExperiencePoints] = useState(0);
+
+  const [prevLevel, setprevLevel] = useState(0);
+
+  const [actualLevel, setActualLevel] = useState(0);
 
   useEffect(async () => {
     const userData = await JSON.parse(localStorage.getItem("user"));
@@ -29,7 +34,6 @@ export const ExperiencePoints = () => {
     }
     if (todosState.status === "success") {
       handleCalcutlateXP(todosState.data);
-      setXpVisibility(true);
     }
   }, [todosState]);
 
@@ -38,6 +42,8 @@ export const ExperiencePoints = () => {
     const userData = await JSON.parse(localStorage.getItem("user"));
     const levelVerification = XPLevels(expereincePoints);
     if (userData && userData.level < levelVerification) {
+      setprevLevel(userData.level);
+      setActualLevel(levelVerification);
       setXpVisibility(true);
       dispatch(
         UpdateUserProfile(userData.id, {
@@ -76,8 +82,37 @@ export const ExperiencePoints = () => {
   };
 
   return (
-    <div className="bg-experience-points-window">
-      <div className="experience-points-window">XP</div>
-    </div>
+    <>
+      {xpVisibility && (
+        <div
+          className="bg-experience-points-window"
+          onClick={(e) => {
+            if (e.target.className === "bg-experience-points-window") {
+              setXpVisibility(false);
+            }
+          }}
+        >
+          <div className="experience-points-window">
+            <div className="content-arrows">
+              <i className="fas fa-chevron-up icon arrow"></i>
+              <i className="fas fa-chevron-up icon arrow"></i>
+              <i className="fas fa-chevron-up icon arrow"></i>
+            </div>
+            <h2 className="level-title">Level Up</h2>
+            <div className="transition-level">
+              <p className="prev-level">{prevLevel}</p>
+              <i className="fas fa-chevron-right icon"></i>
+              <p className="actual-level">{actualLevel}</p>
+            </div>
+            <div className="button-content">
+              <Button
+                label="Keep working hard"
+                onClick={() => setXpVisibility(false)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

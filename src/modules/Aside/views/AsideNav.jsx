@@ -81,12 +81,13 @@ export const AsideNav = () => {
           <div className={homeSelected}>
             <li
               className="section-content"
-              onClick={() =>
+              onClick={() => {
                 setSectionView({
                   ...sectionView,
                   home: !sectionView.home,
-                })
-              }
+                });
+                handleSelectedView("today");
+              }}
             >
               <Link
                 to="/home"

@@ -206,7 +206,10 @@ export const Profile = () => {
           <div className="profile-top">
             <div className="user-data-content">
               <div className="user-data">
-                <div className="user-level">{userData && userData.level}</div>
+                <div className="level-content">
+                  <div className="user-level">{userData && userData.level}</div>
+                  <label className="label">Level</label>
+                </div>
                 <img
                   className="user-avatar"
                   src={userData ? userData.avatar : defaultAvatar}
@@ -308,9 +311,10 @@ export const Profile = () => {
                   </div>
                   <div className="user-progress-data">
                     <p className="actual-exp">
-                      {/* TODO - Implement function to calculate tasks from mode level */}
+                      {/* TODO - Refactored actual exp for the next level getting from XPLevel function */}
                       {tasksDoneForProfileData.length * 50} exp.
                     </p>
+                    {/* TODO - Refactored exp for the next level getting from XPLevel function */}
                     <p className="exp-goal">5000 exp.</p>
                   </div>
                 </div>
