@@ -4,15 +4,21 @@ import { useSelector } from "react-redux";
 
 import { Button } from "../../stories/Button";
 import { GetTasks } from "../Home/state/actions";
-import { UpdateUserProfile } from "../Profile/state/actions";
-import { XPLevels } from "./XPLevels";
+import { GetUserProfile, UpdateUserProfile } from "../Profile/state/actions";
+import { NextLevelXP, XPLevels, handleCalcutlateXP } from "./XPLevels";
 
 export const ExperiencePoints = () => {
   const todosState = useSelector((state) => {
     return state.TodosReducer;
   });
 
+  const profileState = useSelector((state) => {
+    return state.ProfileReducer;
+  });
+
   const dispatch = useDispatch();
+
+  const [profileData, setProfileData] = useState(null);
 
   const [xpVisibility, setXpVisibility] = useState(false);
 
@@ -31,55 +37,44 @@ export const ExperiencePoints = () => {
     ) {
       setXpVisibility(false);
       dispatch(GetTasks(userData));
+      dispatch(GetUserProfile(userData.id));
     }
     if (todosState.status === "success") {
-      handleCalcutlateXP(todosState.data);
+      const totalXpPoints = handleCalcutlateXP(todosState.data);
+      setExperiencePoints(totalXpPoints);
     }
   }, [todosState]);
 
+  useEffect(() => {
+    if (profileState.status === "success") {
+      setProfileData(profileState.data);
+    }
+  }, [profileState]);
+
   useEffect(async () => {
-    // TODO - Include level param in userData
-    const userData = await JSON.parse(localStorage.getItem("user"));
-    const levelVerification = XPLevels(expereincePoints);
-    if (userData && userData.level < levelVerification) {
-      setprevLevel(userData.level);
-      setActualLevel(levelVerification);
+    const { level } = XPLevels(expereincePoints);
+    if (profileData && profileData.level < level) {
+      console.log("LEVEL UP GOOO");
+      setprevLevel(profileData.level);
+      setActualLevel(level);
       setXpVisibility(true);
       dispatch(
-        UpdateUserProfile(userData.id, {
-          ...userData,
-          level: levelVerification,
+        UpdateUserProfile(profileData.id, {
+          ...profileData,
+          level: level,
         })
       );
     }
+    if (profileData && profileData.level > level) {
+      dispatch(
+        UpdateUserProfile(profileData.id, {
+          ...profileData,
+          level: level,
+        })
+      );
+    }
+    console.log("EXP POINTS CHECKED");
   }, [expereincePoints]);
-
-  const handleCalcutlateXP = (list) => {
-    let easyTasks = 0;
-    let mediumTasks = 0;
-    let hardTasks = 0;
-    let noAssigned = 0;
-
-    list.map((task) => {
-      if (task.status === "done" || task.status === "archive") {
-        switch (task.level) {
-          case "easy":
-            easyTasks++;
-            break;
-          case "medium":
-            mediumTasks++;
-            break;
-          case "hard":
-            hardTasks++;
-            break;
-          default:
-            noAssigned++;
-            break;
-        }
-      }
-    });
-    setExperiencePoints(easyTasks * 50 + mediumTasks * 75 + hardTasks * 100);
-  };
 
   return (
     <>

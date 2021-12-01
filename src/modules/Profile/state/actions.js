@@ -22,7 +22,7 @@ export const GetUserProfile = (user) => {
         userProfileData._document.data.value.mapValue.fields.level
       )[0],
     };
-    // // console.log(userProfile);
+    // console.log(userProfile);
     dispatch({
       type: TYPES.getUserProfile,
       payload: userProfile,

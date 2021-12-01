@@ -6,6 +6,11 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "../../../stories/Button";
+import {
+  NextLevelXP,
+  XPLevels,
+  handleCalcutlateXP,
+} from "../../ExperiencePoints/XPLevels";
 import { Loading } from "../../global/Loading";
 import { GetTasks } from "../../Home/state/actions";
 import { months } from "../../Home/views/components/dateData";
@@ -65,7 +70,6 @@ export const Profile = () => {
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
-        console.log(profileState.data);
         setUserData(profileState.data);
         setNameEdited(profileState.data.name);
         setEmailEdited(profileState.data.email);
@@ -82,6 +86,9 @@ export const Profile = () => {
 
   const [previousMonthlyActivity, setPreviousMonthlyActivity] = useState([]);
   const [currentMonthlyActivity, setCurrentMonthlyActivity] = useState([]);
+
+  const [expRequireToActualLevel, setExpRequireToActualLevel] = useState([]);
+  const [expRequireToNextLevel, setExpRequireToNextLevel] = useState([]);
 
   const [dataTasksForStats, setDataTasksForStats] = useState({
     daily_record: 0,
@@ -121,13 +128,22 @@ export const Profile = () => {
       handleGetStatsData(todosState.data);
       handleGetCurrentMonthlyActivity(todosState.data);
       handleGetCurrentMonthlyActivity(todosState.data, "prev");
+      const { level } = XPLevels(handleCalcutlateXP(todosState.data));
+      setExpRequireToNextLevel(NextLevelXP(level));
+      setExpRequireToActualLevel(NextLevelXP(level - 1));
     }
   }, [todosState]);
 
-  const levelBar =
-    allTasksForProfileData.length > 0
-      ? (tasksDoneForProfileData.length / (5000 / 50)) * 100 + "%"
-      : 0 + "%";
+  // TODO - Resolve the bar level
+  const levelBar = () => {
+    if (allTasksForProfileData.length > 0) {
+      const diff = expRequireToNextLevel - expRequireToActualLevel;
+      const actualProgress =
+        handleCalcutlateXP(allTasksForProfileData) - expRequireToActualLevel;
+      const barPercentage = Math.round((actualProgress * 100) / diff);
+      return `${barPercentage}%`;
+    }
+  };
 
   const handleGetStatsData = (list) => {
     setDataTasksForStats({
@@ -305,17 +321,18 @@ export const Profile = () => {
                     <div
                       className="user-green-fill"
                       style={{
-                        width: levelBar,
+                        width: levelBar(),
                       }}
                     ></div>
+                    <p className="actual-exp-points">
+                      {handleCalcutlateXP(allTasksForProfileData)} exp.
+                    </p>
                   </div>
                   <div className="user-progress-data">
-                    <p className="actual-exp">
-                      {/* TODO - Refactored actual exp for the next level getting from XPLevel function */}
-                      {tasksDoneForProfileData.length * 50} exp.
+                    <p className="actual-exp-text">
+                      {expRequireToActualLevel} exp.
                     </p>
-                    {/* TODO - Refactored exp for the next level getting from XPLevel function */}
-                    <p className="exp-goal">5000 exp.</p>
+                    <p className="exp-goal">{expRequireToNextLevel} exp.</p>
                   </div>
                 </div>
               </div>
