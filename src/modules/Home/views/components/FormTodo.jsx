@@ -136,7 +136,7 @@ export const FormTodo = ({
           />
           <select
             className="form-level"
-            defaultValue={todo && todo.level}
+            value={todo && todo.level}
             onChange={(e) => setTodo({ ...todo, level: e.target.value })}
           >
             <option className="select-level">easy</option>
@@ -145,7 +145,7 @@ export const FormTodo = ({
           </select>
           <select
             className="form-status"
-            defaultValue="-- select --"
+            value="-- select --"
             onChange={(e) => setTodo({ ...todo, status: e.target.value })}
           >
             <option

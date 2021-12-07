@@ -23,6 +23,11 @@ export const Today = ({
     dragging: dragListDetected.done,
   });
 
+  const handleGetOpenTasks = (list) => {
+    const filterList = list.filter((item) => item.status !== "archive");
+    return filterList;
+  };
+
   return (
     <div className="today-main">
       <div className="content-body">
@@ -34,7 +39,10 @@ export const Today = ({
                 style={{
                   width:
                     allTodos.length > 0
-                      ? (doneTodo.length / allTodos.length) * 100 + "%"
+                      ? (doneTodo.length /
+                          handleGetOpenTasks(allTodos).length) *
+                          100 +
+                        "%"
                       : 0 + "%",
                 }}
               ></div>

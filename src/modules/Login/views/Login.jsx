@@ -72,7 +72,7 @@ function Login() {
           </fieldset>
           <div className="buttons-content">
             <Link to="/sign-up">Sign up</Link>
-            <Link to="/recover-password">Forgot password?</Link>
+            {/* <Link to="/recover-password">Forgot password?</Link> */}
             <Button label="login" onClick={(e) => handleVerifyUser(e)} />
           </div>
         </form>
