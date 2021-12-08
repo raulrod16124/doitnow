@@ -14,6 +14,7 @@ import {
 import { Loading } from "../../global/Loading";
 import { GetTasks } from "../../Home/state/actions";
 import { months } from "../../Home/views/components/dateData";
+import { updateProfile } from "../provider";
 import { GetUserProfile, UpdateUserProfile } from "../state/actions";
 import { defaultAvatar } from "./components/avatars";
 import { AvatarSelector } from "./components/AvatarSelector";
@@ -138,8 +139,7 @@ export const Profile = () => {
   const levelBar = () => {
     if (allTasksForProfileData.length > 0) {
       const diff = expRequireToNextLevel - expRequireToActualLevel;
-      const actualProgress =
-        handleCalcutlateXP(allTasksForProfileData) - expRequireToActualLevel;
+      const actualProgress = userData.experience - expRequireToActualLevel;
       const barPercentage = Math.round((actualProgress * 100) / diff);
       return `${barPercentage}%`;
     }
@@ -206,303 +206,322 @@ export const Profile = () => {
     );
   };
 
+  const handleUpdateExperienceOfUser = () => {
+    dispatch(async () => {
+      const totalXP = await handleCalcutlateXP(allTasksForProfileData);
+      updateProfile(userData.id, {
+        ...userData,
+        experience: totalXP,
+      });
+    });
+    console.log(userData);
+  };
+
   return (
     <>
       {loadingVisibility ? (
         <Loading />
       ) : (
-        <div className="profile">
-          {avatarSelectorView && (
-            <AvatarSelector
-              userData={userData}
-              handleSetAvatarSelectorView={handleSetAvatarSelectorView}
-              handleUpdateUserData={handleUpdateUserData}
-            />
-          )}
-          <div className="profile-top">
-            <div className="user-data-content">
-              <div className="user-data">
-                <div className="level-content">
-                  <div className="user-level">{userData && userData.level}</div>
-                  <label className="label">Level</label>
-                </div>
-                <img
-                  className="user-avatar"
-                  src={userData ? userData.avatar : defaultAvatar}
-                />
-                <div className="avatarEditButton">
-                  <i
-                    className="fas fa-edit icon"
-                    onClick={() => handleSetAvatarSelectorView(true)}
-                  ></i>
-                </div>
-                <div className="name-content">
-                  {!nameEditView ? (
-                    <>
-                      <p className="user-name">{userData && userData.name}</p>
-                      <i
-                        className="fas fa-edit icon"
-                        onClick={() => setNameEditView(true)}
-                      ></i>
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        type="text"
-                        className="user-name-edit"
-                        value={nameEdited}
-                        onChange={(e) => setNameEdited(e.target.value)}
-                      />
-                      <div className="content-buttons">
-                        <Button
-                          label="Cancel"
-                          onClick={() => setNameEditView(false)}
-                          size="small"
-                        />
-                        <Button
-                          label="Save"
-                          onClick={() => {
-                            dispatch(
-                              UpdateUserProfile(userData.id, {
-                                ...userData,
-                                name: nameEdited,
-                              })
-                            );
-                            setNameEditView(false);
-                          }}
-                          size="small"
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="email-content">
-                  {!emailEditView ? (
-                    <>
-                      <p className="user-email">{userData && userData.email}</p>
-                      {/* <i
-                        className="fas fa-edit icon"
-                        onClick={() => setEmailEditView(true)}
-                      ></i> */}
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        type="text"
-                        className="user-email-edit"
-                        value={emailEdited}
-                        onChange={(e) => setEmailEdited(e.target.value)}
-                      />
-                      <div className="content-buttons">
-                        <Button
-                          label="Cancel"
-                          onClick={() => setEmailEditView(false)}
-                          size="small"
-                        />
-                        <Button
-                          label="Save"
-                          onClick={() => {
-                            dispatch(
-                              UpdateUserProfile(userData.id, {
-                                ...userData,
-                                email: emailEdited,
-                              })
-                            );
-                            setEmailEditView(false);
-                          }}
-                          size="small"
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="user-progress-level-bar">
-                  <div className="user-level-bar">
-                    <div
-                      className="user-green-fill"
-                      style={{
-                        width: levelBar(),
-                      }}
-                    ></div>
-                    <p className="actual-exp-points">
-                      {handleCalcutlateXP(allTasksForProfileData)} exp.
-                    </p>
+        <>
+          {handleUpdateExperienceOfUser()}
+          <div className="profile">
+            {avatarSelectorView && (
+              <AvatarSelector
+                userData={userData}
+                handleSetAvatarSelectorView={handleSetAvatarSelectorView}
+                handleUpdateUserData={handleUpdateUserData}
+              />
+            )}
+            <div className="profile-top">
+              <div className="user-data-content">
+                <div className="user-data">
+                  <div className="level-content">
+                    <div className="user-level">
+                      {userData && userData.level}
+                    </div>
+                    <label className="label">Level</label>
                   </div>
-                  <div className="user-progress-data">
-                    <p className="actual-exp-text">
-                      {expRequireToActualLevel} exp.
-                    </p>
-                    <p className="exp-goal">{expRequireToNextLevel} exp.</p>
+                  <img
+                    className="user-avatar"
+                    src={userData ? userData.avatar : defaultAvatar}
+                  />
+                  <div className="avatarEditButton">
+                    <i
+                      className="fas fa-edit icon"
+                      onClick={() => handleSetAvatarSelectorView(true)}
+                    ></i>
+                  </div>
+                  <div className="name-content">
+                    {!nameEditView ? (
+                      <>
+                        <p className="user-name">{userData && userData.name}</p>
+                        <i
+                          className="fas fa-edit icon"
+                          onClick={() => setNameEditView(true)}
+                        ></i>
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          type="text"
+                          className="user-name-edit"
+                          value={nameEdited}
+                          onChange={(e) => setNameEdited(e.target.value)}
+                        />
+                        <div className="content-buttons">
+                          <Button
+                            label="Cancel"
+                            onClick={() => setNameEditView(false)}
+                            size="small"
+                          />
+                          <Button
+                            label="Save"
+                            onClick={() => {
+                              dispatch(
+                                UpdateUserProfile(userData.id, {
+                                  ...userData,
+                                  name: nameEdited,
+                                })
+                              );
+                              setNameEditView(false);
+                            }}
+                            size="small"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="email-content">
+                    {!emailEditView ? (
+                      <>
+                        <p className="user-email">
+                          {userData && userData.email}
+                        </p>
+                        {/* <i
+                          className="fas fa-edit icon"
+                          onClick={() => setEmailEditView(true)}
+                        ></i> */}
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          type="text"
+                          className="user-email-edit"
+                          value={emailEdited}
+                          onChange={(e) => setEmailEdited(e.target.value)}
+                        />
+                        <div className="content-buttons">
+                          <Button
+                            label="Cancel"
+                            onClick={() => setEmailEditView(false)}
+                            size="small"
+                          />
+                          <Button
+                            label="Save"
+                            onClick={() => {
+                              dispatch(
+                                UpdateUserProfile(userData.id, {
+                                  ...userData,
+                                  email: emailEdited,
+                                })
+                              );
+                              setEmailEditView(false);
+                            }}
+                            size="small"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="user-progress-level-bar">
+                    <div className="user-level-bar">
+                      <div
+                        className="user-green-fill"
+                        style={{
+                          width: levelBar(),
+                        }}
+                      ></div>
+                      <p className="actual-exp-points">
+                        {handleCalcutlateXP(allTasksForProfileData)} exp.
+                        {/* {userData.experience} exp. */}
+                      </p>
+                    </div>
+                    <div className="user-progress-data">
+                      <p className="actual-exp-text">
+                        {expRequireToActualLevel} exp.
+                      </p>
+                      <p className="exp-goal">{expRequireToNextLevel} exp.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="user-task-done">
-              <div className="circle-bar-content">
-                <CircularProgressbar
-                  value={circleBarValue > 0 && circleBarValue}
-                  maxValue={1}
-                  text={`${Math.round(
-                    circleBarValue > 0 ? circleBarValue * 100 : 0
-                  )}%`}
-                  styles={buildStyles({
-                    textSize: "1.8vmin",
-                    pathTransitionDuration: 0.5,
-                    strokeLinecap: "butt",
-                    pathColor: "#1dd620",
-                  })}
-                />
-              </div>
-              <div className="text-content">
-                <h3 className="text">Current month</h3>
-                <span className="counter">
-                  <span className="counter-done">
+              <div className="user-task-done">
+                <div className="circle-bar-content">
+                  <CircularProgressbar
+                    value={circleBarValue > 0 && circleBarValue}
+                    maxValue={1}
+                    text={`${Math.round(
+                      circleBarValue > 0 ? circleBarValue * 100 : 0
+                    )}%`}
+                    styles={buildStyles({
+                      textSize: "1.8vmin",
+                      pathTransitionDuration: 0.5,
+                      strokeLinecap: "butt",
+                      pathColor: "#1dd620",
+                    })}
+                  />
+                </div>
+                <div className="text-content">
+                  <h3 className="text">Current month</h3>
+                  <span className="counter">
+                    <span className="counter-done">
+                      {
+                        tasksDoneForProfileData.filter(
+                          (task) => task.date.split("/")[1] == currentMonth + 1
+                        ).length
+                      }{" "}
+                    </span>
+                    /{" "}
                     {
-                      tasksDoneForProfileData.filter(
+                      allTasksForProfileData.filter(
                         (task) => task.date.split("/")[1] == currentMonth + 1
                       ).length
-                    }{" "}
+                    }
                   </span>
-                  /{" "}
+                </div>
+              </div>
+              <div className="content-extra-profile-data">
+                <div className="daily-record">
+                  <i className="fas fa-fire icon daily"></i>
+                  <div className="content-data">
+                    <span className="data">
+                      {dataTasksForStats.daily_record}{" "}
+                      <p className="data-text">tasks completed</p>
+                    </span>
+                    <p className="text">Daily Record</p>
+                  </div>
+                </div>
+                <div className="best-week-record">
+                  <i className="fas fa-medal icon week"></i>
+                  <div className="content-data">
+                    <span className="data">
+                      {dataTasksForStats.week_record}{" "}
+                      <p className="data-text">tasks completed</p>
+                    </span>
+                    <p className="text">Week Record</p>
+                  </div>
+                </div>
+                <div className="best-streak">
+                  <i className="fas fa-trophy icon streak"></i>
+                  <div className="content-data">
+                    <span className="data">
+                      {dataTasksForStats.weekly_average}{" "}
+                      <p className="data-text">tasks per week</p>
+                    </span>
+                    <p className="text">Weekly Average</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="profile-bottom">
+              <div className="month-overview previous-month">
+                <h3 className="month-title">
+                  <span className="month-name">
+                    {Object.values(months)[currentMonth - 1].month}
+                  </span>{" "}
+                  - completed{" "}
                   {
                     allTasksForProfileData.filter(
-                      (task) => task.date.split("/")[1] == currentMonth + 1
+                      (task) =>
+                        task.date.split("/")[1] == currentMonth &&
+                        (task.status === "done" || task.status === "archive")
                     ).length
                   }
-                </span>
-              </div>
-            </div>
-            <div className="content-extra-profile-data">
-              <div className="daily-record">
-                <i className="fas fa-fire icon daily"></i>
-                <div className="content-data">
-                  <span className="data">
-                    {dataTasksForStats.daily_record}{" "}
-                    <p className="data-text">tasks completed</p>
-                  </span>
-                  <p className="text">Daily Record</p>
+                </h3>
+                <div className="monthly-activity">
+                  {previousMonthlyActivity.length > 0 &&
+                    previousMonthlyActivity.map((day) => {
+                      const borderColor = day.tasks > 0 ? "#1dd620" : "#ddd";
+                      return (
+                        <div
+                          key={day.day}
+                          className="day-of-current-month"
+                          style={{
+                            border: `.1vmin solid ${borderColor}`,
+                          }}
+                        >
+                          <div className="task-quantity">
+                            {day.tasks > 0 && day.tasks}
+                          </div>
+                          <div
+                            className="fill-green"
+                            style={{
+                              height:
+                                (day.tasks / dataTasksForStats.daily_record) *
+                                  100 +
+                                "%",
+                            }}
+                          ></div>
+                          <p className="day-text">{day.day.split("/")[0]}</p>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
-              <div className="best-week-record">
-                <i className="fas fa-medal icon week"></i>
-                <div className="content-data">
-                  <span className="data">
-                    {dataTasksForStats.week_record}{" "}
-                    <p className="data-text">tasks completed</p>
-                  </span>
-                  <p className="text">Week Record</p>
+              <div className="month-overview current-month">
+                <h3 className="month-title">
+                  <span className="month-name">
+                    {Object.values(months)[currentMonth].month}
+                  </span>{" "}
+                  - completed{" "}
+                  {
+                    allTasksForProfileData.filter(
+                      (task) =>
+                        task.date.split("/")[1] == currentMonth + 1 &&
+                        (task.status === "done" || task.status === "archive")
+                    ).length
+                  }
+                </h3>
+                <div className="monthly-activity">
+                  {currentMonthlyActivity.length > 0 &&
+                    currentMonthlyActivity.map((day) => {
+                      const borderColor = day.tasks > 0 ? "#1dd620" : "#ddd";
+                      return (
+                        <div
+                          key={day.day}
+                          className="day-of-current-month"
+                          style={{
+                            border: `.1vmin solid ${borderColor}`,
+                          }}
+                        >
+                          <div className="task-quantity">
+                            {day.tasks > 0 && day.tasks}
+                          </div>
+                          <div
+                            className="fill-green"
+                            style={{
+                              height:
+                                (day.tasks / dataTasksForStats.daily_record) *
+                                  100 +
+                                "%",
+                            }}
+                          ></div>
+                          <p className="day-text">{day.day.split("/")[0]}</p>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
-              <div className="best-streak">
-                <i className="fas fa-trophy icon streak"></i>
-                <div className="content-data">
-                  <span className="data">
-                    {dataTasksForStats.weekly_average}{" "}
-                    <p className="data-text">tasks per week</p>
-                  </span>
-                  <p className="text">Weekly Average</p>
-                </div>
+              <div className="total-tasks">
+                <h5 className="total-title">Total Stats</h5>
+                <p className="data-task">{tasksDoneForProfileData.length}</p>
+                <h5 className="data-title">Tasks completed</h5>
+                <p className="data-task">{allTasksForProfileData.length}</p>
+                <h5 className="data-title">Tasks created</h5>
               </div>
             </div>
           </div>
-          <div className="profile-bottom">
-            <div className="month-overview previous-month">
-              <h3 className="month-title">
-                <span className="month-name">
-                  {Object.values(months)[currentMonth - 1].month}
-                </span>{" "}
-                - completed{" "}
-                {
-                  allTasksForProfileData.filter(
-                    (task) =>
-                      task.date.split("/")[1] == currentMonth &&
-                      (task.status === "done" || task.status === "archive")
-                  ).length
-                }
-              </h3>
-              <div className="monthly-activity">
-                {previousMonthlyActivity.length > 0 &&
-                  previousMonthlyActivity.map((day) => {
-                    const borderColor = day.tasks > 0 ? "#1dd620" : "#ddd";
-                    return (
-                      <div
-                        key={day.day}
-                        className="day-of-current-month"
-                        style={{
-                          border: `.1vmin solid ${borderColor}`,
-                        }}
-                      >
-                        <div className="task-quantity">
-                          {day.tasks > 0 && day.tasks}
-                        </div>
-                        <div
-                          className="fill-green"
-                          style={{
-                            height:
-                              (day.tasks / dataTasksForStats.daily_record) *
-                                100 +
-                              "%",
-                          }}
-                        ></div>
-                        <p className="day-text">{day.day.split("/")[0]}</p>
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-            <div className="month-overview current-month">
-              <h3 className="month-title">
-                <span className="month-name">
-                  {Object.values(months)[currentMonth].month}
-                </span>{" "}
-                - completed{" "}
-                {
-                  allTasksForProfileData.filter(
-                    (task) =>
-                      task.date.split("/")[1] == currentMonth + 1 &&
-                      (task.status === "done" || task.status === "archive")
-                  ).length
-                }
-              </h3>
-              <div className="monthly-activity">
-                {currentMonthlyActivity.length > 0 &&
-                  currentMonthlyActivity.map((day) => {
-                    const borderColor = day.tasks > 0 ? "#1dd620" : "#ddd";
-                    return (
-                      <div
-                        key={day.day}
-                        className="day-of-current-month"
-                        style={{
-                          border: `.1vmin solid ${borderColor}`,
-                        }}
-                      >
-                        <div className="task-quantity">
-                          {day.tasks > 0 && day.tasks}
-                        </div>
-                        <div
-                          className="fill-green"
-                          style={{
-                            height:
-                              (day.tasks / dataTasksForStats.daily_record) *
-                                100 +
-                              "%",
-                          }}
-                        ></div>
-                        <p className="day-text">{day.day.split("/")[0]}</p>
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-            <div className="total-tasks">
-              <h5 className="total-title">Total Stats</h5>
-              <p className="data-task">{tasksDoneForProfileData.length}</p>
-              <h5 className="data-title">Tasks completed</h5>
-              <p className="data-task">{allTasksForProfileData.length}</p>
-              <h5 className="data-title">Tasks created</h5>
-            </div>
-          </div>
-        </div>
+        </>
       )}
     </>
   );

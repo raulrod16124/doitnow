@@ -21,6 +21,9 @@ export const GetUserProfile = (user) => {
       level: Object.values(
         userProfileData._document.data.value.mapValue.fields.level
       )[0],
+      experience: Object.values(
+        userProfileData._document.data.value.mapValue.fields.experience
+      )[0],
     };
     // console.log(userProfile);
     dispatch({
