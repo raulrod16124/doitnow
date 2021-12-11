@@ -1,0 +1,215 @@
+.aside {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  background-color: $DarkOcean;
+
+  @include tablet {
+    position: fixed;
+    height: 5rem;
+    padding: 0 1rem;
+    z-index: 100;
+  }
+
+  .content-responsive-menu {
+    display: none;
+
+    @include tablet {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .container-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .title-responsive {
+      color: $White;
+    }
+
+    .icon {
+      font-size: 2rem;
+    }
+  }
+
+  .bg-nav-bar {
+    position: relative;
+
+    @include tablet {
+      position: absolute;
+      position: fixed;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .nav-bar {
+    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100%;
+    background-color: $DarkOcean;
+
+    @include tablet {
+      position: absolute;
+      display: none;
+      width: 0%;
+      height: 100%;
+      border: 1px solid;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    @include desktop {
+      display: flex;
+    }
+
+    .icon-close-nav {
+      display: none;
+      @include tablet {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+      }
+    }
+
+    .logo-app {
+      display: block;
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: $Green;
+
+      @include tablet {
+        display: none;
+      }
+    }
+
+    .navegation-content {
+      width: 100%;
+      height: 100%;
+      margin-top: 4vh;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5vw;
+
+      @include tablet {
+      }
+    }
+
+    .section {
+      position: relative;
+      width: 90%;
+      margin: 0 auto;
+
+      .section-content {
+        width: 100%;
+        color: $White;
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        align-items: center;
+        font-size: 2vmin;
+        padding: 1vmin;
+        text-decoration: none;
+        cursor: pointer;
+
+        & a {
+          display: flex;
+          text-decoration: none;
+          color: $White;
+        }
+
+        .arrow {
+          align-items: flex-end;
+          font-size: 1.5vmin;
+          color: $DarkGrey;
+        }
+      }
+
+      &.selected {
+        border-radius: 1vmin;
+        background: lighten($color: $DarkOcean, $amount: 10);
+      }
+    }
+  }
+
+  .link a {
+    text-decoration: none;
+  }
+
+  .section-selector {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0;
+    padding-left: 10%;
+    list-style: none;
+    background: lighten($color: $DarkOcean, $amount: 5);
+    border-radius: 0 0 1vmin 1vmin;
+
+    a {
+      color: $DarkGrey;
+      text-decoration: none;
+    }
+
+    .icon {
+      color: lighten($color: $DarkOcean, $amount: 60);
+    }
+
+    .view {
+      padding: 1vmin;
+      cursor: pointer;
+      border-radius: 0.5vmin 0 0 0.5vmin;
+      transition: all 0.3s;
+      margin: 0.5vh 0 0.5vh 0.5vw;
+
+      .view-text {
+        font-size: 2vmin;
+      }
+
+      &.selected {
+        color: $White;
+
+        &:hover {
+          background: none;
+        }
+        .icon {
+          color: $White;
+        }
+      }
+    }
+  }
+  .icon {
+    color: $White;
+    padding-right: 0.5vw;
+  }
+  .content-logout {
+    position: relative;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: darken($color: $DarkOcean, $amount: 10);
+  }
+}

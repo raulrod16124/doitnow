@@ -1,17 +1,11 @@
 .footer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   color: $White;
-  background-color: darken($color: $DarkOcean, $amount: 10);
   font-size: 1.8vmin;
-  width: 10%;
-  height: 5vh;
-  padding: 1.5vh 2vw;
-  position: absolute;
-  position: fixed;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   z-index: 101;
   cursor: pointer;
   transition: all 0.3s;

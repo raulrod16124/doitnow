@@ -18,8 +18,10 @@ export default function App() {
         <AuthProvider>
           <ExperiencePoints />
           <Router>
-            <AsideNav />
-            <Routes />
+            <div className="main">
+              <AsideNav />
+              <Routes />
+            </div>
           </Router>
         </AuthProvider>
       </div>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "../../stories/Button";
 import { GetTasks } from "../Home/state/actions";
 import { GetUserProfile, UpdateUserProfile } from "../Profile/state/actions";
-import { NextLevelXP, XPLevels, handleCalcutlateXP } from "./XPLevels";
+import { XPLevels, handleCalcutlateXP } from "./XPLevels";
 
 export const ExperiencePoints = () => {
   const todosState = useSelector((state) => {

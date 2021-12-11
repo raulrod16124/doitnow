@@ -15,8 +15,6 @@ body {
   position: relative;
   font-size: 1.8vmin;
   font-family: $font-principal;
-  width: 100%;
-  height: 100vh;
 }
 
 // Globals
@@ -42,5 +40,22 @@ body {
 // App
 
 .App {
-  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  @include tablet {
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+    overflow: auto;
+  }
 }

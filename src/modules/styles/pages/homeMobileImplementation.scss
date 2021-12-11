@@ -1,33 +1,39 @@
 .home {
   position: relative;
+  // width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: lighten($color: $DarkGrey, $amount: 25);
+  padding: 0 2rem;
 
-  .bg-home-top-bar {
-    position: absolute;
-    position: fixed;
-    top: 0vh;
-    left: 10%;
-    width: 90%;
-    height: 12vh;
-    background: lighten($color: $DarkGrey, $amount: 25);
+  @include tablet {
+    min-width: 900px;
+    padding: 0 1rem;
   }
 
   .home-top-bar {
     position: absolute;
     position: fixed;
-    padding: 2vh 2% 2vh 0;
-    top: 2.5vh;
+    padding: 4.5rem 15% 1.5rem 2rem;
+    top: 0;
     left: 10%;
-    width: 75%;
-    height: 10vh;
+    width: 90%;
+    height: 12vh;
     display: flex;
     justify-content: space-between;
+    background: lighten($color: $DarkGrey, $amount: 25);
+    column-gap: 2rem;
     z-index: 17;
+
+    @include tablet {
+      display: none;
+    }
 
     .content-options-bar {
       width: 25%;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       font-size: 1.8vmin;
       z-index: 15;
 
@@ -37,7 +43,6 @@
         column-gap: 5%;
         word-wrap: break-word;
         align-items: center;
-        width: 30%;
       }
 
       .filter-options {
@@ -150,9 +155,8 @@
 
     .show-archive-view {
       display: flex;
-      justify-content: space-between;
-      width: 10%;
-      margin: 2vh 0;
+      justify-content: center;
+      width: 20%;
       align-items: center;
       font-size: 1.8rem;
       font-weight: 600;
@@ -521,16 +525,37 @@
   // Content Items
 
   .content-body {
-    margin: 12vh auto 0 auto;
+    margin: 0 auto;
+    margin-top: 12vh;
+
+    @include tablet {
+      margin-top: 15vh;
+      min-width: 900px;
+      overflow-x: auto;
+    }
   }
 
   .content-top-bar {
+    position: relative;
     width: 100%;
     margin-left: 1.2%;
     display: flex;
     align-items: center;
     padding: 1vh 0;
     z-index: 15;
+
+    @include tablet {
+      position: absolute;
+      position: fixed;
+      top: 5rem;
+      width: 100%;
+      height: 8vh;
+      left: 0rem;
+      padding: 0;
+      margin: 0 auto;
+      background: lighten($color: $DarkGrey, $amount: 25);
+      z-index: 10;
+    }
 
     .progress-bar {
       width: 95%;
@@ -540,6 +565,12 @@
       align-items: center;
       z-index: 15;
 
+      @include tablet {
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+      }
+
       .level-bar {
         position: relative;
         width: 100%;
@@ -547,6 +578,12 @@
         border-radius: 0.5vmin;
         background-color: $White;
         overflow: hidden;
+
+        @include tablet {
+          height: 2rem;
+          display: flex;
+          align-items: center;
+        }
       }
 
       .green-fill {
@@ -599,11 +636,15 @@
     list-style: none;
     margin: 0 auto;
     padding-bottom: 1vh;
-    width: 90vw;
+    width: 100%;
     height: auto;
     min-height: 79.5vh;
     overflow: auto;
     z-index: 6;
+
+    @include tablet {
+      min-width: 900px;
+    }
 
     .list {
       width: 30%;
@@ -858,15 +899,13 @@
   // Timestamp View
   .timestamp-view {
     height: 100vh;
-    width: 90%;
-    padding: 1vmin;
-    padding-top: 5vh;
-    margin-left: 10%;
+    width: 100%;
+    padding: 5vh 2rem 0 2rem;
   }
 
   .timestamp {
     height: 80%;
-    width: 95%;
+    width: 100%;
     margin: 5vh auto 0 auto;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -893,7 +932,7 @@
       text-align: center;
       position: absolute;
       position: fixed;
-      width: 11.8%;
+      width: 12%;
       padding: 1vmin;
       background-color: #fff;
       z-index: 10;

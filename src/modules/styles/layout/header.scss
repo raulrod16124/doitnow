@@ -1,12 +1,16 @@
 .avatar-header {
   position: absolute;
   position: fixed;
-  top: 2vh;
-  right: 0;
+  top: 2.5vh;
+  right: 2rem;
   width: 12%;
   height: 10vh;
   align-items: center;
   z-index: 19;
+
+  @include tablet {
+    display: none;
+  }
 
   .avatar-content {
     align-items: center;

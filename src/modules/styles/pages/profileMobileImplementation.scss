@@ -1,0 +1,416 @@
+.profile {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  background: lighten($color: $DarkGrey, $amount: 25);
+
+  .bg-avatar-selector {
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: $DarkOcean, $alpha: 0.5);
+    backdrop-filter: blur(0.5vmin);
+    -webkit-backdrop-filter: blur(0.5vmin);
+    z-index: 150;
+  }
+
+  .avatar-selector {
+    position: relative;
+    width: 60%;
+    height: 85vh;
+    margin: 5vh auto;
+    padding: 4vmin 2vmin;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-radius: 0.5vmin;
+    background-color: $White;
+    z-index: 200;
+
+    .close-icon {
+      position: absolute;
+      top: 1vh;
+      right: 1vw;
+    }
+
+    .avatarToSelect {
+      width: 15vh;
+      height: 15vh;
+      cursor: pointer;
+      margin: 0 auto;
+    }
+
+    .avatarToSelect.selected {
+      border-radius: 50%;
+      border: 1vmin solid $Green;
+      padding: 1vmin;
+      transform: scale(1.4);
+    }
+
+    button {
+      position: absolute;
+      width: 15%;
+      bottom: 2vmin;
+      right: 2.5vw;
+    }
+  }
+
+  .profile-top {
+    width: 90%;
+    height: auto;
+    margin: 5vh auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr;
+    column-gap: 2vw;
+  }
+
+  .user-data-content {
+    width: 100%;
+    border-radius: 0.5vmin;
+
+    .user-data {
+      position: relative;
+      width: 100%;
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      background-color: $White;
+      border-radius: 0.5vmin;
+      padding: 1vmin;
+    }
+
+    .level-content {
+      position: absolute;
+      top: 3vh;
+      left: 3vw;
+      width: 4.2vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: $Grey;
+      color: $White;
+      border-radius: 50%;
+
+      .user-level {
+        margin-top: 0.5vh;
+        margin-bottom: -1vh;
+        font-size: 5vmin;
+        font-weight: 600;
+      }
+      .label {
+        margin-bottom: 1vh;
+      }
+    }
+
+    .user-avatar {
+      background-position: center center;
+      background-size: cover;
+      width: 10vw;
+      height: 20vh;
+      margin: 0 auto;
+    }
+
+    .avatarEditButton {
+      display: flex;
+      justify-content: flex-end;
+      width: 10vw;
+      margin: -2.5vh auto 1.5vh auto;
+    }
+
+    .name-content,
+    .email-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1vmin;
+      width: 60%;
+      margin: 0 auto;
+
+      .user-name-edit,
+      .user-email-edit {
+        height: 100%;
+        padding: 0.5vmin;
+        border-radius: 0.5vmin;
+        border: 0.2vmin solid $DarkGrey;
+      }
+
+      .content-buttons {
+        display: flex;
+        column-gap: 0.5vmin;
+        margin: 0 0.5vmin;
+      }
+    }
+
+    .user-name,
+    .user-email {
+      text-align: center;
+      font-size: 2.5vmin;
+      padding-right: 1vw;
+      padding-left: 2vw;
+      margin: 0;
+    }
+
+    .user-name {
+      text-transform: capitalize;
+    }
+
+    .user-progress-level-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5vmin;
+
+      .user-level-bar {
+        position: relative;
+        margin: 1vh auto 0 auto;
+        width: 80%;
+        height: 3vh;
+        border-radius: 0.5vmin;
+        background-color: $Grey;
+      }
+
+      .actual-exp-points {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .user-green-fill {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: $Green;
+        border-radius: 0.5vmin;
+      }
+
+      .user-progress-data {
+        width: 80%;
+        margin: 0 auto 2vh auto;
+        font-weight: 700;
+        font-style: italic;
+        color: $DarkGrey;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .icon {
+      opacity: 0.2;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .user-task-done {
+    width: 100%;
+    height: 40vh;
+    background-color: $White;
+    border-radius: 0.5vmin;
+    padding: 1vmin;
+
+    .circle-bar-content {
+      width: 40%;
+      margin: 1vh auto;
+    }
+
+    .text-content {
+      text-align: center;
+      font-size: 2vmin;
+      height: 8vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .text {
+        font-weight: 400;
+      }
+
+      .counter {
+        font-weight: 600;
+        font-size: 3vmin;
+        color: $DarkGrey;
+
+        .counter-done {
+          color: $Green;
+        }
+      }
+    }
+  }
+
+  .content-extra-profile-data {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // padding-top: 6vh;
+
+    .daily-record,
+    .best-week-record,
+    .best-streak {
+      background-color: $White;
+      border-radius: 0.5vmin;
+      height: 11vh;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+      width: 100%;
+      align-items: center;
+    }
+
+    .icon {
+      font-size: 5vmin;
+      text-align: center;
+      cursor: default;
+
+      &.daily {
+        color: $Red;
+      }
+      &.week {
+        color: $Earth;
+      }
+      &.streak {
+        color: $DeepBlue;
+      }
+
+      &:hover {
+        color: none;
+      }
+    }
+
+    .content-data {
+      width: 100%;
+      align-items: flex-end;
+      padding: 0 5%;
+      text-align: center;
+
+      .data {
+        font-size: 2.8vmin;
+        font-weight: 700;
+        display: flex;
+        align-items: flex-end;
+        column-gap: 5%;
+      }
+
+      .data-text {
+        font-size: 2vmin;
+        font-weight: 400;
+      }
+
+      .text {
+        color: $DarkGrey;
+        font-weight: 600;
+        text-align: left;
+        padding-top: 1vh;
+      }
+    }
+  }
+
+  // Bottom
+
+  .profile-bottom {
+    width: 90%;
+    height: 45vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 0.5fr;
+    padding: 1vmin;
+    background-color: $White;
+    border-radius: 0.5vmin;
+    margin: 2.5vh auto;
+
+    .month-overview {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 1vmin 0.5vmin;
+
+      .month-title {
+        width: 90%;
+        margin: 0 auto;
+        font-weight: 400;
+      }
+
+      .month-name {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+
+    .monthly-activity {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 2vmin;
+
+      .day-of-current-month {
+        position: relative;
+        min-height: 6vh;
+        border-radius: 0.5vmin;
+        margin: 0.5vmin;
+        padding: 1vmin;
+        font-style: italic;
+        background: linear-gradient(45deg, $Grey, $White);
+      }
+
+      .task-quantity {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20%;
+        opacity: 0.5;
+        z-index: 100;
+      }
+
+      .fill-green {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50%;
+        width: 100%;
+        border-radius: 0.5vmin;
+        background: linear-gradient(45deg, $DarkGreen, $Green 50%);
+        z-index: 10;
+      }
+
+      .day-text {
+        position: absolute;
+        z-index: 50;
+      }
+    }
+
+    .total-tasks {
+      height: 80%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      font-weight: 400;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+
+      .total-title {
+        font-size: 3vmin;
+        color: darken($color: $DarkGrey, $amount: 30);
+      }
+
+      .data-task {
+        font-size: 5vmin;
+        color: $DarkGrey;
+      }
+
+      .data-title {
+        font-size: 1.8vmin;
+        color: darken($color: $DarkGrey, $amount: 20);
+      }
+    }
+  }
+}
