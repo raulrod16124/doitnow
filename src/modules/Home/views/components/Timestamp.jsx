@@ -110,7 +110,7 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
                       return (
                         <TimestampItem
                           key={todo.title}
-                          todo={todo}
+                          item={todo}
                           handleGetEditItem={handleGetEditItem}
                         />
                       );

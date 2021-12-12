@@ -27,7 +27,8 @@
     @include tablet {
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
+      padding-left: 5%;
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       column-gap: 1rem;
@@ -48,8 +49,7 @@
       @include tablet {
         display: inline-block;
         font-size: 2rem;
-        font-weight: 700;
-        width: 50%;
+        width: 100%;
         color: $White;
       }
     }
@@ -57,7 +57,8 @@
     .avatar {
       width: 80%;
       @include tablet {
-        width: 90%;
+        width: auto;
+        height: 100px;
       }
     }
   }

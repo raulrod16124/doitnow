@@ -82,7 +82,7 @@ export const AsideNav = () => {
       navResponsiveRef.current.style.display = "grid";
       setTimeout(() => {
         navResponsiveRef.current.style.opacity = "1";
-        navResponsiveRef.current.style.width = "80%";
+        navResponsiveRef.current.style.width = "70%";
       }, 200);
     } else {
       navResponsiveRef.current.style.opacity = "0";

@@ -351,6 +351,12 @@ export const Home = () => {
               itemToEdit={itemToEdit}
             />
           )}
+          <div
+            className="show-archive-view show-archive-view-responsive"
+            onClick={() => handleArchiveVisibility(true)}
+          >
+            <i className="fas fa-archive icon archive-icon"></i>
+          </div>
         </div>
       )}
     </>

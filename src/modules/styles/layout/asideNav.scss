@@ -116,8 +116,8 @@
       @include tablet {
         display: block;
         position: relative;
-        width: 100%;
-        margin: 2rem 0 2rem 2.5rem;
+        width: 90%;
+        margin: 1rem auto 1rem 10%;
       }
     }
 
@@ -128,12 +128,12 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      row-gap: 1.5vw;
+      row-gap: 0.5rem;
 
       @include tablet {
         height: 50%;
+        width: 100%;
         margin: 0 auto;
-        width: 90%;
       }
     }
 
@@ -152,7 +152,8 @@
         text-decoration: none;
 
         @include tablet {
-          font-size: 1.6rem;
+          font-size: 1.2rem;
+          padding: 0 4rem;
         }
 
         .icon-section {
@@ -170,14 +171,14 @@
     list-style: none;
     border-radius: 0 0 1vmin 1vmin;
 
-    &::before {
-      content: "";
-      display: block;
-      width: 90%;
-      height: 0.1rem;
-      margin: 0 auto;
-      background: $mainColor;
-    }
+    // &::before {
+    //   content: "";
+    //   display: block;
+    //   width: 90%;
+    //   height: 0.1rem;
+    //   margin: 0 auto;
+    //   background: $mainColor;
+    // }
 
     a {
       color: $fillBar;
@@ -192,19 +193,23 @@
     .view {
       padding: 1vmin;
       cursor: pointer;
-      border-radius: 0.5vmin 0 0 0.5vmin;
+      border-radius: 0 0.5rem 0.5rem 0;
       transition: all 0.3s;
       margin: 0.5vh 0;
-      padding-left: 15%;
+      padding-left: 20%;
+      width: 90%;
 
       .view-text {
         font-size: 1.8rem;
         @include tablet {
+          margin: 0;
+          padding: 1rem 0.5rem;
           font-size: 1.5rem;
         }
       }
 
-      &:hover {
+      &:hover,
+      &:active {
         color: $grey;
         background: $mainColor;
       }
@@ -226,8 +231,12 @@
   .content-logout {
     position: relative;
     width: 100%;
-    height: 5vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+      // border: 1px solid;
+    }
   }
 }
