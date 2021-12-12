@@ -59,3 +59,10 @@ body {
     overflow: auto;
   }
 }
+
+.content-avatar-header {
+  display: block;
+  @include tablet {
+    display: none;
+  }
+}

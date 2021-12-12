@@ -224,7 +224,7 @@
       width: 300%;
       height: 90%;
       display: flex;
-      color: $Grey;
+      color: $grey;
       justify-content: center;
       align-items: center;
     }
@@ -609,7 +609,7 @@
       width: 30%;
       height: auto;
       min-height: 79.5vh;
-      background-color: $Grey;
+      background-color: $grey;
       border-radius: 1vmin;
       list-style: none;
       padding: 1.5vh 1vw;
@@ -618,8 +618,8 @@
       transition: all 0.4s;
 
       &.dragging {
-        border: 1vmin dashed darken($color: $Grey, $amount: 10);
-        background-color: lighten($color: $Grey, $amount: 5);
+        border: 1vmin dashed darken($color: $grey, $amount: 10);
+        background-color: lighten($color: $grey, $amount: 5);
       }
 
       .header-list {
@@ -634,7 +634,7 @@
         padding-top: 0.5vh;
         text-align: center;
         font-weight: 700;
-        color: $Grey;
+        color: $grey;
       }
 
       .see-more {
@@ -836,7 +836,7 @@
   }
 
   .timestamp-arrow {
-    background-color: $Grey;
+    background-color: $grey;
     border-radius: 50%;
     padding: 1vh 0.5vw;
     cursor: pointer;
@@ -885,7 +885,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background-color: $Grey;
+      background-color: $grey;
       overflow: hidden;
     }
 

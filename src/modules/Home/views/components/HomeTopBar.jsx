@@ -78,6 +78,7 @@ export const HomeTopBar = ({
         <Button
           size="mediun"
           label="New task"
+          primary
           onClick={() => handleGetVisibilityFormState(true)}
         />
         <div className="filter-content">

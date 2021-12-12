@@ -12,6 +12,9 @@
 
   .footer-text {
     font-size: 2vmin;
+    @include tablet {
+      font-size: 1.8rem;
+    }
   }
   &:hover {
     background-color: lighten($color: $DarkOcean, $amount: 10);

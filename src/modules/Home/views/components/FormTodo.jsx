@@ -239,6 +239,7 @@ export const FormTodo = ({
           <Button
             size="large"
             label={itemToEdit === undefined ? "Create" : "Update"}
+            primary
             onClick={(e) => handleSaveTodo(e)}
           />
           <div className="content-message">

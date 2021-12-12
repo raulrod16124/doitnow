@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 
+import { Button } from "../../../../stories/Button";
 import Item from "./Item";
 
-function List({ droppableID, list, titleList, className, handleGetEditItem }) {
+function List({
+  droppableID,
+  list,
+  titleList,
+  className,
+  handleGetEditItem,
+  handleGetVisibilityFormState,
+}) {
   // // console.log(list);
 
   // Extend List View Controller
@@ -19,6 +27,15 @@ function List({ droppableID, list, titleList, className, handleGetEditItem }) {
           <div className="header-list">
             <h2 className="list-title">{titleList}</h2>
             <span className="count">{Object.values(list).length}</span>
+            {droppableID === "todo" && (
+              <div className="content-add-task-responsive">
+                <Button
+                  label="+ New task"
+                  primary
+                  onClick={() => handleGetVisibilityFormState(true)}
+                />
+              </div>
+            )}
           </div>
           {Object.values(list)
             .slice(0, seeMore)

@@ -52,11 +52,9 @@ function Routes() {
         <Redirect to="/home" />
       </ProtectedRoutes>
       <ProtectedRoutes Component="Home" path="/home" exact>
-        <Header />
         <Home />
       </ProtectedRoutes>
       <ProtectedRoutes Component="Profile" path="/profile" exact>
-        <Header />
         <Profile />
       </ProtectedRoutes>
       {/* <ProtectedRoutes Component="Stats" path="/stats" exact>

@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100vh;
   background: $DarkOcean;
+  z-index: 150;
 
   .login-content {
     position: absolute;
@@ -16,6 +17,14 @@
     background-color: $White;
     display: grid;
     grid-template-columns: 60% 40%;
+
+    @include tablet {
+      width: 90%;
+      min-height: 40vh;
+      top: 15vh;
+      left: 5%;
+      grid-template-columns: 80% 20%;
+    }
   }
 
   .login-form {
@@ -26,6 +35,10 @@
       text-align: center;
       height: 5vh;
       margin-top: 10vh;
+
+      @include tablet {
+        margin-top: 1rem;
+      }
     }
 
     .title {
@@ -36,7 +49,6 @@
     .input-content {
       width: 60%;
       border-radius: 0.5vmin;
-      // border: .1vmin solid $Grey;
       border: none;
       border-bottom: 0.2vmin solid $DarkOcean;
       margin: 2vh auto;

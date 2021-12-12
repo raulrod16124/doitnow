@@ -6,6 +6,7 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 import { Footer } from "../../global/Footer";
+import { Header } from "../../Nav/Header";
 import { HomeViewsVisibility, ViewSelected } from "../state/action";
 
 export const AsideNav = () => {
@@ -78,12 +79,13 @@ export const AsideNav = () => {
   const handleToggleNavBar = (param) => {
     if (param === "open") {
       bgNavResponsiveRef.current.style.display = "block";
-      navResponsiveRef.current.style.display = "block";
+      navResponsiveRef.current.style.display = "grid";
       setTimeout(() => {
         navResponsiveRef.current.style.opacity = "1";
         navResponsiveRef.current.style.width = "80%";
-      }, 100);
+      }, 200);
     } else {
+      navResponsiveRef.current.style.opacity = "0";
       navResponsiveRef.current.style.width = "0%";
       setTimeout(() => {
         bgNavResponsiveRef.current.style.display = "none";
@@ -104,7 +106,15 @@ export const AsideNav = () => {
           <i class="fas fa-search icon icon-search"></i>
         </div>
       </div>
-      <div className="bg-nav-bar" ref={bgNavResponsiveRef}>
+      <div
+        className="bg-nav-bar"
+        ref={bgNavResponsiveRef}
+        onClick={(e) => {
+          if (e.target.className === "bg-nav-bar") {
+            handleToggleNavBar();
+          }
+        }}
+      >
         <div className="nav-bar" ref={navResponsiveRef}>
           <i
             class="fas fa-times icon icon-close-nav"
@@ -113,6 +123,11 @@ export const AsideNav = () => {
           <div className="logo-app">
             <h1 className="title">DOITNOW</h1>
           </div>
+          {/* START profile avatar on tablet size */}
+          <div className="nav-avatar-content">
+            <Header />
+          </div>
+          {/* END profile avatar on tablet size */}
           <div className="navegation-content">
             <div className={homeSelected}>
               <li

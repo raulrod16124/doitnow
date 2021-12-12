@@ -90,7 +90,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: $Grey;
+      background-color: $grey;
       color: $White;
       border-radius: 50%;
 
@@ -169,7 +169,7 @@
         width: 80%;
         height: 3vh;
         border-radius: 0.5vmin;
-        background-color: $Grey;
+        background-color: $grey;
       }
 
       .actual-exp-points {
@@ -358,7 +358,7 @@
         margin: 0.5vmin;
         padding: 1vmin;
         font-style: italic;
-        background: linear-gradient(45deg, $Grey, $White);
+        background: linear-gradient(45deg, $grey, $White);
       }
 
       .task-quantity {

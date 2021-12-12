@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600;1,700&display=swap");
+
 // Colors
 
 $White: #fff;
 $Black: #000;
-$Grey: #ddd;
 $DarkGrey: #aaa;
 $Red: #ed4e2c;
 $Earth: #d69e1d;
@@ -23,9 +24,16 @@ $SkyBlue: #4cc9f0;
 
 $DarkOcean: #0a425c;
 
+$mainColor: #2c666e;
+$darkMainColor: #07393c;
+$backgroundApp: #f0edee;
+$lightGrey: #ececec;
+$grey: #c4c4c4;
+$fillBar: #80a3a8;
+
 // Fonts
 
-$font-principal: "Roboto Condensed", sans-serif;
+$font-principal: "Poppins", sans-serif;
 
 // Marings & Paddings & Size
 

@@ -5,6 +5,7 @@ import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
 import { Loading } from "../../global/Loading";
+import { Header } from "../../Nav/Header";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
 import { ArchiveTasks } from "./components/ArchiveTasks";
 import { DragDropController } from "./components/DragDropController";
@@ -306,6 +307,9 @@ export const Home = () => {
             handleArchiveVisibility={handleArchiveVisibility}
             handleSearchArchiveTask={handleSearchArchiveTask}
           />
+          <div className="content-avatar-header">
+            <Header />
+          </div>
           {/* Archive section */}
           {archiveVisibility && (
             <ArchiveTasks
@@ -329,6 +333,7 @@ export const Home = () => {
                 handleGetVisibilityFormState={handleGetVisibilityFormState}
                 handleGetEditItem={handleGetEditItem}
                 handleSearchArchiveTask={handleSearchArchiveTask}
+                handleGetVisibilityFormState={handleGetVisibilityFormState}
               />
             </DragDropContext>
           )}

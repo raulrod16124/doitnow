@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const SearchInput = styled.input`
   padding: 1vmin;
   border-radius: 0.5vmin;
-  border: 0.2vmin solid #aaa;
+  background: #ececec;
 
   margin: ${(props) => (props.margin ? props.margin : ".5vmin")};
   width: ${(props) => (props.width ? props.width : "80")}%;

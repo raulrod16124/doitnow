@@ -10,6 +10,7 @@ export const Today = ({
   inProgress,
   dragListDetected,
   handleGetEditItem,
+  handleGetVisibilityFormState,
 }) => {
   // Class Detect dragging in List
   let classNames = require("classnames");
@@ -73,6 +74,7 @@ export const Today = ({
             className={todoDragDetectedClass}
             titleList="TO DO"
             handleGetEditItem={handleGetEditItem}
+            handleGetVisibilityFormState={handleGetVisibilityFormState}
           />
           <List
             key="inProgress"

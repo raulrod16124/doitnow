@@ -39,22 +39,21 @@ export const Header = () => {
 
   return (
     <div className="avatar-header">
-      {location.pathname !== "/profile" && (
-        <div className="avatar-content">
-          <p className="user-name">
-            {userData && userData.name ? userData.name : ""}
-          </p>
-          <Link to="/profile" onClick={() => dispatch(ViewSelected("account"))}>
-            <img
-              className="avatar"
-              src={
-                userData && userData.avatar ? userData.avatar : defaultAvatar
-              }
-              alt="avatar"
-            />
-          </Link>
-        </div>
-      )}
+      <div className="avatar-content">
+        <p className="user-name">
+          Hi {userData && userData.name ? userData.name : ""}
+        </p>
+        <Link to="/profile" onClick={() => dispatch(ViewSelected("account"))}>
+          <img
+            className="avatar"
+            src={userData && userData.avatar ? userData.avatar : defaultAvatar}
+            alt="avatar"
+          />
+        </Link>
+        <p className="user-name-responsive">
+          Hi {userData && userData.name ? userData.name : ""}
+        </p>
+      </div>
     </div>
   );
 };

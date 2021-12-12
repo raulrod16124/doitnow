@@ -1,10 +1,9 @@
 .home {
   position: relative;
-  // width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: lighten($color: $DarkGrey, $amount: 25);
+  background: $White;
   padding: 0 2rem;
 
   @include tablet {
@@ -22,7 +21,7 @@
     height: 12vh;
     display: flex;
     justify-content: space-between;
-    background: lighten($color: $DarkGrey, $amount: 25);
+    background: $White;
     column-gap: 2rem;
     z-index: 17;
 
@@ -98,7 +97,7 @@
           }
 
           &:hover {
-            background: $Grey;
+            background: $grey;
           }
         }
 
@@ -228,7 +227,7 @@
       width: 300%;
       height: 90%;
       display: flex;
-      color: $Grey;
+      color: $grey;
       justify-content: center;
       align-items: center;
     }
@@ -240,7 +239,7 @@
       gap: 1rem;
       max-height: 67vh;
       min-height: 67vh;
-      background-color: $Grey;
+      background-color: $grey;
       border-radius: 0.5vmin;
       overflow-y: scroll;
     }
@@ -329,6 +328,10 @@
       font-weight: 600;
       margin: 0.5vh 0.5vw 0.5vh 0;
       cursor: pointer;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
 
       .icon {
         margin: 0 0.5vw;
@@ -480,6 +483,12 @@
     margin: 0.5vh 0.5vw 0.5vh 0;
     cursor: pointer;
 
+    @include tablet {
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+
     .icon {
       margin: 0 0.5vw;
     }
@@ -542,6 +551,7 @@
     display: flex;
     align-items: center;
     padding: 1vh 0;
+    background: $White;
     z-index: 15;
 
     @include tablet {
@@ -553,7 +563,6 @@
       left: 0rem;
       padding: 0;
       margin: 0 auto;
-      background: lighten($color: $DarkGrey, $amount: 25);
       z-index: 10;
     }
 
@@ -576,13 +585,14 @@
         width: 100%;
         height: 3.2vmin;
         border-radius: 0.5vmin;
-        background-color: $White;
+        background-color: $lightGrey;
         overflow: hidden;
 
         @include tablet {
           height: 2rem;
           display: flex;
           align-items: center;
+          border-radius: 0.5rem;
         }
       }
 
@@ -593,15 +603,20 @@
         width: auto;
         border-radius: 0.5vmin;
         height: 100%;
-        background: linear-gradient(360deg, darken($Green, 10%), $Green);
+        background: $fillBar;
         transition: all 0.5s;
         z-index: 15;
+
+        @include tablet {
+          border-radius: 0.5rem;
+        }
       }
 
       .task-counter {
         position: absolute;
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 100%;
         height: 100%;
         z-index: 16;
@@ -610,6 +625,10 @@
           color: $DarkOcean;
           font-size: 2.5vmin;
           font-weight: 700;
+
+          @include tablet {
+            font-size: 1.2rem;
+          }
         }
       }
 
@@ -624,7 +643,10 @@
         .experience-counter-text {
           font-size: 2.5vmin;
           font-weight: 600;
-          color: darken($color: $Green, $amount: 10);
+          color: $grey;
+          @include tablet {
+            font-size: 1.2rem;
+          }
         }
       }
     }
@@ -650,32 +672,64 @@
       width: 30%;
       height: auto;
       min-height: 79.5vh;
-      background-color: $Grey;
+      background-color: $lightGrey;
       border-radius: 1vmin;
       list-style: none;
-      padding: 1.5vh 1vw;
+      padding: 1rem;
       border: 1vmin solid transparent;
       margin: 1vh 1vw;
       transition: all 0.4s;
 
+      @include tablet {
+        border-radius: 0.5rem;
+        padding: 1rem;
+        min-height: 81vh;
+      }
+
       &.dragging {
-        border: 1vmin dashed darken($color: $Grey, $amount: 10);
-        background-color: lighten($color: $Grey, $amount: 5);
+        border: 1vmin dashed darken($color: $grey, $amount: 10);
+        background-color: lighten($color: $grey, $amount: 5);
       }
 
       .header-list {
         display: flex;
         justify-content: space-between;
+
+        @include tablet {
+          font-size: 1rem;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+      }
+
+      .content-add-task-responsive {
+        display: none;
+        @include tablet {
+          display: flex;
+          justify-content: flex-end;
+          width: 65%;
+          height: 80%;
+        }
       }
 
       .count {
         border-radius: 2vmin;
         background-color: $DarkGrey;
         width: 1.6vw;
+        height: auto;
         padding-top: 0.5vh;
         text-align: center;
         font-weight: 700;
-        color: $Grey;
+        color: $grey;
+        margin: 0;
+
+        @include tablet {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          margin-left: 1rem;
+        }
       }
 
       .see-more {
@@ -716,6 +770,11 @@
     overflow: hidden;
     transition: all 0.3s;
 
+    @include tablet {
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
     &:first-of-type {
       margin-top: 2.5vh;
     }
@@ -727,12 +786,6 @@
     }
   }
 
-  .editing {
-    font-size: 1.8vmin;
-    padding: 0.5vmin;
-    border-radius: 0.5vmin;
-    border: 0.2vmin solid $DarkGrey;
-  }
   .todo-title {
     display: flex;
     justify-content: space-between;
@@ -742,12 +795,15 @@
     margin-bottom: 1.5vh;
     z-index: 10;
 
-    .todo-date {
-      font-size: 1.5vmin;
+    @include tablet {
+      font-size: 1.5rem;
     }
 
-    .editing {
-      font-size: 3vmin;
+    .todo-date {
+      font-size: 1.5vmin;
+      @include tablet {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -765,12 +821,6 @@
     overflow: hidden;
     margin-bottom: 1vh;
     z-index: 10;
-
-    &.editing {
-      margin: 1vh 0;
-      min-height: 10vh;
-      height: auto;
-    }
   }
 
   .todo-footer {
@@ -785,6 +835,11 @@
     width: 20%;
     justify-content: flex-end;
     z-index: 10;
+
+    @include tablet {
+      justify-content: space-between;
+      font-size: 1.5rem;
+    }
 
     .fas {
       margin-left: 1vw;
@@ -877,7 +932,7 @@
   }
 
   .timestamp-arrow {
-    background-color: $Grey;
+    background-color: $grey;
     border-radius: 50%;
     padding: 1vh 0.5vw;
     cursor: pointer;
@@ -924,7 +979,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background-color: $Grey;
+      background-color: $grey;
       overflow: hidden;
     }
 
