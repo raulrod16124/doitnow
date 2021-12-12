@@ -58,7 +58,6 @@ function Routes() {
         <Profile />
       </ProtectedRoutes>
       {/* <ProtectedRoutes Component="Stats" path="/stats" exact>
-        <Header />
         Stats Section
         <Stats />
       </ProtectedRoutes> */}

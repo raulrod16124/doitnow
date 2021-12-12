@@ -81,80 +81,82 @@ export const HomeTopBar = ({
           primary
           onClick={() => handleGetVisibilityFormState(true)}
         />
-        <div className="filter-content">
-          <label className="filter-label">
-            <i className="far fa-calendar-times"></i>
-          </label>
-          <div className="filter-options">
-            <label
-              className="day-selected"
-              onClick={() => {
-                setFilterVisibility(!filterVisibility);
-                setTimestampSelectorVisibility(false);
-              }}
-            >
-              <p className="day-selected-data">{filterDate}</p>
-              <i className="fas fa-chevron-down icon"></i>
+        {viewSelected.today && (
+          <div className="filter-content">
+            <label className="filter-label">
+              <i className="far fa-calendar-times"></i>
             </label>
-            {filterVisibility && (
-              <div className="content-options">
-                <li className="option" onClick={() => handleFilterTask("ALL")}>
-                  All
-                </li>
-                <li
-                  className="option"
-                  onClick={() => handleFilterTask("TODAY")}
-                >
-                  Today
-                </li>
-                <li
-                  className="option"
-                  onClick={() =>
-                    setTimestampSelectorVisibility(!timestampSelectorVisibility)
-                  }
-                >
-                  Select day <i className="fas fa-chevron-right icon"></i>
-                </li>
-                {timestampSelectorVisibility && (
-                  <div className="timeStamp-input">
-                    <Calendar
-                      locale="en-EN"
-                      onChange={() => setCalendarDateValue(calendarDateValue)}
-                      value={calendarDateValue}
-                      onClickDay={(e) => handleFilterTask("CALENDAR", e)}
-                    />
-                  </div>
-                )}
-                <li className="option-tag">
-                  <label className="option-tag-level">Search tag</label>
-                  <div className="input-content">
-                    <input
-                      ref={optionInputRef}
-                      className="option-tag-input"
-                      type="text"
-                      placeholder="Write your tag here"
-                    />
-                    <i
-                      className="fas fa-search icon"
-                      onClick={() =>
-                        handleFilterTask("TAG", optionInputRef.current.value)
-                      }
-                    ></i>
-                  </div>
-                </li>
-              </div>
-            )}
+            <div className="filter-options">
+              <label
+                className="day-selected"
+                onClick={() => {
+                  setFilterVisibility(!filterVisibility);
+                  setTimestampSelectorVisibility(false);
+                }}
+              >
+                <p className="day-selected-data">{filterDate}</p>
+                <i className="fas fa-chevron-down icon"></i>
+              </label>
+              {filterVisibility && (
+                <div className="content-options">
+                  <li
+                    className="option"
+                    onClick={() => handleFilterTask("ALL")}
+                  >
+                    All
+                  </li>
+                  <li
+                    className="option"
+                    onClick={() => handleFilterTask("TODAY")}
+                  >
+                    Today
+                  </li>
+                  <li
+                    className="option"
+                    onClick={() =>
+                      setTimestampSelectorVisibility(
+                        !timestampSelectorVisibility
+                      )
+                    }
+                  >
+                    Select day <i className="fas fa-chevron-right icon"></i>
+                  </li>
+                  {timestampSelectorVisibility && (
+                    <div className="timeStamp-input">
+                      <Calendar
+                        locale="en-EN"
+                        onChange={() => setCalendarDateValue(calendarDateValue)}
+                        value={calendarDateValue}
+                        onClickDay={(e) => handleFilterTask("CALENDAR", e)}
+                      />
+                    </div>
+                  )}
+                  <li className="option-tag">
+                    <label className="option-tag-level">Search tag</label>
+                    <div className="input-content">
+                      <input
+                        ref={optionInputRef}
+                        className="option-tag-input"
+                        type="text"
+                        placeholder="Write your tag here"
+                      />
+                      <i
+                        className="fas fa-search icon"
+                        onClick={() =>
+                          handleFilterTask("TAG", optionInputRef.current.value)
+                        }
+                      ></i>
+                    </div>
+                  </li>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {viewSelected.today && (
         <div className="search-component">
-          <Search
-            width="100"
-            height="5"
-            borderNone
-            onChange={handleSearchArchiveTask}
-          />
+          <Search width="100" height="5" onChange={handleSearchArchiveTask} />
         </div>
       )}
       <div

@@ -1,34 +1,41 @@
 .home {
   position: relative;
-  background: lighten($color: $DarkGrey, $amount: 25);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $White;
+  padding: 0 2rem;
 
-  .bg-home-top-bar {
-    position: absolute;
-    position: fixed;
-    top: 0vh;
-    left: 10%;
-    width: 90%;
-    height: 12vh;
-    background: lighten($color: $DarkGrey, $amount: 25);
+  @include tablet {
+    min-width: 900px;
+    padding: 0 1rem;
   }
 
   .home-top-bar {
     position: absolute;
     position: fixed;
-    padding: 2vh 2% 2vh 0;
-    top: 2.5vh;
+    padding: 4.5rem 15% 1.5rem 4rem;
+    top: 0;
     left: 10%;
-    width: 75%;
-    height: 10vh;
+    width: 90%;
+    height: 12vh;
     display: flex;
     justify-content: space-between;
+    background: $White;
+    column-gap: 2rem;
     z-index: 17;
 
+    @include tablet {
+      display: none;
+    }
+
     .content-options-bar {
-      width: 25%;
+      width: 20%;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       font-size: 1.8vmin;
+      margin-right: 5rem;
       z-index: 15;
 
       .filter-content {
@@ -37,7 +44,6 @@
         column-gap: 5%;
         word-wrap: break-word;
         align-items: center;
-        width: 30%;
       }
 
       .filter-options {
@@ -93,7 +99,7 @@
           }
 
           &:hover {
-            background: $Grey;
+            background: $grey;
           }
         }
 
@@ -150,9 +156,8 @@
 
     .show-archive-view {
       display: flex;
-      justify-content: space-between;
-      width: 10%;
-      margin: 2vh 0;
+      justify-content: center;
+      width: 20%;
       align-items: center;
       font-size: 1.8rem;
       font-weight: 600;
@@ -179,7 +184,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba($color: $DarkOcean, $alpha: 0.5);
+    background: rgba($color: $mainColor, $alpha: 0.5);
     backdrop-filter: blur(0.5vmin);
     -webkit-backdrop-filter: blur(0.5vmin);
     z-index: 150;
@@ -214,6 +219,7 @@
     .archive-title {
       width: 100%;
       margin: 4vh auto;
+      color: $mainColor;
 
       .icon {
         padding-right: 2%;
@@ -236,7 +242,7 @@
       gap: 1rem;
       max-height: 67vh;
       min-height: 67vh;
-      background-color: $Grey;
+      background-color: $lightGrey;
       border-radius: 0.5vmin;
       overflow-y: scroll;
     }
@@ -325,6 +331,10 @@
       font-weight: 600;
       margin: 0.5vh 0.5vw 0.5vh 0;
       cursor: pointer;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
 
       .icon {
         margin: 0 0.5vw;
@@ -476,6 +486,12 @@
     margin: 0.5vh 0.5vw 0.5vh 0;
     cursor: pointer;
 
+    @include tablet {
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+
     .icon {
       margin: 0 0.5vw;
     }
@@ -521,32 +537,67 @@
   // Content Items
 
   .content-body {
-    margin: 12vh auto 0 auto;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 12vh;
+
+    @include tablet {
+      margin-top: 15vh;
+      min-width: 900px;
+      overflow-x: auto;
+    }
   }
 
   .content-top-bar {
-    width: 100%;
-    margin-left: 1.2%;
+    position: relative;
+    width: 94.5%;
     display: flex;
     align-items: center;
     padding: 1vh 0;
+    margin: 0 2rem;
+    background: $White;
     z-index: 15;
 
+    @include tablet {
+      position: absolute;
+      position: fixed;
+      top: 5rem;
+      width: 100%;
+      height: 8vh;
+      left: 0rem;
+      padding: 0;
+      margin: 0 auto;
+      z-index: 10;
+    }
+
     .progress-bar {
-      width: 95%;
+      width: 100%;
       height: 90%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 15;
 
+      @include tablet {
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+      }
+
       .level-bar {
         position: relative;
         width: 100%;
         height: 3.2vmin;
         border-radius: 0.5vmin;
-        background-color: $White;
+        background-color: $lightGrey;
         overflow: hidden;
+
+        @include tablet {
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          border-radius: 0.5rem;
+        }
       }
 
       .green-fill {
@@ -556,15 +607,20 @@
         width: auto;
         border-radius: 0.5vmin;
         height: 100%;
-        background: linear-gradient(360deg, darken($Green, 10%), $Green);
+        background: $fillBar;
         transition: all 0.5s;
         z-index: 15;
+
+        @include tablet {
+          border-radius: 0.5rem;
+        }
       }
 
       .task-counter {
         position: absolute;
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 100%;
         height: 100%;
         z-index: 16;
@@ -573,6 +629,10 @@
           color: $DarkOcean;
           font-size: 2.5vmin;
           font-weight: 700;
+
+          @include tablet {
+            font-size: 1.2rem;
+          }
         }
       }
 
@@ -587,7 +647,10 @@
         .experience-counter-text {
           font-size: 2.5vmin;
           font-weight: 600;
-          color: darken($color: $Green, $amount: 10);
+          color: $grey;
+          @include tablet {
+            font-size: 1.2rem;
+          }
         }
       }
     }
@@ -599,42 +662,78 @@
     list-style: none;
     margin: 0 auto;
     padding-bottom: 1vh;
-    width: 90vw;
+    width: 100%;
     height: auto;
     min-height: 79.5vh;
     overflow: auto;
     z-index: 6;
 
+    @include tablet {
+      min-width: 900px;
+    }
+
     .list {
       width: 30%;
       height: auto;
       min-height: 79.5vh;
-      background-color: $grey;
+      background-color: $lightGrey;
       border-radius: 1vmin;
       list-style: none;
-      padding: 1.5vh 1vw;
+      padding: 1rem;
       border: 1vmin solid transparent;
       margin: 1vh 1vw;
       transition: all 0.4s;
 
+      @include tablet {
+        border-radius: 0.5rem;
+        padding: 1rem;
+        min-height: 81vh;
+      }
+
       &.dragging {
-        border: 1vmin dashed darken($color: $grey, $amount: 10);
-        background-color: lighten($color: $grey, $amount: 5);
+        border: 1vmin dashed $grey;
+        background-color: $White;
       }
 
       .header-list {
         display: flex;
         justify-content: space-between;
+
+        @include tablet {
+          font-size: 1rem;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+      }
+
+      .content-add-task-responsive {
+        display: none;
+        @include tablet {
+          display: flex;
+          justify-content: flex-end;
+          width: 65%;
+          height: 80%;
+        }
       }
 
       .count {
         border-radius: 2vmin;
-        background-color: $DarkGrey;
-        width: 1.6vw;
+        border: 0.1rem solid $grey;
+        width: 4rem;
+        height: auto;
         padding-top: 0.5vh;
         text-align: center;
         font-weight: 700;
         color: $grey;
+        margin: 0;
+
+        @include tablet {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          margin-left: 1rem;
+        }
       }
 
       .see-more {
@@ -667,7 +766,7 @@
     margin: 1vmin auto;
     border-radius: 0.5vmin;
     background: $White;
-    box-shadow: 0.5vmin 0.5vmin 0.5vmin #aaa;
+    box-shadow: 0.5vmin 0.5vmin 0.5vmin $grey;
     min-height: 10vh;
     height: auto;
     width: 100%;
@@ -675,38 +774,40 @@
     overflow: hidden;
     transition: all 0.3s;
 
+    @include tablet {
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
     &:first-of-type {
       margin-top: 2.5vh;
     }
 
     &.dragging {
       position: relative;
-      box-shadow: 1vmin 1vmin 2vmin #aaa;
+      box-shadow: 1vmin 1vmin 2vmin $darkGrey;
       transform: rotate(-10deg);
     }
   }
 
-  .editing {
-    font-size: 1.8vmin;
-    padding: 0.5vmin;
-    border-radius: 0.5vmin;
-    border: 0.2vmin solid $DarkGrey;
-  }
   .todo-title {
     display: flex;
     justify-content: space-between;
     word-wrap: break-word;
     height: fit-content;
-    font-size: 2.2vmin;
+    font-size: 1.8rem;
     margin-bottom: 1.5vh;
     z-index: 10;
 
-    .todo-date {
-      font-size: 1.5vmin;
+    @include tablet {
+      font-size: 1.5rem;
     }
 
-    .editing {
-      font-size: 3vmin;
+    .todo-date {
+      font-size: 1.5vmin;
+      @include tablet {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -724,12 +825,6 @@
     overflow: hidden;
     margin-bottom: 1vh;
     z-index: 10;
-
-    &.editing {
-      margin: 1vh 0;
-      min-height: 10vh;
-      height: auto;
-    }
   }
 
   .todo-footer {
@@ -744,6 +839,11 @@
     width: 20%;
     justify-content: flex-end;
     z-index: 10;
+
+    @include tablet {
+      justify-content: space-between;
+      font-size: 1.5rem;
+    }
 
     .fas {
       margin-left: 1vw;
@@ -771,8 +871,13 @@
       position: absolute;
       top: 2vh;
       right: 0.7vw;
-      font-size: 1.5vmin;
+      font-size: 1.4rem;
       opacity: 0.5;
+
+      @include tablet {
+        font-size: 1.2rem;
+        right: 1rem;
+      }
     }
 
     .circle-status {
@@ -794,15 +899,22 @@
     }
 
     .todo-title {
-      font-size: 2vmin;
+      font-size: 1.6rem;
       padding-right: 1.5rem;
       word-wrap: anywhere;
       overflow-wrap: anywhere;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
     }
     .todo-description {
-      font-size: 1.8vmin;
+      font-size: 1.6rem;
       word-wrap: anywhere;
       overflow-wrap: anywhere;
+      @include tablet {
+        font-size: 1.2rem;
+      }
     }
 
     .item-timestamp-footer {
@@ -832,18 +944,36 @@
     justify-content: space-around;
     width: 20%;
     margin: 1vh auto;
+    padding: 0;
     z-index: 20;
+
+    @include tablet {
+      position: absolute;
+      position: fixed;
+      top: 6rem;
+      left: 0;
+      width: 100%;
+      background-color: $White;
+      padding: 0 6rem;
+      font-size: 1.4rem;
+      z-index: 10;
+    }
   }
 
   .timestamp-arrow {
-    background-color: $grey;
+    background-color: $lightGrey;
     border-radius: 50%;
     padding: 1vh 0.5vw;
     cursor: pointer;
     transition: all 0.3s;
 
+    @include tablet {
+      width: 2.5rem;
+      text-align: center;
+    }
+
     &:hover {
-      background-color: $DarkGrey;
+      background-color: $grey;
     }
 
     &.arrow-left {
@@ -858,26 +988,36 @@
   // Timestamp View
   .timestamp-view {
     height: 100vh;
-    width: 90%;
-    padding: 1vmin;
-    padding-top: 5vh;
-    margin-left: 10%;
+    width: 100%;
+    padding: 5vh 2rem 0 2rem;
+    margin-top: 0;
+
+    @include tablet {
+      margin-top: 5rem;
+      padding: 5vh 1rem 0 1rem;
+    }
   }
 
   .timestamp {
     height: 80%;
-    width: 95%;
+    width: 100%;
     margin: 5vh auto 0 auto;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    column-gap: 0.2vw;
+    border-radius: 0.5rem;
+    column-gap: 0.2rem;
     overflow-y: scroll;
+
+    @include tablet {
+      height: 90%;
+    }
   }
 
   .content-days {
     position: relative;
     display: flex;
     flex-direction: column;
+    border-radius: 0.5rem;
     width: 100%;
     height: 100%;
 
@@ -885,24 +1025,42 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background-color: $grey;
+      background-color: $lightGrey;
       overflow: hidden;
     }
 
     .day-text {
       text-align: center;
-      position: absolute;
+      position: relative;
       position: fixed;
-      width: 11.8%;
+      width: 12%;
       padding: 1vmin;
-      background-color: #fff;
+      background-color: $fillBar;
+      color: $lightGrey;
       z-index: 10;
+
+      @include tablet {
+        position: relative;
+        width: 100%;
+        font-size: 1.2rem;
+      }
+
+      .text {
+        font-size: 1.6rem;
+        @include tablet {
+          font-size: 1.4rem;
+        }
+      }
     }
 
     .day-tasks {
       margin-top: 5vh;
       padding: 1vmin;
       height: 100%;
+
+      @include tablet {
+        margin-top: 0.5rem;
+      }
     }
   }
 }

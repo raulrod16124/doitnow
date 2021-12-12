@@ -6,21 +6,14 @@ export const SearchInput = styled.input`
   padding: 1vmin;
   border-radius: 0.5vmin;
   background: #ececec;
+  border: none;
 
   margin: ${(props) => (props.margin ? props.margin : ".5vmin")};
   width: ${(props) => (props.width ? props.width : "80")}%;
   height: ${(props) => props.height && props.height}vh;
-  border: ${(props) => props.borderNone && "none"};
 `;
 
-export const Search = ({
-  className,
-  width,
-  height,
-  borderNone,
-  margin,
-  onChange,
-}) => {
+export const Search = ({ className, width, height, margin, onChange }) => {
   return (
     <SearchInput
       className={className}
@@ -28,7 +21,6 @@ export const Search = ({
       margin={margin}
       width={width}
       height={height}
-      borderNone={borderNone}
       type="search"
       placeholder="Search"
     />

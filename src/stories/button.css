@@ -25,15 +25,18 @@
 }
 
 .button--primary:hover {
-  background-color: #aaa;
+  background-color: #05282a;
 }
 
 .button--secondary {
-  background-color: #0a425c;
+  color: #2c666e;
+  background-color: transparent;
+  border: 0.2rem solid #2c666e;
 }
 
 .button--secondary:hover {
-  background-color: #005f8b;
+  color: #05282a;
+  border: 0.2rem solid #05282a;
 }
 
 /* Sizes */

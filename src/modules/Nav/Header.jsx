@@ -26,7 +26,9 @@ export const Header = () => {
     switch (profileState.status) {
       case "initial":
         // console.log("GETTING ");
-        dispatch(GetUserProfile(userDataFromLocalStore.id));
+        if (userDataFromLocalStore) {
+          dispatch(GetUserProfile(userDataFromLocalStore.id));
+        }
         break;
       case "userData_updated":
         dispatch(GetUserProfile(userDataFromLocalStore.id));

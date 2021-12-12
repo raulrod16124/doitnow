@@ -29,6 +29,7 @@ export const ConfirmationPropmt = () => {
         <div className="content-buttons">
           <Button
             label={cancelButton}
+            secondary
             onClick={() => {
               handleReject
                 ? dispatch(handleReject())
@@ -37,6 +38,7 @@ export const ConfirmationPropmt = () => {
           />
           <Button
             label={acceptButton}
+            primary
             onClick={() => {
               dispatch(handleAccept());
               dispatch(CloseConfirmationPropmt());

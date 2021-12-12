@@ -63,7 +63,7 @@ function Item({ item, index, handleGetEditItem }) {
                   })}
               </div>
               <div className="todo-footer">
-                <p className="todo-level">MODE: {item.level}</p>
+                <p className="todo-level">{item.level}</p>
                 <div className="content-icons">
                   <i
                     className="fas fa-edit icon"

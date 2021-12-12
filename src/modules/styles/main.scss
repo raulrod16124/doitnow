@@ -6,10 +6,8 @@
 @import "global/app.scss";
 
 // Pages
-@import "pages/profileMobileImplementation.scss";
-// @import "pages/profile.scss";
-@import "pages/homeMobileImplementation.scss";
-// @import "pages/home.scss";
+@import "pages/profile.scss";
+@import "pages/home.scss";
 @import "pages/login.scss";
 
 // Layout
@@ -17,6 +15,5 @@
 @import "layout/confirmationPropmt.scss";
 @import "layout/loading.scss";
 @import "layout/header.scss";
-// @import "layout/asideNav.scss";
-@import "layout/navMobileImplementation.scss";
+@import "layout/asideNav.scss";
 @import "layout/footer.scss";
