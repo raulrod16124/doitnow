@@ -1149,14 +1149,16 @@
     }
   }
 
-  .show-archive-view-responsive {
+  .options-icons-reponsive {
     display: none;
     @include tablet {
-      display: flex;
       position: absolute;
       position: fixed;
       bottom: 5rem;
       left: 80%;
+      width: 4rem;
+      display: flex;
+      justify-content: center;
       background-color: $White;
       border-radius: 50%;
       box-shadow: 0.2rem 0.2rem 1rem $darkGrey;
@@ -1165,6 +1167,33 @@
 
       .icon {
         font-size: 2rem;
+      }
+    }
+  }
+
+  .content-add-and-archive-feature-on-responsive {
+    display: none;
+    @include tablet {
+      position: absolute;
+      position: fixed;
+      bottom: 5rem;
+      right: 10%;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $White;
+      border-radius: 5rem;
+      box-shadow: 0.2rem 0.2rem 1rem $darkGrey;
+      padding: 1rem;
+      padding-left: 2rem;
+      overflow: hidden;
+      transition: all 0.3s;
+      z-index: 14;
+      .icon {
+        font-size: 2rem;
+        &:last-of-type {
+          padding-right: 5rem;
+        }
       }
     }
   }

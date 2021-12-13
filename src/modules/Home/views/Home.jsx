@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useRef } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
@@ -43,6 +44,13 @@ export const Home = () => {
     inProgress: false,
     done: false,
   });
+
+  const optionsIconsReponsiveRef = useRef();
+  const contentAddAndArchiveFeatureOnResponsiveRef = useRef();
+  const [
+    optionsIconsReponsiveVisibility,
+    setOptionsIconsReponsiveVisibility,
+  ] = useState(false);
 
   const [formVisibility, setFormVisibility] = useState(false);
 
@@ -287,6 +295,27 @@ export const Home = () => {
     handleOrderTaskPerStatus(searchingArchiveTask);
   };
 
+  const handleToggleContentAddAndArchiveFeatureOnResponsiveRef = (
+    visibility
+  ) => {
+    setOptionsIconsReponsiveVisibility(visibility);
+    if (visibility === true) {
+      contentAddAndArchiveFeatureOnResponsiveRef.current.style.display = "flex";
+      setTimeout(() => {
+        contentAddAndArchiveFeatureOnResponsiveRef.current.style.width = "40%";
+        optionsIconsReponsiveRef.current.style.boxShadow = "none";
+      }, 200);
+    } else {
+      contentAddAndArchiveFeatureOnResponsiveRef.current.style.width = "0%";
+      optionsIconsReponsiveRef.current.style.boxShadow =
+        "0.2rem 0.2rem 1rem $darkGrey";
+      setTimeout(() => {
+        contentAddAndArchiveFeatureOnResponsiveRef.current.style.display =
+          "none";
+      }, 200);
+    }
+  };
+
   return (
     <>
       {loadingVisibility ? (
@@ -294,9 +323,18 @@ export const Home = () => {
       ) : (
         <div
           className="home"
-          onClick={(e) =>
-            e.target.className === "bg-archive" && setArchiveVisibility(false)
-          }
+          onClick={(e) => {
+            e.target.className === "bg-archive" && setArchiveVisibility(false);
+            if (
+              e.target.className !==
+                "content-add-and-archive-feature-on-responsive" &&
+              e.target.className !== "fas fa-plus add-icon" &&
+              e.target.className !== "fas fa-archive icon archive-icon" &&
+              e.target.className !== "fas fa-ellipsis-v icon"
+            ) {
+              handleToggleContentAddAndArchiveFeatureOnResponsiveRef(false);
+            }
+          }}
         >
           <HomeTopBar
             viewSelected={viewSelected}
@@ -333,7 +371,6 @@ export const Home = () => {
                 handleGetVisibilityFormState={handleGetVisibilityFormState}
                 handleGetEditItem={handleGetEditItem}
                 handleSearchArchiveTask={handleSearchArchiveTask}
-                handleGetVisibilityFormState={handleGetVisibilityFormState}
               />
             </DragDropContext>
           )}
@@ -352,10 +389,34 @@ export const Home = () => {
             />
           )}
           <div
-            className="show-archive-view show-archive-view-responsive"
-            onClick={() => handleArchiveVisibility(true)}
+            className="options-icons-reponsive"
+            onClick={() =>
+              handleToggleContentAddAndArchiveFeatureOnResponsiveRef(
+                !optionsIconsReponsiveVisibility
+              )
+            }
+            ref={optionsIconsReponsiveRef}
           >
-            <i className="fas fa-archive icon archive-icon"></i>
+            <i class="fas fa-ellipsis-v icon"></i>
+          </div>
+          <div
+            className="content-add-and-archive-feature-on-responsive"
+            ref={contentAddAndArchiveFeatureOnResponsiveRef}
+          >
+            <i
+              class="fas fa-plus add-icon"
+              onClick={() => {
+                handleGetVisibilityFormState(true);
+                handleToggleContentAddAndArchiveFeatureOnResponsiveRef();
+              }}
+            ></i>
+            <i
+              className="fas fa-archive icon archive-icon"
+              onClick={() => {
+                handleArchiveVisibility(true);
+                handleToggleContentAddAndArchiveFeatureOnResponsiveRef();
+              }}
+            ></i>
           </div>
         </div>
       )}
