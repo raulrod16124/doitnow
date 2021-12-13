@@ -139,23 +139,21 @@ export const FormTodo = ({
             value={todo && todo.level}
             onChange={(e) => setTodo({ ...todo, level: e.target.value })}
           >
-            <option className="select-level">easy</option>
-            <option className="select-level">medium</option>
-            <option className="select-level">hard</option>
+            <option className="select-level" value="easy">
+              easy
+            </option>
+            <option className="select-level" value="medium">
+              medium
+            </option>
+            <option className="select-level" value="hard">
+              hard
+            </option>
           </select>
           <select
             className="form-status"
-            value="-- select --"
+            value={todo && todo.status}
             onChange={(e) => setTodo({ ...todo, status: e.target.value })}
           >
-            <option
-              className="select-level"
-              value="-- select --"
-              disabled
-              selected
-            >
-              -- select --
-            </option>
             <option className="select-level" value="todo">
               To Do
             </option>
