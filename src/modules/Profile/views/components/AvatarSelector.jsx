@@ -24,29 +24,34 @@ export const AvatarSelector = ({
           className="far fa-window-close icon close-icon"
           onClick={() => handleSetAvatarSelectorView(false)}
         ></i>
-        {Object.keys(avatars).map((avatar) => {
-          return (
-            <img
-              className={
-                avatarSelected === avatars[avatar]
-                  ? "avatarToSelect selected"
-                  : "avatarToSelect"
-              }
-              key={avatars[avatar]}
-              src={avatars[avatar]}
-              alt={avatar}
-              onClick={() => setAvatarSelected(avatars[avatar])}
-            />
-          );
-        })}
-        <Button
-          size="small"
-          label="Save"
-          onClick={(e) => {
-            handleUpdateUserData(avatarSelected);
-            handleSetAvatarSelectorView(false);
-          }}
-        />
+        <div className="content-images">
+          {Object.keys(avatars).map((avatar) => {
+            return (
+              <img
+                className={
+                  avatarSelected === avatars[avatar]
+                    ? "avatarToSelect selected"
+                    : "avatarToSelect"
+                }
+                key={avatars[avatar]}
+                src={avatars[avatar]}
+                alt={avatar}
+                onClick={() => setAvatarSelected(avatars[avatar])}
+              />
+            );
+          })}
+        </div>
+        <div className="content-save-button">
+          <Button
+            size="small"
+            label="Save"
+            primary
+            onClick={(e) => {
+              handleUpdateUserData(avatarSelected);
+              handleSetAvatarSelectorView(false);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

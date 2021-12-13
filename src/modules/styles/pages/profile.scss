@@ -1,9 +1,13 @@
 .profile {
-  overflow: hidden;
   width: 100%;
   height: 100vh;
   background: lighten($color: $DarkGrey, $amount: 25);
   font-size: 1.6rem;
+  overflow: hidden;
+
+  @include tablet {
+    overflow: auto;
+  }
 
   .bg-avatar-selector {
     position: absolute;
@@ -24,11 +28,29 @@
     height: 85vh;
     margin: 5vh auto;
     padding: 4vmin 2vmin;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    border-radius: 0.5vmin;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
     background-color: $White;
     z-index: 200;
+    @include tablet {
+      width: 90%;
+      max-height: 80%;
+      margin: 5rem auto;
+    }
+
+    .content-images {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 90%;
+      @include tablet {
+        width: 100%;
+        height: 90%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        overflow: auto;
+      }
+    }
 
     .close-icon {
       position: absolute;
@@ -41,6 +63,12 @@
       height: 15vh;
       cursor: pointer;
       margin: 0 auto;
+
+      @include tablet {
+        width: auto;
+        height: 80px;
+        margin: 1rem auto;
+      }
     }
 
     .avatarToSelect.selected {
@@ -50,11 +78,18 @@
       transform: scale(1.4);
     }
 
+    .content-save-button {
+      position: relative;
+      width: 100%;
+      height: 10%;
+      background-color: $White;
+    }
+
     button {
       position: absolute;
-      width: 15%;
-      bottom: 2vmin;
-      right: 2.5vw;
+      bottom: 0;
+      right: 0;
+      width: 20%;
     }
   }
 
@@ -65,11 +100,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr 0.5fr;
     column-gap: 2vw;
+
+    @include tablet {
+      margin: 6rem auto 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .user-data-content {
     width: 100%;
-    border-radius: 0.5vmin;
+    margin: 0 auto;
+
+    @include tablet {
+      margin: 1rem auto;
+    }
 
     .user-data {
       position: relative;
@@ -78,8 +123,13 @@
       display: flex;
       flex-direction: column;
       background-color: $White;
-      border-radius: 0.5vmin;
+      border-radius: 0.5rem;
       padding: 1vmin;
+
+      @include tablet {
+        padding: 0.5rem;
+        height: auto;
+      }
     }
 
     .level-content {
@@ -91,18 +141,32 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: $grey;
+      background-color: $fillBar;
       color: $White;
       border-radius: 50%;
+
+      @include tablet {
+        width: 5rem;
+      }
 
       .user-level {
         margin-top: 0.5vh;
         margin-bottom: -1vh;
         font-size: 5vmin;
         font-weight: 600;
+
+        @include tablet {
+          font-size: 1.6rem;
+          text-align: center;
+          width: 6rem;
+        }
       }
       .label {
         margin-bottom: 1vh;
+        @include tablet {
+          font-size: 1.4rem;
+          text-align: center;
+        }
       }
     }
 
@@ -112,6 +176,12 @@
       width: 10vw;
       height: 20vh;
       margin: 0 auto;
+
+      @include tablet {
+        width: auto;
+        height: 100px;
+        margin: 1rem auto 0 auto;
+      }
     }
 
     .avatarEditButton {
@@ -119,6 +189,14 @@
       justify-content: flex-end;
       width: 10vw;
       margin: -2.5vh auto 1.5vh auto;
+
+      @include tablet {
+        width: 40%;
+        margin: -2rem auto 2rem auto;
+        .icon {
+          font-size: 2rem;
+        }
+      }
     }
 
     .name-content,
@@ -132,9 +210,9 @@
 
       .user-name-edit,
       .user-email-edit {
-        height: 100%;
-        padding: 0.5vmin;
-        border-radius: 0.5vmin;
+        height: 60%;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
         border: 0.2vmin solid $DarkGrey;
       }
 
@@ -145,6 +223,18 @@
       }
     }
 
+    .name-content {
+      @include tablet {
+        width: 10%;
+        margin: 0 auto;
+        padding-left: 3rem;
+        .icon {
+          padding-left: 1rem;
+          font-size: 2rem;
+        }
+      }
+    }
+
     .user-name,
     .user-email {
       text-align: center;
@@ -152,6 +242,10 @@
       padding-right: 1vw;
       padding-left: 2vw;
       margin: 0;
+
+      @include tablet {
+        font-size: 1.8rem;
+      }
     }
 
     .user-name {
@@ -169,8 +263,8 @@
         margin: 1vh auto 0 auto;
         width: 80%;
         height: 3vh;
-        border-radius: 0.5vmin;
-        background-color: $grey;
+        border-radius: 0.5rem;
+        background-color: $lightGrey;
       }
 
       .actual-exp-points {
@@ -181,6 +275,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include tablet {
+          font-size: 1.4rem;
+          color: $deepMainColor;
+        }
       }
 
       .user-green-fill {
@@ -188,18 +287,26 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        background-color: $Green;
-        border-radius: 0.5vmin;
+        background-color: $fillBar;
+        border-radius: 0.5rem;
+
+        @include tablet {
+          padding: 0.5rem;
+        }
       }
 
       .user-progress-data {
         width: 80%;
         margin: 0 auto 2vh auto;
-        font-weight: 700;
+        font-weight: 400;
         font-style: italic;
-        color: $DarkGrey;
+        color: $grey;
         display: flex;
         justify-content: space-between;
+
+        @include tablet {
+          padding: 0.5rem;
+        }
       }
     }
 
@@ -214,14 +321,27 @@
 
   .user-task-done {
     width: 100%;
-    height: 40vh;
+    height: auto;
     background-color: $White;
     border-radius: 0.5vmin;
     padding: 1vmin;
 
+    @include tablet {
+      height: 100%;
+      margin: 1rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
     .circle-bar-content {
-      width: 40%;
+      width: 50%;
       margin: 1vh auto;
+      @include tablet {
+        width: 80%;
+        margin: 1rem auto;
+      }
     }
 
     .text-content {
@@ -232,6 +352,11 @@
       flex-direction: column;
       justify-content: space-between;
 
+      @include tablet {
+        font-size: 1.6rem;
+        height: auto;
+      }
+
       .text {
         font-weight: 400;
       }
@@ -239,10 +364,13 @@
       .counter {
         font-weight: 600;
         font-size: 3vmin;
-        color: $DarkGrey;
+        color: $grey;
+        @include tablet {
+          font-size: 1.6rem;
+        }
 
         .counter-done {
-          color: $Green;
+          color: $mainColor;
         }
       }
     }
@@ -254,7 +382,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // padding-top: 6vh;
+
+    @include tablet {
+      height: 100%;
+      width: 90%;
+      margin-left: 10%;
+      column-gap: 1rem;
+    }
 
     .daily-record,
     .best-week-record,
@@ -266,12 +400,25 @@
       grid-template-columns: 0.5fr 1fr;
       width: 100%;
       align-items: center;
+
+      @include tablet {
+        width: 90%;
+        height: auto;
+        grid-template-columns: 1fr;
+        border: 0.1rem solid $mainColor;
+        border-radius: 0.5rem;
+        padding: 0 0.5rem;
+      }
     }
 
     .icon {
       font-size: 5vmin;
       text-align: center;
       cursor: default;
+
+      @include tablet {
+        display: none;
+      }
 
       &.daily {
         color: $Red;
@@ -290,29 +437,64 @@
 
     .content-data {
       width: 100%;
-      align-items: flex-end;
       padding: 0 5%;
       text-align: center;
+      @include tablet {
+        align-items: center;
+      }
 
       .data {
-        font-size: 2.8vmin;
         font-weight: 700;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         column-gap: 5%;
+        @include tablet {
+          align-items: center;
+        }
+      }
+
+      .data-number {
+        font-size: 2rem;
+        @include tablet {
+          font-size: 1.5rem;
+        }
       }
 
       .data-text {
-        font-size: 2vmin;
+        font-size: 1.2rem;
         font-weight: 400;
+        @include tablet {
+          text-align: left;
+          font-size: 1rem;
+        }
       }
 
       .text {
         color: $DarkGrey;
         font-weight: 600;
         text-align: left;
+        font-size: 1.4rem;
         padding-top: 1vh;
+        @include tablet {
+          text-align: center;
+          padding: 0;
+          font-size: 1rem;
+        }
       }
+    }
+  }
+
+  .content-extra-profile-data-web {
+    display: flex;
+    @include tablet {
+      display: none;
+    }
+  }
+  .content-extra-profile-data-responsive {
+    display: none;
+    @include tablet {
+      display: flex;
+      height: 90%;
     }
   }
 
@@ -328,6 +510,12 @@
     border-radius: 0.5vmin;
     margin: 2.5vh auto;
 
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
     .month-overview {
       width: 90%;
       margin: 0 auto;
@@ -335,10 +523,17 @@
       flex-direction: column;
       padding: 1vmin 0.5vmin;
 
+      @include tablet {
+        font-size: 1rem;
+      }
+
       .month-title {
         width: 90%;
         margin: 0 auto;
         font-weight: 400;
+        @include tablet {
+          font-size: 1.4rem;
+        }
       }
 
       .month-name {
@@ -347,28 +542,49 @@
       }
     }
 
+    .previous-month {
+      display: flex;
+      @include tablet {
+        display: none;
+      }
+    }
+
     .monthly-activity {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       padding: 2vmin;
+
+      @include tablet {
+        padding: 0.5rem 0;
+      }
 
       .day-of-current-month {
         position: relative;
         min-height: 6vh;
         border-radius: 0.5vmin;
         margin: 0.5vmin;
-        padding: 1vmin;
+        padding: 0.2rem 1rem;
         font-style: italic;
         background: linear-gradient(45deg, $grey, $White);
+        display: flex;
+
+        @include tablet {
+          width: 90%;
+          min-height: 4rem;
+        }
       }
 
       .task-quantity {
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 0.5rem;
         width: 20%;
         opacity: 0.5;
         z-index: 11;
+
+        @include tablet {
+          font-size: 1.2rem;
+        }
       }
 
       .fill-green {
@@ -397,20 +613,44 @@
       justify-content: space-around;
       align-items: center;
       text-align: center;
+      @include tablet {
+        width: 80%;
+        margin: 0.5rem auto 1rem auto;
+      }
 
       .total-title {
-        font-size: 3vmin;
-        color: darken($color: $DarkGrey, $amount: 30);
+        font-size: 2.2rem;
+        color: $deepMainColor;
+        @include tablet {
+          font-size: 1.6rem;
+        }
+      }
+
+      .content-total-tasks {
+        @include tablet {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .data-task {
         font-size: 5vmin;
-        color: $DarkGrey;
+        color: $fillBar;
+        @include tablet {
+          font-size: 2rem;
+        }
       }
 
       .data-title {
         font-size: 1.8vmin;
-        color: darken($color: $DarkGrey, $amount: 20);
+        color: $darkGrey;
+        @include tablet {
+          font-size: 1.2rem;
+          font-weight: normal;
+        }
       }
     }
   }

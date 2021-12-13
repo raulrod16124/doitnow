@@ -19,6 +19,7 @@ import { GetUserProfile, UpdateUserProfile } from "../state/actions";
 import { defaultAvatar } from "./components/avatars";
 import { AvatarSelector } from "./components/AvatarSelector";
 import { DailyRecord, WeekRecord, weeklyAverage } from "./components/DataLogic";
+import { ExtraProfileData } from "./components/ExtraProfileData";
 
 export const Profile = () => {
   const profileState = useSelector((state) => {
@@ -356,71 +357,48 @@ export const Profile = () => {
                 </div>
               </div>
               <div className="user-task-done">
-                <div className="circle-bar-content">
-                  <CircularProgressbar
-                    value={circleBarValue > 0 && circleBarValue}
-                    maxValue={1}
-                    text={`${Math.round(
-                      circleBarValue > 0 ? circleBarValue * 100 : 0
-                    )}%`}
-                    styles={buildStyles({
-                      textSize: "1.8vmin",
-                      pathTransitionDuration: 0.5,
-                      strokeLinecap: "butt",
-                      pathColor: "#1dd620",
-                    })}
-                  />
-                </div>
-                <div className="text-content">
-                  <h3 className="text">Current month</h3>
-                  <span className="counter">
-                    <span className="counter-done">
+                <div className="content-circle-data">
+                  <div className="circle-bar-content">
+                    <CircularProgressbar
+                      value={circleBarValue > 0 && circleBarValue}
+                      maxValue={1}
+                      text={`${Math.round(
+                        circleBarValue > 0 ? circleBarValue * 100 : 0
+                      )}%`}
+                      styles={buildStyles({
+                        textSize: "1.6rem",
+                        pathTransitionDuration: 0.5,
+                        strokeLinecap: "butt",
+                        pathColor: "#1dd620",
+                      })}
+                    />
+                  </div>
+                  <div className="text-content">
+                    <h3 className="text">Current month</h3>
+                    <span className="counter">
+                      <span className="counter-done">
+                        {
+                          tasksDoneForProfileData.filter(
+                            (task) =>
+                              task.date.split("/")[1] == currentMonth + 1
+                          ).length
+                        }{" "}
+                      </span>
+                      /{" "}
                       {
-                        tasksDoneForProfileData.filter(
+                        allTasksForProfileData.filter(
                           (task) => task.date.split("/")[1] == currentMonth + 1
                         ).length
-                      }{" "}
+                      }
                     </span>
-                    /{" "}
-                    {
-                      allTasksForProfileData.filter(
-                        (task) => task.date.split("/")[1] == currentMonth + 1
-                      ).length
-                    }
-                  </span>
+                  </div>
+                </div>
+                <div className="content-extra-profile-data-responsive">
+                  <ExtraProfileData dataTasksForStats={dataTasksForStats} />
                 </div>
               </div>
-              <div className="content-extra-profile-data">
-                <div className="daily-record">
-                  <i className="fas fa-fire icon daily"></i>
-                  <div className="content-data">
-                    <span className="data">
-                      {dataTasksForStats.daily_record}{" "}
-                      <p className="data-text">tasks completed</p>
-                    </span>
-                    <p className="text">Daily Record</p>
-                  </div>
-                </div>
-                <div className="best-week-record">
-                  <i className="fas fa-medal icon week"></i>
-                  <div className="content-data">
-                    <span className="data">
-                      {dataTasksForStats.week_record}{" "}
-                      <p className="data-text">tasks completed</p>
-                    </span>
-                    <p className="text">Week Record</p>
-                  </div>
-                </div>
-                <div className="best-streak">
-                  <i className="fas fa-trophy icon streak"></i>
-                  <div className="content-data">
-                    <span className="data">
-                      {dataTasksForStats.weekly_average}{" "}
-                      <p className="data-text">tasks per week</p>
-                    </span>
-                    <p className="text">Weekly Average</p>
-                  </div>
-                </div>
+              <div className="content-extra-profile-data-web">
+                <ExtraProfileData dataTasksForStats={dataTasksForStats} />
               </div>
             </div>
             <div className="profile-bottom">
@@ -514,10 +492,12 @@ export const Profile = () => {
               </div>
               <div className="total-tasks">
                 <h5 className="total-title">Total Stats</h5>
-                <p className="data-task">{tasksDoneForProfileData.length}</p>
-                <h5 className="data-title">Tasks completed</h5>
-                <p className="data-task">{allTasksForProfileData.length}</p>
-                <h5 className="data-title">Tasks created</h5>
+                <div className="content-total-tasks">
+                  <p className="data-task">{tasksDoneForProfileData.length}</p>
+                  <h5 className="data-title">Tasks completed</h5>
+                  <p className="data-task">{allTasksForProfileData.length}</p>
+                  <h5 className="data-title">Tasks created</h5>
+                </div>
               </div>
             </div>
           </div>
