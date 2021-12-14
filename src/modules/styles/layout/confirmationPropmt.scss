@@ -4,30 +4,47 @@
   top: 25vh;
   left: 40%;
   width: 20%;
-  height: 20vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   column-gap: 1vh;
   background-color: $White;
-  border-radius: 0.5vmin;
+  border-radius: 0.5rem;
   box-shadow: 0.5vmin 0.5vmin 1.5vmin $DarkGrey;
   padding: 1vh 1.5vw;
   z-index: 151;
 
+  @include tablet {
+    top: 15rem;
+    left: 10%;
+    width: 80%;
+    z-index: 15;
+  }
+
   .close-icon {
     text-align: right;
+    @include tablet {
+      font-size: 2.5rem;
+      padding-right: 1rem;
+    }
   }
 
   .text {
     text-align: center;
-    font-size: 2.5vmin;
+    font-size: 2rem;
     padding: 1vh 0;
+    @include tablet {
+      font-size: 1.8rem;
+    }
   }
 
   .content-buttons {
     display: flex;
     justify-content: space-between;
     padding: 1vmin;
+    @include tablet {
+      padding: 1rem;
+    }
   }
 }

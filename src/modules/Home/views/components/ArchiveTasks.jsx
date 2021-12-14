@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Search } from "../../../../stories/Search";
-import { GetTasks } from "../../state/actions";
 import { ArchiveItem } from "./ArchiveItem";
 
 export const ArchiveTasks = ({ allTodos, handleArchiveVisibility }) => {
@@ -42,11 +40,13 @@ export const ArchiveTasks = ({ allTodos, handleArchiveVisibility }) => {
             <i className="fas fa-archive icon archive-icon-title"></i>Archived
             tasks
           </h2>
-          <Search
-            width="40"
-            margin="4vmin"
-            onChange={(e) => handleSearchArchiveTask(e)}
-          />
+          <div className="content-search">
+            <Search
+              width="60"
+              margin="4vmin"
+              onChange={(e) => handleSearchArchiveTask(e)}
+            />
+          </div>
         </div>
         <div className="content-archive-tasks">
           {filterArchiveTasks.length > 0 ? (
