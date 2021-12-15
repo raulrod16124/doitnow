@@ -215,7 +215,6 @@ export const Profile = () => {
         experience: totalXP,
       });
     });
-    console.log(userData);
   };
 
   return (
