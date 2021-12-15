@@ -13,7 +13,14 @@ export const SearchInput = styled.input`
   height: ${(props) => props.height && props.height}vh;
 `;
 
-export const Search = ({ className, width, height, margin, onChange }) => {
+export const Search = ({
+  className,
+  width,
+  height,
+  margin,
+  autoFocus,
+  onChange,
+}) => {
   return (
     <SearchInput
       className={className}
@@ -23,6 +30,7 @@ export const Search = ({ className, width, height, margin, onChange }) => {
       height={height}
       type="search"
       placeholder="Search"
+      autoFocus={autoFocus}
     />
   );
 };

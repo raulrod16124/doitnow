@@ -102,6 +102,7 @@ export const ExperiencePoints = () => {
             <div className="button-content">
               <Button
                 label="Keep working hard"
+                primary
                 onClick={() => setXpVisibility(false)}
               />
             </div>

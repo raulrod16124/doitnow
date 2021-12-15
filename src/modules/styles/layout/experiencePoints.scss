@@ -25,6 +25,12 @@
   overflow: hidden;
   z-index: 150;
 
+  @include tablet {
+    width: 70%;
+    margin: 10rem 15%;
+    border-radius: 0.5rem;
+  }
+
   .content-arrows {
     width: 80%;
     height: 20vh;
@@ -36,6 +42,10 @@
       font-size: 10vmin;
       cursor: default;
       margin: 0 auto -6vh auto;
+      @include tablet {
+        font-size: 6rem;
+        margin: 0 auto -3rem auto;
+      }
     }
 
     .arrow:last-child {
@@ -49,6 +59,9 @@
     font-size: 6vmin;
     font-weight: 700;
     text-transform: uppercase;
+    @include tablet {
+      font-size: 3rem;
+    }
   }
 
   .transition-level {
@@ -60,6 +73,10 @@
     margin: 0 auto;
     font-size: 5vmin;
     font-weight: 600;
+
+    @include tablet {
+      font-size: 4rem;
+    }
 
     .prev-level {
       color: $Red;
@@ -76,5 +93,11 @@
 
   .button-content {
     margin: 0.5vmin auto 2vh auto;
+    @include tablet {
+      margin: 0.5rem auto 2rem auto;
+      & button {
+        font-size: 2rem;
+      }
+    }
   }
 }

@@ -277,6 +277,7 @@ export const Profile = () => {
                           />
                           <Button
                             label="Save"
+                            primary
                             onClick={() => {
                               dispatch(
                                 UpdateUserProfile(userData.id, {
@@ -319,6 +320,7 @@ export const Profile = () => {
                           />
                           <Button
                             label="Save"
+                            primary
                             onClick={() => {
                               dispatch(
                                 UpdateUserProfile(userData.id, {

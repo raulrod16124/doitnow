@@ -338,12 +338,14 @@ export const Home = () => {
               handleToggleContentAddAndArchiveFeatureOnResponsiveRef(false);
             }
             if (
-              e.target.className !== "search-component" &&
-              e.target.className !==
-                "fas fa-search icon icon-search-responsive-from-today" &&
-              e.target.className !== "search-today-responsive"
+              !e.target.className.includes("search-component") &&
+              !e.target.className.includes(
+                "icon-search-responsive-from-today"
+              ) &&
+              !e.target.className.includes("search-today-responsive")
             ) {
               setHomeSearchVisibility(false);
+              handleOrderTaskPerStatus(allTodos);
             }
           }}
         >
@@ -384,6 +386,7 @@ export const Home = () => {
                     width="90"
                     height="5"
                     onChange={handleSearchArchiveTask}
+                    autoFocus
                   />
                 </div>
               )}
