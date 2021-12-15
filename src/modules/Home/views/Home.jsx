@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import { AuthContext } from "../../../auth/Auth";
+import { Search } from "../../../stories/Search";
 import { Loading } from "../../global/Loading";
 import { Header } from "../../Nav/Header";
 import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
@@ -51,6 +52,8 @@ export const Home = () => {
     optionsIconsReponsiveVisibility,
     setOptionsIconsReponsiveVisibility,
   ] = useState(false);
+
+  const [homeSearchVisibility, setHomeSearchVisibility] = useState(false);
 
   const [formVisibility, setFormVisibility] = useState(false);
 
@@ -334,6 +337,14 @@ export const Home = () => {
             ) {
               handleToggleContentAddAndArchiveFeatureOnResponsiveRef(false);
             }
+            if (
+              e.target.className !== "search-component" &&
+              e.target.className !==
+                "fas fa-search icon icon-search-responsive-from-today" &&
+              e.target.className !== "search-today-responsive"
+            ) {
+              setHomeSearchVisibility(false);
+            }
           }}
         >
           <HomeTopBar
@@ -362,6 +373,20 @@ export const Home = () => {
               onDragUpdate={(result) => handleDetectDragging(result, "list")}
               onDragStart={(result) => handleDetectDragging(result, "task")}
             >
+              <i
+                class="fas fa-search icon icon-search-responsive-from-today"
+                onClick={() => setHomeSearchVisibility(!homeSearchVisibility)}
+              ></i>
+              {homeSearchVisibility && (
+                <div className="search-component">
+                  <Search
+                    className="search-today-responsive"
+                    width="90"
+                    height="5"
+                    onChange={handleSearchArchiveTask}
+                  />
+                </div>
+              )}
               <Today
                 allTodos={alltasksFiltered}
                 todo={todo}

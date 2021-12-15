@@ -103,7 +103,6 @@ export const AsideNav = () => {
             onClick={() => handleToggleNavBar("open")}
           ></i>
           <h1 className="title-responsive">DOITNOW</h1>
-          <i class="fas fa-search icon icon-search"></i>
         </div>
       </div>
       <div

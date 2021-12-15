@@ -29,9 +29,16 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include tablet {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     .title-responsive {
+      display: flex;
+      justify-content: center;
       color: $White;
       text-transform: lowercase;
       @include tablet {
@@ -41,6 +48,11 @@
 
     .icon {
       font-size: 2rem;
+    }
+
+    .icon-search {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -56,6 +68,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.8);
+      z-index: 22;
     }
   }
 
@@ -93,6 +106,7 @@
         top: 1rem;
         right: 1rem;
         font-size: 2rem;
+        z-index: 22;
       }
     }
 

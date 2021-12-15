@@ -834,6 +834,36 @@
     }
   }
 
+  .icon-search-responsive-from-today {
+    display: none;
+    @include tablet {
+      display: flex;
+      position: absolute;
+      position: fixed;
+      top: 2rem;
+      right: 1rem;
+      font-size: 2rem;
+      color: $White;
+      z-index: 20;
+    }
+  }
+
+  .search-today-responsive {
+    display: none;
+    @include tablet {
+      display: flex;
+      position: absolute;
+      position: fixed;
+      top: 6rem;
+      right: 5%;
+      padding: 1rem;
+      background-color: $lightGrey;
+      border: 0.1rem solid $fillBar;
+      border-radius: 0.5rem;
+      z-index: 20;
+    }
+  }
+
   .content-lists {
     position: relative;
     display: flex;
