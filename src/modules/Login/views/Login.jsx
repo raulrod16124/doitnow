@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
+import bgLogin from "./../../../assets/bg-login.svg";
 import auth from "../../../firebase/config";
 import { Button } from "../../../stories/Button";
 import { CheckUser } from "../state/actions";
@@ -55,30 +56,45 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <div className="login-content">
-        <form className="login-form">
-          <h3 className="error-message">
-            {errorMessageLogin !== "" ? errorMessageLogin : ""}
-          </h3>
-          <h2 className="title">Login</h2>
-          <fieldset className="input-content">
-            <legend className="legend-title">Email</legend>
-            <input ref={emailForm} type="email" className="input" autoFocus />
-          </fieldset>
-          <fieldset className="input-content">
-            <legend className="legend-title">Password</legend>
-            <input ref={passwordForm} type="password" className="input" />
-          </fieldset>
-          <div className="buttons-content">
-            <Link to="/sign-up">Sign up</Link>
-            {/* <Link to="/recover-password">Forgot password?</Link> */}
-            <Button label="login" onClick={(e) => handleVerifyUser(e)} />
-          </div>
-        </form>
-        <div className="login-picture"></div>
+    <>
+      <img src={bgLogin} alt="background-login" className="bg-login" />
+      <div className="login">
+        <div className="login-content">
+          <form className="login-form">
+            <h3 className="error-message">
+              {errorMessageLogin !== "" ? errorMessageLogin : ""}
+            </h3>
+            <h2 className="title">Login</h2>
+            <fieldset className="input-content">
+              <input
+                ref={emailForm}
+                type="email"
+                className="input"
+                placeholder="Email"
+              />
+            </fieldset>
+            <fieldset className="input-content">
+              <input
+                ref={passwordForm}
+                type="password"
+                className="input"
+                placeholder="Password"
+              />
+            </fieldset>
+            <div className="buttons-content">
+              <Link to="/sign-up">Sign up</Link>
+              {/* <Link to="/recover-password">Forgot password?</Link> */}
+              <Button
+                label="login"
+                size="medium"
+                primary
+                onClick={(e) => handleVerifyUser(e)}
+              />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

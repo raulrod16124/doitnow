@@ -64,7 +64,7 @@ export const ArchiveItem = ({ item }) => {
       <h3 className="item-title">
         {item.title} <span className="item-date">{item.date}</span>
         <i
-          class="fas fa-ellipsis-v icon-item-settings"
+          className="fas fa-ellipsis-v icon-item-settings"
           onClick={() => handleToggleMenuResponsive("open")}
         ></i>
       </h3>

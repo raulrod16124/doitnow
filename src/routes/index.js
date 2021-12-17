@@ -6,11 +6,10 @@ import { Home } from "../modules/Home/views/Home";
 import Login from "../modules/Login/views/Login";
 import RecoverPassword from "../modules/Login/views/RecoverPassword";
 import SignUp from "../modules/Login/views/SingUp";
-import { Header } from "../modules/Nav/Header";
 import { Profile } from "../modules/Profile/views/Profile";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-function Routes() {
+function Routes({ setNavVisibility }) {
   const history = useHistory();
 
   // Routes
@@ -29,6 +28,9 @@ function Routes() {
       };
       // // console.log(userData);
       localStorage.setItem("user", JSON.stringify(userData));
+      setNavVisibility(true);
+    } else {
+      setNavVisibility(false);
     }
   }, [currentUser]);
 

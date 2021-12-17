@@ -117,7 +117,7 @@ function Item({ item, index, handleGetEditItem }) {
               <h3 className="todo-title">
                 {item.title} <span className="todo-date">{item.date}</span>
                 <i
-                  class="fas fa-ellipsis-v icon icon-item-settings"
+                  className="fas fa-ellipsis-v icon icon-item-settings"
                   onClick={() => handleToggleMenuResponsive("open")}
                 ></i>
               </h3>

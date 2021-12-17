@@ -127,7 +127,7 @@ export const TimestampItem = ({ item, handleGetEditItem }) => {
             onClick={() => handleDeleteItemById(item)}
           ></i>
           <i
-            class="fas fa-ellipsis-v icon-item-settings"
+            className="fas fa-ellipsis-v icon-item-settings"
             onClick={() => handleToggleMenuResponsive("open")}
           ></i>
         </div>

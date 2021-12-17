@@ -376,7 +376,7 @@ export const Home = () => {
               onDragStart={(result) => handleDetectDragging(result, "task")}
             >
               <i
-                class="fas fa-search icon icon-search-responsive-from-today"
+                className="fas fa-search icon icon-search-responsive-from-today"
                 onClick={() => setHomeSearchVisibility(!homeSearchVisibility)}
               ></i>
               {homeSearchVisibility && (
@@ -425,14 +425,14 @@ export const Home = () => {
             }
             ref={optionsIconsReponsiveRef}
           >
-            <i class="fas fa-ellipsis-v icon"></i>
+            <i className="fas fa-ellipsis-v icon"></i>
           </div>
           <div
             className="content-add-and-archive-feature-on-responsive"
             ref={contentAddAndArchiveFeatureOnResponsiveRef}
           >
             <i
-              class="fas fa-plus add-icon"
+              className="fas fa-plus add-icon"
               onClick={() => {
                 handleGetVisibilityFormState(true);
                 handleToggleContentAddAndArchiveFeatureOnResponsiveRef();

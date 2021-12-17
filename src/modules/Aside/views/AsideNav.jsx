@@ -7,20 +7,12 @@ import { Link } from "react-router-dom";
 
 import { Footer } from "../../global/Footer";
 import { Header } from "../../Nav/Header";
-import { HomeViewsVisibility, ViewSelected } from "../state/action";
+import { ViewSelected } from "../state/action";
 
 export const AsideNav = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-
-  const initialSectionView = {
-    home: true,
-    stats: false,
-    profile: false,
-  };
-
-  const [sectionView, setSectionView] = useState(initialSectionView);
 
   const viewState = useSelector((state) => {
     return state.AsideReducer;
@@ -30,9 +22,6 @@ export const AsideNav = () => {
   let homeSelected = classNames("section", {
     selected: location.pathname === "/home",
   });
-  // let statsSelected = classNames("section", {
-  //   selected: location.pathname === "/stats",
-  // });
   let profileSelected = classNames("section", {
     selected: location.pathname === "/profile",
   });
@@ -99,7 +88,7 @@ export const AsideNav = () => {
       <div className="content-responsive-menu">
         <div className="container-responsive">
           <i
-            class="fas fa-bars icon icon-menu"
+            className="fas fa-bars icon icon-menu"
             onClick={() => handleToggleNavBar("open")}
           ></i>
           <h1 className="title-responsive">DOITNOW</h1>
@@ -116,7 +105,7 @@ export const AsideNav = () => {
       >
         <div className="nav-bar" ref={navResponsiveRef}>
           <i
-            class="fas fa-times icon icon-close-nav"
+            className="fas fa-times icon icon-close-nav"
             onClick={handleToggleNavBar}
           ></i>
           <div className="logo-app">

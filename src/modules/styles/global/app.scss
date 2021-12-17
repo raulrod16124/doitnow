@@ -51,8 +51,9 @@ body {
 
 .main {
   position: relative;
-  display: grid;
-  grid-template-columns: 10% 90%;
+  display: flex;
+  // display: grid;
+  // grid-template-columns: 10% 90%;
   grid-template-rows: 100%;
   width: 100%;
   height: 100%;
