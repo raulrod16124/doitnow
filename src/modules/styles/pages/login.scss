@@ -38,6 +38,10 @@
     width: 100%;
     padding: 2rem;
 
+    @include tablet {
+      padding: 0 2rem;
+    }
+
     .error-message {
       color: $Red;
       text-align: center;
@@ -45,7 +49,7 @@
       margin-top: 10vh;
 
       @include tablet {
-        margin-top: 1rem;
+        margin-top: 0;
       }
     }
 
@@ -56,6 +60,7 @@
       font-size: 3rem;
       @include tablet {
         width: 80%;
+        font-size: 2rem;
       }
     }
 
