@@ -16,11 +16,18 @@ exports[`Testing App Component should render App component correctly 1`] = `
     className="App"
   >
     <AuthProvider>
+      <ExperiencePoints />
       <BrowserRouter>
-        <AsideNav />
-        <Routes />
+        <div
+          className="main"
+        >
+          <Routes
+            setNavVisibility={[Function]}
+          />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   </div>
+  <ConfirmationPropmt />
 </Provider>
 `;

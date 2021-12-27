@@ -2,113 +2,20 @@
 
 exports[`Visual Tests of Home Component should render Home component correctly 1`] = `
 <div
-  className="home"
+  className="loading"
 >
   <div
-    className="today-main"
+    className="content-spinner"
   >
-    <div
-      className="progress-bar"
+    <img
+      alt="Loading spinner"
+      src="Spin-1s-200px.svg"
+    />
+    <h2
+      className="text"
     >
-      <button
-        className="button button--mediun button--secondary"
-        onClick={[Function]}
-        type="submit"
-      >
-        New task
-      </button>
-      <div
-        className="level-bar"
-      >
-        <div
-          className="green-fill"
-          style={
-            Object {
-              "width": "0%",
-            }
-          }
-        />
-      </div>
-      <div
-        className="task-counter"
-      >
-        <p
-          className="task-counter-text"
-        >
-          0
-           / 
-          0
-        </p>
-      </div>
-    </div>
-    <div
-      className="content-body"
-    >
-      <div
-        className="content-lists"
-      >
-        <ul
-          className="list"
-          data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="todo"
-        >
-          <div
-            className="header-list"
-          >
-            <h2
-              className="list-title"
-            >
-              TO DO
-            </h2>
-            <span
-              className="count"
-            >
-              0
-            </span>
-          </div>
-        </ul>
-        <ul
-          className="list"
-          data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="inProgress"
-        >
-          <div
-            className="header-list"
-          >
-            <h2
-              className="list-title"
-            >
-              IN PROGRESS
-            </h2>
-            <span
-              className="count"
-            >
-              0
-            </span>
-          </div>
-        </ul>
-        <ul
-          className="list"
-          data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="done"
-        >
-          <div
-            className="header-list"
-          >
-            <h2
-              className="list-title"
-            >
-              COMPLETED
-            </h2>
-            <span
-              className="count"
-            >
-              0
-            </span>
-          </div>
-        </ul>
-      </div>
-    </div>
+      Loading
+    </h2>
   </div>
 </div>
 `;
