@@ -40,7 +40,7 @@ export const CreateUser = (user) => {
           level: "easy",
           status: "todo",
           description:
-            "Drag me up to hte IN PROGRESS column to work with me, and to the COMPLETED column to finish this task 😊",
+            "Drag me up to the IN PROGRESS column to work with me, and to the COMPLETED column to finish this task 😊",
           date: new Date().toLocaleDateString(),
           tags: [
             {
