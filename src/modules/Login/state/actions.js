@@ -1,4 +1,6 @@
+import { CreateTask } from "../../Home/state/actions";
 import { CreateUserProfile, GetUserProfile } from "../../Profile/state/actions";
+import { avatars } from "../../Profile/views/components/avatars";
 import { createUser, verifyUser } from "../provides";
 import { TYPES } from "./type";
 
@@ -19,17 +21,31 @@ export const CheckUser = (user) => {
 export const CreateUser = (user) => {
   return async (dispatch) => {
     const { userTokenCreated, newUser } = await createUser(user);
+    console.log("Token Created");
+    console.log(userTokenCreated);
     if (userTokenCreated) {
-      // console.log("Token Created");
       const userProfile = {
         id: userTokenCreated.localId,
         name: user.email.split("@")[0],
         email: user.email,
-        avatar: "./../../assets/avatars/girl1.png",
-        level: 1,
+        avatar: avatars.lion,
+        level: "1",
         experience: 0,
       };
       dispatch(CreateUserProfile(userProfile));
+      // Move the newTask structure to a model doc.
+      dispatch(
+        CreateTask({
+          title: "Hey, I'm your first task",
+          level: "easy",
+          status: "todo",
+          description:
+            "Drag me up the column of IN PROGRESS to work with me, and to the column of COMPLETED to finish this task 😊",
+          date: new Date().toLocaleDateString(),
+          tags: [],
+          owner: userTokenCreated.localId,
+        })
+      );
     }
     // console.log("Second Dispatch");
     dispatch({

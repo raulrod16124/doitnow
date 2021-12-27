@@ -53,6 +53,9 @@ function SignUp() {
           password: passwordForm.current.value,
         };
         dispatch(CreateUser(newUser));
+        emailForm.current.value = "";
+        passwordForm.current.value = "";
+        passwordConfirmationForm.current.value = "";
       } else {
         setErrorMessageLogin("passwords do not match");
         setTimeout(() => {
@@ -65,11 +68,6 @@ function SignUp() {
         setErrorMessageLogin("");
       }, 1500);
     }
-
-    // userNameForm.current.value = "";
-    emailForm.current.value = "";
-    passwordForm.current.value = "";
-    passwordConfirmationForm.current.value = "";
   };
 
   return (
@@ -82,10 +80,6 @@ function SignUp() {
               {errorMessageLogin !== "" ? errorMessageLogin : ""}
             </h3>
             <h2 className="title">Create account</h2>
-            {/* <fieldset className="input-content">
-              <legend className="legend-title">Name</legend>
-              <input ref={userNameForm} type="text" className="input" autoFocus />
-            </fieldset> */}
             <fieldset className="input-content">
               <input
                 ref={emailForm}

@@ -60,7 +60,7 @@ export const Profile = () => {
 
   useEffect(async () => {
     const userDataFromLocalStore = await JSON.parse(
-      localStorage.getItem("user")
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
     );
     // console.log(profileState.status);
     switch (profileState.status) {
@@ -101,7 +101,9 @@ export const Profile = () => {
   // Circle bar value
   const [circleBarValue, setcircleBarValue] = useState(0);
   useEffect(async () => {
-    const userDataLocalStorage = await JSON.parse(localStorage.getItem("user"));
+    const userDataLocalStorage = await JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
+    );
     if (
       todosState.status === "initial" ||
       todosState.status === "task_created" ||
@@ -236,10 +238,10 @@ export const Profile = () => {
               <div className="user-data-content">
                 <div className="user-data">
                   <div className="level-content">
+                    <label className="label">Level</label>
                     <div className="user-level">
                       {userData && userData.level}
                     </div>
-                    <label className="label">Level</label>
                   </div>
                   <img
                     className="user-avatar"

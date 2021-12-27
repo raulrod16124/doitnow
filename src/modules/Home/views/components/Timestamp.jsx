@@ -32,7 +32,9 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
   }, [currentTime, dateSelected]);
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
+    const userData = JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
+    );
     if (todosState.status === "task updated") {
       dispatch(GetTasks(userData));
     }

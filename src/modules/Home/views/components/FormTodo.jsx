@@ -65,7 +65,9 @@ export const FormTodo = ({
   const handleSaveTodo = (e) => {
     e.preventDefault();
     if (todo.title !== "") {
-      const userOwner = JSON.parse(localStorage.getItem("user"));
+      const userOwner = JSON.parse(
+        localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
+      );
       // console.log(userOwner);
       const newTask = {
         title: todo.title,

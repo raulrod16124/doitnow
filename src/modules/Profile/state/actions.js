@@ -2,9 +2,9 @@ import { createUserProfile, getUserProfile, updateProfile } from "../provider";
 import { TYPES } from "./type";
 
 export const GetUserProfile = (user) => {
+  // console.log(user);
   return async (dispatch) => {
     const userProfileData = await getUserProfile(user);
-    // // console.log(userProfileData._document.data.value.mapValue.fields);
     const userProfile = {
       id: Object.values(
         userProfileData._document.data.value.mapValue.fields.id

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 import { ViewSelected } from "../Aside/state/action";
@@ -16,16 +15,14 @@ export const Header = () => {
 
   const dispatch = useDispatch();
 
-  const location = useLocation();
-
   useEffect(async () => {
     const userDataFromLocalStore = await JSON.parse(
-      localStorage.getItem("user")
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
     );
     // console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
-        // console.log("GETTING ");
+        console.log("GETTING ");
         if (userDataFromLocalStore) {
           dispatch(GetUserProfile(userDataFromLocalStore.id));
         }
@@ -34,6 +31,7 @@ export const Header = () => {
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
+        console.log("getProfiledata in header success");
         setUserData(profileState.data);
         break;
     }

@@ -20,14 +20,17 @@ function Routes({ setNavVisibility }) {
 
   useEffect(() => {
     if (currentUser && currentUser.accessToken !== undefined) {
+      // console.log("user authenticated");
       const userData = {
         id: currentUser.uid,
         name: currentUser.email.split("@")[0],
         email: currentUser.email,
         avatar: "",
       };
-      // // console.log(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem(
+        process.env.REACT_APP_LOCAL_STORAGE_KEY,
+        JSON.stringify(userData)
+      );
       setNavVisibility(true);
     } else {
       setNavVisibility(false);
@@ -38,8 +41,10 @@ function Routes({ setNavVisibility }) {
     const routesCondition = existingRoutes.some(
       (route) => route === history.location.pathname
     );
-    // // console.log(routesCondition);
-    if (JSON.parse(localStorage.getItem("user"))) {
+    // console.log(routesCondition);
+    if (
+      JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY))
+    ) {
       if (!routesCondition) {
         history.push({ pathname: "/home" });
       }

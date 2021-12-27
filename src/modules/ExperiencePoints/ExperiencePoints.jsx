@@ -29,7 +29,9 @@ export const ExperiencePoints = () => {
   const [actualLevel, setActualLevel] = useState(0);
 
   useEffect(async () => {
-    const userData = await JSON.parse(localStorage.getItem("user"));
+    const userData = await JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
+    );
     if (
       todosState.status === "task_created" ||
       todosState.status === "task_deleted" ||
@@ -54,7 +56,7 @@ export const ExperiencePoints = () => {
   useEffect(async () => {
     const { level } = XPLevels(expereincePoints);
     if (profileData && profileData.level < level) {
-      console.log("LEVEL UP GOOO");
+      // console.log("LEVEL UP GOOO");
       setprevLevel(profileData.level);
       setActualLevel(level);
       setXpVisibility(true);
@@ -73,7 +75,7 @@ export const ExperiencePoints = () => {
         })
       );
     }
-    console.log("EXP POINTS CHECKED");
+    // console.log("EXP POINTS CHECKED");
   }, [expereincePoints]);
 
   return (

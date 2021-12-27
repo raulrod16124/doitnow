@@ -22,7 +22,7 @@ export const getAllTasks = async (user) => {
     }));
     // console.log(user);
     const taskByUser = tasksList.filter((task) => task.owner === idToFilter);
-    // console.log(taskByUser);
+    console.log(taskByUser);
 
     // TODO - Fix permissions to get the info from the db in firebase
     // https://firebase.google.com/docs/firestore/solutions/role-based-access

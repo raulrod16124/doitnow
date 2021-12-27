@@ -29,7 +29,6 @@ export const ConfirmationPropmt = () => {
         <div className="content-buttons">
           <Button
             label={cancelButton}
-            secondary
             onClick={() => {
               handleReject
                 ? dispatch(handleReject())

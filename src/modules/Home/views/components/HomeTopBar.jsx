@@ -6,7 +6,7 @@ import { Search } from "../../../../stories/Search";
 
 export const HomeTopBar = ({
   handleGetVisibilityFormState,
-  handleOrderTaskPerStatus,
+  handleOrderTaskFiltered,
   handleGetTodoFilter,
   handleSearchArchiveTask,
   allTodos,
@@ -26,17 +26,20 @@ export const HomeTopBar = ({
   const optionInputRef = useRef();
 
   const handleFilterTask = (condition, value) => {
+    // console.log(condition);
+    // console.log(value);
     switch (condition) {
       case "ALL":
-        handleOrderTaskPerStatus(allTodos);
+        handleOrderTaskFiltered(allTodos);
         setFilterDate(condition);
         handleGetTodoFilter(condition);
         break;
       case "TODAY":
+        // console.log("Enter in today");
         const todayDay = allTodos.filter(
           (todo) => todo.date === new Date().toLocaleDateString()
         );
-        handleOrderTaskPerStatus(todayDay);
+        handleOrderTaskFiltered(todayDay);
         setFilterDate(condition);
         handleGetTodoFilter(condition);
         break;
@@ -44,7 +47,7 @@ export const HomeTopBar = ({
         const selectCalendarDay = allTodos.filter(
           (todo) => todo.date === value.toLocaleDateString()
         );
-        handleOrderTaskPerStatus(selectCalendarDay);
+        handleOrderTaskFiltered(selectCalendarDay);
         setFilterDate(value.toLocaleDateString());
         handleGetTodoFilter(condition);
         break;
@@ -57,13 +60,13 @@ export const HomeTopBar = ({
               }
             }
           });
-          handleOrderTaskPerStatus(tagFilter);
+          handleOrderTaskFiltered(tagFilter);
           setFilterDate(value);
         }
         handleGetTodoFilter(condition);
         break;
       default:
-        handleOrderTaskPerStatus(allTodos);
+        // handleOrderTaskFiltered(allTodos);
         setFilterDate(condition);
         handleGetTodoFilter(condition);
         break;
@@ -98,7 +101,7 @@ export const HomeTopBar = ({
                 <i className="fas fa-chevron-down icon"></i>
               </label>
               {filterVisibility && (
-                <div className="content-options">
+                <ul className="content-options">
                   <li
                     className="option"
                     onClick={() => handleFilterTask("ALL")}
@@ -112,7 +115,7 @@ export const HomeTopBar = ({
                     Today
                   </li>
                   <li
-                    className="option"
+                    className="option calendar-selector"
                     onClick={() =>
                       setTimestampSelectorVisibility(
                         !timestampSelectorVisibility
@@ -125,8 +128,8 @@ export const HomeTopBar = ({
                     <div className="timeStamp-input">
                       <Calendar
                         locale="en-EN"
-                        onChange={() => setCalendarDateValue(calendarDateValue)}
                         value={calendarDateValue}
+                        onChange={() => setCalendarDateValue(calendarDateValue)}
                         onClickDay={(e) => handleFilterTask("CALENDAR", e)}
                       />
                     </div>
@@ -148,7 +151,7 @@ export const HomeTopBar = ({
                       ></i>
                     </div>
                   </li>
-                </div>
+                </ul>
               )}
             </div>
           </div>

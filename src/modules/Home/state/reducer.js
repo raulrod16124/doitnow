@@ -11,7 +11,7 @@ export const TodosReducer = (state = initialState, action) => {
     case TYPES.getTasks:
       // console.log(action.payload);
       // console.log(action.payload.length);
-      if (action.payload.length > 0) {
+      if (action.payload) {
         return {
           ...state,
           data: action.payload,

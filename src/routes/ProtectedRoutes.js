@@ -10,7 +10,9 @@ function ProtectedRoutes({ Component, ...restOfProps }) {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("user"))) {
+    if (
+      !JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY))
+    ) {
       history.push({ pathname: "/login" });
     }
   }, [currentUser]);

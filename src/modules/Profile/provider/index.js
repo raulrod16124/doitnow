@@ -13,21 +13,21 @@ export const getUserProfile = async (user) => {
     // https://firebase.google.com/docs/firestore/solutions/role-based-access
     // TODO - Filter by user before return
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return error;
   }
 };
 
 export const createUserProfile = async (userData) => {
   // console.log("Enter to createUserProfile");
+  // console.log(userData);
   try {
-    const userProfileCall = collection(db, "users");
-    await addDoc(userProfileCall, userData);
-    return userData;
+    const docRefToCreate = doc(db, "users", userData.id);
+    return await setDoc(docRefToCreate, userData);
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    // console.log(error);
+    console.log(error);
     return error;
   }
 };

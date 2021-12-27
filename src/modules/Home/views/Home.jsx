@@ -8,7 +8,7 @@ import { AuthContext } from "../../../auth/Auth";
 import { Search } from "../../../stories/Search";
 import { Loading } from "../../global/Loading";
 import { Header } from "../../Nav/Header";
-import { DeleteTask, GetTasks, UpdateTask } from "../state/actions";
+import { GetTasks, UpdateTask } from "../state/actions";
 import { ArchiveTasks } from "./components/ArchiveTasks";
 import { DragDropController } from "./components/DragDropController";
 import { FormTodo } from "./components/FormTodo";
@@ -66,6 +66,7 @@ export const Home = () => {
   const [todoFilter, setTodoFilter] = useState("All");
 
   const handleGetTodoFilter = (taskToFilter) => {
+    // console.log(taskToFilter);
     setTodoFilter(taskToFilter);
   };
 
@@ -74,13 +75,16 @@ export const Home = () => {
 
   useEffect(async () => {
     if (userLogged.currentUser) {
+      console.log("first call getTasks");
       dispatch(GetTasks(userLogged.currentUser));
       return <Redirect to="/" />;
     }
   }, [userLogged]);
 
   useEffect(async () => {
-    const userData = await JSON.parse(localStorage.getItem("user"));
+    const userData = await JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)
+    );
     if (
       todosState.status === "task_created" ||
       todosState.status === "task_deleted" ||
@@ -90,14 +94,16 @@ export const Home = () => {
     }
     // // console.log(todosState);
     if (todosState.status === "success" && todoFilter === "All") {
-      // // console.log(todosState);
-      handleOrderTaskPerStatus(todosState.data);
+      console.log("Got it");
+      // console.log(todosState);
+      handleOrderTaskFiltered(todosState.data);
       setAllTodos(todosState.data);
       setLoadingVisibility(false);
     }
-  }, [todosState]);
+  }, [todosState.status]);
 
-  const handleOrderTaskPerStatus = (allTasks) => {
+  const handleOrderTaskFiltered = (allTasks) => {
+    // console.log(allTasks);
     setTodo(() => allTasks.filter((item) => item.status === "todo"));
     setInProgress(() =>
       allTasks.filter((item) => item.status === "inProgress")
@@ -285,7 +291,7 @@ export const Home = () => {
   // Search tasks
   const handleSearchArchiveTask = (e) => {
     if (e.target.value === "") {
-      handleOrderTaskPerStatus(allTodos);
+      handleOrderTaskFiltered(allTodos);
     }
     const searchingArchiveTask = allTodos.filter((task) => {
       if (
@@ -295,7 +301,7 @@ export const Home = () => {
         return task;
       }
     });
-    handleOrderTaskPerStatus(searchingArchiveTask);
+    handleOrderTaskFiltered(searchingArchiveTask);
   };
 
   const handleToggleContentAddAndArchiveFeatureOnResponsiveRef = (
@@ -313,8 +319,10 @@ export const Home = () => {
       optionsIconsReponsiveRef.current.style.boxShadow =
         "0.2rem 0.2rem 1rem $darkGrey";
       setTimeout(() => {
-        contentAddAndArchiveFeatureOnResponsiveRef.current.style.display =
-          "none";
+        if (contentAddAndArchiveFeatureOnResponsiveRef.current !== null) {
+          contentAddAndArchiveFeatureOnResponsiveRef.current.style.display =
+            "none";
+        }
       }, 200);
     }
   };
@@ -345,7 +353,6 @@ export const Home = () => {
               !e.target.className.includes("search-today-responsive")
             ) {
               setHomeSearchVisibility(false);
-              handleOrderTaskPerStatus(allTodos);
             }
           }}
         >
@@ -353,7 +360,7 @@ export const Home = () => {
             viewSelected={viewSelected}
             allTodos={allTodos}
             handleGetVisibilityFormState={handleGetVisibilityFormState}
-            handleOrderTaskPerStatus={handleOrderTaskPerStatus}
+            handleOrderTaskFiltered={handleOrderTaskFiltered}
             handleGetTodoFilter={handleGetTodoFilter}
             handleArchiveVisibility={handleArchiveVisibility}
             handleSearchArchiveTask={handleSearchArchiveTask}
@@ -383,7 +390,7 @@ export const Home = () => {
                 <div className="search-component">
                   <Search
                     className="search-today-responsive"
-                    width="90"
+                    width="80"
                     height="5"
                     onChange={handleSearchArchiveTask}
                     autoFocus

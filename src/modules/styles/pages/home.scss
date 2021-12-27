@@ -1,11 +1,11 @@
 .home {
-  position: relative;
+  // position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: $White;
-  padding: 0 2rem;
+  padding: 0 4rem;
 
   @include tablet {
     min-width: 900px;
@@ -27,7 +27,15 @@
     z-index: 17;
 
     @include tablet {
-      display: none;
+      z-index: 21;
+      top: 6.5rem;
+      left: 2rem;
+      width: fit-content;
+      height: auto;
+      padding: 0;
+      background-color: transparent;
+      column-gap: 0;
+      z-index: 15;
     }
 
     .content-options-bar {
@@ -37,6 +45,16 @@
       font-size: 1.8vmin;
       margin-right: 5rem;
       z-index: 15;
+
+      @include tablet {
+        font-size: 1.4rem;
+      }
+
+      button {
+        @include tablet {
+          display: none;
+        }
+      }
 
       .filter-content {
         display: flex;
@@ -51,13 +69,25 @@
         font-size: 2vmin;
         word-wrap: break-word;
 
+        @include tablet {
+          font-size: 1.2rem;
+          word-wrap: break-word;
+        }
+
         .filter-label {
           text-align: center;
           display: flex;
           align-items: center;
           height: 100%;
           cursor: pointer;
-          color: $DarkOcean;
+          color: $mainColor;
+
+          @include tablet {
+            width: 100%;
+            justify-content: flex-end;
+            align-items: flex-end;
+            color: $White;
+          }
         }
 
         .day-selected {
@@ -84,6 +114,13 @@
         box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
         z-index: 17;
 
+        @include tablet {
+          top: 10rem;
+          left: 2rem;
+          font-size: 1.4rem;
+          width: 40%;
+        }
+
         .option {
           margin: 1vh 0;
           cursor: pointer;
@@ -100,6 +137,14 @@
 
           &:hover {
             background: $grey;
+          }
+        }
+
+        // Hide Calendar selector on mobile view until fix the calendar mobile error.
+        .calendar-selector {
+          display: flex;
+          @include tablet {
+            display: none;
           }
         }
 
@@ -123,6 +168,11 @@
             font-size: 1.6vmin;
             border: none;
             border-bottom: 0.1vmin solid;
+
+            @include tablet {
+              font-size: 1.2rem;
+              padding: 0.5rem;
+            }
           }
 
           .icon {
@@ -131,6 +181,13 @@
             border-radius: 0 0.5vmin 0.5vmin 0;
             color: $White;
             font-size: 1.4vmin;
+
+            @include tablet {
+              width: 20%;
+              font-size: 1.2rem;
+              display: flex;
+              align-items: center;
+            }
           }
         }
 
@@ -140,11 +197,35 @@
           left: 100%;
           width: 200%;
           margin: -1vh 0.05vw 0 0.05vw;
-          padding: 1vmin;
+          padding: 1rem;
           background-color: #fff;
           border-radius: 0 0.5vmin 0.5vmin 0.5vmin;
           box-shadow: 0.2vmin 0.2vmin 0.8vmin $DarkGrey;
           line-height: 1.125em;
+
+          @include tablet {
+            top: 11rem;
+            left: 0;
+            z-index: 16;
+
+            & button {
+              background-color: #fff;
+              border: none;
+              padding: 1rem 0;
+              font-size: 1rem;
+              transition: all 0.3s;
+            }
+
+            .react-calendar__month-view__weekdays {
+              padding: 0.5rem 0;
+              text-align: center;
+              border: none;
+            }
+
+            .react-calendar p {
+              padding: 0.5rem 0;
+            }
+          }
         }
       }
     }
@@ -152,6 +233,9 @@
     .search-component {
       width: 60%;
       z-index: 15;
+      @include tablet {
+        display: none;
+      }
     }
 
     .show-archive-view {
@@ -166,7 +250,7 @@
       z-index: 15;
 
       @include tablet {
-        font-size: 1.5rem;
+        display: none;
       }
 
       .icon {
@@ -596,7 +680,7 @@
 
     .color-selected {
       width: 55px;
-      height: 45px;
+      height: 40px;
       margin-right: 0.5vw;
       border-radius: 0.5rem;
       cursor: pointer;
@@ -742,8 +826,8 @@
       top: 5rem;
       width: 100%;
       height: 8vh;
-      left: 0rem;
       padding: 0;
+      padding-left: 20%;
       margin: 0 auto;
       z-index: 10;
     }
@@ -757,9 +841,9 @@
       z-index: 15;
 
       @include tablet {
-        width: 90%;
+        width: 100%;
         height: 100%;
-        margin: 0 auto;
+        margin: 0 auto 0 1rem;
       }
 
       .level-bar {
@@ -771,6 +855,7 @@
         overflow: hidden;
 
         @include tablet {
+          width: 65%;
           height: 2rem;
           display: flex;
           align-items: center;
@@ -840,11 +925,11 @@
       display: flex;
       position: absolute;
       position: fixed;
-      top: 2rem;
-      right: 1rem;
+      top: 6.5rem;
+      right: 2rem;
       font-size: 2rem;
-      color: $White;
-      z-index: 20;
+      color: $mainColor;
+      z-index: 15;
     }
   }
 
@@ -855,7 +940,7 @@
       position: absolute;
       position: fixed;
       top: 6rem;
-      right: 5%;
+      right: 6rem;
       padding: 1rem;
       background-color: $lightGrey;
       border: 0.1rem solid $fillBar;
@@ -948,10 +1033,9 @@
 
       .see-more {
         width: 100%;
-        color: darken($DarkGrey, 20);
-        font-size: 2.5vmin;
+        color: darken($grey, 20);
+        font-size: 2rem;
         font-style: italic;
-        font-weight: 700;
         padding: 0.5vmin;
         border-radius: 0.5vmin;
         margin-top: 4vh;
@@ -1236,20 +1320,20 @@
     align-items: center;
     justify-content: space-around;
     width: 20%;
-    margin: 1vh auto;
+    margin: 1rem auto;
     padding: 0;
     z-index: 20;
 
     @include tablet {
       position: absolute;
       position: fixed;
-      top: 6rem;
+      top: 4rem;
       left: 0;
       width: 100%;
       background-color: $White;
-      padding: 0 6rem;
+      padding: 2rem 6rem 0.5rem 6rem;
       font-size: 1.4rem;
-      z-index: 10;
+      z-index: 12;
     }
   }
 
