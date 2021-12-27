@@ -53,7 +53,7 @@ export const WeekRecord = (list, param) => {
       Object.keys(weeks).map((key) => weeks[key]).length > 0
         ? Object.keys(weeks).map((key) => weeks[key])
         : [0, 0];
-    console.log(weeksRecord.length);
+    // console.log(weeksRecord.length);
     return weeksRecord.reduce((prev, act) => (prev > act ? prev : act));
   } else {
     return 0;

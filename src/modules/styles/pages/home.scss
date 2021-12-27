@@ -358,7 +358,10 @@
       justify-content: center;
       align-items: center;
       @include tablet {
+        width: 100%;
         font-size: 1.4rem;
+        text-align: center;
+        margin-left: 50%;
       }
     }
 
@@ -374,6 +377,7 @@
       overflow-y: scroll;
 
       @include tablet {
+        width: 100%;
         min-height: 40rem;
         grid-template-columns: repeat(2, 1fr);
       }

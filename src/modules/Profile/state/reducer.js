@@ -9,7 +9,7 @@ const initialState = {
 export const ProfileReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.getUserProfile:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,
@@ -24,7 +24,7 @@ export const ProfileReducer = (state = initialState, action) => {
         };
       }
     case TYPES.createUserProfile:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,

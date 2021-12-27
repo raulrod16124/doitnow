@@ -21,8 +21,8 @@ export const CheckUser = (user) => {
 export const CreateUser = (user) => {
   return async (dispatch) => {
     const { userTokenCreated, newUser } = await createUser(user);
-    console.log("Token Created");
-    console.log(userTokenCreated);
+    // console.log("Token Created");
+    // console.log(userTokenCreated);
     if (userTokenCreated) {
       const userProfile = {
         id: userTokenCreated.localId,
@@ -40,9 +40,18 @@ export const CreateUser = (user) => {
           level: "easy",
           status: "todo",
           description:
-            "Drag me up the column of IN PROGRESS to work with me, and to the column of COMPLETED to finish this task 😊",
+            "Drag me up to hte IN PROGRESS column to work with me, and to the COMPLETED column to finish this task 😊",
           date: new Date().toLocaleDateString(),
-          tags: [],
+          tags: [
+            {
+              color: "#4caf50",
+              tag: "Initial task",
+            },
+            {
+              color: "#009688",
+              tag: "Move me",
+            },
+          ],
           owner: userTokenCreated.localId,
         })
       );

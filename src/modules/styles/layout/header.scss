@@ -36,22 +36,36 @@
       padding: 0;
     }
 
-    .user-name {
+    .user-name-content {
       display: inline-block;
-      font-size: 2vmin;
+      font-size: 2rem;
+      font-style: italic;
+      @include tablet {
+        display: none;
+      }
+    }
+    .user-name {
       font-weight: 700;
+      text-transform: capitalize;
       @include tablet {
         display: none;
       }
     }
 
-    .user-name-responsive {
+    .user-name-content-responsive {
       display: none;
       @include tablet {
         display: inline-block;
         font-size: 2rem;
         width: 100%;
         color: $White;
+        font-style: italic;
+      }
+      .user-name-responsive {
+        @include tablet {
+          font-weight: 700;
+          text-transform: capitalize;
+        }
       }
     }
 

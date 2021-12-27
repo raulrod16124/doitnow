@@ -75,7 +75,7 @@ export const Home = () => {
 
   useEffect(async () => {
     if (userLogged.currentUser) {
-      console.log("first call getTasks");
+      // console.log("first call getTasks");
       dispatch(GetTasks(userLogged.currentUser));
       return <Redirect to="/" />;
     }
@@ -94,7 +94,7 @@ export const Home = () => {
     }
     // // console.log(todosState);
     if (todosState.status === "success" && todoFilter === "All") {
-      console.log("Got it");
+      // console.log("Got it");
       // console.log(todosState);
       handleOrderTaskFiltered(todosState.data);
       setAllTodos(todosState.data);

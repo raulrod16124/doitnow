@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "../../stories/Button";
 import { GetTasks } from "../Home/state/actions";
 import { GetUserProfile, UpdateUserProfile } from "../Profile/state/actions";
+import { defaultAvatar } from "../Profile/views/components/avatars";
 import { XPLevels, handleCalcutlateXP } from "./XPLevels";
 
 export const ExperiencePoints = () => {
@@ -90,10 +91,16 @@ export const ExperiencePoints = () => {
           }}
         >
           <div className="experience-points-window">
-            <div className="content-arrows">
-              <i className="fas fa-chevron-up icon arrow"></i>
-              <i className="fas fa-chevron-up icon arrow"></i>
-              <i className="fas fa-chevron-up icon arrow"></i>
+            <div className="content-avatar">
+              <img
+                className="avatar"
+                src={
+                  profileData && profileData.avatar
+                    ? profileData.avatar
+                    : defaultAvatar
+                }
+                alt="avatar"
+              />
             </div>
             <h2 className="level-title">Level Up</h2>
             <div className="transition-level">

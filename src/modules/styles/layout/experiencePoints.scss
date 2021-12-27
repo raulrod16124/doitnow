@@ -31,36 +31,36 @@
     border-radius: 0.5rem;
   }
 
-  .content-arrows {
+  .content-avatar {
     width: 80%;
     height: 20vh;
     margin: 2vh auto 0 auto;
     display: flex;
     flex-direction: column;
 
-    .arrow {
-      font-size: 10vmin;
-      cursor: default;
-      margin: 0 auto -6vh auto;
+    .avatar {
+      width: auto;
+      height: 150px;
+      margin: 0 auto;
       @include tablet {
-        font-size: 6rem;
-        margin: 0 auto -3rem auto;
+        width: 110px;
+        height: 110px;
       }
-    }
-
-    .arrow:last-child {
-      margin-bottom: 0;
     }
   }
 
   .level-title {
     text-align: center;
     margin: -2vh auto 0.5vh auto;
+    color: $mainColor;
     font-size: 6vmin;
-    font-weight: 700;
+    font-weight: 600;
+    font-style: italic;
     text-transform: uppercase;
+    -webkit-text-stroke: 0.3rem $deepMainColor;
     @include tablet {
       font-size: 3rem;
+      -webkit-text-stroke: 0.2rem $deepMainColor;
     }
   }
 
@@ -84,6 +84,9 @@
 
     .icon {
       font-size: 3vmin;
+      @include tablet {
+        font-size: 3rem;
+      }
     }
 
     .actual-level {

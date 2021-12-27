@@ -13,7 +13,7 @@ export const getUserProfile = async (user) => {
     // https://firebase.google.com/docs/firestore/solutions/role-based-access
     // TODO - Filter by user before return
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };
@@ -27,7 +27,7 @@ export const createUserProfile = async (userData) => {
   } catch (error) {
     // const errorData = JSON.stringify(error);
     // return JSON.parse(errorData).code;
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };

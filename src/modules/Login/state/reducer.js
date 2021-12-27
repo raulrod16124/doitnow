@@ -34,7 +34,7 @@ export const LoginReducer = (state = initialState, action) => {
       }
 
     case TYPES.createNewUser:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.email) {
         return {
           ...state,

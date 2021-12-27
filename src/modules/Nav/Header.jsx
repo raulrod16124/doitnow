@@ -22,7 +22,7 @@ export const Header = () => {
     // console.log(profileState.status);
     switch (profileState.status) {
       case "initial":
-        console.log("GETTING ");
+        // console.log("GETTING ");
         if (userDataFromLocalStore) {
           dispatch(GetUserProfile(userDataFromLocalStore.id));
         }
@@ -31,7 +31,7 @@ export const Header = () => {
         dispatch(GetUserProfile(userDataFromLocalStore.id));
         break;
       case "success":
-        console.log("getProfiledata in header success");
+        // console.log("getProfiledata in header success");
         setUserData(profileState.data);
         break;
     }
@@ -40,8 +40,11 @@ export const Header = () => {
   return (
     <div className="avatar-header">
       <div className="avatar-content">
-        <p className="user-name">
-          Hi {userData && userData.name ? userData.name : ""}
+        <p className="user-name-content">
+          Hi{" "}
+          <span className="user-name">
+            {userData && userData.name ? userData.name : ""}!!
+          </span>
         </p>
         <Link to="/profile" onClick={() => dispatch(ViewSelected("account"))}>
           <img
@@ -50,8 +53,11 @@ export const Header = () => {
             alt="avatar"
           />
         </Link>
-        <p className="user-name-responsive">
-          Hi {userData && userData.name ? userData.name : ""}
+        <p className="user-name-content-responsive">
+          Hi{" "}
+          <span className="user-name-responsive">
+            {userData && userData.name ? userData.name : ""}!!
+          </span>
         </p>
       </div>
     </div>
