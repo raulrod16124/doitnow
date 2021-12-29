@@ -21,7 +21,7 @@ function List({ droppableID, list, titleList, className, handleGetEditItem }) {
             <h2 className="list-title">{titleList}</h2>
             <span className="count">{Object.values(list).length}</span>
           </div>
-          {Object.values(list)
+          {/* {Object.values(list)
             .slice(0, seeMore)
             .map((item, index) => {
               return (
@@ -46,7 +46,18 @@ function List({ droppableID, list, titleList, className, handleGetEditItem }) {
                 </p>
               )}
             </>
-          )}
+          )} */}
+          {Object.values(list).map((item, index) => {
+            return (
+              <Item
+                key={item.id}
+                item={item}
+                index={index}
+                handleGetEditItem={handleGetEditItem}
+              />
+            );
+          })}
+          {droppableProvided.placeholder}
         </ul>
       )}
     </Droppable>

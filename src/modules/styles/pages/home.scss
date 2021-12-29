@@ -803,6 +803,7 @@
   // Content Items
 
   .content-body {
+    position: relative;
     width: 100%;
     margin: 0 auto;
     margin-top: 12vh;
@@ -812,111 +813,114 @@
       min-width: 900px;
       overflow-x: auto;
     }
-  }
 
-  .content-top-bar {
-    position: relative;
-    width: 94.5%;
-    display: flex;
-    align-items: center;
-    padding: 1vh 0;
-    margin: 0 2rem;
-    background: $White;
-    z-index: 15;
-
-    @include tablet {
+    .content-top-bar {
       position: absolute;
       position: fixed;
-      top: 5rem;
+      bottom: 0;
       width: 100%;
-      height: 8vh;
-      padding: 0;
-      padding-left: 20%;
-      margin: 0 auto;
-      z-index: 10;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 90%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      padding: 3rem 0;
+      margin: 0 2rem;
+      background: $White;
       z-index: 15;
 
       @include tablet {
-        width: 100%;
-        height: 100%;
-        margin: 0 auto 0 1rem;
-      }
-
-      .level-bar {
-        position: relative;
-        width: 100%;
-        height: 3.2vmin;
-        border-radius: 0.5vmin;
-        background-color: $lightGrey;
-        overflow: hidden;
-
-        @include tablet {
-          width: 65%;
-          height: 2rem;
-          display: flex;
-          align-items: center;
-          border-radius: 0.5rem;
-        }
-      }
-
-      .green-fill {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: auto;
-        border-radius: 0.5vmin;
-        height: 100%;
-        background: $fillBar;
-        transition: all 0.5s;
+        position: fixed;
+        top: 5rem;
+        width: 100%;
+        height: 8vh;
+        padding: 0;
+        padding-left: 20%;
+        margin: 0 auto;
+        z-index: 10;
+      }
+
+      .progress-bar {
+        position: relative;
+        width: 82%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         z-index: 15;
 
         @include tablet {
-          border-radius: 0.5rem;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto 0 1rem;
         }
-      }
 
-      .task-counter {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        z-index: 16;
-
-        .task-counter-text {
-          color: $DarkOcean;
-          font-size: 2.5vmin;
-          font-weight: 700;
+        .level-bar {
+          position: relative;
+          width: 100%;
+          height: 3.2vmin;
+          border-radius: 0.5vmin;
+          background-color: $lightGrey;
+          overflow: hidden;
 
           @include tablet {
-            font-size: 1.2rem;
+            width: 65%;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            border-radius: 0.5rem;
           }
         }
-      }
 
-      .experience-counter {
-        position: absolute;
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 2vw;
-        width: 100%;
-        z-index: 16;
+        .green-fill {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: auto;
+          border-radius: 0.5vmin;
+          height: 100%;
+          background: $fillBar;
+          transition: all 0.5s;
+          z-index: 15;
 
-        .experience-counter-text {
-          font-size: 2.5vmin;
-          font-weight: 600;
-          color: $grey;
           @include tablet {
-            font-size: 1.2rem;
+            border-radius: 0.5rem;
+          }
+        }
+
+        .task-counter {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          z-index: 16;
+
+          .task-counter-text {
+            color: $DarkOcean;
+            font-size: 2rem;
+            font-weight: 700;
+
+            @include tablet {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+        .experience-counter {
+          position: absolute;
+          display: flex;
+          justify-content: flex-end;
+          padding-right: 4rem;
+          width: 100%;
+          z-index: 16;
+
+          .experience-counter-text {
+            font-size: 2rem;
+            font-weight: 600;
+            color: $grey;
+            @include tablet {
+              font-size: 1.2rem;
+            }
           }
         }
       }

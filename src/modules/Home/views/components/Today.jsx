@@ -31,6 +31,32 @@ export const Today = ({
   return (
     <div className="today-main">
       <div className="content-body">
+        <div className="content-lists">
+          <List
+            key="todo"
+            droppableID="todo"
+            list={todo}
+            className={todoDragDetectedClass}
+            titleList="TO DO"
+            handleGetEditItem={handleGetEditItem}
+          />
+          <List
+            key="inProgress"
+            droppableID="inProgress"
+            list={inProgress}
+            className={inProgressDragDetectedClass}
+            titleList="IN PROGRESS"
+            handleGetEditItem={handleGetEditItem}
+          />
+          <List
+            key="doneTodo"
+            droppableID="done"
+            list={doneTodo}
+            className={doneDragDetectedClass}
+            titleList="COMPLETED"
+            handleGetEditItem={handleGetEditItem}
+          />
+        </div>
         <div className="content-top-bar">
           <div className="progress-bar">
             <div className="level-bar">
@@ -64,32 +90,6 @@ export const Today = ({
               </div>
             </div>
           </div>
-        </div>
-        <div className="content-lists">
-          <List
-            key="todo"
-            droppableID="todo"
-            list={todo}
-            className={todoDragDetectedClass}
-            titleList="TO DO"
-            handleGetEditItem={handleGetEditItem}
-          />
-          <List
-            key="inProgress"
-            droppableID="inProgress"
-            list={inProgress}
-            className={inProgressDragDetectedClass}
-            titleList="IN PROGRESS"
-            handleGetEditItem={handleGetEditItem}
-          />
-          <List
-            key="doneTodo"
-            droppableID="done"
-            list={doneTodo}
-            className={doneDragDetectedClass}
-            titleList="COMPLETED"
-            handleGetEditItem={handleGetEditItem}
-          />
         </div>
       </div>
     </div>
