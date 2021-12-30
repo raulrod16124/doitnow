@@ -77,7 +77,7 @@ export const HomeTopBar = ({
 
   return (
     <div className="home-top-bar">
-      <div className="bg-mobile-top-bar"></div>
+      {viewSelected.today && <div className="bg-mobile-top-bar"></div>}
       <div className="content-options-bar">
         <Button
           size="mediun"
