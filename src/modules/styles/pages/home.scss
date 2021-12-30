@@ -30,7 +30,8 @@
     @include tablet {
       z-index: 21;
       top: 6.5rem;
-      left: 2rem;
+      left: 0;
+      margin-left: 2rem;
       width: fit-content;
       height: auto;
       padding: 0;
@@ -832,11 +833,11 @@
       @include tablet {
         position: absolute;
         position: fixed;
-        top: 5rem;
+        justify-content: space-between;
+        left: 0;
         width: 100%;
-        height: 8vh;
+        height: 6rem;
         padding: 0;
-        padding-left: 20%;
         margin: 0 auto;
         z-index: 10;
       }
@@ -865,8 +866,9 @@
           overflow: hidden;
 
           @include tablet {
-            width: 65%;
-            height: 2rem;
+            width: 90%;
+            height: 3rem;
+            margin-left: 1rem;
             display: flex;
             align-items: center;
             border-radius: 0.5rem;
