@@ -40,6 +40,20 @@
       z-index: 15;
     }
 
+    .bg-mobile-top-bar {
+      display: none;
+      @include tablet {
+        position: absolute;
+        position: fixed;
+        top: 5vh;
+        left: 0;
+        width: 100%;
+        height: 6rem;
+        background-color: $White;
+        display: block;
+      }
+    }
+
     .content-options-bar {
       width: auto;
       display: flex;
