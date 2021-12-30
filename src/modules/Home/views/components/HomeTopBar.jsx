@@ -81,7 +81,6 @@ export const HomeTopBar = ({
         <Button
           size="mediun"
           label="New task"
-          primary
           onClick={() => handleGetVisibilityFormState(true)}
         />
         {viewSelected.today && (

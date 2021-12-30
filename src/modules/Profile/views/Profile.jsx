@@ -273,12 +273,12 @@ export const Profile = () => {
                         <div className="content-buttons">
                           <Button
                             label="Cancel"
+                            primary
                             onClick={() => setNameEditView(false)}
                             size="small"
                           />
                           <Button
                             label="Save"
-                            primary
                             onClick={() => {
                               dispatch(
                                 UpdateUserProfile(userData.id, {

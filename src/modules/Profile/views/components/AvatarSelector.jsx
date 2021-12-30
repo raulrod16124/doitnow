@@ -45,7 +45,6 @@ export const AvatarSelector = ({
           <Button
             size="small"
             label="Save"
-            primary
             onClick={(e) => {
               handleUpdateUserData(avatarSelected);
               handleSetAvatarSelectorView(false);
