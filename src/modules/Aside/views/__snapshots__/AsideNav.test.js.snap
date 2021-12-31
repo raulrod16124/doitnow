@@ -1,0 +1,446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing AsideNav component should render AsideNav component correclty 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="aside"
+      >
+        <div
+          class="content-responsive-menu"
+        >
+          <div
+            class="container-responsive"
+          >
+            <i
+              class="fas fa-bars icon icon-menu"
+            />
+            <h1
+              class="title-responsive"
+            >
+              DOITNOW
+            </h1>
+          </div>
+        </div>
+        <div
+          class="bg-nav-bar"
+        >
+          <div
+            class="nav-bar"
+          >
+            <i
+              class="fas fa-times icon icon-close-nav"
+            />
+            <div
+              class="logo-app"
+            >
+              <h1
+                class="title"
+              >
+                DOITNOW
+              </h1>
+            </div>
+            <div
+              class="nav-avatar-content"
+            >
+              <div
+                class="avatar-header"
+              >
+                <div
+                  class="avatar-content"
+                >
+                  <p
+                    class="user-name-content"
+                  >
+                    Hi
+                     
+                    <span
+                      class="user-name"
+                    >
+                      
+                      !!
+                    </span>
+                  </p>
+                  <a
+                    href="/profile"
+                  >
+                    <img
+                      alt="avatar"
+                      class="avatar"
+                      src="https://cdn-icons-png.flaticon.com/128/616/616412.png"
+                    />
+                  </a>
+                  <p
+                    class="user-name-content-responsive"
+                  >
+                    Hi
+                     
+                    <span
+                      class="user-name-responsive"
+                    >
+                      
+                      !!
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="navegation-content"
+            >
+              <div
+                class="section"
+              >
+                <li
+                  class="section-content"
+                >
+                  <i
+                    class="fas fa-home icon-section"
+                  />
+                  <p
+                    class="text"
+                  >
+                    Home
+                  </p>
+                </li>
+                <ul
+                  class="section-selector"
+                >
+                  <a
+                    class="link"
+                    href="/home"
+                  >
+                    <li
+                      class="view selected"
+                    >
+                      <p
+                        class="view-text"
+                      >
+                        <i
+                          class="fas fa-tasks icon"
+                        />
+                         Today
+                      </p>
+                    </li>
+                    <li
+                      class="view"
+                    >
+                      <p
+                        class="view-text"
+                      >
+                        <i
+                          class="far fa-calendar-alt icon"
+                        />
+                         Calendar
+                      </p>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div
+                class="section"
+              >
+                <li
+                  class="section-content"
+                >
+                  <i
+                    class="far fa-user-circle icon-section"
+                  />
+                  <p
+                    class="text"
+                  >
+                    Profile
+                  </p>
+                </li>
+                <ul
+                  class="section-selector"
+                >
+                  <a
+                    class="link"
+                    href="/profile"
+                  >
+                    <li
+                      class="view"
+                    >
+                      <p
+                        class="view-text"
+                      >
+                        <i
+                          class="fas fa-user icon"
+                        />
+                         Account
+                      </p>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="content-logout"
+            >
+              <footer
+                class="footer"
+              >
+                <p
+                  class="footer-text"
+                >
+                  <i
+                    class="fas fa-sign-out-alt"
+                  />
+                   Disconnect
+                </p>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="aside"
+    >
+      <div
+        class="content-responsive-menu"
+      >
+        <div
+          class="container-responsive"
+        >
+          <i
+            class="fas fa-bars icon icon-menu"
+          />
+          <h1
+            class="title-responsive"
+          >
+            DOITNOW
+          </h1>
+        </div>
+      </div>
+      <div
+        class="bg-nav-bar"
+      >
+        <div
+          class="nav-bar"
+        >
+          <i
+            class="fas fa-times icon icon-close-nav"
+          />
+          <div
+            class="logo-app"
+          >
+            <h1
+              class="title"
+            >
+              DOITNOW
+            </h1>
+          </div>
+          <div
+            class="nav-avatar-content"
+          >
+            <div
+              class="avatar-header"
+            >
+              <div
+                class="avatar-content"
+              >
+                <p
+                  class="user-name-content"
+                >
+                  Hi
+                   
+                  <span
+                    class="user-name"
+                  >
+                    
+                    !!
+                  </span>
+                </p>
+                <a
+                  href="/profile"
+                >
+                  <img
+                    alt="avatar"
+                    class="avatar"
+                    src="https://cdn-icons-png.flaticon.com/128/616/616412.png"
+                  />
+                </a>
+                <p
+                  class="user-name-content-responsive"
+                >
+                  Hi
+                   
+                  <span
+                    class="user-name-responsive"
+                  >
+                    
+                    !!
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navegation-content"
+          >
+            <div
+              class="section"
+            >
+              <li
+                class="section-content"
+              >
+                <i
+                  class="fas fa-home icon-section"
+                />
+                <p
+                  class="text"
+                >
+                  Home
+                </p>
+              </li>
+              <ul
+                class="section-selector"
+              >
+                <a
+                  class="link"
+                  href="/home"
+                >
+                  <li
+                    class="view selected"
+                  >
+                    <p
+                      class="view-text"
+                    >
+                      <i
+                        class="fas fa-tasks icon"
+                      />
+                       Today
+                    </p>
+                  </li>
+                  <li
+                    class="view"
+                  >
+                    <p
+                      class="view-text"
+                    >
+                      <i
+                        class="far fa-calendar-alt icon"
+                      />
+                       Calendar
+                    </p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div
+              class="section"
+            >
+              <li
+                class="section-content"
+              >
+                <i
+                  class="far fa-user-circle icon-section"
+                />
+                <p
+                  class="text"
+                >
+                  Profile
+                </p>
+              </li>
+              <ul
+                class="section-selector"
+              >
+                <a
+                  class="link"
+                  href="/profile"
+                >
+                  <li
+                    class="view"
+                  >
+                    <p
+                      class="view-text"
+                    >
+                      <i
+                        class="fas fa-user icon"
+                      />
+                       Account
+                    </p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="content-logout"
+          >
+            <footer
+              class="footer"
+            >
+              <p
+                class="footer-text"
+              >
+                <i
+                  class="fas fa-sign-out-alt"
+                />
+                 Disconnect
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
