@@ -18,9 +18,10 @@ export const ConfirmationPrompt = ({ statusForTests, messageForTests }) => {
 
   const dispatch = useDispatch();
 
+  const condition = status === "open" || statusForTests === true;
+
   return (
-    status === "open" ||
-    (statusForTests === true && (
+    condition && (
       <div className="confirmation-propmt">
         <i
           className="far fa-window-close icon close-icon"
@@ -46,6 +47,6 @@ export const ConfirmationPrompt = ({ statusForTests, messageForTests }) => {
           />
         </div>
       </div>
-    ))
+    )
   );
 };
