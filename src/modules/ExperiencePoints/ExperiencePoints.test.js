@@ -31,7 +31,19 @@ describe("Testing ExperiencePoints component", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("should not find role avatar until", () => {
-    screen.debug();
+  test("should find the img Role of the user avatar", () => {
+    expect(screen.getByRole("img")).toBeInTheDocument();
+  });
+
+  test("should find the text Level Up", () => {
+    expect(screen.getByText("Level Up")).toBeInTheDocument();
+  });
+
+  test("should find the button Role", () => {
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
+
+  test("should find the text Keep working hard", () => {
+    expect(screen.getByText("Keep working hard")).toBeInTheDocument();
   });
 });

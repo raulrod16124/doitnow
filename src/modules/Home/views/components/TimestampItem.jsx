@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { OpenConfirmationPrompt } from "../../../global/ConfirmationPrompt/state/actions";
 import { DeleteTask, UpdateTask } from "../../state/actions";
 
 export const TimestampItem = ({ item, handleGetEditItem }) => {
@@ -27,7 +27,7 @@ export const TimestampItem = ({ item, handleGetEditItem }) => {
 
   const handleDeleteItemById = (item) => {
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to delete the task ${item.title} ?`,
         acceptButton: "Delete",
         handleAccept: () => DeleteTask(item.id),
@@ -38,7 +38,7 @@ export const TimestampItem = ({ item, handleGetEditItem }) => {
   const handleArchiveCompletedTask = (item) => {
     item.status = "archive";
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to archive the task ${item.title} ?`,
         acceptButton: "Archive",
         handleAccept: () => UpdateTask(item.id, item),

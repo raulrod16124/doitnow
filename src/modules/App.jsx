@@ -10,7 +10,7 @@ import Routes from "../routes";
 import store from "../store/store";
 import { AsideNav } from "./Aside/views/AsideNav";
 import { ExperiencePoints } from "./ExperiencePoints/ExperiencePoints";
-import { ConfirmationPropmt } from "./global/ConfirmationPropmt/ConfirmationPropmt";
+import { ConfirmationPrompt } from "./global/ConfirmationPrompt/ConfirmationPrompt";
 
 export default function App() {
   const [navVisibility, setNavVisibility] = useState(false);
@@ -28,7 +28,7 @@ export default function App() {
           </Router>
         </AuthProvider>
       </div>
-      <ConfirmationPropmt />
+      <ConfirmationPrompt />
     </Provider>
   );
 }
