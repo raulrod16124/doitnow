@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 
-import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { OpenConfirmationPrompt } from "../../../global/ConfirmationPrompt/state/actions";
 import { DeleteTask, UpdateTask } from "../../state/actions";
 import { Tag } from "./Tag";
 
@@ -25,7 +25,7 @@ function Item({ item, index, handleGetEditItem }) {
     // console.log(item);
     item.status = "archive";
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to archive the task ${item.title} ?`,
         acceptButton: "Archive",
         handleAccept: () => UpdateTask(item.id, item),
@@ -35,7 +35,7 @@ function Item({ item, index, handleGetEditItem }) {
 
   const handleDeleteItemById = (item) => {
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to delete the task ${item.title} ?`,
         acceptButton: "Delete",
         handleAccept: () => DeleteTask(item.id),

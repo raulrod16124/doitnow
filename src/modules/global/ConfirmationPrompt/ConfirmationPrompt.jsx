@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Button } from "./../../../stories/Button";
-import { CloseConfirmationPropmt } from "./state/actions";
+import { Button } from "../../../stories/Button";
+import { CloseConfirmationPrompt } from "./state/actions";
 
-export const ConfirmationPropmt = () => {
+export const ConfirmationPrompt = ({ statusForTests, messageForTests }) => {
   const {
     acceptButton,
     cancelButton,
@@ -13,19 +13,20 @@ export const ConfirmationPropmt = () => {
     message,
     status,
   } = useSelector((state) => {
-    return state.ConfirmationPropmtReducer;
+    return state.ConfirmationPromptReducer;
   });
 
   const dispatch = useDispatch();
 
   return (
-    status === "open" && (
+    status === "open" ||
+    (statusForTests === true && (
       <div className="confirmation-propmt">
         <i
           className="far fa-window-close icon close-icon"
-          onClick={() => dispatch(CloseConfirmationPropmt())}
+          onClick={() => dispatch(CloseConfirmationPrompt())}
         ></i>
-        <p className="text">{message}</p>
+        <p className="text">{messageForTests ? messageForTests : message}</p>
         <div className="content-buttons">
           <Button
             label={cancelButton}
@@ -33,18 +34,18 @@ export const ConfirmationPropmt = () => {
             onClick={() => {
               handleReject
                 ? dispatch(handleReject())
-                : dispatch(CloseConfirmationPropmt());
+                : dispatch(CloseConfirmationPrompt());
             }}
           />
           <Button
             label={acceptButton}
             onClick={() => {
               dispatch(handleAccept());
-              dispatch(CloseConfirmationPropmt());
+              dispatch(CloseConfirmationPrompt());
             }}
           />
         </div>
       </div>
-    )
+    ))
   );
 };

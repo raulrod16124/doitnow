@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { OpenConfirmationPropmt } from "../../../global/ConfirmationPropmt/state/actions";
+import { OpenConfirmationPrompt } from "../../../global/ConfirmationPrompt/state/actions";
 import { DeleteTask, UpdateTask } from "../../../Home/state/actions";
 import { Tag } from "../../../Home/views/components/Tag";
 
@@ -13,7 +13,7 @@ export const ArchiveItem = ({ item }) => {
   const handleUnarchiveCompletedTask = (item) => {
     item.status = "done";
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to unarchive the task ${item.title} ?`,
         acceptButton: "Unarchive",
         handleAccept: () => UpdateTask(item.id, item),
@@ -23,7 +23,7 @@ export const ArchiveItem = ({ item }) => {
 
   const handleDeleteItemById = (item) => {
     dispatch(
-      OpenConfirmationPropmt({
+      OpenConfirmationPrompt({
         message: `Do you want to delete the task ${item.title} ?`,
         acceptButton: "Delete",
         handleAccept: () => DeleteTask(item.id),
