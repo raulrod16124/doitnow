@@ -20,7 +20,7 @@ export const ConfirmationPrompt = ({ statusForTests, messageForTests }) => {
 
   return (
     status === "open" ||
-    (statusForTests && (
+    (statusForTests === true && (
       <div className="confirmation-propmt">
         <i
           className="far fa-window-close icon close-icon"
