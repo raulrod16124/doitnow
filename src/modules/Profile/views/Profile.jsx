@@ -41,9 +41,10 @@ export const Profile = () => {
   const [emailEdited, setEmailEdited] = useState("");
 
   const daysInCurrentMonth = (prev) => {
+    let prevMonth = new Date().getMonth() === 0 ? new Date().getMonth() : 11;
     let formatDate = {
       day: new Date().getDay(),
-      month: prev ? new Date().getMonth() : new Date().getMonth() - 1,
+      month: prev ? prevMonth : new Date().getMonth(),
       year: new Date().getFullYear(),
     };
     return (formatDate = `${formatDate.year}/${formatDate.month}/${formatDate.day}`);
@@ -160,14 +161,16 @@ export const Profile = () => {
   // TODO Monthly activity
 
   const handleGetCurrentMonthlyActivity = (list, prev) => {
+    let month = currentMonth === 0 ? 12 : currentMonth;
+    let year =
+      currentMonth === 0
+        ? new Date().getFullYear() - 1
+        : new Date().getFullYear();
     if (prev) {
       const previousMonthDays = prevMonthlyActivity.map((day) => {
         return {
-          day: `${day + 1}/${currentMonth}/${new Date().getFullYear()}`,
-          tasks: handleGetTaskPerDay(
-            `${day + 1}/${currentMonth}/${new Date().getFullYear()}`,
-            list
-          ),
+          day: `${day + 1}/${month}/${year}`,
+          tasks: handleGetTaskPerDay(`${day + 1}/${month}/${year}`, list),
         };
       });
       setPreviousMonthlyActivity(previousMonthDays);
@@ -408,13 +411,14 @@ export const Profile = () => {
               <div className="month-overview previous-month">
                 <h3 className="month-title">
                   <span className="month-name">
-                    {Object.values(months)[currentMonth - 1].month}
+                    {Object.values(months)[currentMonth == 0 ? 11 : -1].month}
                   </span>{" "}
                   - completed{" "}
                   {
                     allTasksForProfileData.filter(
                       (task) =>
-                        task.date.split("/")[1] == currentMonth &&
+                        task.date.split("/")[1] ==
+                          (currentMonth == 0 ? 12 : -1) &&
                         (task.status === "done" || task.status === "archive")
                     ).length
                   }

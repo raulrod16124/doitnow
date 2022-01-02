@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "../../stories/Button";
 import { GetTasks } from "../Home/state/actions";
@@ -8,7 +7,7 @@ import { GetUserProfile, UpdateUserProfile } from "../Profile/state/actions";
 import { defaultAvatar } from "../Profile/views/components/avatars";
 import { XPLevels, handleCalcutlateXP } from "./XPLevels";
 
-export const ExperiencePoints = () => {
+export const ExperiencePoints = ({ booleanForTest }) => {
   const todosState = useSelector((state) => {
     return state.TodosReducer;
   });
@@ -21,7 +20,9 @@ export const ExperiencePoints = () => {
 
   const [profileData, setProfileData] = useState(null);
 
-  const [xpVisibility, setXpVisibility] = useState(false);
+  const [xpVisibility, setXpVisibility] = useState(
+    booleanForTest ? booleanForTest : false
+  );
 
   const [expereincePoints, setExperiencePoints] = useState(0);
 
