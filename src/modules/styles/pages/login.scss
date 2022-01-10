@@ -101,6 +101,11 @@
       width: 60%;
       margin: 10rem auto 0 auto;
 
+      & button {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
       @include tablet {
         width: 80%;
       }
