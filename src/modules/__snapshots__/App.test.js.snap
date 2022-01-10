@@ -60,8 +60,10 @@ Object {
                     Sign up
                   </a>
                   <button
-                    class="sc-gtsrHT inAVkq"
+                    class="sc-gtsrHT eRjlYJ"
+                    height="5rem"
                     type="submit"
+                    width="10rem"
                   >
                     login
                   </button>
@@ -129,8 +131,10 @@ Object {
                   Sign up
                 </a>
                 <button
-                  class="sc-gtsrHT inAVkq"
+                  class="sc-gtsrHT eRjlYJ"
+                  height="5rem"
                   type="submit"
+                  width="10rem"
                 >
                   login
                 </button>

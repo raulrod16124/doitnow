@@ -17,11 +17,12 @@ Object {
             <i
               class="fas fa-bars icon icon-menu"
             />
-            <h1
+            <a
               class="title-responsive"
+              href="/home"
             >
               DOITNOW
-            </h1>
+            </a>
           </div>
         </div>
         <div
@@ -36,11 +37,12 @@ Object {
             <div
               class="logo-app"
             >
-              <h1
+              <a
                 class="title"
+                href="/home"
               >
                 DOITNOW
-              </h1>
+              </a>
             </div>
             <div
               class="nav-avatar-content"
@@ -211,11 +213,12 @@ Object {
           <i
             class="fas fa-bars icon icon-menu"
           />
-          <h1
+          <a
             class="title-responsive"
+            href="/home"
           >
             DOITNOW
-          </h1>
+          </a>
         </div>
       </div>
       <div
@@ -230,11 +233,12 @@ Object {
           <div
             class="logo-app"
           >
-            <h1
+            <a
               class="title"
+              href="/home"
             >
               DOITNOW
-            </h1>
+            </a>
           </div>
           <div
             class="nav-avatar-content"
