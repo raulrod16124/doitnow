@@ -158,7 +158,12 @@ export const HomeTopBar = ({
       </div>
       {viewSelected.today && (
         <div className="search-component">
-          <Search width="100" height="5" onChange={handleSearchArchiveTask} />
+          <Search
+            width="90"
+            height="5"
+            margin="0.5rem 2rem"
+            onChange={handleSearchArchiveTask}
+          />
         </div>
       )}
       <div

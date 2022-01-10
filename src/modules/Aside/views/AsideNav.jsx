@@ -60,9 +60,11 @@ export const AsideNav = () => {
   const navResponsiveRef = useRef();
 
   const handleSelectedView = (view) => {
-    // console.log(view);
     dispatch(ViewSelected(view));
-    // setHomeView(view);
+    console.log(bgNavResponsiveRef.current.style.display);
+    if (bgNavResponsiveRef.current.style.display === "block") {
+      handleToggleNavBar();
+    }
   };
 
   const handleToggleNavBar = (param) => {
@@ -75,11 +77,13 @@ export const AsideNav = () => {
       }, 200);
     } else {
       navResponsiveRef.current.style.opacity = "0";
-      navResponsiveRef.current.style.width = "0%";
+      setTimeout(() => {
+        navResponsiveRef.current.style.width = "0%";
+      }, 100);
       setTimeout(() => {
         bgNavResponsiveRef.current.style.display = "none";
         navResponsiveRef.current.style.display = "none";
-      }, 200);
+      }, 300);
     }
   };
 
@@ -167,14 +171,6 @@ export const AsideNav = () => {
                       <i className="fas fa-user icon"></i> Account
                     </p>
                   </li>
-                  {/* <li
-                      className={settingsClass}
-                      onClick={() => handleSelectedView("settings")}
-                    >
-                      <p className="view-text">
-                        <i className="fas fa-cog icon"></i> Settings
-                      </p>
-                    </li> */}
                 </Link>
               </ul>
             </div>
