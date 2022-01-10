@@ -9,6 +9,8 @@ export const HomeTopBar = ({
   handleOrderTaskFiltered,
   handleGetTodoFilter,
   handleSearchArchiveTask,
+  filterOptionsVisibility,
+  setFilterOptionsVisibility,
   allTodos,
   viewSelected,
   handleArchiveVisibility,
@@ -20,8 +22,6 @@ export const HomeTopBar = ({
     timestampSelectorVisibility,
     setTimestampSelectorVisibility,
   ] = useState(false);
-
-  const [filterVisibility, setFilterVisibility] = useState(false);
 
   const optionInputRef = useRef();
 
@@ -71,7 +71,7 @@ export const HomeTopBar = ({
         handleGetTodoFilter(condition);
         break;
     }
-    setFilterVisibility(false);
+    setFilterOptionsVisibility(false);
     setTimestampSelectorVisibility(false);
   };
 
@@ -93,14 +93,13 @@ export const HomeTopBar = ({
               <label
                 className="day-selected"
                 onClick={() => {
-                  setFilterVisibility(!filterVisibility);
                   setTimestampSelectorVisibility(false);
                 }}
               >
                 <p className="day-selected-data">{filterDate}</p>
                 <i className="fas fa-chevron-down icon"></i>
               </label>
-              {filterVisibility && (
+              {filterOptionsVisibility && (
                 <ul className="content-options">
                   <li
                     className="option"

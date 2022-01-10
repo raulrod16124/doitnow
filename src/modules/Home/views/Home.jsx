@@ -327,6 +327,41 @@ export const Home = () => {
     }
   };
 
+  const [filterOptionsVisibility, setFilterOptionsVisibility] = useState(false);
+  const handleListenClickToCloseFilterOptions = (classname) => {
+    const classAvailableClick = [
+      "content-options",
+      "option",
+      "option calendar-selector",
+      "fas fa-chevron-right icon",
+      "timeStamp-input",
+      "option-tag",
+      "option-tag-label",
+      "input-content",
+      "option-tag-input",
+      "fas fa-search icon",
+      "filter-options",
+      "day-selected",
+      "day-selected-data",
+      "fas fa-chevron-down icon",
+    ];
+    const filterOptionClass = [
+      "filter-options",
+      "day-selected",
+      "day-selected-data",
+      "fas fa-chevron-down icon",
+    ];
+    if (!classAvailableClick.includes(classname)) {
+      setFilterOptionsVisibility(false);
+    } else {
+      if (filterOptionClass.includes(classname)) {
+        setFilterOptionsVisibility(!filterOptionsVisibility);
+      } else {
+        setFilterOptionsVisibility(true);
+      }
+    }
+  };
+
   return (
     <>
       {loadingVisibility ? (
@@ -336,6 +371,7 @@ export const Home = () => {
           className="home"
           onClick={(e) => {
             e.target.className === "bg-archive" && setArchiveVisibility(false);
+            handleListenClickToCloseFilterOptions(e.target.className);
             if (
               e.target.className !==
                 "content-add-and-archive-feature-on-responsive" &&
@@ -359,6 +395,8 @@ export const Home = () => {
           <HomeTopBar
             viewSelected={viewSelected}
             allTodos={allTodos}
+            filterOptionsVisibility={filterOptionsVisibility}
+            setFilterOptionsVisibility={setFilterOptionsVisibility}
             handleGetVisibilityFormState={handleGetVisibilityFormState}
             handleOrderTaskFiltered={handleOrderTaskFiltered}
             handleGetTodoFilter={handleGetTodoFilter}
