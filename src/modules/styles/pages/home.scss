@@ -60,7 +60,7 @@
       justify-content: space-between;
       column-gap: 4rem;
       font-size: 1.6rem;
-      margin-right: 5rem;
+      margin-right: 4rem;
       z-index: 15;
 
       @include tablet {
@@ -398,7 +398,7 @@
 
       @include tablet {
         width: 100%;
-        min-height: 40rem;
+        min-height: 50rem;
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -407,30 +407,26 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      padding: 1rem;
-      margin: 1vmin auto;
-      border-radius: 0.5vmin;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 0.5rem;
       background: $White;
-      box-shadow: 0.5vmin 0.5vmin 0.5vmin #aaa;
-      height: auto;
-      min-height: 10vh;
-      max-height: 30vh;
+      box-shadow: 0.5rem 0.5rem 0.5rem #aaa;
+      min-height: 20rem;
+      height: fit-content;
       width: 100%;
       transform: rotate(0deg);
       transition: all 0.3s;
 
       @include tablet {
-        min-height: 10rem;
+        min-height: 5rem;
         max-height: none;
-        height: auto;
+        height: fit-content;
         width: 100%;
       }
 
       &:first-of-type {
-        margin-top: 1vh;
-        @include tablet {
-          margin-top: 0.5vh;
-        }
+        margin-top: 1rem;
       }
     }
     .item-title {
@@ -438,8 +434,8 @@
       justify-content: space-between;
       word-wrap: break-word;
       height: fit-content;
-      font-size: 2.2vmin;
-      margin-bottom: 1.5vh;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
       z-index: 10;
 
       @include tablet {
@@ -447,7 +443,7 @@
       }
 
       .item-date {
-        font-size: 1.5vmin;
+        font-size: 1.4rem;
         display: flex;
         @include tablet {
           display: none;
@@ -467,8 +463,8 @@
       display: flex;
       justify-content: flex-end;
       color: $grey;
-      padding: 1.5vmin;
-      font-size: 2.5vmin;
+      padding: 1rem;
+      font-size: 2rem;
       font-weight: 700;
 
       @include tablet {
@@ -530,11 +526,11 @@
     .tag {
       width: fit-content;
       border-radius: 0.5rem;
-      padding: 0.5vmin;
-      font-size: 1.6vmin;
+      padding: 0.5rem;
+      font-size: 1.4rem;
       font-style: italic;
       font-weight: 600;
-      margin: 0.5vh 0.5vw 0.5vh 0;
+      margin: 0.5rem 0.5rem 0.5rem 0;
       cursor: pointer;
 
       @include tablet {
@@ -1312,13 +1308,14 @@
     .content-icons {
       display: flex;
       justify-content: flex-end;
-      width: 100%;
+      width: 40%;
       margin-top: 1vh;
+      margin-left: 40%;
       column-gap: 20%;
       z-index: 10;
 
       & svg {
-        margin-left: 1vw;
+        margin-left: 1rem;
       }
     }
 
