@@ -91,7 +91,9 @@ export const AsideNav = () => {
             className="fas fa-bars icon icon-menu"
             onClick={() => handleToggleNavBar("open")}
           ></i>
-          <h1 className="title-responsive">DOITNOW</h1>
+          <a className="title-responsive" href="/home">
+            DOITNOW
+          </a>
         </div>
       </div>
       <div
@@ -109,7 +111,9 @@ export const AsideNav = () => {
             onClick={handleToggleNavBar}
           ></i>
           <div className="logo-app">
-            <h1 className="title">DOITNOW</h1>
+            <a className="title" href="/home">
+              DOITNOW
+            </a>
           </div>
           {/* START profile avatar on tablet size */}
           <div className="nav-avatar-content">

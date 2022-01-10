@@ -26,7 +26,11 @@ export const CreateUser = (user) => {
     if (userTokenCreated) {
       const userProfile = {
         id: userTokenCreated.localId,
-        name: user.email.split("." || "_" || "-" || "@")[0],
+        name: user.email
+          .split(".")[0]
+          .split("-")[0]
+          .split("_")[0]
+          .split("@")[0],
         email: user.email,
         avatar: avatars.lion,
         level: "1",
