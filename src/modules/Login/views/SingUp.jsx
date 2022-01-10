@@ -107,8 +107,9 @@ function SignUp() {
             <div className="buttons-content">
               <Link to="/login">login</Link>
               <Button
+                height={"5rem"}
+                width={"10rem"}
                 label="Sign up"
-                primary
                 size="medium"
                 onClick={(e) => handleCreateNewUser(e)}
               />

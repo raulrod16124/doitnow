@@ -85,9 +85,10 @@ function Login() {
               <Link to="/sign-up">Sign up</Link>
               {/* <Link to="/recover-password">Forgot password?</Link> */}
               <Button
+                height={"5rem"}
+                width={"10rem"}
                 label="login"
                 size="medium"
-                primary
                 onClick={(e) => handleVerifyUser(e)}
               />
             </div>
