@@ -60,11 +60,15 @@
         width: 100%;
         color: $White;
         font-style: italic;
+        word-wrap: anywhere;
+        overflow-wrap: anywhere;
       }
       .user-name-responsive {
         @include tablet {
           font-weight: 700;
           text-transform: capitalize;
+          word-wrap: anywhere;
+          overflow-wrap: anywhere;
         }
       }
     }
@@ -73,7 +77,7 @@
       width: 70%;
       @include tablet {
         width: auto;
-        height: 100px;
+        height: 80px;
       }
     }
   }

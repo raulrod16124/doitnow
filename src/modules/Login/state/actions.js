@@ -26,12 +26,13 @@ export const CreateUser = (user) => {
     if (userTokenCreated) {
       const userProfile = {
         id: userTokenCreated.localId,
-        name: user.email.split("@")[0],
+        name: user.email.split("." || "_" || "-" || "@")[0],
         email: user.email,
         avatar: avatars.lion,
         level: "1",
         experience: 0,
       };
+      console.log(userProfile);
       dispatch(CreateUserProfile(userProfile));
       // Move the newTask structure to a model doc.
       dispatch(
