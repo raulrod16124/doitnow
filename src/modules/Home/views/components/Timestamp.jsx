@@ -44,7 +44,7 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
     const { dates } = datesGenerator(timeSelected);
     dates.filter((week) => {
       return week.find((day) => {
-        if (day.jsDate.split(" ")[0] === dateSelected) {
+        if (day.jsDate.split(" ")[0].split(",")[0] === dateSelected) {
           setCurrentWeek(week);
         }
       });
@@ -85,44 +85,47 @@ export const Timestamp = ({ allTodos, handleGetEditItem }) => {
         ></i>
       </div>
       <div className="timestamp">
-        {currentWeek.map((day, index) => {
-          return (
-            <div key={day + index} className="content-days">
-              <div className="day">
-                <div
-                  className="day-text"
-                  style={{
-                    background:
-                      day.date == today[0] &&
-                      currentTime.month + 1 == today[1] &&
-                      "#0a425c",
-                    color:
-                      day.date == today[0] &&
-                      currentTime.month + 1 == today[1] &&
-                      "#fff",
-                  }}
-                >
-                  <h3 className="text">
-                    {days[index]} {day.date}
-                  </h3>
-                </div>
-                <div className="day-tasks">
-                  {allTodos.map((todo) => {
-                    if (todo.date === day.jsDate.split(" ")[0]) {
-                      return (
-                        <TimestampItem
-                          key={todo.title}
-                          item={todo}
-                          handleGetEditItem={handleGetEditItem}
-                        />
-                      );
-                    }
-                  })}
+        {currentWeek.length > 0 &&
+          currentWeek.map((day, index) => {
+            return (
+              <div key={day + index} className="content-days">
+                <div className="day">
+                  <div
+                    className="day-text"
+                    style={{
+                      background:
+                        day.date == today[0] &&
+                        currentTime.month + 1 == today[1] &&
+                        "#0a425c",
+                      color:
+                        day.date == today[0] &&
+                        currentTime.month + 1 == today[1] &&
+                        "#fff",
+                    }}
+                  >
+                    <h3 className="text">
+                      {days[index]} {day.date}
+                    </h3>
+                  </div>
+                  <div className="day-tasks">
+                    {allTodos.map((todo) => {
+                      if (
+                        todo.date === day.jsDate.split(" ")[0].split(",")[0]
+                      ) {
+                        return (
+                          <TimestampItem
+                            key={todo.title}
+                            item={todo}
+                            handleGetEditItem={handleGetEditItem}
+                          />
+                        );
+                      }
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );
