@@ -57,7 +57,9 @@ function Login() {
 
   return (
     <>
-      <img src={bgLogin} alt="background-login" className="bg-login" />
+    <div className="bg-login">
+      <img src={bgLogin} alt="background-login" className="bg-login-img" />
+    </div>
       <div className="login">
         <div className="login-content">
           <form className="login-form">
