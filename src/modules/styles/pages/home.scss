@@ -18,8 +18,9 @@
     top: 0;
     left: 10%;
     width: 100%;
-    height: 12vh;
+    height: 15vh;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background: $White;
     column-gap: 2rem;
@@ -55,12 +56,11 @@
     }
 
     .content-options-bar {
-      width: auto;
+      width: 20%;
       display: flex;
       justify-content: space-between;
-      column-gap: 4rem;
+      column-gap: 2rem;
       font-size: 1.6rem;
-      margin-right: 4rem;
       z-index: 15;
 
       @include tablet {
@@ -999,7 +999,7 @@
       list-style: none;
       padding: 1rem;
       border: 0.5rem solid transparent;
-      margin: 1vh 1vw;
+      margin: 3vh 1vw;
       transition: all 0.4s;
 
       @include tablet {

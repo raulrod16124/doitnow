@@ -26,8 +26,6 @@ export const HomeTopBar = ({
   const optionInputRef = useRef();
 
   const handleFilterTask = (condition, value) => {
-    // console.log(condition);
-    // console.log(value);
     switch (condition) {
       case "ALL":
         handleOrderTaskFiltered(allTodos);
@@ -35,7 +33,6 @@ export const HomeTopBar = ({
         handleGetTodoFilter(condition);
         break;
       case "TODAY":
-        // console.log("Enter in today");
         const todayDay = allTodos.filter(
           (todo) => todo.date === new Date().toLocaleDateString()
         );

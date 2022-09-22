@@ -61,7 +61,6 @@ export const AsideNav = () => {
 
   const handleSelectedView = (view) => {
     dispatch(ViewSelected(view));
-    console.log(bgNavResponsiveRef.current.style.display);
     if (bgNavResponsiveRef.current.style.display === "block") {
       handleToggleNavBar();
     }

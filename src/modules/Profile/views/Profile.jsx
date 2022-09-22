@@ -411,7 +411,7 @@ export const Profile = () => {
               <div className="month-overview previous-month">
                 <h3 className="month-title">
                   <span className="month-name">
-                    {Object.values(months)[currentMonth == 0 ? 11 : -1].month}
+                    {months && Object.values(months)[currentMonth == 0 ? 11 : -1]?.month}
                   </span>{" "}
                   - completed{" "}
                   {
